@@ -4,6 +4,7 @@
     [LastName]    VARCHAR (50) NOT NULL,
     [PhoneNumber] INT          NOT NULL,
     [Email]       VARCHAR (50) NOT NULL,
+    [test] NCHAR(10) NULL, 
     PRIMARY KEY CLUSTERED ([EmployeeId] ASC)
 );
 
