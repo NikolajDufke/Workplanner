@@ -68,4 +68,7 @@
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="DataImports\Script1.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DataImports\Script2.sql" />
+  </ItemGroup>
 </Project>
