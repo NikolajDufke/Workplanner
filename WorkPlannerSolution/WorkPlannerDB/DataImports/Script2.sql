@@ -1,1 +1,0 @@
-﻿INSERT INTO Employee (FirstName,LastName,Email,PhoneNumber) VALUES ('Bob', 'Seequel', 'bs@bobs.dk',23232323)
