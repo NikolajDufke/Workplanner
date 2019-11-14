@@ -66,7 +66,7 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Employee.sql" />
     <Build Include="dbo\Tables\User.sql" />
-    <Build Include="dbo\Tables\Acces.sql" />
+    <Build Include="dbo\Tables\Access.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataImports\EmployeeImportScript.sql" />
