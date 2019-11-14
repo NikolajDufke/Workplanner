@@ -4,5 +4,7 @@
     [LastName]    VARCHAR (50) NOT NULL,
     [PhoneNumber] INT          NOT NULL,
     [Email]       VARCHAR (50) NOT NULL,
-    CONSTRAINT [PK_Employee] PRIMARY KEY ([EmployeeId])
-);
+    [UserID] INT NOT NULL, 
+    CONSTRAINT [PK_Employee] PRIMARY KEY ([EmployeeId]), 
+    CONSTRAINT [FK_Employee_User] FOREIGN KEY ([UserID]) REFERENCES [User]([UserID]), 
+    );
