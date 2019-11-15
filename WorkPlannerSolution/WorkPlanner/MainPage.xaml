@@ -8,7 +8,33 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <!--<Page.DataContext >
+        <ViewModel:FrontpageViewModel></ViewModel:FrontpageViewModel>
+    </Page.DataContext>-->
+    <Page.Resources>
+        <!--<ViewModel:FrontpageViewModel x:Key="FrontpageViewModelInstance" />-->
+    </Page.Resources>
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1">
+            <ListView ItemsSource="{Binding }" SelectedValue="{Binding SelectedEmployee, Mode=TwoWay}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding Employee.picture}" />
+                            <TextBlock Text="{Binding Employee.Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>
