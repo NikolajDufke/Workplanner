@@ -6,5 +6,5 @@
     [Email]       VARCHAR (50) NOT NULL,
     [UserID] INT NOT NULL, 
     CONSTRAINT [PK_Employee] PRIMARY KEY ([EmployeeId]), 
-    CONSTRAINT [FK_Employee_User] FOREIGN KEY ([UserID]) REFERENCES [User]([UserID]), 
+    CONSTRAINT [FK_Employee_Users] FOREIGN KEY ([UserID]) REFERENCES [Users]([UserID]), 
     );
