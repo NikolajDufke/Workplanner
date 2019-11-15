@@ -122,6 +122,8 @@
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="VievModel\MainPageViewModel.cs" />
+    <Compile Include="Persistency\IwebApiWorkplanner.cs" />
+    <Compile Include="Persistency\WebApiWorkPlanner.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -157,11 +159,15 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converter\" />
     <Folder Include="Handler\" />
     <Folder Include="Model\" />
+    <Folder Include="VievModel\" />
     <Folder Include="Persistency\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
