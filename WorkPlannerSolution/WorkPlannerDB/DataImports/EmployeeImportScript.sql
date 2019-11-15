@@ -6,10 +6,13 @@ INSERT INTO Employee(FirstName,LastName,PhoneNumber,Email,UserID) VALUES ('Bobla
 INSERT INTO Employee(FirstName,LastName,PhoneNumber,Email,UserID) VALUES ('Bobil', 'Seequel', 28282828, 'bobil@bobs.dk',6)
 
 INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode1',1)
-INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode2',2)
-INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode3',3)
-INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode4',4)
-INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode5',5)
-INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode6',6)
+INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode2',1)
+INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode3',1)
+INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode4',2)
+INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode5',3)
+INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode6',1)
 
-INSERT INTO Access(AccessLevel,AccessDescription) VALUES (
+INSERT INTO Access(AccessLevel,AccessDescription) VALUES (0, 'Guest')
+INSERT INTO Access(AccessLevel,AccessDescription) VALUES (1, 'User')
+INSERT INTO Access(AccessLevel,AccessDescription) VALUES (2, 'Admin')
+INSERT INTO Access(AccessLevel,AccessDescription) VALUES (3, 'SuperAdmin')
