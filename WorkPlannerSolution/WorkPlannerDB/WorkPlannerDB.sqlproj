@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Employee.sql" />
-    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
     <Build Include="dbo\Tables\Access.sql" />
   </ItemGroup>
   <ItemGroup>

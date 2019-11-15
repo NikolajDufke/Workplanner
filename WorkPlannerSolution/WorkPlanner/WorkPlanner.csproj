@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="VievModel\MainPageViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -162,7 +163,6 @@
     <Folder Include="Handler\" />
     <Folder Include="Model\" />
     <Folder Include="Persistency\" />
-    <Folder Include="VievModel\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
