@@ -64,8 +64,15 @@ namespace WorkPlanner.Persistency
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(_apiPrefix);
-                List<T> deserializeObject = JsonConvert.DeserializeObject<List<T>>(response.Content.ToString());
-                return new List<T>();
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseContentAsString = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<T>>(responseContentAsString);
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch (Exception e)
             {
