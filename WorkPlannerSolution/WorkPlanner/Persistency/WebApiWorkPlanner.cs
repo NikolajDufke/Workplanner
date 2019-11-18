@@ -12,15 +12,14 @@ namespace WorkPlanner.Persistency
     {
         private string _serverUrl;
         private string _apiPrefix;
-        private string _apiID;
         private HttpClientHandler _clientHandler;
         private HttpClient _client;
 
-        public WebApiWorkPlanner(string serverUrl, string apiPrefix, string apiId)
+        public WebApiWorkPlanner(string serverUrl, string apiPrefix)
         {
             _serverUrl = serverUrl;
             _apiPrefix = apiPrefix;
-            _apiID = apiId;
+           
             _clientHandler = new HttpClientHandler();
             _clientHandler.UseDefaultCredentials = true;
             
@@ -35,7 +34,7 @@ namespace WorkPlanner.Persistency
             {
                 string serializedObject = JsonConvert.SerializeObject(obj);
                 StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _client.PostAsync(_apiPrefix + " / " + _apiID, sc);
+                HttpResponseMessage response = await _client.PostAsync(_apiPrefix + " / " , sc);
             }
             catch (Exception e)
             {   
@@ -46,11 +45,11 @@ namespace WorkPlanner.Persistency
 
         }
 
-        public async Task Delete(T obj)
+        public async Task Delete(string apiId)
         {
             try
             {
-                HttpResponseMessage response = await _client.DeleteAsync(_apiPrefix + "/" + _apiID);
+                HttpResponseMessage response = await _client.DeleteAsync(_apiPrefix + "/" + apiId);
             }
             catch (Exception e)
             {
@@ -80,14 +79,42 @@ namespace WorkPlanner.Persistency
             }
         }
 
-        public Task<T> Read()
+        public async Task<T> Read(string apiId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync(_apiPrefix + "/" + apiId);
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseContentAsString = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(responseContentAsString);
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Failed to read object");
+            }
+        
         }
 
-        public Task Update(T obj)
+        public async Task Update(T obj, string apiId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string serializedObject = JsonConvert.SerializeObject(obj);
+                StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "allpication/json");
+
+                HttpResponseMessage response = await _client.PutAsync(_apiPrefix + "/" + apiId, sc);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Failed to update object");
+            }
+          
+
+
         }
     }
 }

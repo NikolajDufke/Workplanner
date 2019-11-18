@@ -10,9 +10,9 @@ namespace WorkPlanner.Persistency
    public interface IwebApiWorkplanner<T>
     {
         Task<List<T>> Load();
-        Task Update(T obj);
+        Task Update(T obj,string apiId);
         Task Create(T obj);
-        Task Delete(T obj);
-        Task<T> Read();
+        Task Delete(string apiId);
+        Task<T> Read(string apiId);
     }
 }
