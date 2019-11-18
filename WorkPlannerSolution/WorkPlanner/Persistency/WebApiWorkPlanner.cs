@@ -40,28 +40,43 @@ namespace WorkPlanner.Persistency
             catch (Exception e)
             {   
                 
-                throw new Exception("creation failed");
+                throw new Exception("failed to create object");
             }
 
 
         }
 
-        public Task Delete(T obj)
+        public async Task Delete(T obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                HttpResponseMessage response = await _client.DeleteAsync(_apiPrefix + "/" + _apiID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Failed to delete object");
+            }
+
         }
 
-        public Task<List<T>> Load()
+        public async Task<List<T>> Load()
         {
-            throw new NotImplementedException();
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync(_apiPrefix);
+                List<T> deserializeObject = JsonConvert.DeserializeObject<List<T>>(response.Content.ToString());
+                return new List<T>();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Failed to load object");
+            }
         }
 
         public Task<T> Read()
         {
             throw new NotImplementedException();
         }
-
-
 
         public Task Update(T obj)
         {
