@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WorkPlanner.Common;
 using WorkPlanner.Handler;
+using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
@@ -16,7 +17,8 @@ namespace WorkPlanner.ViewModel
         private DateTimeOffset _dateTime;
         private TimeSpan _time;
         private WorkTimeHandler _workTimeHandler;
-
+        private static Worktime _selectedworktime;
+        private ICommand _selectedWorktimeCommand;
 
         public WorkTimeViewModel()
         {
@@ -50,17 +52,20 @@ namespace WorkPlanner.ViewModel
             get { return _workTimeHandler; }
         }
 
-        //public void SetSelectedWorkTime(object id)
-        //{
-        //    int Id = Convert.ToInt16(id);
+        public static Worktime SelectedWorktime
+        {
+            set { _selectedworktime = value; }
+            get { return _selectedworktime; }
+        }
 
-        //    foreach (WorkTime wt in _allWorktimes)
-        //    {
-        //        if (wt.ID == Id)
-        //        {
-        //            WorkTimeViewModel.SelectedWorkTime = wt;
-        //        }
-        //    }
-        //}
+        public ICommand SelectedWorktimeCommand
+        {
+            get
+            {
+                return _selectedWorktimeCommand ?? (_selectedWorktimeCommand =
+                           new RelayArgCommand<Worktime>(wt => _workTimeHandler.SetSelectedWorkTime(wt)));
+            }
+            set { _selectedWorktimeCommand = value; }
+        }
     }
 }
