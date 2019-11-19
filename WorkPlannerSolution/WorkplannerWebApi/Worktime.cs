@@ -10,5 +10,7 @@ namespace WorkplannerWebApi
         public int EmployeeId { get; set; }
         public DateTime Date { get; set; }
         public DateTime Time { get; set; }
+
+        public virtual Employee Employee { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace WorkPlanner.ViewModel
             get { return _time; }
         }
 
-        public WorkTimeHandler worktimeh
+        public WorkTimeHandler Worktimeh
         {
             set { _workTimeHandler = value; }
             get { return _workTimeHandler; }

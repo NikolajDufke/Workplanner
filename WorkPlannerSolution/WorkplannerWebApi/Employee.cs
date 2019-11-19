@@ -6,11 +6,17 @@ namespace WorkplannerWebApi
 {
     public partial class Employee
     {
+        public Employee()
+        {
+            Worktimes = new HashSet<Worktime>();
+        }
+
         public int EmployeeId { get; set; }
         public int UserId { get; set; }
         public int EinformationId { get; set; }
 
         public virtual EmployeeInformation Einformation { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<Worktime> Worktimes { get; set; }
     }
 }
