@@ -14,19 +14,7 @@
    "Tables": [
       {
          "HasPrimaryKey": true,
-         "Name": "[dbo].[Access]"
-      },
-      {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[Employee]"
-      },
-      {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[EmployeeInformation]"
-      },
-      {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[Users]"
+         "Name": "dbo.Worktime"
       }
    ],
    "UseDatabaseNames": false,
