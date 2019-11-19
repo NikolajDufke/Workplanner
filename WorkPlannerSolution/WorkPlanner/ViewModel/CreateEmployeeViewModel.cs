@@ -8,5 +8,6 @@ namespace WorkPlanner.ViewModel
 {
     class CreateEmployeeViewModel
     {
+
     }
 }
