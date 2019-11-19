@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WorkplannerWebApi;
+using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 
 namespace WorkplannerWebApi.Controllers
 {
@@ -49,7 +50,7 @@ namespace WorkplannerWebApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(access).State = EntityState.Modified;
+            db.Entry(access).State = (EntityState) System.Data.Entity.EntityState.Modified;
 
             try
             {

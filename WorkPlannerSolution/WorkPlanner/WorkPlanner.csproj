@@ -123,6 +123,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Handler\GetPropertyNamesHandler.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
+    <Compile Include="Model\Worktime.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="Persistency\IwebApiWorkplanner.cs" />
@@ -173,7 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converter\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

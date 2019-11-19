@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WorkplannerWebApi;
+using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 
 namespace WorkplannerWebApi.Controllers
 {
@@ -44,12 +45,12 @@ namespace WorkplannerWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != user.UserID)
+            if (id != user.UserId)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(user).State = (EntityState) System.Data.Entity.EntityState.Modified;
 
             try
             {
@@ -87,7 +88,7 @@ namespace WorkplannerWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.UserID))
+                if (UserExists(user.UserId))
                 {
                     return Conflict();
                 }
@@ -97,7 +98,7 @@ namespace WorkplannerWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = user.UserID }, user);
+            return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
         }
 
         // DELETE: api/Users/5
@@ -127,7 +128,7 @@ namespace WorkplannerWebApi.Controllers
 
         private bool UserExists(int id)
         {
-            return db.Users.Count(e => e.UserID == id) > 0;
+            return db.Users.Count(e => e.UserId == id) > 0;
         }
     }
 }
