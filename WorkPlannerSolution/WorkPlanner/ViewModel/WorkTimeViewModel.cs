@@ -49,5 +49,18 @@ namespace WorkPlanner.ViewModel
             set { _workTimeHandler = value; }
             get { return _workTimeHandler; }
         }
+
+        //public void SetSelectedWorkTime(object id)
+        //{
+        //    int Id = Convert.ToInt16(id);
+
+        //    foreach (WorkTime wt in _allWorktimes)
+        //    {
+        //        if (wt.ID == Id)
+        //        {
+        //            WorkTimeViewModel.SelectedWorkTime = wt;
+        //        }
+        //    }
+        //}
     }
 }
