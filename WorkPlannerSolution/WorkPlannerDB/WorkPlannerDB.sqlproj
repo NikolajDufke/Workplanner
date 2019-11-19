@@ -68,6 +68,7 @@
     <Build Include="dbo\Tables\Users.sql" />
     <Build Include="dbo\Tables\Access.sql" />
     <Build Include="dbo\Tables\EmployeeInformation.sql" />
+    <Build Include="dbo\Tables\WorkTime.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataImports\EmployeeImportScript.sql" />
