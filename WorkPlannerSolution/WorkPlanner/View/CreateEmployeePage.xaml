@@ -59,6 +59,18 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="1" Style="{StaticResource TitleStyle}" Text="Create Employee"/>
+        
+        <ListView Grid.Column="2" Grid.Row="1" ItemsSource="{Binding }">
+           <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Style="{StaticResource StackPanelStyle}">
+                        <TextBlock Text="{Binding}" Style="{StaticResource TextBlockStyle}"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}"/>
+                    </StackPanel>
+                </DataTemplate>
+           </ListView.ItemTemplate>
+        </ListView>
+
         <StackPanel Grid.Row="1" Grid.Column="1">
             <StackPanel Style="{StaticResource StackPanelStyle}">
                 <TextBlock Text="First Name:" Style="{StaticResource TextBlockStyle}"/>
@@ -89,16 +101,5 @@
                 <TextBox Style="{StaticResource TextBoxStyle}"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2">
-            <StackPanel Style="{StaticResource StackPanelStyle}">
-                <TextBlock Text="" Style="{StaticResource TextBlockStyle}"/>
-                <TextBox Style="{StaticResource TextBoxStyle}"/>
-            </StackPanel>
-            <StackPanel Style="{StaticResource StackPanelStyle}">
-                <TextBlock Style="{StaticResource TextBlockStyle}"/>
-                <TextBox Style="{StaticResource TextBoxStyle}"/>
-            </StackPanel>
-        </StackPanel>
-
     </Grid>
 </Page>
