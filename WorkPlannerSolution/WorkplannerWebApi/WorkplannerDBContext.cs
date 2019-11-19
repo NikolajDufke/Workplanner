@@ -18,7 +18,7 @@ namespace WorkplannerWebApi
 
         public virtual DbSet<Access> Accesses { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeInformation> EmployeeInformations { get; set; }
+        public virtual DbSet<EmployeeInformation>  EmployeeInformations { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
