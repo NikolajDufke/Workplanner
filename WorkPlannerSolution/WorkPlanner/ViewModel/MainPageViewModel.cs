@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkPlanner.VievModel
+namespace WorkPlanner.ViewModel
 {
     class MainPageViewModel
     {
