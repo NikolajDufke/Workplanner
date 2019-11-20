@@ -24,10 +24,10 @@ namespace WorkPlanner.Handler
             return listProperties;
         }
 
-        public List<PropInfo> IfUppercaseAddSpace(List<PropInfo> dicOfStrings)
+        public List<PropInfo> IfUppercaseAddSpace(List<PropInfo> listOfPropName)
         {
-            List<PropInfo> listOfAddedVisualName = dicOfStrings;
-            foreach (PropInfo stringFromDic in dicOfStrings)
+            List<PropInfo> listOfAddedVisualName = listOfPropName;
+            foreach (PropInfo stringFromDic in listOfPropName)
             {
                 StringBuilder newString = new StringBuilder(stringFromDic.PropName.Length + 5);
                 newString.Append(stringFromDic.PropName[0]);
