@@ -124,7 +124,6 @@
     <Compile Include="Handler\PropertyNamesHandler.cs" />
     <Compile Include="Model\EmployeeInformation.cs" />
     <Compile Include="Model\PropInfo.cs" />
-    <Compile Include="Handler\GetPropertyNamesHandler.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
     <Compile Include="Model\Worktime.cs" />
     <Compile Include="Catalog\WorkTimeCatalogSingleton.cs" />
