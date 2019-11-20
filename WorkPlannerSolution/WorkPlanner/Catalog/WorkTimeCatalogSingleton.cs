@@ -15,9 +15,9 @@ namespace WorkPlanner.Model
         private ObservableCollection<Worktime> _worktimes;
         private const string _serverurl = "http://localhost:56265/";
         private const string _serverprefix = "worktime";
-
+        private WebApiWorkPlanner<Worktime> _worktimePersistency;
         #region Singleton
-             public static WorkTimeCatalogSingleton Instance
+        public static WorkTimeCatalogSingleton Instance
              {
                  get
                  {
@@ -35,7 +35,7 @@ namespace WorkPlanner.Model
         {
             _worktimes = new ObservableCollection<Worktime>();
 
-            WebApiWorkPlanner<Worktime> WorktimePersistency = new WebApiWorkPlanner<Worktime>(_serverurl, _serverprefix);
+            _worktimePersistency = new WebApiWorkPlanner<Worktime>(_serverurl, _serverprefix);
         }
 
         public ObservableCollection<Worktime> Worktimes
@@ -43,14 +43,14 @@ namespace WorkPlanner.Model
             get { return _worktimes; }
         }
 
-        public void AddWorktime(int WorkTimeId, int EmployeeId, DateTime Date, DateTime Time)
+        public async Task AddWorktime(int WorkTimeId, int EmployeeId, DateTime Date, DateTime Time)
         {
             if (WorkTimeId == null && EmployeeId == null)
             {
                 Worktime newWorktime = new Worktime(WorkTimeId, EmployeeId, Date, Time);
 
                 _worktimes.Add(newWorktime);
-                
+                await _worktimePersistency.Create(newWorktime);
             }
             else
             {
