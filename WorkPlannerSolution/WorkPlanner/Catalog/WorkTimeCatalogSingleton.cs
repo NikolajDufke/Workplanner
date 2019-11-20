@@ -60,17 +60,10 @@ namespace WorkPlanner.Model
 
         public async Task AddWorktime(int WorkTimeId, int EmployeeId, DateTime Date, DateTime Time)
         {
-            if (WorkTimeId == null && EmployeeId == null)
-            {
                 Worktime newWorktime = new Worktime(WorkTimeId, EmployeeId, Date, Time);
 
                 _worktimes.Add(newWorktime);
                 await _worktimePersistency.Create(newWorktime);
-            }
-            else
-            {
-                throw new ArgumentException("Missing WorkTimeID or EmployeeId");
-            }
         }
 
         public async Task RemoveWorktime(Worktime wt)
