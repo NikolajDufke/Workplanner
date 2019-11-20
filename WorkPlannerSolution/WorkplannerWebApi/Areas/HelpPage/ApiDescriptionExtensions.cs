@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace WorkplannerWebApi.Areas.HelpPage
+namespace WorkPlannerWebApi.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

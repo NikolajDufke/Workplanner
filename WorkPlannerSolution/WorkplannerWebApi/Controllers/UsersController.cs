@@ -8,14 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WorkplannerWebApi;
-using EntityState = Microsoft.EntityFrameworkCore.EntityState;
+using WorkPlannerWebApi;
 
-namespace WorkplannerWebApi.Controllers
+namespace WorkPlannerWebApi.Controllers
 {
     public class UsersController : ApiController
     {
-        private WorkplannerDBContext db = new WorkplannerDBContext();
+        private WorkPlannerDBContext db = new WorkPlannerDBContext();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
@@ -45,12 +44,12 @@ namespace WorkplannerWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != user.UserId)
+            if (id != user.UserID)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = (EntityState) System.Data.Entity.EntityState.Modified;
+            db.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -81,24 +80,9 @@ namespace WorkplannerWebApi.Controllers
             }
 
             db.Users.Add(user);
+            db.SaveChanges();
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (UserExists(user.UserId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
+            return CreatedAtRoute("DefaultApi", new { id = user.UserID }, user);
         }
 
         // DELETE: api/Users/5
@@ -128,7 +112,7 @@ namespace WorkplannerWebApi.Controllers
 
         private bool UserExists(int id)
         {
-            return db.Users.Count(e => e.UserId == id) > 0;
+            return db.Users.Count(e => e.UserID == id) > 0;
         }
     }
 }

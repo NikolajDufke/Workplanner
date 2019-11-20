@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using WorkplannerWebApi.Areas.HelpPage.ModelDescriptions;
-using WorkplannerWebApi.Areas.HelpPage.Models;
+using WorkPlannerWebApi.Areas.HelpPage.ModelDescriptions;
+using WorkPlannerWebApi.Areas.HelpPage.Models;
 
-namespace WorkplannerWebApi.Areas.HelpPage
+namespace WorkPlannerWebApi.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {
