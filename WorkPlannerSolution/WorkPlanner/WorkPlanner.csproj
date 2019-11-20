@@ -124,6 +124,11 @@
     <Compile Include="Handler\PropertyNamesHandler.cs" />
     <Compile Include="Model\EmployeeInformation.cs" />
     <Compile Include="Model\PropInfo.cs" />
+    <Compile Include="Handler\GetPropertyNamesHandler.cs" />
+    <Compile Include="Handler\WorkTimeHandler.cs" />
+    <Compile Include="Model\Worktime.cs" />
+    <Compile Include="Catalog\WorkTimeCatalogSingleton.cs" />
+    <Compile Include="ViewModel\CalendarBase.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="Persistency\IwebApiWorkplanner.cs" />
@@ -131,6 +136,7 @@
     <Compile Include="View\CreateEmployeePage.xaml.cs">
       <DependentUpon>CreateEmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\WorkTimeViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -167,6 +173,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations">
+      <Version>10.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
     </PackageReference>
