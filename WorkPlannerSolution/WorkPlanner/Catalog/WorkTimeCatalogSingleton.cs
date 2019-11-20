@@ -11,11 +11,16 @@ namespace WorkPlanner.Model
 {
     public class WorkTimeCatalogSingleton
     {
+        #region Instance fields
+
         private static WorkTimeCatalogSingleton _instance;
         private ObservableCollection<Worktime> _worktimes;
         private const string _serverurl = "http://localhost:56265/";
         private const string _serverId = "worktime";
         private WebApiWorkPlanner<Worktime> _worktimePersistency;
+
+        #endregion
+        
         #region Singleton
         public static WorkTimeCatalogSingleton Instance
              {
@@ -31,6 +36,8 @@ namespace WorkPlanner.Model
              }
         #endregion
 
+        #region Constructor
+
         public WorkTimeCatalogSingleton()
         {
             _worktimes = new ObservableCollection<Worktime>();
@@ -38,10 +45,18 @@ namespace WorkPlanner.Model
             _worktimePersistency = new WebApiWorkPlanner<Worktime>(_serverurl, _serverId);
         }
 
+        #endregion
+
+        #region Collection
+
         public ObservableCollection<Worktime> Worktimes
         {
             get { return _worktimes; }
         }
+
+        #endregion
+
+        #region Methods
 
         public async Task AddWorktime(int WorkTimeId, int EmployeeId, DateTime Date, DateTime Time)
         {
@@ -70,5 +85,8 @@ namespace WorkPlanner.Model
                 throw new ArgumentException("Failed to Delete");
             }
         }
+        
+        #endregion
+
     }
 }
