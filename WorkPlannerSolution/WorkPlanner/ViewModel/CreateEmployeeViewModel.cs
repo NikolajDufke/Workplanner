@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Handler;
-using WorkPlanner.Persistency;
+using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    class CreateEmployeeViewModel
+    public class CreateEmployeeViewModel
     {
+        private ObservableCollection<PropInfo> _propinfolist;
         public CreateEmployeeViewModel()
         {
-            List<>
+        PropertyNamesHandler<EmployeeInformation> getPropertiesHandler = new PropertyNamesHandler<EmployeeInformation>();
+        List<PropInfo> employeeIPropList = getPropertiesHandler.Getpropertynames();
+        List<PropInfo> textNameList = getPropertiesHandler.IfUppercaseAddSpace(employeeIPropList);
+        }
 
-            foreach (var property in PropertiesOfType<string>(myObject))
-            {
-                var name = property.Key;
-                var val = property.Value;
-            }
-        
+        public ObservableCollection<PropInfo> PropInfoList
+        {
+            get { return _propinfolist;}
+            set { _propinfolist = value; }
+        }
     }
 }

@@ -121,11 +121,16 @@
     </Compile>
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="Handler\GetPropertyNamesHandler.cs" />
+    <Compile Include="Handler\PropertyNamesHandler.cs" />
+    <Compile Include="Model\EmployeeInformation.cs" />
+    <Compile Include="Model\PropInfo.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="Persistency\IwebApiWorkplanner.cs" />
     <Compile Include="Persistency\WebApiWorkPlanner.cs" />
+    <Compile Include="View\CreateEmployeePage.xaml.cs">
+      <DependentUpon>CreateEmployeePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -171,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converter\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

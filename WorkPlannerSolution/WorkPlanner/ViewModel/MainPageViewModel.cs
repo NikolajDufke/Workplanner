@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.ViewModel
 {
-    class MainPageViewModel
+    public class MainPageViewModel
     {
     }
 }
