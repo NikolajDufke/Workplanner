@@ -57,5 +57,14 @@ namespace WorkPlanner.Model
                 throw new ArgumentException("Missing WorkTimeID or EmployeeId");
             }
         }
+
+        public async Task RemoveWorktime(Worktime wt)
+        {
+            if (wt != null)
+            {
+                _worktimes.Remove(wt);
+                await _worktimePersistency.Delete(_serverprefix);
+            }
+        }
     }
 }
