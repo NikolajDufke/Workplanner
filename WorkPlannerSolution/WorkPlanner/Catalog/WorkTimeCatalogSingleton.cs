@@ -65,6 +65,10 @@ namespace WorkPlanner.Model
                 _worktimes.Remove(wt);
                 await _worktimePersistency.Delete(_serverId);
             }
+            else
+            {
+                throw new ArgumentException("Failed to Delete");
+            }
         }
     }
 }
