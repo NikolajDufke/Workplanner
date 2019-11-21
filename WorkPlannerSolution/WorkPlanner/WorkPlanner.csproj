@@ -119,6 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Catalog\Catalog.cs" />
+    <Compile Include="Catalog\CatalogsSingleton.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Handler\CreateEmployeeHandler.cs" />
@@ -126,9 +128,9 @@
     <Compile Include="Model\EmployeeInformation.cs" />
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
+    <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Model\Worktime.cs" />
-    <Compile Include="Catalog\WorkTimeCatalogSingleton.cs" />
     <Compile Include="ViewModel\CalendarBase.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
@@ -180,11 +182,15 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.LiveShare">
+      <Version>1.1.57</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Catalog\" />
     <Folder Include="Converter\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
