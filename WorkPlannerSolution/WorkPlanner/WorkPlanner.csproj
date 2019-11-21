@@ -126,7 +126,6 @@
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
     <Compile Include="Model\Worktime.cs" />
-    <Compile Include="Catalog\WorkTimeCatalogSingleton.cs" />
     <Compile Include="ViewModel\CalendarBase.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
@@ -183,6 +182,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Catalog\" />
     <Folder Include="Converter\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
