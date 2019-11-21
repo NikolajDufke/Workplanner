@@ -12,6 +12,7 @@ namespace WorkPlanner.ViewModel
     public class CreateEmployeeViewModel
     {
         private ObservableCollection<PropInfo> _propinfolist;
+
         public CreateEmployeeViewModel()
         {
         PropertyNamesHandler<EmployeeInformation> getPropertiesHandler = new PropertyNamesHandler<EmployeeInformation>();

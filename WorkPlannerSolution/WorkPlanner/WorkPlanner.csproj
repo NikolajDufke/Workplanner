@@ -121,10 +121,12 @@
     </Compile>
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Handler\CreateEmployeeHandler.cs" />
     <Compile Include="Handler\PropertyNamesHandler.cs" />
     <Compile Include="Model\EmployeeInformation.cs" />
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
+    <Compile Include="Model\Users.cs" />
     <Compile Include="Model\Worktime.cs" />
     <Compile Include="Catalog\WorkTimeCatalogSingleton.cs" />
     <Compile Include="ViewModel\CalendarBase.cs" />
