@@ -10,7 +10,7 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    class MainPageViewModel
+    public class MainPageViewModel
     {
     }
 }
