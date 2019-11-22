@@ -54,6 +54,22 @@ namespace WorkPlanner.Catalog
            
         }
 
+        private Catalog<UserAccess> _userAccess;
+
+        public Catalog<UserAccess> UserAccess
+        {
+            get
+            {
+                if (_userAccess == null)
+                {
+                    _userAccess = new Catalog<UserAccess>();
+                }
+                return _userAccess;
+            }
+            set { _userAccess = value; }
+        }
+
+
 
 
     }
