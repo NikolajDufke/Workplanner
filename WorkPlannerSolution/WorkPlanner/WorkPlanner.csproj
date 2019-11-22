@@ -132,7 +132,7 @@
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Model\Worktime.cs" />
-    <Compile Include="ViewModel\CalendarBase.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="Persistency\IwebApiWorkplanner.cs" />

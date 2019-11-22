@@ -8,15 +8,17 @@ using System.Windows.Input;
 using WorkPlanner.Common;
 using WorkPlanner.Handler;
 using WorkPlanner.Model;
+using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.ViewModel
 {
-    public class CreateEmployeeViewModel
+    public class CreateEmployeeViewModel : ViewModelBase
     {
         private ObservableCollection<PropInfo> _propEmployeeInfoList;
         private ObservableCollection<PropInfo> _propUsersInfoList;
         private Handler.CreateEmployeeHandler _createEmployeeHandler;
         private ICommand _createEmployeeCommand;
+        private string _message;
 
         #region Constructor
         public CreateEmployeeViewModel()
@@ -54,6 +56,16 @@ namespace WorkPlanner.ViewModel
             set { _propUsersInfoList = value; }
         }
 
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         public ICommand CreateEmployeeCommand
@@ -61,7 +73,5 @@ namespace WorkPlanner.ViewModel
             get { return _createEmployeeCommand ?? (_createEmployeeCommand = new RelayCommand(_createEmployeeHandler.CreateEmployee)); }
             set { _createEmployeeCommand = value; }
         }
-
-     
     }
 }
