@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace WorkplannerWebApi.Areas.HelpPage.ModelDescriptions
+namespace WorkPlannerWebAPI.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

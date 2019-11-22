@@ -12,44 +12,44 @@ using WorkPlannerWebAPI;
 
 namespace WorkPlannerWebAPI.Controllers
 {
-    public class AccessesController : ApiController
+    public class WorktimesController : ApiController
     {
         private WorkPlannerDBContext db = new WorkPlannerDBContext();
 
-        // GET: api/Accesses
-        public IQueryable<Access> GetAccesses()
+        // GET: api/Worktimes
+        public IQueryable<Worktime> GetWorktimes()
         {
-            return db.Accesses;
+            return db.Worktimes;
         }
 
-        // GET: api/Accesses/5
-        [ResponseType(typeof(Access))]
-        public IHttpActionResult GetAccess(int id)
+        // GET: api/Worktimes/5
+        [ResponseType(typeof(Worktime))]
+        public IHttpActionResult GetWorktime(int id)
         {
-            Access access = db.Accesses.Find(id);
-            if (access == null)
+            Worktime worktime = db.Worktimes.Find(id);
+            if (worktime == null)
             {
                 return NotFound();
             }
 
-            return Ok(access);
+            return Ok(worktime);
         }
 
-        // PUT: api/Accesses/5
+        // PUT: api/Worktimes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAccess(int id, Access access)
+        public IHttpActionResult PutWorktime(int id, Worktime worktime)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != access.AccessLevel)
+            if (id != worktime.WorkTimeID)
             {
                 return BadRequest();
             }
 
-            db.Entry(access).State = EntityState.Modified;
+            db.Entry(worktime).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace WorkPlannerWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccessExists(id))
+                if (!WorktimeExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace WorkPlannerWebAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Accesses
-        [ResponseType(typeof(Access))]
-        public IHttpActionResult PostAccess(Access access)
+        // POST: api/Worktimes
+        [ResponseType(typeof(Worktime))]
+        public IHttpActionResult PostWorktime(Worktime worktime)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Accesses.Add(access);
+            db.Worktimes.Add(worktime);
 
             try
             {
@@ -87,7 +87,7 @@ namespace WorkPlannerWebAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (AccessExists(access.AccessLevel))
+                if (WorktimeExists(worktime.WorkTimeID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace WorkPlannerWebAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = access.AccessLevel }, access);
+            return CreatedAtRoute("DefaultApi", new { id = worktime.WorkTimeID }, worktime);
         }
 
-        // DELETE: api/Accesses/5
-        [ResponseType(typeof(Access))]
-        public IHttpActionResult DeleteAccess(int id)
+        // DELETE: api/Worktimes/5
+        [ResponseType(typeof(Worktime))]
+        public IHttpActionResult DeleteWorktime(int id)
         {
-            Access access = db.Accesses.Find(id);
-            if (access == null)
+            Worktime worktime = db.Worktimes.Find(id);
+            if (worktime == null)
             {
                 return NotFound();
             }
 
-            db.Accesses.Remove(access);
+            db.Worktimes.Remove(worktime);
             db.SaveChanges();
 
-            return Ok(access);
+            return Ok(worktime);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace WorkPlannerWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool AccessExists(int id)
+        private bool WorktimeExists(int id)
         {
-            return db.Accesses.Count(e => e.AccessLevel == id) > 0;
+            return db.Worktimes.Count(e => e.WorkTimeID == id) > 0;
         }
     }
 }
