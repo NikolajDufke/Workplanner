@@ -26,7 +26,7 @@ namespace WorkPlanner.Handler
             this._createEmployeeViewModel = CreateEmployeevm;
         }
 
-        public void CreateEmployee()
+        public async void CreateEmployee()
         {
             employeeInformation = new EmployeeInformation();
             user = new Users();
@@ -38,12 +38,33 @@ namespace WorkPlanner.Handler
             employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new EmployeeInformation());
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
  
-            employee.EmployeeInformation = employeeInformation;
-            employee.Users = user;
+            //employee.EmployeeInformation = employeeInformation;
+            //employee.Users = user;
 
-            var catalogEmployee = Catalog.CatalogsSingleton.Instance;
+            var catalog = Catalog.CatalogsSingleton.Instance;
 
-            catalogEmployee.EmployeeCatalog.AddAsync(employee);
+            Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
+            if (generatedUser != null)
+            {
+               
+                EmployeeInformation generatedEmployeeInformation =
+                    await catalog.EmployeeInfoCatalog.AddAsync(employeeInformation);
+
+                if (generatedEmployeeInformation != null)
+                {
+                    Employee generaEmployee = await catalog.EmployeeCatalog.AddAsync(new Employee()
+                    {
+                        EInformationID = generatedEmployeeInformation.EInformationID,
+                        UserID = generatedUser.UserID
+                    });
+                    //TODO set add is successful message and other stuff
+
+                }
+                //TODO set error message
+            }
+            //TODO set errro message
+
+
         }
     }
 }

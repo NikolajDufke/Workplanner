@@ -18,11 +18,45 @@ namespace WorkPlanner.Catalog
 
         public static CatalogsSingleton Instance
         {
+
+
             get { return _instance ?? (_instance = new CatalogsSingleton()); }
         }
 
-
         #endregion
+
+
+
+        private Catalog<EmployeeInformation> _employeeInfoCatalog;
+
+        public Catalog<EmployeeInformation> EmployeeInfoCatalog
+        {
+            get
+            {
+                if (_employeeInfoCatalog == null)
+                {
+                    _employeeInfoCatalog = new Catalog<EmployeeInformation>();
+                }
+                return _employeeInfoCatalog;
+            }
+
+        }
+
+        private Catalog<Users> _UsersCatalog;
+
+        public Catalog<Users> UsersCatalog
+        {
+            get
+            {
+                if (_UsersCatalog == null)
+                {
+                    _UsersCatalog = new Catalog<Users>();
+                }
+                return _UsersCatalog;
+            }
+
+        }
+
 
         private Catalog<Employee> _employeeCatalog;
 
