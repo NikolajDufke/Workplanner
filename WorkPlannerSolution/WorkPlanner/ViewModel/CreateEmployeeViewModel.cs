@@ -21,25 +21,18 @@ namespace WorkPlanner.ViewModel
         private string _message;
 
         #region Constructor
+
         public CreateEmployeeViewModel()
         {
-            _propEmployeeInfoList = new ObservableCollection<PropInfo>();
-            _propUsersInfoList = new ObservableCollection<PropInfo>();
+            PopulatePrepInfo();
             _createEmployeeHandler = new CreateEmployeeHandler(this);
             CreateEmployeeCommand = new RelayCommand(_createEmployeeHandler.CreateEmployee);
+           
+      
 
-            foreach (var empProp in new PropertyNamesHelper<EmployeeInformation>().GetListOfPropinfo)
-            {
-                _propEmployeeInfoList.Add(empProp);
-            }
 
-            foreach (var userProp in new PropertyNamesHelper<Users>().GetListOfPropinfo)
-            {
-                _propUsersInfoList.Add(userProp);
-            }
-
-            
         }
+
         #endregion
 
         #region Properties
@@ -70,8 +63,36 @@ namespace WorkPlanner.ViewModel
 
         public ICommand CreateEmployeeCommand
         {
-            get { return _createEmployeeCommand ?? (_createEmployeeCommand = new RelayCommand(_createEmployeeHandler.CreateEmployee)); }
+            get
+            {
+                return _createEmployeeCommand ??
+                       (_createEmployeeCommand = new RelayCommand(_createEmployeeHandler.CreateEmployee));
+            }
             set { _createEmployeeCommand = value; }
         }
+
+        #region HelperMethods
+
+        public void PopulatePrepInfo()
+        {
+            _propEmployeeInfoList = new ObservableCollection<PropInfo>();
+            _propUsersInfoList = new ObservableCollection<PropInfo>();
+
+            foreach (var empProp in new PropertyNamesHelper<EmployeeInformation>().GetListOfPropinfo)
+            {
+                _propEmployeeInfoList.Add(empProp);
+            }
+
+            foreach (var userProp in new PropertyNamesHelper<Users>().GetListOfPropinfo)
+            {
+                _propUsersInfoList.Add(userProp);
+            }
+
+        }
+
+
+        #endregion
+
     }
 }
+

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
@@ -57,12 +59,14 @@ namespace WorkPlanner.Handler
                         EInformationID = generatedEmployeeInformation.EInformationID,
                         UserID = generatedUser.UserID
                     });
-                    //TODO set add is successful message and other stuff
-
+              
+                    _createEmployeeViewModel.PopulatePrepInfo();
+                     
                 }
-                //TODO set error message
+                _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
             }
-            //TODO set errro message
+
+            _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
 
 
         }
