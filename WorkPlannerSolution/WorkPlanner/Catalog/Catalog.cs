@@ -50,9 +50,7 @@ namespace WorkPlanner.Catalog
             {
                 LoadFromDB();
             }
-
         }
-
 
         public async void RemoveAsync(string id)
         {
@@ -69,14 +67,19 @@ namespace WorkPlanner.Catalog
             }
         }
 
-        public async void AddAsync(T obj)
+        public async Task<T> AddAsync(T obj)
         {
-            bool result = await _api.CreateAsync(obj);
+            T result = await _api.CreateAsync(obj);
 
-            if (result)
+            if (result != null)
             {
                 LoadFromDB();
+                return result;
+
             }
+
+            return null;
+
         }
 
         #endregion

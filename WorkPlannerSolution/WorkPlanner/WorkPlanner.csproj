@@ -130,6 +130,7 @@
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
     <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\UserAccess.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Model\Worktime.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />

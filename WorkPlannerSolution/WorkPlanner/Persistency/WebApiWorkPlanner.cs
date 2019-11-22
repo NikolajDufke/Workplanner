@@ -27,25 +27,23 @@ namespace WorkPlanner.Persistency
             _client.BaseAddress = new Uri(_serverUrl);
         }
 
-        public async Task<bool> CreateAsync(T obj)
-        {
-         
+        public async Task<T> CreateAsync(T obj)
+        {       
             try
             {
                 string serializedObject = JsonConvert.SerializeObject(obj);
                 StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await _client.PostAsync(_apiPrefix + " / " , sc);
 
-                return response.IsSuccessStatusCode;
+                return  JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
             }
             catch (Exception e)
-            {   
-                
+            {    
                 throw new Exception("failed to create object");
             }
-
-
         }
+
+       
 
         public async Task<bool> DeleteAsync(string apiId)
         {
