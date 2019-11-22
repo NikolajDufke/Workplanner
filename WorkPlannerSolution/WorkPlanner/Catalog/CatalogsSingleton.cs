@@ -10,13 +10,13 @@ namespace WorkPlanner.Catalog
     class CatalogsSingleton
     {
         #region Singleton Implementation
-        private CatalogsSingleton _instance;
+        private static CatalogsSingleton _instance;
 
         private CatalogsSingleton()
         {
         }
 
-        public CatalogsSingleton Instance
+        public static CatalogsSingleton Instance
         {
             get { return _instance ?? (_instance = new CatalogsSingleton()); }
         }
@@ -41,7 +41,7 @@ namespace WorkPlanner.Catalog
 
         private Catalog<Worktime> _worktimeCatalog;
 
-        public Catalog<Worktime> WorktimeCatalog
+        public  Catalog<Worktime> WorktimeCatalog
         {
             get
             {
