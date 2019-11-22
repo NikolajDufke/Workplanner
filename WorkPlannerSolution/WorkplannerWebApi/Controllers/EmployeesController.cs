@@ -8,14 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WorkplannerWebApi;
-using EntityState = Microsoft.EntityFrameworkCore.EntityState;
+using WorkPlannerWebAPI;
 
-namespace WorkplannerWebApi.Controllers
+namespace WorkPlannerWebAPI.Controllers
 {
     public class EmployeesController : ApiController
     {
-        private WorkplannerDBContext db = new WorkplannerDBContext();
+        private WorkPlannerDBContext db = new WorkPlannerDBContext();
 
         // GET: api/Employees
         public IQueryable<Employee> GetEmployees()
@@ -50,7 +49,7 @@ namespace WorkplannerWebApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(employee).State = (EntityState) System.Data.Entity.EntityState.Modified;
+            db.Entry(employee).State = EntityState.Modified;
 
             try
             {

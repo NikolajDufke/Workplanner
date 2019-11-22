@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using WorkplannerWebApi.Areas.HelpPage.ModelDescriptions;
-using WorkplannerWebApi.Areas.HelpPage.Models;
+using WorkPlannerWebAPI.Areas.HelpPage.ModelDescriptions;
+using WorkPlannerWebAPI.Areas.HelpPage.Models;
 
-namespace WorkplannerWebApi.Areas.HelpPage.Controllers
+namespace WorkPlannerWebAPI.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.
