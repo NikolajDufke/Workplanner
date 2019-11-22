@@ -11,7 +11,7 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    public class WorkTimeViewModel : CalendarBase
+    public class WorkTimeViewModel : ViewModelBase
     {
         private int _id;
         private DateTimeOffset _dateTime;

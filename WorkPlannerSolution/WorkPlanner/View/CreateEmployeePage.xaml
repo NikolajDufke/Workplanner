@@ -58,7 +58,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <AppBarButton HorizontalAlignment="Left" Icon="Back"/>
         <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TitleStyle}" Text="Create Employee"/>
         <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource StackPanelStyle}">
             <ListView  Style="{StaticResource ListViewStyle}" ItemsSource="{Binding PropEmployeeInfoList}">
@@ -83,12 +82,12 @@
             </ListView>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3" Style="{StaticResource StackPanelStyle}">
-            <AppBarButton  Icon="Back" Label="Back"/>
+            <AppBarButton  Click="Button_Click" Icon="Back" Label="Back"/>
             <AppBarButton Command="{Binding CreateEmployeeCommand}" HorizontalAlignment="Right" Grid.Row="3" Icon="Add" Label="Add"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Bottom" >
             <TextBlock Text="Message" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Left"></TextBlock>
-            <TextBlock Text="{Binding }"></TextBlock>
+            <TextBlock Text="{Binding Message}"></TextBlock>
 
         </StackPanel>
     </Grid>
