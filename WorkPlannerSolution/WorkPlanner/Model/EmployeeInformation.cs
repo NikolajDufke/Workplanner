@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.Model
 {
-    class EmployeeInformation
+    public class EmployeeInformation
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
