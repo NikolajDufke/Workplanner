@@ -8,9 +8,16 @@ namespace WorkPlanner.Model
 {
     public  class Employee
     {
-
         public int EmployeeId { get; set; }
-        public EmployeeInformation EmployeeInformation { get; set; }
-        public Users Users { get; set; }
+     
+        public string FirstName { get; set; }
+   
+        public string LastName { get; set; }
+
+        public int PhoneNumber { get; set; }
+
+        public string Email { get; set; }
+
+        public int UserID { get; set; }
     }
 }

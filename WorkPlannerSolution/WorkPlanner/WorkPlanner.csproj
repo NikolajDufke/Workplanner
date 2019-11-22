@@ -121,11 +121,10 @@
     </Compile>
     <Compile Include="Catalog\Catalog.cs" />
     <Compile Include="Catalog\CatalogsSingleton.cs" />
-    <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Handler\CreateEmployeeHandler.cs" />
-    <Compile Include="Common\PropertyNamesHelper.cs" />
+    <Compile Include="Handler\PropertyNamesHandler.cs" />
     <Compile Include="Model\EmployeeInformation.cs" />
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
@@ -191,8 +190,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Catalog\" />
     <Folder Include="Converter\" />
-    <Folder Include="Interface\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
