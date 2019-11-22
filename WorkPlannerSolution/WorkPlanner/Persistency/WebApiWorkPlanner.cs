@@ -17,7 +17,7 @@ namespace WorkPlanner.Persistency
 
         public WebApiWorkPlanner(string serverUrl, string apiPrefix)
         {
-            _serverUrl = serverUrl;
+            _serverUrl = serverUrl + "/api/";
             _apiPrefix = apiPrefix;
            
             _clientHandler = new HttpClientHandler();
@@ -27,7 +27,7 @@ namespace WorkPlanner.Persistency
             _client.BaseAddress = new Uri(_serverUrl);
         }
 
-        public async Task Create(T obj)
+        public async Task<bool> CreateAsync(T obj)
         {
          
             try
@@ -35,6 +35,8 @@ namespace WorkPlanner.Persistency
                 string serializedObject = JsonConvert.SerializeObject(obj);
                 StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await _client.PostAsync(_apiPrefix + " / " , sc);
+
+                return response.IsSuccessStatusCode;
             }
             catch (Exception e)
             {   
@@ -45,11 +47,12 @@ namespace WorkPlanner.Persistency
 
         }
 
-        public async Task Delete(string apiId)
+        public async Task<bool> DeleteAsync(string apiId)
         {
             try
             {
                 HttpResponseMessage response = await _client.DeleteAsync(_apiPrefix + "/" + apiId);
+                return response.IsSuccessStatusCode;
             }
             catch (Exception e)
             {
@@ -58,7 +61,7 @@ namespace WorkPlanner.Persistency
 
         }
 
-        public async Task<List<T>> Load()
+        public async Task<List<T>> LoadAsync()
         {
             try
             {
@@ -79,7 +82,7 @@ namespace WorkPlanner.Persistency
             }
         }
 
-        public async Task<T> Read(string apiId)
+        public async Task<T> ReadAsync(string apiId)
         {
             try
             {
@@ -99,7 +102,7 @@ namespace WorkPlanner.Persistency
         
         }
 
-        public async Task Update(T obj, string apiId)
+        public async Task<bool> UpdateAsync(T obj, string apiId)
         {
             try
             {
@@ -107,6 +110,8 @@ namespace WorkPlanner.Persistency
                 StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "allpication/json");
 
                 HttpResponseMessage response = await _client.PutAsync(_apiPrefix + "/" + apiId, sc);
+
+                return response.IsSuccessStatusCode;
             }
             catch (Exception e)
             {
