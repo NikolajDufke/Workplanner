@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace WorkPlannerWebApi.Areas.HelpPage.ModelDescriptions
+namespace WorkPlannerWebAPI.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

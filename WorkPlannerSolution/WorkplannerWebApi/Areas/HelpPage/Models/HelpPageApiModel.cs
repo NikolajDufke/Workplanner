@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using WorkPlannerWebApi.Areas.HelpPage.ModelDescriptions;
+using WorkPlannerWebAPI.Areas.HelpPage.ModelDescriptions;
 
-namespace WorkPlannerWebApi.Areas.HelpPage.Models
+namespace WorkPlannerWebAPI.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

@@ -8,9 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WorkPlannerWebApi;
+using WorkPlannerWebAPI;
 
-namespace WorkPlannerWebApi.Controllers
+namespace WorkPlannerWebAPI.Controllers
 {
     public class AccessesController : ApiController
     {

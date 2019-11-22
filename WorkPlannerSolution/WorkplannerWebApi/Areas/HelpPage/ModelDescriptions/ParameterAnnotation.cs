@@ -1,6 +1,6 @@
 using System;
 
-namespace WorkPlannerWebApi.Areas.HelpPage.ModelDescriptions
+namespace WorkPlannerWebAPI.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterAnnotation
     {

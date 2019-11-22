@@ -8,12 +8,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6C0D2A63-7A61-449E-BDDD-B2A2C72C5F9C}</ProjectGuid>
+    <ProjectGuid>{206B8096-48E8-4D13-B4D3-F83310D7D06F}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WorkPlannerWebApi</RootNamespace>
-    <AssemblyName>WorkPlannerWebApi</AssemblyName>
+    <RootNamespace>WorkPlannerWebAPI</RootNamespace>
+    <AssemblyName>WorkPlannerWebAPI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -170,6 +170,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\WorktimesController.cs" />
+    <Compile Include="C__RefactorLog.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeInformation.cs" />
     <Compile Include="Global.asax.cs">
@@ -280,7 +281,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49945</DevelopmentServerPort>
+          <DevelopmentServerPort>52568</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:56265/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

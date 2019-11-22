@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WorkPlannerWebApi.Controllers
+namespace WorkPlannerWebAPI.Controllers
 {
     public class HomeController : Controller
     {
