@@ -126,13 +126,13 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Handler\CreateEmployeeHandler.cs" />
     <Compile Include="Common\PropertyNamesHelper.cs" />
-    <Compile Include="Model\EmployeeInformation.cs" />
+    <Compile Include="Model\EmployeeInformations.cs" />
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
-    <Compile Include="Model\Employee.cs" />
-    <Compile Include="Model\UserAccess.cs" />
+    <Compile Include="Model\Employees.cs" />
+    <Compile Include="Model\Accesses.cs" />
     <Compile Include="Model\Users.cs" />
-    <Compile Include="Model\Worktime.cs" />
+    <Compile Include="Model\Worktimes.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />

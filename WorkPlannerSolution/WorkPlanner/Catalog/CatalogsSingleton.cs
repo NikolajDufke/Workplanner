@@ -27,15 +27,15 @@ namespace WorkPlanner.Catalog
 
 
 
-        private Catalog<EmployeeInformation> _employeeInfoCatalog;
+        private Catalog<EmployeeInformations> _employeeInfoCatalog;
 
-        public Catalog<EmployeeInformation> EmployeeInfoCatalog
+        public Catalog<EmployeeInformations> EmployeeInfoCatalog
         {
             get
             {
                 if (_employeeInfoCatalog == null)
                 {
-                    _employeeInfoCatalog = new Catalog<EmployeeInformation>();
+                    _employeeInfoCatalog = new Catalog<EmployeeInformations>();
                 }
                 return _employeeInfoCatalog;
             }
@@ -58,45 +58,45 @@ namespace WorkPlanner.Catalog
         }
 
 
-        private Catalog<Employee> _employeeCatalog;
+        private Catalog<Employees> _employeeCatalog;
 
-        public Catalog<Employee> EmployeeCatalog
+        public Catalog<Employees> EmployeeCatalog
         {
             get
             {
                 if (_employeeCatalog == null)
                 {
-                    _employeeCatalog = new Catalog<Employee>();
+                    _employeeCatalog = new Catalog<Employees>();
                 }
                 return _employeeCatalog;
             }
      
         }
 
-        private Catalog<Worktime> _worktimeCatalog;
+        private Catalog<Worktimes> _worktimeCatalog;
 
-        public  Catalog<Worktime> WorktimeCatalog
+        public  Catalog<Worktimes> WorktimeCatalog
         {
             get
             {
                 if (_worktimeCatalog == null)
                 {
-                    _worktimeCatalog = new Catalog<Worktime>();
+                    _worktimeCatalog = new Catalog<Worktimes>();
                 }
                 return _worktimeCatalog;
             }
            
         }
 
-        private Catalog<UserAccess> _userAccess;
+        private Catalog<Accesses> _userAccess;
 
-        public Catalog<UserAccess> UserAccess
+        public Catalog<Accesses> UserAccess
         {
             get
             {
                 if (_userAccess == null)
                 {
-                    _userAccess = new Catalog<UserAccess>();
+                    _userAccess = new Catalog<Accesses>();
                 }
                 return _userAccess;
             }

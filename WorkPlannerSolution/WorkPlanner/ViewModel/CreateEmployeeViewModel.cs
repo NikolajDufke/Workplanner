@@ -78,7 +78,7 @@ namespace WorkPlanner.ViewModel
             _propEmployeeInfoList = new ObservableCollection<PropInfo>();
             _propUsersInfoList = new ObservableCollection<PropInfo>();
 
-            foreach (var empProp in new PropertyNamesHelper<EmployeeInformation>().GetListOfPropinfo)
+            foreach (var empProp in new PropertyNamesHelper<EmployeeInformations>().GetListOfPropinfo)
             {
                 _propEmployeeInfoList.Add(empProp);
             }

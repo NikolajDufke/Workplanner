@@ -11,7 +11,7 @@ namespace WorkPlanner.ViewModel
     public class WorkTimeHandler
     {
         private WorkTimeViewModel _workTimeViewModel;
-        private List<Worktime> allWorktimes;
+        private List<Worktimes> allWorktimes;
         
 
         public WorkTimeHandler(WorkTimeViewModel workTimevm)
@@ -24,7 +24,7 @@ namespace WorkPlanner.ViewModel
         {
             int Id = Convert.ToInt16(id);
 
-            foreach (Worktime wt in allWorktimes)
+            foreach (Worktimes wt in allWorktimes)
             {
                 if (wt.WorkTimeId == Id)
                 {

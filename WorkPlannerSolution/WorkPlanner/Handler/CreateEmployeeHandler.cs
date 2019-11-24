@@ -18,9 +18,7 @@ namespace WorkPlanner.Handler
     {
         private CreateEmployeeViewModel _createEmployeeViewModel;
 
-        private Employee employee;
-        private Users user;
-        private EmployeeInformation employeeInformation;
+
 
         public CreateEmployeeHandler(CreateEmployeeViewModel CreateEmployeevm)
         {
@@ -30,38 +28,46 @@ namespace WorkPlanner.Handler
 
         public async void CreateEmployee()
         {
-            employeeInformation = new EmployeeInformation();
-            user = new Users();
-            employee = new Employee();
+           EmployeeInformations employeeInformation = new EmployeeInformations();
+           Users user = new Users();
+           Employees employee = new Employees();
 
-            PropertyPopulator<EmployeeInformation> ppEmployeeInformation = new PropertyPopulator<EmployeeInformation>();
+            PropertyPopulator<EmployeeInformations> ppEmployeeInformation = new PropertyPopulator<EmployeeInformations>();
             PropertyPopulator<Users> ppUsers = new PropertyPopulator<Users>();
 
-            employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new EmployeeInformation());
+            employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new EmployeeInformations());
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
- 
+
             //employee.EmployeeInformation = employeeInformation;
-            //employee.Users = user;
+            //employee.User = user;
 
             var catalog = Catalog.CatalogsSingleton.Instance;
+            //Employees generatedUser = await catalog.EmployeeCatalog.AddAsync(employee);
+            //Employee generaEmployee = await catalog.EmployeeCatalog.AddAsync(new Employee();
+            //{
+            //    EmployeeInformation = employeeInformation,
+            //    User = user
+            //});
 
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
-            if (generatedUser != null)
+            if (generatedUser.UserID != 0)
             {
-               
-                EmployeeInformation generatedEmployeeInformation =
-                    await catalog.EmployeeInfoCatalog.AddAsync(employeeInformation);
 
-                if (generatedEmployeeInformation != null)
+                EmployeeInformations generatedEmployeeInformation =
+                    await catalog.EmployeeInfoCatalog.AddAsync(employeeInformation);
+                 
+                if (generatedEmployeeInformation.EInformationID != 0)
                 {
-                    Employee generaEmployee = await catalog.EmployeeCatalog.AddAsync(new Employee()
+                    Employees generaEmployee = await catalog.EmployeeCatalog.AddAsync(new Employees()
                     {
                         EInformationID = generatedEmployeeInformation.EInformationID,
                         UserID = generatedUser.UserID
                     });
-              
+
+
+
                     _createEmployeeViewModel.PopulatePrepInfo();
-                     
+
                 }
                 _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
             }

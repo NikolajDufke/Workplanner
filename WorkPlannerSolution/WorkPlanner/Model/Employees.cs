@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.Model
 {
-    class UserAccess
+    public  class Employees 
     {
 
-        public int AccessLevel { get; set; }
-        public string Decription { get; set; }
+        public int EmployeeId { get; set; }
+
+        public int UserID { get; set; }
+
+        public int EInformationID { get; set; }
     }
 }

@@ -9,9 +9,9 @@ DELETE from Access
 --TRUNCATE table Users
 --TRUNCATE table Access
 
-DBCC CHECKIDENT ('Users', RESEED,0)
-DBCC CHECKIDENT ('Employee', RESEED,0)
-DBCC CHECKIDENT ('EmployeeInformation', RESEED,0)
+--DBCC CHECKIDENT ('Users', RESEED,0)
+--DBCC CHECKIDENT ('Employee', RESEED,0)
+--DBCC CHECKIDENT ('EmployeeInformation', RESEED,0)
 
 INSERT INTO EmployeeInformation(FirstName,LastName,PhoneNumber,Email,Adress,City,ZipPostal) VALUES ('Benjamin', 'Sørensen', 23232323, 'Benjamin@WorkPlanner.dk', 'Avej', 'Aby', 1234)
 INSERT INTO EmployeeInformation(FirstName,LastName,PhoneNumber,Email,Adress,City,ZipPostal) VALUES ('Nikolaj', 'Dufke', 24242424, 'Nikolaj@WorkPlanner.dk', 'Bvej', 'Bby', 2345)

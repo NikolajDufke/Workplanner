@@ -17,7 +17,7 @@ namespace WorkPlanner.Persistency
 
         public WebApiWorkPlanner(string serverUrl, string apiPrefix)
         {
-            _serverUrl = serverUrl + "/api/";
+            _serverUrl = serverUrl + "api/";
             _apiPrefix = apiPrefix;
            
             _clientHandler = new HttpClientHandler();
@@ -33,7 +33,7 @@ namespace WorkPlanner.Persistency
             {
                 string serializedObject = JsonConvert.SerializeObject(obj);
                 StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _client.PostAsync(_apiPrefix + " / " , sc);
+                HttpResponseMessage response = await _client.PostAsync(_apiPrefix + "/" , sc);
 
                 return  JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
             }

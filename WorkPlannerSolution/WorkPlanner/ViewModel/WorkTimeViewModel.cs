@@ -17,7 +17,7 @@ namespace WorkPlanner.ViewModel
         private DateTimeOffset _dateTime;
         private TimeSpan _time;
         private WorkTimeHandler _workTimeHandler;
-        private static Worktime _selectedworktime;
+        private static Worktimes _selectedworktime;
         private ICommand _selectedWorktimeCommand;
 
         public WorkTimeViewModel()
@@ -52,7 +52,7 @@ namespace WorkPlanner.ViewModel
             get { return _workTimeHandler; }
         }
 
-        public static Worktime SelectedWorktime
+        public static Worktimes SelectedWorktime
         {
             set { _selectedworktime = value; }
             get { return _selectedworktime; }
@@ -63,7 +63,7 @@ namespace WorkPlanner.ViewModel
             get
             {
                 return _selectedWorktimeCommand ?? (_selectedWorktimeCommand =
-                           new RelayArgCommand<Worktime>(wt => _workTimeHandler.SetSelectedWorkTime(wt)));
+                           new RelayArgCommand<Worktimes>(wt => _workTimeHandler.SetSelectedWorkTime(wt)));
             }
             set { _selectedWorktimeCommand = value; }
         }
