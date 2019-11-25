@@ -18,7 +18,6 @@ namespace WorkPlanner.Model
             set { _valueFromUser = value; }
         }
 
-
         public string PropName
         {
             get { return _propName; }

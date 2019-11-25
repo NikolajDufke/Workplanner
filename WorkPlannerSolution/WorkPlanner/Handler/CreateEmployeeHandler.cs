@@ -18,8 +18,6 @@ namespace WorkPlanner.Handler
     {
         private CreateEmployeeViewModel _createEmployeeViewModel;
 
-
-
         public CreateEmployeeHandler(CreateEmployeeViewModel CreateEmployeevm)
         {
             _createEmployeeViewModel = CreateEmployeevm;
@@ -38,16 +36,7 @@ namespace WorkPlanner.Handler
             employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new EmployeeInformations());
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
 
-            //employee.EmployeeInformation = employeeInformation;
-            //employee.User = user;
-
-            var catalog = Catalog.CatalogsSingleton.Instance;
-            //Employees generatedUser = await catalog.EmployeeCatalog.AddAsync(employee);
-            //Employee generaEmployee = await catalog.EmployeeCatalog.AddAsync(new Employee();
-            //{
-            //    EmployeeInformation = employeeInformation,
-            //    User = user
-            //});
+            var catalog = Catalog.CatalogsSingleton.Instance;  
 
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
             if (generatedUser.UserID != 0)
@@ -64,16 +53,34 @@ namespace WorkPlanner.Handler
                         UserID = generatedUser.UserID
                     });
 
-
-
-                    _createEmployeeViewModel.PopulatePrepInfo();
-
+                    if (generaEmployee.EInformationID != 0)
+                    {
+                        _createEmployeeViewModel.Message = "Bruger er blevet oprettet";
+                        PopulatePrepInfo();
+                    }
                 }
                 _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
             }
 
             _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
 
+
+        }
+
+        public void PopulatePrepInfo()
+        {
+            _createEmployeeViewModel.PropEmployeeInfoList = new ObservableCollection<PropInfo>();
+            _createEmployeeViewModel.PropUsersInfoList = new ObservableCollection<PropInfo>();
+
+            foreach (var empProp in new PropertyNamesHelper<EmployeeInformations>().GetListOfPropinfo)
+            {
+                _createEmployeeViewModel.PropEmployeeInfoList.Add(empProp);
+            }
+
+            foreach (var userProp in new PropertyNamesHelper<Users>().GetListOfPropinfo)
+            {
+                _createEmployeeViewModel.PropUsersInfoList.Add(userProp);
+            }
 
         }
     }

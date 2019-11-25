@@ -24,11 +24,11 @@ namespace WorkPlanner.ViewModel
 
         public CreateEmployeeViewModel()
         {
-            PopulatePrepInfo();
+           
             _createEmployeeHandler = new CreateEmployeeHandler(this);
             CreateEmployeeCommand = new RelayCommand(_createEmployeeHandler.CreateEmployee);
-           
-      
+
+            _createEmployeeHandler.PopulatePrepInfo();
 
 
         }
@@ -73,22 +73,7 @@ namespace WorkPlanner.ViewModel
 
         #region HelperMethods
 
-        public void PopulatePrepInfo()
-        {
-            _propEmployeeInfoList = new ObservableCollection<PropInfo>();
-            _propUsersInfoList = new ObservableCollection<PropInfo>();
-
-            foreach (var empProp in new PropertyNamesHelper<EmployeeInformations>().GetListOfPropinfo)
-            {
-                _propEmployeeInfoList.Add(empProp);
-            }
-
-            foreach (var userProp in new PropertyNamesHelper<Users>().GetListOfPropinfo)
-            {
-                _propUsersInfoList.Add(userProp);
-            }
-
-        }
+  
 
 
         #endregion
