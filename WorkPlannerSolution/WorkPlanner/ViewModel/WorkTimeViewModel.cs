@@ -14,6 +14,7 @@ namespace WorkPlanner.ViewModel
 {
     public class WorkTimeViewModel : ViewModelBase
     {
+        #region Instance
         private int _id;
         private string _name;
         private EmployeeInformations _employeeInformationProp;
@@ -22,7 +23,10 @@ namespace WorkPlanner.ViewModel
         private WorkTimeHandler _workTimeHandler;
         private static Worktimes _selectedworktime;
         private ICommand _selectedWorktimeCommand;
+        private string _message;
+        #endregion
 
+        #region Constructer
         public WorkTimeViewModel()
         {
             _workTimeHandler = new WorkTimeHandler(this );
@@ -34,11 +38,23 @@ namespace WorkPlanner.ViewModel
 
             WorkTimeCreateCommand = new RelayCommand(_workTimeHandler.CreateWorkTime);
         }
+        #endregion
 
+        #region Properties
         public string Name
         {
             set { _name = value; }
             get { return _name; }
+        }
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged();
+            }
         }
 
         public EmployeeInformations EmployeeInformationProp
@@ -70,7 +86,9 @@ namespace WorkPlanner.ViewModel
             set { _selectedworktime = value; }
             get { return _selectedworktime; }
         }
+        #endregion
 
+        #region ObservableCollection
         public ObservableCollection<EmployeeInformations> EmployeeInformations
         {
             get
@@ -78,7 +96,9 @@ namespace WorkPlanner.ViewModel
                 return CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll;
             }
         }
+        #endregion
 
+        #region ICommands
         public ICommand SelectedWorktimeCommand
         {
             get
@@ -90,5 +110,7 @@ namespace WorkPlanner.ViewModel
         }
 
         public ICommand WorkTimeCreateCommand { set; get; }
+        #endregion
+
     }
 }

@@ -14,8 +14,6 @@ namespace WorkPlanner.ViewModel
         private WorkTimeViewModel _workTimeViewModel;
         private List<Worktimes> allWorktimes;
         private CatalogsSingleton _catalogs;
-        private Worktimes worktime;
-        
 
         public WorkTimeHandler(WorkTimeViewModel workTimevm)
         {
@@ -38,7 +36,19 @@ namespace WorkPlanner.ViewModel
 
         public async void CreateWorkTime()
         {
-                await _catalogs.WorktimeCatalog.AddAsync(worktime);
+            Worktimes worktimes = new Worktimes();
+            EmployeeInformations employeeInformation = new EmployeeInformations();
+
+            var catalog = Catalog.CatalogsSingleton.Instance;
+
+            if (employeeInformation.FirstName != null)
+            {
+                Worktimes generatedwWorktimes = await _catalogs.WorktimeCatalog.AddAsync(new Worktimes());
+
+                _workTimeViewModel.Message = "WorkTime er oprettet";
+                
+            }
+
         }
     }
 }
