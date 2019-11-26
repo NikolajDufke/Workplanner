@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Handler;
 using WorkPlanner.Model;
@@ -14,6 +15,8 @@ namespace WorkPlanner.ViewModel
     public class WorkTimeViewModel : ViewModelBase
     {
         private int _id;
+        private string _name;
+        private EmployeeInformations _employeeInformationProp;
         private DateTimeOffset _dateTime;
         private TimeSpan _time;
         private WorkTimeHandler _workTimeHandler;
@@ -27,11 +30,20 @@ namespace WorkPlanner.ViewModel
             DateTime dt = System.DateTime.Now;
             Date = new DateTimeOffset(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0, 0, new TimeSpan());
             Time = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
+
+            WorkTimeCreateCommand = new RelayCommand(_workTimeHandler.CreateWorkTime);
         }
 
-        public int ID
+        public string Name
         {
-            get { return _id; }
+            set { _name = value; }
+            get { return _name; }
+        }
+
+        public EmployeeInformations EmployeeInformationProp
+        {
+            set { _employeeInformationProp = value;}
+            get { return _employeeInformationProp; }
         }
 
         public DateTimeOffset Date
@@ -58,6 +70,14 @@ namespace WorkPlanner.ViewModel
             get { return _selectedworktime; }
         }
 
+        public ObservableCollection<EmployeeInformations> EmployeeInformations
+        {
+            get
+            {
+                return CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll;
+            }
+        }
+
         public ICommand SelectedWorktimeCommand
         {
             get
@@ -67,5 +87,7 @@ namespace WorkPlanner.ViewModel
             }
             set { _selectedWorktimeCommand = value; }
         }
+
+        public ICommand WorkTimeCreateCommand { set; get; }
     }
 }

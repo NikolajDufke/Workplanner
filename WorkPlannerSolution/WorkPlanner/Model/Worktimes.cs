@@ -4,10 +4,8 @@ namespace WorkPlanner.Model
 {
     public class Worktimes
     {
-        public Worktimes(int workTimeId, int employeeId, DateTime date, DateTime time)
+        public Worktimes(DateTime date, DateTime time)
         {
-            workTimeId = WorkTimeId;
-            employeeId = EmployeeId;
             date = Date;
             time = Time;
         }

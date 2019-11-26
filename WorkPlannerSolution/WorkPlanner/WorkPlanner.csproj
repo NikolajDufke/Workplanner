@@ -142,6 +142,9 @@
       <DependentUpon>CreateEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\WorkTimeViewModel.cs" />
+    <Compile Include="View\CreateWorkTimePage.xaml.cs">
+      <DependentUpon>CreateWorkTimePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -169,6 +172,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="View\CreateEmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateWorkTimePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
