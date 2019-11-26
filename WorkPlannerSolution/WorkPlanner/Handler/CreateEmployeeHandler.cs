@@ -73,12 +73,12 @@ namespace WorkPlanner.Handler
             _createEmployeeViewModel.PropEmployeeInfoList = new ObservableCollection<PropInfo>();
             _createEmployeeViewModel.PropUsersInfoList = new ObservableCollection<PropInfo>();
 
-            foreach (var empProp in new PropertyNamesHelper<EmployeeInformations>().GetListOfPropinfo)
+            foreach (var empProp in Factories.PropertyHelpersFactory<EmployeeInformations>.PropertyNamesFactory().GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropEmployeeInfoList.Add(empProp);
             }
 
-            foreach (var userProp in new PropertyNamesHelper<Users>().GetListOfPropinfo)
+            foreach (var userProp in Factories.PropertyHelpersFactory<Users>.PropertyNamesFactory().GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropUsersInfoList.Add(userProp);
             }

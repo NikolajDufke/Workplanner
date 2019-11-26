@@ -9,7 +9,7 @@ using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Common
 {
-    public class PropertyNamesHelper<T>
+    public class PropertyNamesHelper<T> where T:class 
     {
         private List<PropInfo> _listPropinfo;
 

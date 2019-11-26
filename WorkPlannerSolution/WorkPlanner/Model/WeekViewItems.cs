@@ -22,5 +22,7 @@ namespace WorkPlanner.Model
         public string Lørdag { get; set; }
         public string Søndag { get; set; }
 
+
+
     }
 }
