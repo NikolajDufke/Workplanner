@@ -78,7 +78,7 @@
                 <TextBlock Text="Date:" FontSize="20"  />
                 <CalendarDatePicker Date="{Binding Date, Mode=TwoWay}" FontSize="20"/>
                 <TextBlock Text="Time:" FontSize="20"/>
-                <TimePicker Time="{Binding Time, Mode=TwoWay}" FontSize="20"/>
+                <TimePicker Time="{Binding Time, Mode=TwoWay}" FontSize="20" ClockIdentifier="24HourClock"/>
             </StackPanel>
             <AppBarButton Label="Return" Height="50" Width="80" Margin="22,-5" Click="Return" Icon="Back"/>
             <AppBarButton Command="{Binding WorkTimeCreateCommand}" Label="Add" Height="50" Width="80" Margin="110,-45" Icon="Add"/>
