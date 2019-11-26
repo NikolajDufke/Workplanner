@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using WorkPlanner.Common;
 using WorkPlanner.Model;
 using WorkPlanner.ViewModel;
@@ -37,13 +38,11 @@ namespace WorkPlanner.Handler
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
 
             var catalog = Catalog.CatalogsSingleton.Instance;  
-
+ 
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
             if (generatedUser.UserID != 0)
             {
-
-                EmployeeInformations generatedEmployeeInformation =
-                    await catalog.EmployeeInfoCatalog.AddAsync(employeeInformation);
+                EmployeeInformations generatedEmployeeInformation = await catalog.EmployeeInfoCatalog.AddAsync(employeeInformation);
                  
                 if (generatedEmployeeInformation.EInformationID != 0)
                 {
@@ -58,26 +57,33 @@ namespace WorkPlanner.Handler
                         _createEmployeeViewModel.Message = "Bruger er blevet oprettet";
                         PopulatePrepInfo();
                     }
+                    else
+                    {
+                        _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
+                    }
                 }
+                else
+                {
+                    _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
+                }
+            }
+            else
+            {
                 _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
             }
-
-            _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
-
-
         }
 
         public void PopulatePrepInfo()
         {
-            _createEmployeeViewModel.PropEmployeeInfoList = new ObservableCollection<PropInfo>();
-            _createEmployeeViewModel.PropUsersInfoList = new ObservableCollection<PropInfo>();
+            _createEmployeeViewModel.PropEmployeeInfoList.Clear();
+            _createEmployeeViewModel.PropUsersInfoList.Clear();
 
-            foreach (var empProp in new PropertyNamesHelper<EmployeeInformations>().GetListOfPropinfo)
+            foreach (var empProp in new PropertyNamesHelper<EmployeeInformations>(new List<int>(){1}).GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropEmployeeInfoList.Add(empProp);
             }
 
-            foreach (var userProp in new PropertyNamesHelper<Users>().GetListOfPropinfo)
+            foreach (var userProp in new PropertyNamesHelper<Users>(new List<int>(){1}).GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropUsersInfoList.Add(userProp);
             }
