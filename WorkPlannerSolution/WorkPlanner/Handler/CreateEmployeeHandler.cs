@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
-using WorkPlanner.Common;
+ using WorkPlanner.Catalog;
+ using WorkPlanner.Common;
 using WorkPlanner.Model;
 using WorkPlanner.ViewModel;
 
@@ -36,8 +37,8 @@ namespace WorkPlanner.Handler
             employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new EmployeeInformations());
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
 
-            var catalog = Catalog.CatalogsSingleton.Instance;  
-
+            CatalogsSingleton catalog = CatalogsSingleton.Instance;
+ 
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
             if (generatedUser.UserID != 0)
             {

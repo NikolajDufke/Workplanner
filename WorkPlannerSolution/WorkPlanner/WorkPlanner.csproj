@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Catalog\Catalog.cs" />
+    <Compile Include="Catalog\CatalogsSingleton - Copy.cs" />
     <Compile Include="Catalog\CatalogsSingleton.cs" />
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
@@ -132,12 +133,17 @@
     <Compile Include="Model\Employees.cs" />
     <Compile Include="Model\Accesses.cs" />
     <Compile Include="Model\Users.cs" />
+    <Compile Include="Model\WeekViewItems.cs" />
     <Compile Include="Model\Worktimes.cs" />
+    <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="Persistency\IwebApiWorkplanner.cs" />
     <Compile Include="Persistency\WebApiWorkPlanner.cs" />
+    <Compile Include="View\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateEmployeePage.xaml.cs">
       <DependentUpon>CreateEmployeePage.xaml</DependentUpon>
     </Compile>
@@ -168,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreateEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

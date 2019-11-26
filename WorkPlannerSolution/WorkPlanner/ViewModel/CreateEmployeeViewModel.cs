@@ -23,14 +23,11 @@ namespace WorkPlanner.ViewModel
         #region Constructor
 
         public CreateEmployeeViewModel()
-        {
-           
+        {          
             _createEmployeeHandler = new CreateEmployeeHandler(this);
             CreateEmployeeCommand = new RelayCommand(_createEmployeeHandler.CreateEmployee);
 
             _createEmployeeHandler.PopulatePrepInfo();
-
-
         }
 
         #endregion
@@ -71,12 +68,7 @@ namespace WorkPlanner.ViewModel
             set { _createEmployeeCommand = value; }
         }
 
-        #region HelperMethods
 
-  
-
-
-        #endregion
 
     }
 }

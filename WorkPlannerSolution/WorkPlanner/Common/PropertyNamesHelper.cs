@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Model;
@@ -19,27 +20,26 @@ namespace WorkPlanner.Common
             IfUppercaseAddSpace();
         }
 
+
+
         public List<PropInfo> GetListOfPropinfo
         {
             get { return _listPropinfo; }
 
         }
 
-        private void Getpropertynames()
+        private void Getpropertynames(int[] indexesToIgnore = null)
         {
-
             foreach (var propertyInfo in typeof(T).GetProperties())
-            {
+            {    
                 PropInfo temp = new PropInfo();
                 temp.PropName = propertyInfo.Name;
                 _listPropinfo.Add(temp);
             }
-        
         }
 
         private void IfUppercaseAddSpace()
         {
-
             foreach (PropInfo stringFromlist in _listPropinfo)
             {
                 StringBuilder newString = new StringBuilder(stringFromlist.PropName.Length + 5);
@@ -60,8 +60,6 @@ namespace WorkPlanner.Common
 
                 string toAddString = newString.ToString() + ":";
                 stringFromlist.VisualName = toAddString;
-
-
             }
         }
     }
