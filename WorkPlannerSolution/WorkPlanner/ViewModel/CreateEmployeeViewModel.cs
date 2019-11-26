@@ -24,13 +24,11 @@ namespace WorkPlanner.ViewModel
 
         public CreateEmployeeViewModel()
         {
-           
             _createEmployeeHandler = new CreateEmployeeHandler(this);
             CreateEmployeeCommand = new RelayCommand(_createEmployeeHandler.CreateEmployee);
-
+            _propEmployeeInfoList = new ObservableCollection<PropInfo>();
+            _propUsersInfoList = new ObservableCollection<PropInfo>();
             _createEmployeeHandler.PopulatePrepInfo();
-
-
         }
 
         #endregion
@@ -70,14 +68,6 @@ namespace WorkPlanner.ViewModel
             }
             set { _createEmployeeCommand = value; }
         }
-
-        #region HelperMethods
-
-  
-
-
-        #endregion
-
     }
 }
 

@@ -81,14 +81,14 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="3" Style="{StaticResource StackPanelStyle}">
-            <AppBarButton  Click="Button_Click" Icon="Back" Label="Back"/>
-            <AppBarButton Command="{Binding CreateEmployeeCommand}" HorizontalAlignment="Right" Grid.Row="3" Icon="Add" Label="Add"/>
-        </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Bottom" >
-            <TextBlock Text="Message" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Left"></TextBlock>
-            <TextBlock Text="{Binding Message}"></TextBlock>
-
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <StackPanel Style="{StaticResource StackPanelStyle}" >
+                <TextBlock Text="{Binding Message}"></TextBlock>
+            </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <AppBarButton  Click="Button_Click" Icon="Back" Label="Back"/>
+                <AppBarButton Command="{Binding CreateEmployeeCommand}" HorizontalAlignment="Right" Grid.Row="3" Icon="Add" Label="Add"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

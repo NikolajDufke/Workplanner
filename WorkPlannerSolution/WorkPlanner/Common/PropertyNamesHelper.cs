@@ -19,27 +19,41 @@ namespace WorkPlanner.Common
             IfUppercaseAddSpace();
         }
 
+        public PropertyNamesHelper(List<int> propertiesToIgnore)
+        {
+            _listPropinfo = new List<PropInfo>();
+            Getpropertynames(propertiesToIgnore);
+            IfUppercaseAddSpace();
+        }
+
         public List<PropInfo> GetListOfPropinfo
         {
             get { return _listPropinfo; }
-
         }
 
-        private void Getpropertynames()
+        private void Getpropertynames(List<int> indexToIgnore = null)
         {
+            if (indexToIgnore == null)
+            {
+                indexToIgnore = new List<int>();
+            }
 
+            int count = 0;
             foreach (var propertyInfo in typeof(T).GetProperties())
             {
+                count++;
+                if (indexToIgnore.Contains(count))
+                {
+                    continue;
+                }
                 PropInfo temp = new PropInfo();
                 temp.PropName = propertyInfo.Name;
                 _listPropinfo.Add(temp);
-            }
-        
+            } 
         }
 
         private void IfUppercaseAddSpace()
         {
-
             foreach (PropInfo stringFromlist in _listPropinfo)
             {
                 StringBuilder newString = new StringBuilder(stringFromlist.PropName.Length + 5);
@@ -57,11 +71,8 @@ namespace WorkPlanner.Common
                         newString.Append(stringFromlist.PropName[i]);
                     }
                 }
-
                 string toAddString = newString.ToString() + ":";
                 stringFromlist.VisualName = toAddString;
-
-
             }
         }
     }
