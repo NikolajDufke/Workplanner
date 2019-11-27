@@ -31,6 +31,5 @@ namespace WorkPlanner.View
         {
             Frame.Navigate(typeof(MainPage));
         }
-
     }
 }

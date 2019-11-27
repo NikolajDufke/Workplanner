@@ -31,6 +31,7 @@ namespace WorkPlanner.Common
                                 if (Int32.TryParse(propInfo.ValueFromUser, out temp))
                                 {
                                     property.SetValue(obj, temp);
+                                    break;
                                 }
                             }
                             else
@@ -41,6 +42,7 @@ namespace WorkPlanner.Common
                         else
                         {
                             property.SetValue(obj, propInfo.ValueFromUser);
+                            break;
                         }
 
                     }

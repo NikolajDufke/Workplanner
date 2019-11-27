@@ -72,6 +72,7 @@ namespace WorkPlanner.Catalog
         {
             T result = await _api.CreateAsync(obj);
 
+            //TODO Gør så den ikke altid går igennem(Måske en bool inde i _api) result != null vil altid gå op
             if (result != null)
             {
                 LoadFromDB();

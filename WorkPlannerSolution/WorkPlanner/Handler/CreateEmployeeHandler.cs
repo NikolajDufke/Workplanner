@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using WorkPlanner.Common;
  using WorkPlanner.Catalog;
  using WorkPlanner.Common;
 using WorkPlanner.Model;
@@ -42,9 +44,7 @@ namespace WorkPlanner.Handler
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
             if (generatedUser.UserID != 0)
             {
-
-                EmployeeInformations generatedEmployeeInformation =
-                    await catalog.EmployeeInfoCatalog.AddAsync(employeeInformation);
+                EmployeeInformations generatedEmployeeInformation = await catalog.EmployeeInfoCatalog.AddAsync(employeeInformation);
                  
                 if (generatedEmployeeInformation.EInformationID != 0)
                 {
@@ -59,19 +59,26 @@ namespace WorkPlanner.Handler
                         _createEmployeeViewModel.Message = "Bruger er blevet oprettet";
                         PopulatePrepInfo();
                     }
+                    else
+                    {
+                        _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
+                    }
                 }
+                else
+                {
+                    _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
+                }
+            }
+            else
+            {
                 _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
             }
-
-            _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
-
-
         }
 
         public void PopulatePrepInfo()
         {
-            _createEmployeeViewModel.PropEmployeeInfoList = new ObservableCollection<PropInfo>();
-            _createEmployeeViewModel.PropUsersInfoList = new ObservableCollection<PropInfo>();
+            _createEmployeeViewModel.PropEmployeeInfoList.Clear();
+            _createEmployeeViewModel.PropUsersInfoList.Clear();
 
             foreach (var empProp in Factories.PropertyHelpersFactory<EmployeeInformations>.PropertyNamesFactory().GetListOfPropinfo)
             {
