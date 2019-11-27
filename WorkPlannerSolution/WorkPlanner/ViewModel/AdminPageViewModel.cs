@@ -4,13 +4,20 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Catalog;
 using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
     class AdminPageViewModel : ViewModelBase
     {
-        
+
+        public ObservableCollection<EmployeeInformations> EmployeeInformations
+        {
+            get { return CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll; }
+        }
+
+
         //public AdminPageViewModel()
         //{
         //    _weekviewCollection = new ObservableCollection<RowViewItems>();
