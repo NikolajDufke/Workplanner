@@ -46,17 +46,19 @@
 
     <Grid Grid.Row="1" Grid.Column="1" Background="BurlyWood">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
 
        <StackPanel Orientation="Horizontal" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
-                <AppBarButton Icon="Previous"  Margin="10" VerticalAlignment="Center"/>
+                <AppBarButton Icon="Previous"  Margin="0,0,0,10" VerticalAlignment="Center"/>
             <TextBlock Text="UGE -skal bindes-" VerticalAlignment="Center"></TextBlock>
-                <AppBarButton Icon="Next" Margin="10" VerticalAlignment="Center"/>
+                <AppBarButton Icon="Next" Margin="0,0,0,10" VerticalAlignment="Center"/>
        </StackPanel>
+
+            
 
             <ScrollViewer Grid.Row="1">
                 <Grid >
@@ -71,6 +73,8 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
       
+
+
                         <ListView Grid.Column="0" ItemsSource="{Binding WeekViewItems}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>

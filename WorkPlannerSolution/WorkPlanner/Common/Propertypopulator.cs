@@ -11,6 +11,7 @@ namespace WorkPlanner.Common
 {
     class PropertyPopulator<T> : Ipopulator<T> where T : class
     {
+
         public T Populate(List<PropInfo> propInfoList,T obj)
         {
      

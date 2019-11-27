@@ -28,6 +28,18 @@ namespace WorkPlanner.ViewModel
             set { _weekviewCollection = value; }
         }
 
+        private ObservableCollection<string> myVar;
+
+        public ObservableCollection<string> MyProperty
+        {
+            get { return myVar; }
+            set { myVar = value; }
+        }
+
+
+
+
+
 
         private void pupulate()
         {
