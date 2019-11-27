@@ -27,7 +27,7 @@ namespace WorkPlanner.ViewModel
 
             foreach (Worktimes wt in allWorktimes)
             {
-                if (wt.WorkTimeId == Id)
+                if (wt.WorkTimeID == Id)
                 {
                     WorkTimeViewModel.SelectedWorktime = wt;
                 }

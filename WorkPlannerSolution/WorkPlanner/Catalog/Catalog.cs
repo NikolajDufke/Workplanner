@@ -14,7 +14,7 @@ namespace WorkPlanner.Catalog
 
         private ObservableCollection<T> _allCollection;
         private WebApiWorkPlanner<T> _api;
-        private const string _serverurl = "http://localhost:56265/";
+        private const string _serverurl = "http://localhost:57460/";
         private string _apiprefix ;
 
 
