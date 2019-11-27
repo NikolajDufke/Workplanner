@@ -9,10 +9,19 @@ namespace WorkPlanner.Model
     class AllViewItems
     {
         private string[,] cells;
+        private int _maxColumnsIndex;
+
 
         public AllViewItems()
         {
-            
+            _maxColumnsIndex = 8;
         }
+
+        public void Addmember()
+        {
+
+        }
+
+
     }
 }
