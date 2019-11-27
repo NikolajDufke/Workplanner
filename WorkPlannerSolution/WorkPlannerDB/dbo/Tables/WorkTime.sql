@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Worktime] (
-    [WorkTimeID] INT      NOT NULL,
+    [WorkTimeID] INT      NOT NULL IDENTITY,
     [EmployeeID] INT      NOT NULL,
     [Date]       DATETIME NOT NULL,
     [TimeStart]       DATETIME NOT NULL,

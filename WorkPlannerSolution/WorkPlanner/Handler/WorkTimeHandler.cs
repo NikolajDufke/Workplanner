@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Catalog;
+using WorkPlanner.Converter;
 using WorkPlanner.ViewModel;
 using WorkPlanner.Model;
 
@@ -36,14 +37,22 @@ namespace WorkPlanner.ViewModel
 
         public async void CreateWorkTime()
         {
-            Worktimes worktimes = new Worktimes();
-            EmployeeInformations employeeInformation = new EmployeeInformations();
+            var sts = _workTimeViewModel.TimeStart;
+            var ste = _workTimeViewModel.TimeEnd;
+            var tsv = _workTimeViewModel.Date;
+
+            Worktimes worktimes = new Worktimes()
+            {
+                TimeStart = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, sts),
+                TimeEnd = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, ste),
+                Date = DateTimeConverter.DateTimeOffsetToDateTime(tsv)
+            };
 
             var catalog = Catalog.CatalogsSingleton.Instance;
 
-            if (employeeInformation.FirstName != null)
+            if (_workTimeViewModel.EmployeeInformationProp.FirstName != null)
             {
-                Worktimes generatedwWorktimes = await _catalogs.WorktimeCatalog.AddAsync(new Worktimes());
+                await catalog.WorktimeCatalog.AddAsync(worktimes);
 
                 _workTimeViewModel.Message = "WorkTime er oprettet";
             }
