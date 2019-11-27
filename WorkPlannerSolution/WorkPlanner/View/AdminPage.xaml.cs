@@ -26,5 +26,15 @@ namespace WorkPlanner.View
         {
             this.InitializeComponent();
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DropDownButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

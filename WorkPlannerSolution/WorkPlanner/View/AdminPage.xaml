@@ -9,15 +9,15 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-<Page.DataContext>
+    <Page.DataContext>
         <viewmodel:AdminPageViewModel></viewmodel:AdminPageViewModel>
-</Page.DataContext>
+    </Page.DataContext>
 
-<Page.Resources>
-    <Style x:Key="TimeSpacer" TargetType="TextBlock">
-<Setter Property="Margin" Value="100"></Setter>
-    </Style>
-</Page.Resources>
+    <Page.Resources>
+        <Style x:Key="TimeSpacer" TargetType="TextBlock">
+            <Setter Property="Margin" Value="100"></Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,14 +28,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-     
+
         <Grid Grid.Column="1"
               Background="Gray">
-<TextBlock 
+            <TextBlock 
     Grid.Column="1"  
     Text ="-- ADMIN PAGE --" 
     FontSize="23" 
@@ -44,44 +44,44 @@
     HorizontalAlignment="Center"></TextBlock>
         </Grid>
 
-    <Grid Grid.Row="1" Grid.Column="1" Background="BurlyWood">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" Background="BurlyWood">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-       <StackPanel Orientation="Horizontal" 
+            <StackPanel Orientation="Horizontal" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
                 <AppBarButton Icon="Previous"  Margin="0,0,0,10" VerticalAlignment="Center"/>
-            <TextBlock Text="UGE -skal bindes-" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="UGE -skal bindes-" VerticalAlignment="Center"></TextBlock>
                 <AppBarButton Icon="Next" Margin="0,0,0,10" VerticalAlignment="Center"/>
-       </StackPanel>
+            </StackPanel>
 
-            
+
 
             <ScrollViewer Grid.Row="1">
                 <Grid >
                     <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="55"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="55"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-      
 
 
-                        <ListView Grid.Column="0" ItemsSource="{Binding WeekViewItems}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Time}" Margin="0,0,0,10"></TextBlock>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+
+                    <ListView Grid.Column="0" ItemsSource="{Binding WeekViewItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Time}" Margin="0,0,0,10"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                     <ListView Grid.Column="1" ItemsSource="{Binding WeekViewItems}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -132,7 +132,18 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
-        </ScrollViewer>
-        </Grid>    
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Button Content="Create" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0,0,0" Height="50" Width="250" Background="Yellow"/>
+            <Button Content="Edit" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,50,0" Height="50" Width="250" Background="Yellow"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="3">
+            <ListBox Name="Employee" HorizontalAlignment="Left" Height="230" Margin="20,20,0,0" VerticalAlignment="Top" Width="300" SelectedValue="{Binding viewmodel:AdminPageViewModel:Employees}">
+            </ListBox>
+            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Background="Red" FontWeight="Black"/>
+            <DropDownButton Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0"/>
+
+        </Grid>
     </Grid>
 </Page>
