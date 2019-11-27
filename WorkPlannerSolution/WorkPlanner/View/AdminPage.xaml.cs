@@ -32,9 +32,19 @@ namespace WorkPlanner.View
 
         }
 
-        private void DropDownButton_Click(object sender, RoutedEventArgs e)
+        private void DropDownButton_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CreateEmployeePage));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

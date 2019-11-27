@@ -135,14 +135,14 @@
             </ScrollViewer>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2">
-            <Button Content="Create" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0,0,0" Height="50" Width="250" Background="Yellow"/>
-            <Button Content="Edit" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,50,0" Height="50" Width="250" Background="Yellow"/>
+            <Button Content="Create" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0,0,0" Height="50" Width="250" Background="Gray" Click="Button_Click"/>
+            <Button Content="Edit" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,50,0" Height="50" Width="250" Background="Gray"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="3">
-            <ListBox Name="Employee" HorizontalAlignment="Left" Height="230" Margin="20,20,0,0" VerticalAlignment="Top" Width="300" SelectedValue="{Binding viewmodel:AdminPageViewModel:Employees}">
+            <ListBox Name="Employee" HorizontalAlignment="Left" Height="230" Margin="20,20,0,0" VerticalAlignment="Top" Width="600" BorderBrush="Black" ItemsSource="{Binding Path =WeekViewItems}">
             </ListBox>
-            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Background="Red" FontWeight="Black"/>
-            <DropDownButton Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0"/>
+            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Background="White" BorderBrush="Black" BorderThickness="1" FontWeight="Black" Click="Button_Click_1"/>
+            <DropDownButton Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0" Click="DropDownButton_Click_1"/>
 
         </Grid>
     </Grid>
