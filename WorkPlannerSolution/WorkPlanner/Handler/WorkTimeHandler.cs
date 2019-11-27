@@ -46,7 +46,10 @@ namespace WorkPlanner.ViewModel
                 Worktimes generatedwWorktimes = await _catalogs.WorktimeCatalog.AddAsync(new Worktimes());
 
                 _workTimeViewModel.Message = "WorkTime er oprettet";
-                
+            }
+            else
+            {
+                _workTimeViewModel.Message = "WorkTime kunne ikke oprettes";
             }
 
         }

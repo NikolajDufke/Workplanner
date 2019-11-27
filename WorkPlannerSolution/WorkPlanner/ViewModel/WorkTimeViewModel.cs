@@ -19,7 +19,8 @@ namespace WorkPlanner.ViewModel
         private string _name;
         private EmployeeInformations _employeeInformationProp;
         private DateTimeOffset _dateTime;
-        private TimeSpan _time;
+        private TimeSpan _time1;
+        private TimeSpan _time2;
         private WorkTimeHandler _workTimeHandler;
         private static Worktimes _selectedworktime;
         private ICommand _selectedWorktimeCommand;
@@ -34,7 +35,8 @@ namespace WorkPlanner.ViewModel
 
             DateTime dt = System.DateTime.Now;
             Date = new DateTimeOffset(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0, 0, new TimeSpan());
-            Time = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
+            TimeStart = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
+            TimeEnd = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
 
             WorkTimeCreateCommand = new RelayCommand(_workTimeHandler.CreateWorkTime);
         }
@@ -69,10 +71,16 @@ namespace WorkPlanner.ViewModel
             get { return _dateTime; }
         }
 
-        public TimeSpan Time
+        public TimeSpan TimeStart
         {
-            set { _time = value; }
-            get { return _time; }
+            set { _time1 = value; }
+            get { return _time1; }
+        }
+
+        public TimeSpan TimeEnd
+        {
+            set { _time2 = value; }
+            get { return _time2; }
         }
 
         public WorkTimeHandler Worktimeh
