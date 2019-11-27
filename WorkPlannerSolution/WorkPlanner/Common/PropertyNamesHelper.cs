@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Model;
@@ -8,7 +9,7 @@ using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Common
 {
-    public class PropertyNamesHelper<T>
+    public class PropertyNamesHelper<T> where T:class 
     {
         private List<PropInfo> _listPropinfo;
 

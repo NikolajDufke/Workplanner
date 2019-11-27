@@ -120,25 +120,36 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Catalog\Catalog.cs" />
+    <Compile Include="Catalog\CatalogsSingleton - Copy.cs" />
     <Compile Include="Catalog\CatalogsSingleton.cs" />
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Converter\DateTimeConverter.cs" />
+    <Compile Include="Factories\PropertyHelpersFactory.cs" />
+    <Compile Include="Handler\AdminHandler.cs" />
     <Compile Include="Handler\CreateEmployeeHandler.cs" />
     <Compile Include="Common\PropertyNamesHelper.cs" />
+    <Compile Include="Interface\Ipopulator.cs" />
+    <Compile Include="Model\AllViewItems.cs" />
     <Compile Include="Model\EmployeeInformations.cs" />
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
     <Compile Include="Model\Employees.cs" />
     <Compile Include="Model\Accesses.cs" />
+    <Compile Include="Model\TimeIntervalDetails.cs" />
     <Compile Include="Model\Users.cs" />
+    <Compile Include="Model\RowViewItems.cs" />
     <Compile Include="Model\Worktimes.cs" />
+    <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="Persistency\IwebApiWorkplanner.cs" />
     <Compile Include="Persistency\WebApiWorkPlanner.cs" />
+    <Compile Include="View\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateEmployeePage.xaml.cs">
       <DependentUpon>CreateEmployeePage.xaml</DependentUpon>
     </Compile>
@@ -172,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreateEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />
+    <Folder Include="Converter\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

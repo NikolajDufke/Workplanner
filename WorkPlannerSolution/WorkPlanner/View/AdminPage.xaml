@@ -1,0 +1,138 @@
+﻿<Page
+    x:Class="WorkPlanner.View.AdminPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WorkPlanner.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="using:WorkPlanner.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+<Page.DataContext>
+        <viewmodel:AdminPageViewModel></viewmodel:AdminPageViewModel>
+</Page.DataContext>
+
+<Page.Resources>
+    <Style x:Key="TimeSpacer" TargetType="TextBlock">
+<Setter Property="Margin" Value="100"></Setter>
+    </Style>
+</Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+     
+        <Grid Grid.Column="1"
+              Background="Gray">
+<TextBlock 
+    Grid.Column="1"  
+    Text ="-- ADMIN PAGE --" 
+    FontSize="23" 
+    FontWeight="Bold" 
+    VerticalAlignment="Center" 
+    HorizontalAlignment="Center"></TextBlock>
+        </Grid>
+
+    <Grid Grid.Row="1" Grid.Column="1" Background="BurlyWood">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+       <StackPanel Orientation="Horizontal" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                <AppBarButton Icon="Previous"  Margin="0,0,0,10" VerticalAlignment="Center"/>
+            <TextBlock Text="UGE -skal bindes-" VerticalAlignment="Center"></TextBlock>
+                <AppBarButton Icon="Next" Margin="0,0,0,10" VerticalAlignment="Center"/>
+       </StackPanel>
+
+            
+
+            <ScrollViewer Grid.Row="1">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="55"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+      
+
+
+                        <ListView Grid.Column="0" ItemsSource="{Binding WeekViewItems}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Time}" Margin="0,0,0,10"></TextBlock>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    <ListView Grid.Column="1" ItemsSource="{Binding WeekViewItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Mandag}" Margin="0,0,0,10"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView Grid.Column="2" ItemsSource="{Binding WeekViewItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Tirsdag}" Margin="0,0,0,10"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView Grid.Column="3" ItemsSource="{Binding WeekViewItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Onsdag}" Margin="0,0,0,10"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView Grid.Column="4" ItemsSource="{Binding WeekViewItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Onsdag}" Margin="0,0,0,10"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView Grid.Column="5" ItemsSource="{Binding WeekViewItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Onsdag}" Margin="0,0,0,10"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView Grid.Column="6" ItemsSource="{Binding WeekViewItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Lørdag}" Margin="0,0,0,10"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView Grid.Column="7" ItemsSource="{Binding WeekViewItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Søndag}" Margin="0,0,0,10"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+        </ScrollViewer>
+        </Grid>    
+    </Grid>
+</Page>

@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,6 +10,8 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WorkPlanner.Common;
+ using WorkPlanner.Catalog;
+ using WorkPlanner.Common;
 using WorkPlanner.Model;
 using WorkPlanner.ViewModel;
 
@@ -37,7 +39,7 @@ namespace WorkPlanner.Handler
             employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new EmployeeInformations());
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
 
-            var catalog = Catalog.CatalogsSingleton.Instance;  
+            CatalogsSingleton catalog = CatalogsSingleton.Instance;
  
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
             if (generatedUser.UserID != 0)
@@ -78,12 +80,12 @@ namespace WorkPlanner.Handler
             _createEmployeeViewModel.PropEmployeeInfoList.Clear();
             _createEmployeeViewModel.PropUsersInfoList.Clear();
 
-            foreach (var empProp in new PropertyNamesHelper<EmployeeInformations>(new List<int>(){1}).GetListOfPropinfo)
+            foreach (var empProp in Factories.PropertyHelpersFactory<EmployeeInformations>.PropertyNamesFactory().GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropEmployeeInfoList.Add(empProp);
             }
 
-            foreach (var userProp in new PropertyNamesHelper<Users>(new List<int>(){1}).GetListOfPropinfo)
+            foreach (var userProp in Factories.PropertyHelpersFactory<Users>.PropertyNamesFactory().GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropUsersInfoList.Add(userProp);
             }

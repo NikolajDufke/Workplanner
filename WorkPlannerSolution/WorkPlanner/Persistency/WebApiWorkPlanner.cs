@@ -119,5 +119,26 @@ namespace WorkPlanner.Persistency
 
 
         }
+
+        public async Task<bool> TestConnection()
+        {
+            try
+            {
+              
+                HttpResponseMessage response = await _client.GetAsync(_apiPrefix + "/" + 1);
+                if (response.IsSuccessStatusCode)
+                {
+                   return response.IsSuccessStatusCode;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Failed to read object");
+            }
+
+            return false;
+        }
     }
 }

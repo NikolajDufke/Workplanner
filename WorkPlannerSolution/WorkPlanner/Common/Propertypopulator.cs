@@ -4,17 +4,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Interface;
 using WorkPlanner.Model;
 
 namespace WorkPlanner.Common
 {
-    class PropertyPopulator<T> where T : class
+    class PropertyPopulator<T> : Ipopulator<T> where T : class
     {
-
-        public PropertyPopulator()
-        {
-            
-        }
 
         public T Populate(List<PropInfo> propInfoList,T obj)
         {
