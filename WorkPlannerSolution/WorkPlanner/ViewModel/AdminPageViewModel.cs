@@ -5,23 +5,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Catalog;
+using WorkPlanner.Handler;
 using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    class AdminPageViewModel : ViewModelBase
+    public class AdminPageViewModel : ViewModelBase
     {
+        #region Instance
+
+        private EmployeeInformations _employeeInformationProp;
+        private AdminHandler _adminHandler;
+        private string _name;
+        #endregion
+
+        #region Constructor
+
+        public AdminPageViewModel()
+        {
+            var T = CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll;
+            _adminHandler = new AdminHandler(this);
+        }
+
+        #endregion
+
+        #region properties
+
+        public EmployeeInformations employeeInformationProp
+        {
+            get { return _employeeInformationProp; }
+            set { _employeeInformationProp = value; }
+        }
+
+        public AdminHandler AdminH
+        {
+            get { return _adminHandler; }
+            set { _adminHandler = value; }
+        }
+        #endregion
+
+        #region ObservabelCollection
 
         public ObservableCollection<EmployeeInformations> EmployeeInformations
         {
             get { return CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll; }
         }
 
-        
-
-
-
-
+#endregion
         //public AdminPageViewModel()
         //{
         //    _weekviewCollection = new ObservableCollection<RowViewItems>();
