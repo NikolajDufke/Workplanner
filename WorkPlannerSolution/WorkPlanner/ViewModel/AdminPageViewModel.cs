@@ -17,6 +17,10 @@ namespace WorkPlanner.ViewModel
             get { return CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll; }
         }
 
+        
+
+
+
 
         //public AdminPageViewModel()
         //{

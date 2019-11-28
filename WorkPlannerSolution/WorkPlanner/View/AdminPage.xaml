@@ -135,14 +135,15 @@
             </ScrollViewer>
         </Grid>
             <Grid Grid.Column="1" Grid.Row="2">
-            <Button Content="Create" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0,0,0" Height="50" Width="250" Background="Gray" Click="Button_Click"/>
-            <Button Content="Edit" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,50,0" Height="50" Width="250" Background="Gray"/>
+            <Button Content="Create" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0" Height="50" Width="250" Background="Gray" Click="Create"/>
+            <Button Content="Edit" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0" Height="50" Width="250" Background="Gray"/>
+            <DropDownButton Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Click="DropDownClick"/>
         </Grid>
-        <Grid Grid.Column="1" Grid.Row="3">
-            <ListBox Name="Employee" HorizontalAlignment="Left" Height="230" Margin="20,20,0,0" VerticalAlignment="Top" Width="600" BorderBrush="Black" ItemsSource="{Binding EmployeeInformations }">
-            </ListBox>
-            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Background="White" BorderBrush="Black" BorderThickness="1" FontWeight="Black" Click="Button_Click_1"/>
-            <DropDownButton Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0" Click="DropDownButton_Click_1"/>
+        <Grid Grid.Column="1" Grid.Row="3" Name="DroppedPanel">
+            <ListView Name="Employee" HorizontalAlignment="Center" Height="150" VerticalAlignment="Top" Width="700" BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding}"/>
+            <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment=" Bottom" Margin="50,0,0,15" Background="Gray" Width="100" Click="Add"/>
+            <Button Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200,0,0,15" Width="100" Background="Gray"/>
+            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Background="White" BorderBrush="Black" BorderThickness="1" FontWeight="Black" Click="LogOut"/>
         </Grid>
     </Grid>
 </Page>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography.X509Certificates;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -12,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Visibility = Windows.UI.Xaml.Visibility;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +27,7 @@ namespace WorkPlanner.View
         public AdminPage()
         {
             this.InitializeComponent();
+            //DroppedPanel.Visibility == Visibility.Collapsed;
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -32,19 +35,30 @@ namespace WorkPlanner.View
 
         }
 
-        private void DropDownButton_Click_1(object sender, RoutedEventArgs e)
+        private void DropDownClick(object sender, RoutedEventArgs e)
         {
-
+            //DroppedPanel.Visibility == Visibility.Visible;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Create(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(CreateEmployeePage));
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void LogOut(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CreateEmployeePage));
+        }
+
+        //private void Edit(object sender, RoutedEventArgs e)
+        //{
+        //    this.Frame.Navigate(typeof());
+        //}
     }
 }
