@@ -8,5 +8,10 @@ namespace WorkPlanner.Converter
             {
                 return new DateTime(date.Year, date.Month, date.Day, time.Hours, time.Minutes, 0);
             }
+
+            public static DateTime DateTimeOffsetToDateTime(DateTimeOffset date)
+            {
+                return new DateTime(date.Year, date.Month, date.Day);
+            }
     }
 }

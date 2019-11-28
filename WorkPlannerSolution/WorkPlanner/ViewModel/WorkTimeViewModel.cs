@@ -30,8 +30,8 @@ namespace WorkPlanner.ViewModel
         #region Constructer
         public WorkTimeViewModel()
         {
-            _workTimeHandler = new WorkTimeHandler(this );
             var T = CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll;
+            _workTimeHandler = new WorkTimeHandler(this);
 
             DateTime dt = System.DateTime.Now;
             Date = new DateTimeOffset(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0, 0, new TimeSpan());
