@@ -37,11 +37,9 @@ namespace WorkPlanner.Catalog
                 return _allCollection;
             }
         }
-
         #endregion
 
         #region Methods
-
         public async void UpdateAsync(T obj, string id)
         {
              bool result = await _api.UpdateAsync(obj, id);

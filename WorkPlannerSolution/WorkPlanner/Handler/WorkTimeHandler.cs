@@ -40,12 +40,14 @@ namespace WorkPlanner.ViewModel
             var sts = _workTimeViewModel.TimeStart;
             var ste = _workTimeViewModel.TimeEnd;
             var tsv = _workTimeViewModel.Date;
+            var empid = _workTimeViewModel.EmployeeInformationProp.EInformationID;
 
             Worktimes worktimes = new Worktimes()
             {
                 TimeStart = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, sts),
                 TimeEnd = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, ste),
-                Date = DateTimeConverter.DateTimeOffsetToDateTime(tsv)
+                Date = DateTimeConverter.DateTimeOffsetToDateTime(tsv),
+                EInformationID = empid
             };
 
             var catalog = Catalog.CatalogsSingleton.Instance;
