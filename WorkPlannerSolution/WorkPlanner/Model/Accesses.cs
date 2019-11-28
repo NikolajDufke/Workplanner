@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.Model
 {
-    class Accesses
+    public class Accesses
     {
 
         public int AccessLevel { get; set; }
