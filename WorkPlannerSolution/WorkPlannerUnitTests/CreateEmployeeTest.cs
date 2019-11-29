@@ -5,37 +5,65 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WorkPlanner.ViewModel;
-using WorkPlanner.Model;
+using WorkPlanner.Catalog;
 using WorkPlanner.Handler;
+using WorkPlanner.Model;
+using WorkPlanner.ViewModel;
+
 
 namespace WorkPlannerUnitTests
 {
     [TestClass]
-    class CreateEmployeeTest
+    public class CreateEmployeeTest
     {
-        private CreateEmployeeViewModel _createEmployeeViewModel;
-        private CreateEmployeeHandler _createEmployeeHandler;
 
-        public CreateEmployeeTest()
-        {
-            _createEmployeeViewModel = null;
-            _createEmployeeHandler = null;
-        }
+        private CreateEmployeeViewModel _createEmployeeViewModel;
+        private CatalogsSingleton _catalogsSingleton;
 
         private void Arrange()
         {
             _createEmployeeViewModel = new CreateEmployeeViewModel();
-            _createEmployeeHandler = new CreateEmployeeHandler(_createEmployeeViewModel);
-            ObservableCollection<PropInfo> propemployeeCollection = new ObservableCollection<PropInfo>();
-            ObservableCollection<PropInfo> propuserCollection = new ObservableCollection<PropInfo>();
+            _catalogsSingleton = CatalogsSingleton.Instance;
+            fillpropinfolist(_createEmployeeViewModel.PropEmployeeInfoList);
+            fillpropinfolist(_createEmployeeViewModel.PropUsersInfoList);
+        }
 
+        private void fillpropinfolist(ObservableCollection<PropInfo> propinfolist)
+        {
+            foreach (PropInfo propinfo in propinfolist)
+            {
+                propinfo.ValueFromUser = "1";
+            }
         }
 
         [TestMethod]
         public void TestCreateEmployee()
         {
-            _createEmployeeHandler.CreateEmployee();
+            //Arrange
+            Arrange();
+            int expectedresult = _catalogsSingleton.EmployeeInfoCatalog.GetAll.Count + 1;
+
+
+            //Act
+            _createEmployeeViewModel.CreateEmployeeCommand.Execute(null);
+
+
+            //Assert
+            Assert.AreEqual(expectedresult, _catalogsSingleton.EmployeeInfoCatalog.GetAll.Count);
+
+            //Cleanup
+            var allempinfolist = _catalogsSingleton.EmployeeInfoCatalog.GetAll;
+            foreach (var empinfo in allempinfolist)
+            {
+                if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
+                {
+                   _catalogsSingleton.EmployeeInfoCatalog.RemoveAsync(empinfo.EInformationID.ToString());  
+                }
+                else
+                {
+                    throw new Exception("Not Deleted!");
+                }
+            }
         }
     }
 }
