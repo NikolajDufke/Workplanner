@@ -11,9 +11,9 @@ namespace WorkPlannerUnitTests
     public class UnitTest1
     {
 
-        [TestMethod]
-        public async void TestAddWorkTime()
-        {
+        //[TestMethod]
+        //public async void x()
+        //{
             //Arrange
 
 
@@ -24,6 +24,6 @@ namespace WorkPlannerUnitTests
             
 
             //Cleanup
-        }
+        //}
     }
 }

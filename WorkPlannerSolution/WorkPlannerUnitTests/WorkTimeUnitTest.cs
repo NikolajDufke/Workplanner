@@ -1,7 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkPlanner.Catalog;
 using WorkPlanner.Model;
 using WorkPlanner.ViewModel;
+using WorkPlanner.Handler;
 
 namespace WorkPlannerUnitTests
 {
@@ -18,7 +20,7 @@ namespace WorkPlannerUnitTests
 
         public Worktimes GetTestWorkTime()
         {
-            return new Worktimes();
+            return new Worktimes(){EInformationID = 1, Date = new DateTime(2019, 11, 29), TimeStart = new DateTime(2019, 11, 29, 10, 30,0), TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0) };
         }
 
         [TestMethod]
@@ -36,7 +38,7 @@ namespace WorkPlannerUnitTests
             Assert.AreEqual(startvalue + 1, _catalogsSingleton.WorktimeCatalog.GetAll.Count);
 
             //Cleanup
-            _catalogsSingleton.WorktimeCatalog.RemoveAsync(testWorktimes.ToString());
+            _catalogsSingleton.WorktimeCatalog.RemoveAsync(testWorktimes.WorkTimeID.ToString());
         }
     }
 }
