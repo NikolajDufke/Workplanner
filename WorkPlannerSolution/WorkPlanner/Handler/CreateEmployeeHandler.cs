@@ -17,7 +17,7 @@ using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Handler
 {
-    class CreateEmployeeHandler
+    public class CreateEmployeeHandler
     {
         private CreateEmployeeViewModel _createEmployeeViewModel;
 
