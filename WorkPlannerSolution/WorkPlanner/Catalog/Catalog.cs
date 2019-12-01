@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Model;
+using WorkPlanner.Model.Databasemodels;
 using WorkPlanner.Persistency;
 
 namespace WorkPlanner.Catalog
 {
-    public class Catalog<T> where T : class
+    public class Catalog<T> where T : DatabaseObject
     {
 
         private ObservableCollection<T> _allCollection;
@@ -25,7 +26,6 @@ namespace WorkPlanner.Catalog
         }
 
         #region Proberties
-
         public ObservableCollection<T> GetAll
         {
             get

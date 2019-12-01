@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Model.Databasemodels;
 
 namespace WorkPlanner.Model
 {
-    public class EmployeeInformations 
+    public class EmployeeInformations : DatabaseObject
     {
        
         public int EInformationID { get; set; }

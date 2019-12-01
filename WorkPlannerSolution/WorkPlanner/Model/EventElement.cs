@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.Model
 {
-    public  class Employees 
+    public class EventElement
     {
-
-        public int EmployeeId { get; set; }
-
-        public int UserID { get; set; }
-
-        public int EInformationID { get; set; }
+        public List<int> Colors { get; set; }
+    
     }
 }
