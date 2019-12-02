@@ -132,7 +132,6 @@
     <Compile Include="Common\PropertyNamesHelper.cs" />
     <Compile Include="Interface\Ipopulator.cs" />
     <Compile Include="Model\AllViewItems.cs" />
-    <Compile Include="Model\EmployeeInformations.cs" />
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
     <Compile Include="Model\Employees.cs" />
@@ -214,10 +213,7 @@
       <Version>12.0.3</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Converter\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
