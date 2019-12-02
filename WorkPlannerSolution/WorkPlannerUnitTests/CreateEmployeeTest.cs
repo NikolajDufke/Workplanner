@@ -65,5 +65,19 @@ namespace WorkPlannerUnitTests
                 }
             }
         }
+
+        [TestMethod]
+        public void TestMethod()
+        {
+            //Arrange
+            int result = 1;
+            int expectedresult = result + 1;
+
+            //Act
+            result = result + 1;
+
+            //Assert
+            Assert.AreEqual(expectedresult, result);
+        }
     }
 }
