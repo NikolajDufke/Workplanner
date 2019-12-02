@@ -7,7 +7,7 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.Catalog
 {
-    class CatalogsSingleton
+    public class CatalogsSingleton
     {
         #region Singleton Implementation
         private static CatalogsSingleton _instance;

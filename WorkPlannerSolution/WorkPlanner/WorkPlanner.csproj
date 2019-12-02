@@ -125,6 +125,7 @@
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Converter\DateTimeConverter.cs" />
     <Compile Include="Factories\PropertyHelpersFactory.cs" />
     <Compile Include="Handler\AdminHandler.cs" />
     <Compile Include="Handler\CreateEmployeeHandler.cs" />
@@ -153,6 +154,9 @@
       <DependentUpon>CreateEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\WorkTimeViewModel.cs" />
+    <Compile Include="View\CreateWorkTimePage.xaml.cs">
+      <DependentUpon>CreateWorkTimePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +191,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CreateWorkTimePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -207,6 +215,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Interface\" />
     <Folder Include="Converter\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

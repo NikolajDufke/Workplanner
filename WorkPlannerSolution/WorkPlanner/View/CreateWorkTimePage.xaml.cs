@@ -12,25 +12,24 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WorkPlanner.View;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace WorkPlanner.View
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class CreateWorkTimePage : Page
     {
-        public MainPage()
+        public CreateWorkTimePage()
         {
             this.InitializeComponent();
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private void Return(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(CreateWorkTimePage));
+            Frame.Navigate(typeof(MainPage));
         }
     }
 }
