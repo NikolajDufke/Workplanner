@@ -14,7 +14,7 @@ namespace WorkPlanner.ViewModel
     {
         #region Instance
 
-        private EmployeeInformations _employeeInformationProp;
+        private Employees _employeeInformationProp;
         private AdminHandler _adminHandler;
         private string _name;
         #endregion
@@ -23,7 +23,7 @@ namespace WorkPlanner.ViewModel
 
         public AdminPageViewModel()
         {
-            var T = CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll;
+            var T = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
             _adminHandler = new AdminHandler(this);
         }
 
@@ -31,7 +31,7 @@ namespace WorkPlanner.ViewModel
 
         #region properties
 
-        public EmployeeInformations employeeInformationProp
+        public Employees employeeInformationProp
         {
             get { return _employeeInformationProp; }
             set { _employeeInformationProp = value; }
@@ -46,9 +46,9 @@ namespace WorkPlanner.ViewModel
 
         #region ObservabelCollection
 
-        public ObservableCollection<EmployeeInformations> EmployeeInformations
+        public ObservableCollection<Employees> EmployeeInformations
         {
-            get { return CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll; }
+            get { return CatalogsSingleton.Instance.EmployeeCatalog.GetAll; }
         }
 
 #endregion
