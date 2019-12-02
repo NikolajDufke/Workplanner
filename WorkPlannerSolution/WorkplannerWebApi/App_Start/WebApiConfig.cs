@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace WorkPlannerWebAPI
+namespace WorkPlannerWebApi
 {
     public static class WebApiConfig
     {

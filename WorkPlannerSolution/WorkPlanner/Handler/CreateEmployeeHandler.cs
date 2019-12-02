@@ -29,14 +29,14 @@ namespace WorkPlanner.Handler
 
         public async void CreateEmployee()
         {
-           EmployeeInformations employeeInformation = new EmployeeInformations();
+           Employees employeeInformation = new Employees();
            Users user = new Users();
            Employees employee = new Employees();
 
-            PropertyPopulator<EmployeeInformations> ppEmployeeInformation = new PropertyPopulator<EmployeeInformations>();
+            PropertyPopulator<Employees> ppEmployeeInformation = new PropertyPopulator<Employees>();
             PropertyPopulator<Users> ppUsers = new PropertyPopulator<Users>();
 
-            employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new EmployeeInformations());
+            employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new Employees());
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
 
             CatalogsSingleton catalog = CatalogsSingleton.Instance;
@@ -44,17 +44,17 @@ namespace WorkPlanner.Handler
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
             if (generatedUser.UserID != 0)
             {
-                EmployeeInformations generatedEmployeeInformation = await catalog.EmployeeInfoCatalog.AddAsync(employeeInformation);
+                Employees generatedEmployeeInformation = await catalog.EmployeeCatalog.AddAsync(employeeInformation);
                  
-                if (generatedEmployeeInformation.EInformationID != 0)
+                if (generatedEmployeeInformation.EmployeeID != 0)
                 {
                     Employees generaEmployee = await catalog.EmployeeCatalog.AddAsync(new Employees()
                     {
-                        EInformationID = generatedEmployeeInformation.EInformationID,
+                        EmployeeID = generatedEmployeeInformation.EmployeeID,
                         UserID = generatedUser.UserID
                     });
 
-                    if (generaEmployee.EInformationID != 0)
+                    if (generaEmployee.EmployeeID != 0)
                     {
                         _createEmployeeViewModel.Message = "Bruger er blevet oprettet";
                         PopulatePrepInfo();
@@ -80,7 +80,7 @@ namespace WorkPlanner.Handler
             _createEmployeeViewModel.PropEmployeeInfoList.Clear();
             _createEmployeeViewModel.PropUsersInfoList.Clear();
 
-            foreach (var empProp in Factories.PropertyHelpersFactory<EmployeeInformations>.PropertyNamesFactory().GetListOfPropinfo)
+            foreach (var empProp in Factories.PropertyHelpersFactory<Employees>.PropertyNamesFactory().GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropEmployeeInfoList.Add(empProp);
             }

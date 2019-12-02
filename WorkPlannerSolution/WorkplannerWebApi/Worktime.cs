@@ -1,4 +1,4 @@
-namespace WorkPlannerWebAPI
+namespace WorkPlannerWebApi
 {
     using System;
     using System.Collections.Generic;
@@ -9,14 +9,15 @@ namespace WorkPlannerWebAPI
     [Table("Worktime")]
     public partial class Worktime
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int WorkTimeID { get; set; }
 
         public int EmployeeID { get; set; }
 
         public DateTime Date { get; set; }
 
-        public DateTime Time { get; set; }
+        public DateTime TimeStart { get; set; }
+
+        public DateTime TimeEnd { get; set; }
 
         public virtual Employee Employee { get; set; }
     }

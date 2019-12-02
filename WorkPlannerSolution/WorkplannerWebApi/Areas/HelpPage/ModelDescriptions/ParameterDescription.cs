@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace WorkPlannerWebAPI.Areas.HelpPage.ModelDescriptions
+namespace WorkPlannerWebApi.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {
