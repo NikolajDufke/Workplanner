@@ -1,11 +1,14 @@
-﻿CREATE TABLE [dbo].[EmployeeInformation] (
-    [EInformationID] INT NOT NULL IDENTITY,
+﻿CREATE TABLE [dbo].[Employee] (
+    [EmployeeID] INT NOT NULL IDENTITY,
     [FirstName]      VARCHAR (50) NOT NULL,
     [LastName]       VARCHAR (50) NOT NULL,
-    [PhoneNumber]    INT          NOT NULL,
-    [Email]          VARCHAR (50) NOT NULL,
-    [Adress]         VARCHAR (50) NOT NULL,
-    [City]           VARCHAR (50) NOT NULL,
-    [ZipPostal]      INT          NOT NULL,
-    PRIMARY KEY CLUSTERED ([EInformationID] ASC)
+    [PhoneNumber]    INT          NULL,
+    [Email]          VARCHAR (50) NULL,
+    [Adress]         VARCHAR (50) NULL,
+    [City]           VARCHAR (50) NULL,
+    [ZipPostal]      INT          NULL, 
+    [UserID] INT NULL, 
+    CONSTRAINT [PK_Employee] PRIMARY KEY ([EmployeeID]), 
+    CONSTRAINT [FK_Employee_User] FOREIGN KEY (UserID) REFERENCES [Users]([UserID]),
+
 );

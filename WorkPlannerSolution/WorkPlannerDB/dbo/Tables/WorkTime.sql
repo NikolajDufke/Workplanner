@@ -5,5 +5,5 @@
     [TimeStart]       DATETIME NOT NULL,
     [TimeEnd] DATETIME NOT NULL, 
     PRIMARY KEY CLUSTERED ([WorkTimeID] ASC),
-    CONSTRAINT [EmployeeInformationIDFK] FOREIGN KEY ([EInformationID]) REFERENCES [dbo].[EmployeeInformation] ([EInformationID])
+    CONSTRAINT [EmployeeInformationIDFK] FOREIGN KEY ([EInformationID]) REFERENCES [dbo].[Employee] ([EmployeeID])
 );
