@@ -59,15 +59,15 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel HorizontalAlignment="Left"  VerticalAlignment="Top">
+        <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black">
-                <TextBox Text="" PlaceholderText="Username" />
-                <PasswordBox  Password="" PlaceholderText="Password"/>
-                <Button Content="Login" Command="{Binding LoginCommand}"/>
+                <TextBox Text="hej" PlaceholderText="Username" />
+                <PasswordBox  Password="123" PlaceholderText="Password"/>
+                <Button Content="Login"/>
             </StackPanel>
         </StackPanel>
     </Grid>

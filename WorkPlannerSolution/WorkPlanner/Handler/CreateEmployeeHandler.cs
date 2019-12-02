@@ -10,8 +10,7 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WorkPlanner.Common;
- using WorkPlanner.Catalog;
- using WorkPlanner.Common;
+using WorkPlanner.Catalog;
 using WorkPlanner.Model;
 using WorkPlanner.ViewModel;
 
@@ -29,50 +28,39 @@ namespace WorkPlanner.Handler
 
         public async void CreateEmployee()
         {
-           Employees employeeInformation = new Employees();
-           Users user = new Users();
            Employees employee = new Employees();
+           Users user = new Users();
 
-            PropertyPopulator<Employees> ppEmployeeInformation = new PropertyPopulator<Employees>();
+            PropertyPopulator<Employees> ppEmployee = new PropertyPopulator<Employees>();
             PropertyPopulator<Users> ppUsers = new PropertyPopulator<Users>();
 
-            employeeInformation = ppEmployeeInformation.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new Employees());
+            employee = ppEmployee.Populate(_createEmployeeViewModel.PropEmployeeInfoList.ToList(), new Employees());
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
 
             CatalogsSingleton catalog = CatalogsSingleton.Instance;
  
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
+
             if (generatedUser.UserID != 0)
             {
-                Employees generatedEmployeeInformation = await catalog.EmployeeCatalog.AddAsync(employeeInformation);
-                 
-                if (generatedEmployeeInformation.EmployeeID != 0)
-                {
-                    Employees generaEmployee = await catalog.EmployeeCatalog.AddAsync(new Employees()
-                    {
-                        EmployeeID = generatedEmployeeInformation.EmployeeID,
-                        UserID = generatedUser.UserID
-                    });
+                employee.UserID = generatedUser.UserID;
 
-                    if (generaEmployee.EmployeeID != 0)
-                    {
-                        _createEmployeeViewModel.Message = "Bruger er blevet oprettet";
-                        PopulatePrepInfo();
-                    }
-                    else
-                    {
-                        _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
-                    }
+                Employees generatedEmployee = await catalog.EmployeeCatalog.AddAsync(employee);
+                
+                if (generatedEmployee.EmployeeID != 0)
+                {
+                    _createEmployeeViewModel.Message = "Bruger er blevet oprettet";
+                    PopulatePrepInfo();
                 }
                 else
                 {
                     _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
                 }
             }
-            else
-            {
-                _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
-            }
+                else
+                {
+                    _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
+                }
         }
 
         public void PopulatePrepInfo()
@@ -80,12 +68,12 @@ namespace WorkPlanner.Handler
             _createEmployeeViewModel.PropEmployeeInfoList.Clear();
             _createEmployeeViewModel.PropUsersInfoList.Clear();
 
-            foreach (var empProp in Factories.PropertyHelpersFactory<Employees>.PropertyNamesFactory().GetListOfPropinfo)
+            foreach (var empProp in Factories.PropertyHelpersFactory<Employees>.PropertyNamesFactory(new List<int>(){1, 9}).GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropEmployeeInfoList.Add(empProp);
             }
 
-            foreach (var userProp in Factories.PropertyHelpersFactory<Users>.PropertyNamesFactory().GetListOfPropinfo)
+            foreach (var userProp in Factories.PropertyHelpersFactory<Users>.PropertyNamesFactory(new List<int>(){1}).GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropUsersInfoList.Add(userProp);
             }
