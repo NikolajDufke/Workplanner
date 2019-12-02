@@ -8,7 +8,6 @@ namespace WorkPlanner.Model
 {
     public class EventElement
     {
-        public List<int> Colors { get; set; }
-    
+        public List<string> Colors { get; set; }
     }
 }

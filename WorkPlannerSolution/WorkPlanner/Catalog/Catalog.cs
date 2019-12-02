@@ -26,7 +26,19 @@ namespace WorkPlanner.Catalog
         }
 
         #region Proberties
-        public ObservableCollection<T> GetAll
+        //public ObservableCollection<T> GetAll
+        //{
+        //    get
+        //    {
+        //        if (_allCollection == null)
+        //        {
+        //            LoadFromDB();
+        //        }
+
+        //        return _allCollection;
+        //    }
+        //}
+        public List<T> GetAll
         {
             get
             {
@@ -35,7 +47,7 @@ namespace WorkPlanner.Catalog
                     LoadFromDB();
                 }
 
-                return _allCollection;
+                return _allCollection.ToList();
             }
         }
 

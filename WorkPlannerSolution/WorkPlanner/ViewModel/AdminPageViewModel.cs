@@ -3,396 +3,174 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Handler;
 using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    class AdminPageViewModel : ViewModelBase
+   public class AdminPageViewModel : ViewModelBase
     {
-        AllViewItems rows;
-        private ObservableCollection<Time> _time;
-        private ObservableCollection<Columns> _column;
+        private ObservableCollection<EventElement> _weekday1Collection;
+        private ObservableCollection<EventElement> _weekday2Collection;
+        private ObservableCollection<EventElement> _weekday3Collection;
+        private ObservableCollection<EventElement> _weekday4Collection;
+        private ObservableCollection<EventElement> _weekday5Collection;
+        private ObservableCollection<EventElement> _weekday6Collection;
+        private ObservableCollection<EventElement> _weekday7Collection;
+        private AdminHandler _handler;
+
 
         public AdminPageViewModel()
         {
-            List<int> i = new List<>(){};
+            _headers = new ObservableCollection<DateTime>(); 
+            _weekday1Collection = new ObservableCollection<EventElement>();
+            _weekday2Collection = new ObservableCollection<EventElement>();
+            _weekday3Collection = new ObservableCollection<EventElement>();
+            _weekday4Collection = new ObservableCollection<EventElement>();
+            _weekday5Collection = new ObservableCollection<EventElement>();
+            _weekday6Collection = new ObservableCollection<EventElement>();
+            _weekday7Collection = new ObservableCollection<EventElement>();
+            _times = new ObservableCollection<TimeSpan>();
 
-            _række1.Add(new EventElement();
-
-
-            rows = new AllViewItems();
-
-            rows.Addmember(new TimeSpan(8, 30, 0), new Employees() { EInformationID = 1, EmployeeId = 1, UserID = 1 }, 1);
-            rows.Addmember(new TimeSpan(9, 30, 0), new Employees() { EInformationID = 2, EmployeeId = 2, UserID = 2 }, 2);
-            rows.Addmember(new TimeSpan(10, 30, 0), new Employees() { EInformationID = 2, EmployeeId = 2, UserID = 2 }, 3);
-            rows.Addmember(new TimeSpan(11, 30, 0), new Employees() { EInformationID = 3, EmployeeId = 3, UserID = 3 }, 4);
-            rows.Addmember(new TimeSpan(12, 30, 0), new Employees() { EInformationID = 4, EmployeeId = 4, UserID = 4 }, 5);
-            rows.Addmember(new TimeSpan(13, 30, 0), new Employees() { EInformationID = 5, EmployeeId = 5, UserID = 5 }, 6);
-
-            _allView.Add(rows);
-            _allView.Add(rows);
-
-
-            _time = new ObservableCollection<Time>();
-            _time.Add(new Time(){TimeID = 1, GetTime = new TimeSpan(8, 30, 0)});
-            _time.Add(new Time() { TimeID = 2, GetTime = new TimeSpan(9, 30, 0) });
-            _time.Add(new Time() { TimeID = 3, GetTime = new TimeSpan(10, 30, 0) });
-            _time.Add(new Time() { TimeID = 4, GetTime = new TimeSpan(11, 30, 0) });
-
-            _column = new ObservableCollection<Columns>();
-
-            var e1 = new Employees(){ EInformationID = 1,EmployeeId = 1, UserID = 1};
-            var e2 = new Employees() { EInformationID = 2, EmployeeId = 2, UserID = 2 };
-            var e3 = new Employees() { EInformationID = 3, EmployeeId = 3, UserID = 3 };
-
-
-            var w1 = new Worktimes(1,  1, DateTime.Now, DateTime.Now);
-            var w2 = new Worktimes(2, 2, DateTime.Now, DateTime.Now);
-            var w3 = new Worktimes(3, 3, DateTime.Now, DateTime.Now);
-            var w4 = new Worktimes(4, 1, DateTime.Now, DateTime.Now);
-
-            List<Worktimes> wt = new List<Worktimes>(){w1,w2,w3,w4}; 
-            
-
-
-            var r = new Row()
-            {
-                TimeID = 1,
-                Deltagere = new List<Employees>() { e1, e2, e3},
-                
-            };
-            var r2 = new Row()
-            {
-                TimeID = 1,
-                Deltagere = new List<Employees>() { e1, e2, e3 },
-
-            };
-
-            
-
-
-            _column.Add(new Columns()
-            {
-                Date = DateTime.Now,
-                Rows = new List<Row>(){r,r2},
-                WorkTime = wt
-                
-            });
-            _column.Add(new Columns()
-            {
-                Date = DateTime.Now,
-                Rows = new List<Row>(){r,r2},
-                WorkTime = wt
-
-            });
-
-
+            _handler = new AdminHandler(this);
+            _handler.SetTimes();
+            _handler.SetDaysAndDates();
         }
 
+        private ObservableCollection<DateTime> _headers;
 
-        private ObservableCollection<AllViewItems> _allView;
-
-        public ObservableCollection<AllViewItems> AllView
+        public ObservableCollection<DateTime> Headers
         {
-            get { return _allView; }
-            set { _allView = value; }
+            get { return _headers; }
+            set { _headers = value; }
         }
 
+        private int _weekNumber;
 
-        public ObservableCollection<Time> Time
+        public int WeekNumber
         {
-            get { return _time; }
-            set { _time = value; }
+            get { return _weekNumber; }
+            set { _weekNumber = value; }
         }
 
-    
-  
-      
-        
-        public ObservableCollection<Columns> Column
+
+
+        private DateTime _day1Header;
+
+        public DateTime Day1Header
         {
-            get { return _column; }
-            set { _column = value; }
+            get { return _day1Header; }
+            set { _day1Header = value; }
         }
 
 
-        private ObservableCollection<Row> _events1;
+        private DateTime _day2Header;
 
-        public ObservableCollection<Row> Events1
+        public DateTime Day2Header
         {
-            get { return _events1; }
-            set { _events1 = value; }
+            get { return _day2Header; }
+            set { _day2Header = value; }
         }
 
-        private ObservableCollection<Row> _events2;
 
-        public ObservableCollection<Row> Events2
+
+        private DateTime _day3Header;
+
+        public DateTime Day3Header
         {
-            get { return _events2; }
-            set { _events2 = value; }
+            get { return _day3Header; }
+            set { _day3Header = value; }
         }
 
 
+        private DateTime _day4Header;
 
-        private ObservableCollection<EventElement> _række1;
-
-        public ObservableCollection<EventElement> Række1
+        public DateTime Day4Header
         {
-            get { return _række1; }
-            set { _række1 = value; }
+            get { return _day4Header; }
+            set { _day4Header = value; }
         }
 
-        private ObservableCollection<EventElement> _række2;
 
-        public ObservableCollection<EventElement> Række2
+        private DateTime _day5Header;
+
+        public DateTime Day5Header
         {
-            get { return _række2; }
-            set { _række2 = value; }
+            get { return _day5Header; }
+            set { _day5Header = value; }
         }
 
-        private ObservableCollection<EventElement> _række3;
-        
-        public ObservableCollection<EventElement> Række3
+
+        private DateTime _day6Header;
+
+        public DateTime Day6Header
         {
-            get { return _række3; }
-            set { _række3 = value; }
+            get { return _day6Header; }
+            set { _day6Header = value; }
         }
 
 
+        private DateTime _day7Header;
+
+        public DateTime Day7Header
+        {
+            get { return _day7Header; }
+            set { _day7Header = value; }
+        }
 
 
+        private ObservableCollection<TimeSpan> _times;
+
+        public ObservableCollection<TimeSpan> Times
+        {
+            get { return _times; }
+            set { _times = value; }
+        }
 
 
+        public ObservableCollection<EventElement> Weekday1Collection
+        {
+            get { return _weekday1Collection; }
+            set { _weekday1Collection = value; }
+        }    
 
+        public ObservableCollection<EventElement> Weekday2Collection
+        {
+            get { return _weekday2Collection; }
+            set { _weekday2Collection = value; }
+        }  
 
+        public ObservableCollection<EventElement> Weekday3Collection
+        {
+            get { return _weekday3Collection; }
+            set { _weekday3Collection = value; }
+        }      
 
+        public ObservableCollection<EventElement> Weekday4Collection
+        {
+            get { return _weekday4Collection; }
+            set { _weekday4Collection = value; }
+        }  
 
+        public ObservableCollection<EventElement> Weekday5Collection
+        {
+            get { return _weekday5Collection; }
+            set { _weekday5Collection = value; }
+        }  
 
+        public ObservableCollection<EventElement> Weekday6Collection
+        {
+            get { return _weekday6Collection; }
+            set { _weekday6Collection = value; }
+        }
 
-
-
-        //private ObservableCollection<RowViewItems> _weekviewCollection;
-
-        //public ObservableCollection<RowViewItems> WeekViewItems
-        //{
-        //    get { return _weekviewCollection; }
-        //    set { _weekviewCollection = value; }
-        //}
-
-        //public ObservableCollection<string> Headers
-        //{
-        //    get { return new ObservableCollection<string>(rows.Headers);}
-        //    //set { rows.Headers = value; }
-        //}
-
-        //private ObservableCollection<TimeIntervalDetails> _timeInterval;
-
-        //public ObservableCollection<TimeIntervalDetails> TimeInterval
-        //{
-        //    get { return _timeInterval; }
-        //    set { _timeInterval = value; }
-        //}
-
-
-        //public AllViewItems AllItems
-        //{
-        //    get { return rows; }
-        //    set { rows = value; }
-        //}
-
-
-
-
-
-
-
-
-        //private void pupulate()
-        //{
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "08:00 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "08:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:00 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-        //    WeekViewItems.Add(new WeekViewItems()
-        //    {
-        //        Time = "09:30 -",
-        //        Mandag = "test1",
-        //        Tirsdag = "test2",
-        //        Onsdag = "test3",
-        //        Torsdag = "test4",
-        //        Fredag = "test5",
-        //        Lørdag = "test6",
-        //        Søndag = "test7"
-
-        //    });
-
-        //}
-
+        public ObservableCollection<EventElement> Weekday7Collection
+        {
+            get { return _weekday7Collection; }
+            set { _weekday7Collection = value; }
+        }
     }
 }
