@@ -17,7 +17,7 @@ namespace WorkPlanner.ViewModel
         #region Instance
         private int _id;
         private string _name;
-        private EmployeeInformations _employeeInformationProp;
+        private Employees _employeeProp;
         private DateTimeOffset _dateTime;
         private TimeSpan _time1;
         private TimeSpan _time2;
@@ -30,7 +30,7 @@ namespace WorkPlanner.ViewModel
         #region Constructer
         public WorkTimeViewModel()
         {
-            var T = CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll;
+            var T = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
             _workTimeHandler = new WorkTimeHandler(this);
 
             DateTime dt = System.DateTime.Now;
@@ -59,10 +59,10 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-        public EmployeeInformations EmployeeInformationProp
+        public Employees EmployeeProp
         {
-            set { _employeeInformationProp = value;}
-            get { return _employeeInformationProp; }
+            set { _employeeProp = value;}
+            get { return _employeeProp; }
         }
 
         public DateTimeOffset Date
@@ -97,11 +97,11 @@ namespace WorkPlanner.ViewModel
         #endregion
 
         #region ObservableCollection
-        public ObservableCollection<EmployeeInformations> EmployeeInformations
+        public ObservableCollection<Employees> Employee
         {
             get
             {
-                return CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll;
+                return CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
             }
         }
         #endregion

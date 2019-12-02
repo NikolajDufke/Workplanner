@@ -1,4 +1,4 @@
-namespace WorkPlannerWebAPI
+namespace WorkPlannerWebApi
 {
     using System;
     using System.Collections.Generic;

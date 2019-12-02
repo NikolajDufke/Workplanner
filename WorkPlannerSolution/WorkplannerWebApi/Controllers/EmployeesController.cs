@@ -8,9 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WorkPlannerWebAPI;
+using WorkPlannerWebApi;
 
-namespace WorkPlannerWebAPI.Controllers
+namespace WorkPlannerWebApi.Controllers
 {
     public class EmployeesController : ApiController
     {
@@ -44,7 +44,7 @@ namespace WorkPlannerWebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != employee.EmployeeId)
+            if (id != employee.EmployeeID)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace WorkPlannerWebAPI.Controllers
             db.Employees.Add(employee);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = employee.EmployeeId }, employee);
+            return CreatedAtRoute("DefaultApi", new { id = employee.EmployeeID }, employee);
         }
 
         // DELETE: api/Employees/5
@@ -112,7 +112,7 @@ namespace WorkPlannerWebAPI.Controllers
 
         private bool EmployeeExists(int id)
         {
-            return db.Employees.Count(e => e.EmployeeId == id) > 0;
+            return db.Employees.Count(e => e.EmployeeID == id) > 0;
         }
     }
 }

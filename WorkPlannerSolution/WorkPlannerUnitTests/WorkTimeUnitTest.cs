@@ -20,7 +20,7 @@ namespace WorkPlannerUnitTests
 
         public Worktimes GetTestWorkTime()
         {
-            return new Worktimes(){EInformationID = 1, Date = new DateTime(2019, 11, 29), TimeStart = new DateTime(2019, 11, 29, 10, 30,0), TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0) };
+            return new Worktimes(){EInformationID = 1, Date = new DateTime(2019, 11, 29), TimeStart = new DateTime(2019, 11, 29, 10, 30,0), TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0), WorkTimeID = 9};
         }
 
         [TestMethod]

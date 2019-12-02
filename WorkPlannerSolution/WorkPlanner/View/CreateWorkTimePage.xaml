@@ -67,7 +67,7 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <StackPanel Margin="20" Orientation="Vertical" >
                 <TextBlock Text="Employee Name:" FontSize="20" />
-                <ComboBox Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding EmployeeInformations}" SelectedValue="{Binding EmployeeInformationProp, Mode=TwoWay}">
+                <ComboBox Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding Employee}" SelectedValue="{Binding EmployeeProp, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding FirstName}"/>

@@ -14,7 +14,7 @@ namespace WorkPlanner.Catalog
 
         private ObservableCollection<T> _allCollection;
         private WebApiWorkPlanner<T> _api;
-        private const string _serverurl = "http://localhost:57460/";
+        private const string _serverurl = "http://localhost:56265/";
         private string _apiprefix ;
 
 
@@ -45,7 +45,7 @@ namespace WorkPlanner.Catalog
         {
             bool result = await _api.UpdateAsync(obj, id);
 
-            if (result = true)
+            if (result == true)
             {
                 LoadFromDB();
             }
@@ -58,7 +58,7 @@ namespace WorkPlanner.Catalog
             {
 
                 bool result = await _api.DeleteAsync(id);
-                if (result = true)
+                if (result == true)
                 {
                     LoadFromDB();
                 }

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WorkPlannerWebAPI")]
+[assembly: AssemblyTitle("WorkPlannerWebApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WorkPlannerWebAPI")]
+[assembly: AssemblyProduct("WorkPlannerWebApi")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("82372a73-da97-4873-928f-f51aeae3f640")]
+[assembly: Guid("80aa46e0-3665-4f0e-98c9-45ab0e6850f2")]
 
 // Version information for an assembly consists of the following four values:
 //
