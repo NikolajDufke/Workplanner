@@ -16,7 +16,7 @@ namespace WorkPlanner.Catalog
         private ObservableCollection<T> _allCollection;
         private WebApiWorkPlanner<T> _api;
         private const string _serverurl = "http://localhost:56265/";
-        private string _apiprefix;
+        private string _apiprefix ;
 
 
         public Catalog()
@@ -50,16 +50,14 @@ namespace WorkPlanner.Catalog
                 return _allCollection.ToList();
             }
         }
-
         #endregion
 
         #region Methods
-
         public async void UpdateAsync(T obj, string id)
         {
             bool result = await _api.UpdateAsync(obj, id);
 
-            if (result = true)
+            if (result == true)
             {
                 LoadFromDB();
             }
@@ -72,7 +70,7 @@ namespace WorkPlanner.Catalog
             {
 
                 bool result = await _api.DeleteAsync(id);
-                if (result = true)
+                if (result == true)
                 {
                     LoadFromDB();
                 }

@@ -7,7 +7,7 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.Catalog
 {
-    class CatalogsSingleton
+    public class CatalogsSingleton
     {
         #region Singleton Implementation
         private static CatalogsSingleton _instance;
@@ -24,23 +24,6 @@ namespace WorkPlanner.Catalog
         }
 
         #endregion
-
-
-
-        private Catalog<EmployeeInformations> _employeeInfoCatalog;
-
-        public Catalog<EmployeeInformations> EmployeeInfoCatalog
-        {
-            get
-            {
-                if (_employeeInfoCatalog == null)
-                {
-                    _employeeInfoCatalog = new Catalog<EmployeeInformations>();
-                }
-                return _employeeInfoCatalog;
-            }
-
-        }
 
         private Catalog<Users> _UsersCatalog;
 

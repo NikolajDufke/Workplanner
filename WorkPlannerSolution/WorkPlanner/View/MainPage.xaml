@@ -38,6 +38,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <AppBarButton Label="Test" Height="50" Width="80" Margin="22,-5" Icon="Back" Click="AppBarButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

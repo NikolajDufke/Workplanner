@@ -1,4 +1,4 @@
-namespace WorkPlannerWebAPI
+namespace WorkPlannerWebApi
 {
     using System;
     using System.Data.Entity;
@@ -17,7 +17,6 @@ namespace WorkPlannerWebAPI
         public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<Access> Accesses { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeInformation> EmployeeInformations { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Worktime> Worktimes { get; set; }
 
@@ -33,38 +32,28 @@ namespace WorkPlannerWebAPI
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Employee>()
-                .HasMany(e => e.Worktimes)
-                .WithRequired(e => e.Employee)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<EmployeeInformation>()
                 .Property(e => e.FirstName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<EmployeeInformation>()
+            modelBuilder.Entity<Employee>()
                 .Property(e => e.LastName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<EmployeeInformation>()
+            modelBuilder.Entity<Employee>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<EmployeeInformation>()
+            modelBuilder.Entity<Employee>()
                 .Property(e => e.Adress)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<EmployeeInformation>()
+            modelBuilder.Entity<Employee>()
                 .Property(e => e.City)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<EmployeeInformation>()
-                .HasMany(e => e.Employees)
-                .WithRequired(e => e.EmployeeInformation)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Employees)
-                .WithRequired(e => e.User)
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.Worktimes)
+                .WithRequired(e => e.Employee)
                 .WillCascadeOnDelete(false);
         }
     }

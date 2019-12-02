@@ -1,4 +1,4 @@
-namespace WorkPlannerWebAPI
+namespace WorkPlannerWebApi
 {
     using System;
     using System.Collections.Generic;
@@ -15,16 +15,33 @@ namespace WorkPlannerWebAPI
             Worktimes = new HashSet<Worktime>();
         }
 
-        public int EmployeeId { get; set; }
+        public int EmployeeID { get; set; }
 
-        public int UserID { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string FirstName { get; set; }
 
-        public int EInformationID { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string LastName { get; set; }
+
+        public int? PhoneNumber { get; set; }
+
+        [StringLength(50)]
+        public string Email { get; set; }
+
+        [StringLength(50)]
+        public string Adress { get; set; }
+
+        [StringLength(50)]
+        public string City { get; set; }
+
+        public int? ZipPostal { get; set; }
+
+        public int? UserID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Worktime> Worktimes { get; set; }
-
-        public virtual EmployeeInformation EmployeeInformation { get; set; }
 
         public virtual User User { get; set; }
     }

@@ -8,9 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WorkPlannerWebAPI;
+using WorkPlannerWebApi;
 
-namespace WorkPlannerWebAPI.Controllers
+namespace WorkPlannerWebApi.Controllers
 {
     public class WorktimesController : ApiController
     {
@@ -80,22 +80,7 @@ namespace WorkPlannerWebAPI.Controllers
             }
 
             db.Worktimes.Add(worktime);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (WorktimeExists(worktime.WorkTimeID))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = worktime.WorkTimeID }, worktime);
         }

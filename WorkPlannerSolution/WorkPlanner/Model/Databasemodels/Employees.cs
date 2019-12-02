@@ -10,11 +10,23 @@ namespace WorkPlanner.Model
     public  class Employees : DatabaseObject
     {
 
-        public int EmployeeId { get; set; }
+        public int EmployeeID { get; set; }
 
-        public int UserID { get; set; }
+        public string FirstName { get; set; }
 
-        public int EInformationID { get; set; }
-  
+        public string LastName { get; set; }
+
+        public int? PhoneNumber { get; set; }
+
+        public string Email { get; set; }
+
+        public string Adress { get; set; }
+
+        public string City { get; set; }
+
+        public int? ZipPostal { get; set; }
+
+        public int? UserID { get; set; }
+
     }
 }
