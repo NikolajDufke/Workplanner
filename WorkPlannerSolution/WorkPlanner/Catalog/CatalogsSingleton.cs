@@ -25,23 +25,6 @@ namespace WorkPlanner.Catalog
 
         #endregion
 
-
-
-        private Catalog<EmployeeInformations> _employeeInfoCatalog;
-
-        public Catalog<EmployeeInformations> EmployeeInfoCatalog
-        {
-            get
-            {
-                if (_employeeInfoCatalog == null)
-                {
-                    _employeeInfoCatalog = new Catalog<EmployeeInformations>();
-                }
-                return _employeeInfoCatalog;
-            }
-
-        }
-
         private Catalog<Users> _UsersCatalog;
 
         public Catalog<Users> UsersCatalog

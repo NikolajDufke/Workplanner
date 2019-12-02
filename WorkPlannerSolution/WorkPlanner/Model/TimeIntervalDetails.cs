@@ -26,8 +26,8 @@ namespace WorkPlanner.Model
 
         public void AddMember(Employees employee)
         {
-            if(!_eventMembers.ContainsKey(employee.EInformationID))
-            _eventMembers.Add(employee.EInformationID,employee);          
+            if(!_eventMembers.ContainsKey(employee.EmployeeID))
+            _eventMembers.Add(employee.EmployeeID,employee);          
         }
 
         public void RemoveMember(int employeeID)
@@ -38,8 +38,8 @@ namespace WorkPlanner.Model
 
         public void UpdateMember(Employees employee)
         {
-            if (_eventMembers.ContainsKey(employee.EInformationID))
-                _eventMembers[employee.EInformationID]=employee;
+            if (_eventMembers.ContainsKey(employee.EmployeeID))
+                _eventMembers[employee.EmployeeID]=employee;
         }
 
 

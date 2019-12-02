@@ -30,7 +30,7 @@ namespace WorkPlanner.ViewModel
         #region Constructer
         public WorkTimeViewModel()
         {
-            var T = CatalogsSingleton.Instance.EmployeeInfoCatalog.GetAll;
+            var T = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
             _workTimeHandler = new WorkTimeHandler(this);
 
             DateTime dt = System.DateTime.Now;

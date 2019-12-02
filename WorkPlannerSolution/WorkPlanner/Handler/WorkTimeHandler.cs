@@ -40,19 +40,19 @@ namespace WorkPlanner.ViewModel
             var sts = _workTimeViewModel.TimeStart;
             var ste = _workTimeViewModel.TimeEnd;
             var tsv = _workTimeViewModel.Date;
-            var empid = _workTimeViewModel.EmployeeInformationProp.EInformationID;
+            var empid = _workTimeViewModel.EmployeeProp.EmployeeID;
 
             Worktimes worktimes = new Worktimes()
             {
                 TimeStart = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, sts),
                 TimeEnd = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, ste),
                 Date = DateTimeConverter.DateTimeOffsetToDateTime(tsv),
-                EInformationID = empid
+                EmployeeID = empid
             };
 
             var catalog = Catalog.CatalogsSingleton.Instance;
 
-            if (_workTimeViewModel.EmployeeInformationProp.FirstName != null)
+            if (_workTimeViewModel.EmployeeProp.FirstName != null)
             {
                 await catalog.WorktimeCatalog.AddAsync(worktimes);
 
