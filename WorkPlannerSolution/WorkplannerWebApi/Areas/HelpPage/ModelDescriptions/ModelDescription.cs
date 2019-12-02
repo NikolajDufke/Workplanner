@@ -1,6 +1,6 @@
 using System;
 
-namespace WorkPlannerWebAPI.Areas.HelpPage.ModelDescriptions
+namespace WorkPlannerWebApi.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.
