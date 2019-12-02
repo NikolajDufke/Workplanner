@@ -11,8 +11,9 @@ namespace WorkPlanner.Model
     public class Users : DatabaseObject
     {
         public int UserID { get; set; }
-        public int AccessLevel { get; set; }
         public string UserPassword { get; set; }
+        public int AccessLevel { get; set; }
+
 
     }
 }

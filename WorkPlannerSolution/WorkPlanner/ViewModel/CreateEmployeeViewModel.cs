@@ -19,7 +19,6 @@ namespace WorkPlanner.ViewModel
         private Handler.CreateEmployeeHandler _createEmployeeHandler;
         private ICommand _createEmployeeCommand;
         private string _message;
-        private Worktimes worktime;
 
         #region Constructor
 
