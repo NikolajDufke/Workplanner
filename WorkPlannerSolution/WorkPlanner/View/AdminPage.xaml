@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="using:WorkPlanner.ViewModel"
+    xmlns:converters="using:WorkPlanner.Converter"
+    xmlns:Models="using:WorkPlanner.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -13,13 +15,18 @@
         <viewmodel:AdminPageViewModel></viewmodel:AdminPageViewModel>
 </Page.DataContext>
 
-<Page.Resources>
+
+    <Page.Resources>
     <Style x:Key="TimeSpacer" TargetType="TextBlock">
 <Setter Property="Margin" Value="100"></Setter>
     </Style>
-</Page.Resources>
+   
+    <viewmodel:AdminPageViewModel x:Key="AdminPageViewModel" />
+    </Page.Resources>
 
-    <Grid>
+
+
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -32,37 +39,42 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
+
+       
      
         <Grid Grid.Column="1"
               Background="Gray">
-<TextBlock 
-    Grid.Column="1"  
-    Text ="-- ADMIN PAGE --" 
-    FontSize="23" 
-    FontWeight="Bold" 
-    VerticalAlignment="Center" 
-    HorizontalAlignment="Center"></TextBlock>
-        </Grid>
+                <TextBlock 
+                Grid.Column="1"  
+                Text ="-- ADMIN PAGE --" 
+                FontSize="23" 
+                FontWeight="Bold" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"></TextBlock>
+                </Grid>
 
-    <Grid Grid.Row="1" Grid.Column="1" Background="BurlyWood">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" Background="BurlyWood">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-       <StackPanel Orientation="Horizontal" 
+            <StackPanel Orientation="Horizontal" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
                 <AppBarButton Icon="Previous"  Margin="0,0,0,10" VerticalAlignment="Center"/>
-            <TextBlock Text="UGE -skal bindes-" VerticalAlignment="Center"></TextBlock>
-                <AppBarButton Icon="Next" Margin="0,0,0,10" VerticalAlignment="Center"/>
-       </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBlock Text="{Binding WeekNumber}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <AppBarButton Icon="Next" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
 
-            
 
-            <ScrollViewer Grid.Row="1">
-                <Grid >
-                    <Grid.ColumnDefinitions>
+
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="55"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -70,69 +82,247 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-      
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
 
-                        <ListView Grid.Column="0" ItemsSource="{Binding WeekViewItems}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Time}" Margin="0,0,0,10"></TextBlock>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                    <TextBlock FontSize="8" Text="{Binding Day1Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding Day1Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                    <TextBlock FontSize="8" Text="{Binding Day2Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding Day2Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="3" HorizontalAlignment="Center">
+                    <TextBlock FontSize="8" Text="{Binding Day3Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding Day3Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="4" HorizontalAlignment="Center">
+                    <TextBlock FontSize="8" Text="{Binding Day4Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding Day4Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="5" HorizontalAlignment="Center">
+                    <TextBlock FontSize="8" Text="{Binding Day5Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding Day5Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="6" HorizontalAlignment="Center">
+                    <TextBlock FontSize="8" Text="{Binding Day6Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding Day6Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="7" HorizontalAlignment="Center">
+                    <TextBlock FontSize="8" Text="{Binding Day7Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding Day7Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+         
+
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="10" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="55"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ListView ItemsSource="{Binding Times}">
+                            <ListView.ItemTemplate >
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding Hours}" Margin="0,10,10,10"></TextBlock>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    <ListView Grid.Column="1" ItemsSource="{Binding WeekViewItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Mandag}" Margin="0,0,0,10"></TextBlock>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <ListView Grid.Column="2" ItemsSource="{Binding WeekViewItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Tirsdag}" Margin="0,0,0,10"></TextBlock>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <ListView Grid.Column="3" ItemsSource="{Binding WeekViewItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Onsdag}" Margin="0,0,0,10"></TextBlock>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <ListView Grid.Column="4" ItemsSource="{Binding WeekViewItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Onsdag}" Margin="0,0,0,10"></TextBlock>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <ListView Grid.Column="5" ItemsSource="{Binding WeekViewItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Onsdag}" Margin="0,0,0,10"></TextBlock>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <ListView Grid.Column="6" ItemsSource="{Binding WeekViewItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Lørdag}" Margin="0,0,0,10"></TextBlock>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <ListView Grid.Column="7" ItemsSource="{Binding WeekViewItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Søndag}" Margin="0,0,0,10"></TextBlock>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-        </ScrollViewer>
-        </Grid>    
-    </Grid>
+
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding Weekday1Collection}" Margin="0,0,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Column="2" ItemsSource="{Binding Weekday2Collection}" Margin="0,0,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Column="3" ItemsSource="{Binding Weekday3Collection}" Margin="0,0,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Column="4" ItemsSource="{Binding Weekday4Collection}" Margin="0,0,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Column="5" ItemsSource="{Binding Weekday5Collection}" Margin="0,0,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Column="6" ItemsSource="{Binding Weekday6Collection}" Margin="0,0,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl Grid.Column="7" ItemsSource="{Binding Weekday7Collection}" Margin="0,0,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+</Grid></Grid>
 </Page>

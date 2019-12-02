@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Model;
+using WorkPlanner.Model.Databasemodels;
 using WorkPlanner.Persistency;
 
 namespace WorkPlanner.Catalog
 {
-    class CatalogsSingletons<T> where T : class
+   public class CatalogsSingletons<T> where T : DatabaseObject
     {
         #region Singleton Implementation
 

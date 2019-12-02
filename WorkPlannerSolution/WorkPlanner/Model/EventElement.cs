@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.Model
 {
-    class Accesses
+    public class EventElement
     {
-
-        public int AccessLevel { get; set; }
-        public string Decription { get; set; }
+        public List<string> Colors { get; set; }
     }
 }
