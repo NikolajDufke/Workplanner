@@ -27,17 +27,23 @@ namespace WorkPlanner.View
         public AdminPage()
         {
             this.InitializeComponent();
-            //DroppedPanel.Visibility == Visibility.Collapsed;
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void DropDownClick(object sender, RoutedEventArgs e)
         {
-            //DroppedPanel.Visibility == Visibility.Visible;
+            //if (DroppedPanel.Visibility == Visibility.Collapsed)
+            //{
+            //    DroppedPanel.Visibility == Visibility.Visible
+            //}
+
+            if (DroppedPanel.Visibility == Visibility.Visible)
+            {
+                DroppedPanel.Visibility = Visibility.Collapsed;
+            }
+            //else
+            //{
+            //    DroppedPanel.Visibility == Visibility.Visible;
+            //}
         }
 
 
@@ -53,7 +59,7 @@ namespace WorkPlanner.View
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateEmployeePage));
+            Create(sender, e);
         }
 
         //private void Edit(object sender, RoutedEventArgs e)

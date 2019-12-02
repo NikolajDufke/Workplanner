@@ -143,13 +143,9 @@
             <ListView BorderBrush="Black" BorderThickness="4" Height="200" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Width="750" ItemsSource="{Binding EmployeeInformations}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding }"></TextBlock>
+                        <TextBlock Text="{Binding FirstName}"></TextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
-                <TextBlock Text="TextBlock" TextWrapping="Wrap"/>
-                
-
             </ListView>
             <!--<ListBox HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="700" BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding employeeInformationProp}"/>-->
             <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment=" Bottom" Margin="50,0,0,15" Background="Gray" Width="100" Click="Add"/>
