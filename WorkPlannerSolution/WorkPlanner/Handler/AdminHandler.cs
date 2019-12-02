@@ -159,7 +159,7 @@ namespace WorkPlanner.Handler
 
         private void PululateTimePlanCollections()
         {
-            var catalog = CatalogsSingleton.Instance.WorktimeCatalog.GetAll;
+            var catalog = CatalogsSingletons<Employees>.Instance.Catalog.GetAll;
 
             //var result = catalog.FindAll(x => x.Date == )
           

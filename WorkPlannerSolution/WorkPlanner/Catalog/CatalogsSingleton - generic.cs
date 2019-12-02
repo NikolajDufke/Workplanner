@@ -18,13 +18,7 @@ namespace WorkPlanner.Catalog
         private CatalogsSingletons()
         {
             Catalog<T> temp = new Catalog<T>();
-            bool t = TestConnection(temp).Result;
-
-            if (t)
-                _catalog = temp;
-            else
-                throw new Exception("Catalog " + typeof(T).Name + " does not exist");
-        }
+       }
 
         public static CatalogsSingletons<T> Instance
         {
@@ -45,9 +39,6 @@ namespace WorkPlanner.Catalog
 
         }
 
-        private async Task<bool> TestConnection(Catalog<T> catalogToTest)
-        {
-            return await catalogToTest.TestConnection();
-        }
+  
     }
 }

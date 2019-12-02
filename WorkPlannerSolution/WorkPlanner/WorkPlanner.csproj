@@ -136,7 +136,6 @@
     <Compile Include="Model\AllViewItems.cs" />
     <Compile Include="Model\Columns.cs" />
     <Compile Include="Model\Databasemodels\DatabaseObject.cs" />
-    <Compile Include="Model\Databasemodels\EmployeeInformations.cs" />
     <Compile Include="Model\EventElement.cs" />
     <Compile Include="Model\PropInfo.cs" />
     <Compile Include="Handler\WorkTimeHandler.cs" />
