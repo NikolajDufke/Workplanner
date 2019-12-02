@@ -24,9 +24,9 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Background" Value="#FF565656"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Background" Value="#FFAEAEAE"/>
             <Setter Property="CornerRadius" Value="2.5"/>
         </Style>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
@@ -35,6 +35,10 @@
             <Setter Property="FontSize" Value="20"/>
         </Style>
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="200"/>
         </Style>
@@ -65,9 +69,9 @@
 
         <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black">
-                <TextBox Text="hej" PlaceholderText="Username" />
-                <PasswordBox  Password="123" PlaceholderText="Password"/>
-                <Button Content="Login"/>
+                <TextBox Style="{StaticResource TextBoxStyle}" Text="hej" PlaceholderText="Username" />
+                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="123" PlaceholderText="Password"/>
+                <Button Style="{StaticResource ButtonStyle}" Content="Login"/>
             </StackPanel>
         </StackPanel>
     </Grid>
