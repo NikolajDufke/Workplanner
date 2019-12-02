@@ -45,7 +45,7 @@ namespace WorkPlanner.Catalog
         {
             bool result = await _api.UpdateAsync(obj, id);
 
-            if (result = true)
+            if (result == true)
             {
                 LoadFromDB();
             }
@@ -58,7 +58,7 @@ namespace WorkPlanner.Catalog
             {
 
                 bool result = await _api.DeleteAsync(id);
-                if (result = true)
+                if (result == true)
                 {
                     LoadFromDB();
                 }
