@@ -76,8 +76,8 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="123" PlaceholderText="Password"/>
-                <Button HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" Content="Login"/>
+                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password"/>
+                <AppBarButton HorizontalAlignment="Right" Icon="Forward" Label="Login"/>
             </StackPanel>
         </StackPanel>
     </Grid>
