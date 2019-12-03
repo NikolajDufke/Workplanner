@@ -26,28 +26,13 @@ namespace WorkPlanner.Catalog
         }
 
         #region Proberties
-        //public ObservableCollection<T> GetAll
-        //{
-        //    get
-        //    {
-        //        if (_allCollection == null)
-        //        {
-        //            LoadFromDB();
-        //        }
 
-        //        return _allCollection;
-        //    }
-        //}
-        public List<T> GetAll
+        public ObservableCollection<T> GetAll
         {
             get
             {
-                if (_allCollection == null)
-                {
                     LoadFromDB();
-                }
-
-                return _allCollection.ToList();
+                return _allCollection;
             }
         }
         #endregion
