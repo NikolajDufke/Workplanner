@@ -25,12 +25,13 @@ namespace WorkPlanner.ViewModel
         private static Worktimes _selectedworktime;
         private ICommand _selectedWorktimeCommand;
         private string _message;
+        private ObservableCollection<Employees> _employee;
         #endregion
 
         #region Constructer
         public WorkTimeViewModel()
         {
-            _employeecat = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
+            _employee = new ObservableCollection<Employees>(CatalogsSingleton.Instance.EmployeeCatalog.GetAll);
             _workTimeHandler = new WorkTimeHandler(this);
 
             DateTime dt = System.DateTime.Now;
@@ -102,10 +103,7 @@ namespace WorkPlanner.ViewModel
 
         public ObservableCollection<Employees> Employee
         {
-            get
-            {
-                return _employeecat;
-            }
+            get { return _employee; }
         }
         #endregion
 
