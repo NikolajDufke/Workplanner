@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Model.Databasemodels;
 
 namespace WorkPlanner.Model
 {
-    public  class Employees 
+    public  class Employees : DatabaseObject
     {
 
         public int EmployeeID { get; set; }
@@ -15,7 +16,7 @@ namespace WorkPlanner.Model
 
         public string LastName { get; set; }
 
-        public int? PhoneNumber { get; set; }
+        public int PhoneNumber { get; set; }
 
         public string Email { get; set; }
 
@@ -23,9 +24,9 @@ namespace WorkPlanner.Model
 
         public string City { get; set; }
 
-        public int? ZipPostal { get; set; }
+        public int ZipPostal { get; set; }
 
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
 
     }
 }

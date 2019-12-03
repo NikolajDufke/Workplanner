@@ -1,8 +1,9 @@
 ﻿using System;
+using WorkPlanner.Model.Databasemodels;
 
 namespace WorkPlanner.Model
 {
-    public class Worktimes
+    public class Worktimes : DatabaseObject
     {
 
         public int WorkTimeID { get; set; }

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Model;
+using WorkPlanner.Model.Databasemodels;
 using WorkPlanner.Persistency;
 
 namespace WorkPlanner.Catalog
 {
-    class CatalogsSingletons<T> where T : class
+   public class CatalogsSingletons<T> where T : DatabaseObject
     {
         #region Singleton Implementation
 
@@ -17,13 +18,7 @@ namespace WorkPlanner.Catalog
         private CatalogsSingletons()
         {
             Catalog<T> temp = new Catalog<T>();
-            bool t = TestConnection(temp).Result;
-
-            if (t)
-                _catalog = temp;
-            else
-                throw new Exception("Catalog " + typeof(T).Name + " does not exist");
-        }
+       }
 
         public static CatalogsSingletons<T> Instance
         {
@@ -44,9 +39,6 @@ namespace WorkPlanner.Catalog
 
         }
 
-        private async Task<bool> TestConnection(Catalog<T> catalogToTest)
-        {
-            return await catalogToTest.TestConnection();
-        }
+  
     }
 }

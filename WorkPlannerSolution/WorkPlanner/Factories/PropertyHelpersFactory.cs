@@ -15,6 +15,11 @@ namespace WorkPlanner.Factories
             return new PropertyNamesHelper<T>();
         }
 
+        public static PropertyNamesHelper<T> PropertyNamesFactory(List<int> propertiesToIgnore)
+        {
+            return new PropertyNamesHelper<T>(propertiesToIgnore);
+        }
+
         public static Ipopulator<T> PopulatorFactory()
         {
             return new PropertyPopulator<T>();

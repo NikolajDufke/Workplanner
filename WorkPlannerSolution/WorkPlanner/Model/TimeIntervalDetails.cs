@@ -16,11 +16,17 @@ namespace WorkPlanner.Model
             _eventMembers = new Dictionary<int, Employees>();
         }
 
-        public ObservableCollection<Employees> GetMembers
+        public string GetMembers
         {
             get
             {
-                return new ObservableCollection<Employees>(_eventMembers.Values);
+                StringBuilder sb = new StringBuilder();
+                foreach (var member in _eventMembers)
+                {
+                    sb.AppendLine(member.Value.EmployeeId.ToString());
+                }
+
+                return sb.ToString();
             }
         }
 
@@ -42,6 +48,6 @@ namespace WorkPlanner.Model
                 _eventMembers[employee.EmployeeID]=employee;
         }
 
-
+      
     }
 }
