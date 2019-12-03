@@ -1,231 +1,176 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Handler;
 using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    class AdminPageViewModel : ViewModelBase
+   public class AdminPageViewModel : ViewModelBase
     {
+        private ObservableCollection<EventElement> _weekday1Collection;
+        private ObservableCollection<EventElement> _weekday2Collection;
+        private ObservableCollection<EventElement> _weekday3Collection;
+        private ObservableCollection<EventElement> _weekday4Collection;
+        private ObservableCollection<EventElement> _weekday5Collection;
+        private ObservableCollection<EventElement> _weekday6Collection;
+        private ObservableCollection<EventElement> _weekday7Collection;
+        private AdminHandler _handler;
+
 
         public AdminPageViewModel()
         {
-            //_weekviewCollection = new ObservableCollection<RowViewItems>();
+            _headers = new ObservableCollection<DateTime>(); 
+            _weekday1Collection = new ObservableCollection<EventElement>();
+            _weekday2Collection = new ObservableCollection<EventElement>();
+            _weekday3Collection = new ObservableCollection<EventElement>();
+            _weekday4Collection = new ObservableCollection<EventElement>();
+            _weekday5Collection = new ObservableCollection<EventElement>();
+            _weekday6Collection = new ObservableCollection<EventElement>();
+            _weekday7Collection = new ObservableCollection<EventElement>();
+            _times = new ObservableCollection<TimeSpan>();
 
-            //pupulate();
+            _handler = new AdminHandler(this);
+            _handler.SetTimes();
+            _handler.SetDaysAndDates();
+        }
 
+        private ObservableCollection<DateTime> _headers;
+
+        public ObservableCollection<DateTime> Headers
+        {
+            get { return _headers; }
+            set { _headers = value; }
+        }
+
+        private int _weekNumber;
+
+        public int WeekNumber
+        {
+            get { return _weekNumber; }
+            set { _weekNumber = value; }
         }
 
 
-        //    private ObservableCollection<WeekViewItems> _weekviewCollection;
 
-        //    public ObservableCollection<WeekViewItems> WeekViewItems
-        //    {
-        //        get { return _weekviewCollection; }
-        //        set { _weekviewCollection = value; }
-        //    }
+        private DateTime _day1Header;
 
-        //    private ObservableCollection<string> myVar;
-
-        //    public ObservableCollection<string> MyProperty
-        //    {
-        //        get { return myVar; }
-        //        set { myVar = value; }
-        //    }
+        public DateTime Day1Header
+        {
+            get { return _day1Header; }
+            set { _day1Header = value; }
+        }
 
 
+        private DateTime _day2Header;
+
+        public DateTime Day2Header
+        {
+            get { return _day2Header; }
+            set { _day2Header = value; }
+        }
 
 
 
+        private DateTime _day3Header;
 
-        //    private void pupulate()
-        //    {
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "08:00 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        public DateTime Day3Header
+        {
+            get { return _day3Header; }
+            set { _day3Header = value; }
+        }
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "08:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:00 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        private DateTime _day4Header;
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        public DateTime Day4Header
+        {
+            get { return _day4Header; }
+            set { _day4Header = value; }
+        }
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        private DateTime _day5Header;
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        public DateTime Day5Header
+        {
+            get { return _day5Header; }
+            set { _day5Header = value; }
+        }
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        private DateTime _day6Header;
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        public DateTime Day6Header
+        {
+            get { return _day6Header; }
+            set { _day6Header = value; }
+        }
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        private DateTime _day7Header;
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        public DateTime Day7Header
+        {
+            get { return _day7Header; }
+            set { _day7Header = value; }
+        }
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
 
-        //        });
-        //        WeekViewItems.Add(new WeekViewItems()
-        //        {
-        //            Time = "09:30 -",
-        //            Mandag = "test1",
-        //            Tirsdag = "test2",
-        //            Onsdag = "test3",
-        //            Torsdag = "test4",
-        //            Fredag = "test5",
-        //            Lørdag = "test6",
-        //            Søndag = "test7"
+        private ObservableCollection<TimeSpan> _times;
 
-        //        });
+        public ObservableCollection<TimeSpan> Times
+        {
+            get { return _times; }
+            set { _times = value; }
+        }
 
-        //    }
 
-        //}
+        public ObservableCollection<EventElement> Weekday1Collection
+        {
+            get { return _weekday1Collection; }
+            set { _weekday1Collection = value; }
+        }    
+
+        public ObservableCollection<EventElement> Weekday2Collection
+        {
+            get { return _weekday2Collection; }
+            set { _weekday2Collection = value; }
+        }  
+
+        public ObservableCollection<EventElement> Weekday3Collection
+        {
+            get { return _weekday3Collection; }
+            set { _weekday3Collection = value; }
+        }      
+
+        public ObservableCollection<EventElement> Weekday4Collection
+        {
+            get { return _weekday4Collection; }
+            set { _weekday4Collection = value; }
+        }  
+
+        public ObservableCollection<EventElement> Weekday5Collection
+        {
+            get { return _weekday5Collection; }
+            set { _weekday5Collection = value; }
+        }  
+
+        public ObservableCollection<EventElement> Weekday6Collection
+        {
+            get { return _weekday6Collection; }
+            set { _weekday6Collection = value; }
+        }
+
+        public ObservableCollection<EventElement> Weekday7Collection
+        {
+            get { return _weekday7Collection; }
+            set { _weekday7Collection = value; }
+        }
     }
 }

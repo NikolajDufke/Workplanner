@@ -15,12 +15,17 @@ namespace WorkPlanner.Model
             
         }
 
-        public string Time { get; set; }
+        public TimeSpan Time { get; set; }
 
         public List<TimeIntervalDetails> TimeIntervalDetails
         {
             get { return _listOfDetails; }
             set { _listOfDetails = value; }
+        }
+
+        public string ListOfMembers
+        {
+            get { return TimeIntervalDetails.ToString(); }
         }
 
     }
