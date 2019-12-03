@@ -27,3 +27,5 @@ INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode3',1)
 INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode4',2)
 INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode5',3)
 INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode6',1)
+
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES ()
