@@ -30,7 +30,7 @@ namespace WorkPlanner.ViewModel
         #region Constructer
         public WorkTimeViewModel()
         {
-            var T = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
+            _employeecat = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
             _workTimeHandler = new WorkTimeHandler(this);
 
             DateTime dt = System.DateTime.Now;
@@ -97,25 +97,28 @@ namespace WorkPlanner.ViewModel
         #endregion
 
         #region ObservableCollection
+
+        //En observablecollection så man kan få fat i firstname der ligger inde i Employee
+
         public ObservableCollection<Employees> Employee
         {
             get
             {
-                return CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
+                return _employeecat;
             }
         }
         #endregion
 
         #region ICommands
-        public ICommand SelectedWorktimeCommand
-        {
-            get
-            {
-                return _selectedWorktimeCommand ?? (_selectedWorktimeCommand =
-                           new RelayArgCommand<Worktimes>(wt => _workTimeHandler.SetSelectedWorkTime(wt)));
-            }
-            set { _selectedWorktimeCommand = value; }
-        }
+        //public ICommand SelectedWorktimeCommand
+        //{
+        //    get
+        //    {
+        //        return _selectedWorktimeCommand ?? (_selectedWorktimeCommand =
+        //                   new RelayArgCommand<Worktimes>(wt => _workTimeHandler.SetSelectedWorkTime(wt)));
+        //    }
+        //    set { _selectedWorktimeCommand = value; }
+        //}
 
         public ICommand WorkTimeCreateCommand { set; get; }
         #endregion
