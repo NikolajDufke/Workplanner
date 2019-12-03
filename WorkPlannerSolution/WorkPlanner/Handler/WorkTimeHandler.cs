@@ -12,8 +12,8 @@ namespace WorkPlanner.ViewModel
 {
     public class WorkTimeHandler
     {
+        //private List<Worktimes> allWorktimes;
         private WorkTimeViewModel _workTimeViewModel;
-        private List<Worktimes> allWorktimes;
         private CatalogsSingleton _catalogs;
 
         public WorkTimeHandler(WorkTimeViewModel workTimevm)
@@ -22,19 +22,22 @@ namespace WorkPlanner.ViewModel
             this._workTimeViewModel = workTimevm;
         }
 
-        public void SetSelectedWorkTime(object id)
-        {
-            int Id = Convert.ToInt16(id);
+        //Udkommenteret da der ikke bliver gjort brug af metoden
+        //public void SetSelectedWorkTime(object id)
+        //{
+        //    int Id = Convert.ToInt16(id);
 
-            foreach (Worktimes wt in allWorktimes)
-            {
-                if (wt.WorkTimeID == Id)
-                {
-                    WorkTimeViewModel.SelectedWorktime = wt;
-                }
-            }
-        }
+        //    foreach (Worktimes wt in allWorktimes)
+        //    {
+        //        if (wt.WorkTimeID == Id)
+        //        {
+        //            WorkTimeViewModel.SelectedWorktime = wt;
+        //        }
+        //    }
+        //}
 
+        //Metode der gør så man kan oprette en worktime, som indeholder en Timestart, TimeEnd, Date og EmployeeId.
+        //Denne metode bruges også til at sende beskeder ud i view hvis en worktime er oprettet eller ikke oprettet.
         public async void CreateWorkTime()
         {
             var sts = _workTimeViewModel.TimeStart;

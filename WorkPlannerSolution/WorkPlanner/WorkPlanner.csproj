@@ -133,6 +133,7 @@
     <Compile Include="Handler\AdminHandler.cs" />
     <Compile Include="Handler\CreateEmployeeHandler.cs" />
     <Compile Include="Common\PropertyNamesHelper.cs" />
+    <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Interface\Ipopulator.cs" />
     <Compile Include="Model\AllViewItems.cs" />
     <Compile Include="Model\Columns.cs" />
