@@ -32,11 +32,7 @@ namespace WorkPlanner.Catalog
         {
             get
             {
-                if (_allCollection == null)
-                {
                     LoadFromDB();
-                }
-
                 return _allCollection;
             }
         }
