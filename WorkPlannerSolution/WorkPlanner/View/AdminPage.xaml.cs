@@ -38,7 +38,14 @@ namespace WorkPlanner.View
 
         private void ToggleButtonOpen(object sender, RoutedEventArgs e)
         {
-
+            if (DroppedPanel.Visibility == Visibility.Visible)
+            {
+                DroppedPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                DroppedPanel.Visibility = Visibility.Visible;
+            }
         }
 
         private void CreateButton(object sender, RoutedEventArgs e)
