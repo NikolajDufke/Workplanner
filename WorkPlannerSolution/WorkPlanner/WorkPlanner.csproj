@@ -123,6 +123,7 @@
     <Compile Include="Catalog\CatalogsSingleton - generic.cs" />
     <Compile Include="Catalog\CatalogsSingleton.cs" />
     <Compile Include="Common\GetDatesFromWeekNumber.cs" />
+    <Compile Include="Common\PlamentIndexDictionary.cs" />
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />

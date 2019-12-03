@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.Model.Databasemodels
 {
-   public class DatabaseObject
+    public class DatabaseObject
     {
     }
 }

@@ -34,7 +34,7 @@
             <Setter Property="Width" Value="150"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
-        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="200"/>
         </Style>
@@ -69,9 +69,15 @@
 
         <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black">
-                <TextBox Style="{StaticResource TextBoxStyle}" Text="hej" PlaceholderText="Username" />
+                <ComboBox Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding EmployeeCollection}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding FirstName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="123" PlaceholderText="Password"/>
-                <Button Style="{StaticResource ButtonStyle}" Content="Login"/>
+                <Button HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" Content="Login"/>
             </StackPanel>
         </StackPanel>
     </Grid>
