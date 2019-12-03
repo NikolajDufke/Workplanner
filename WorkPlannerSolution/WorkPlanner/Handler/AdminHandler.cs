@@ -62,23 +62,23 @@ namespace WorkPlanner.Handler
 
             //test data
 
-            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
 
-            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
-            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            //_vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
 
         }
 
