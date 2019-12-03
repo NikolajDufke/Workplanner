@@ -63,13 +63,13 @@ namespace WorkPlanner.Handler
 
             _colors = new Dictionary<int, Color>();
           
-            _manyColors.Add(Color.DarkMagenta);
-            _manyColors.Add(Color.DarkOrange);
-            _manyColors.Add(Color.DarkGreen);
-            _manyColors.Add(Color.Aqua);
-            _manyColors.Add(Color.Indigo);
-            _manyColors.Add(Color.Plum);
-            _manyColors.Add(Color.MediumPurple);
+            _colors.Add(1,Color.DarkMagenta);
+            _colors.Add(2,Color.DarkOrange);
+            _colors.Add(3,Color.DarkGreen);
+            _colors.Add(4,Color.Aqua);
+            _colors.Add(5,Color.Indigo);
+            _colors.Add(6,Color.Plum);
+            _colors.Add(7,Color.MediumPurple);
             //test data
 
             //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
