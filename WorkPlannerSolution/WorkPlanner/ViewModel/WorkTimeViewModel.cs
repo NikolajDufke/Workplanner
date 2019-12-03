@@ -101,7 +101,7 @@ namespace WorkPlanner.ViewModel
         {
             get
             {
-                return CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
+                return new ObservableCollection<Employees>(CatalogsSingletons<Employees>.Instance.Catalog.GetAll);
             }
         }
         #endregion

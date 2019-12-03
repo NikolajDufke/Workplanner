@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkPlanner.Model
+namespace WorkPlanner.Common
 {
-    public class EventElement
+    class PlamentIndexDictionary
     {
-        public List<System.Drawing.Color> Colors { get; set; }
     }
 }

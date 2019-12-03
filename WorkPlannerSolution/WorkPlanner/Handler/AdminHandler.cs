@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Security.Authentication.Web.Core;
 using Windows.UI.Xaml.Media.Animation;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
@@ -19,7 +22,7 @@ namespace WorkPlanner.Handler
         private AdminPageViewModel _vm;
         private TimeSpan _starttime;
         private TimeSpan _endtime;
-        private Dictionary<TimeSpan , TimeIntervalDetails> _timePlanCollection1;
+        private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection1;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection2;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection3;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection4;
@@ -27,13 +30,15 @@ namespace WorkPlanner.Handler
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection6;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection7;
         private Dictionary<DateTime, TimeSpan> _times;
+        private Dictionary<int, Employees> _employeePlacementIndexex;
+
 
         public AdminHandler(AdminPageViewModel ViewModel)
         {
             _times = new Dictionary<DateTime, TimeSpan>();
-
+            _employeePlacementIndexex = new Dictionary<int, Employees>();
             _starttime = new TimeSpan(8, 00, 0);
-            _endtime =  new TimeSpan(23, 00, 0);
+            _endtime = new TimeSpan(23, 00, 0);
             _timePlanCollection1 = new Dictionary<TimeSpan, TimeIntervalDetails>();
             _timePlanCollection2 = new Dictionary<TimeSpan, TimeIntervalDetails>();
             _timePlanCollection3 = new Dictionary<TimeSpan, TimeIntervalDetails>();
@@ -43,7 +48,6 @@ namespace WorkPlanner.Handler
             _timePlanCollection7 = new Dictionary<TimeSpan, TimeIntervalDetails>();
 
             _vm = ViewModel;
-
 
             _vm.Headers.Clear();
             _vm.WeekNumber = DateTime.Now.DayOfYear / 7;
@@ -58,23 +62,23 @@ namespace WorkPlanner.Handler
 
             //test data
 
-            _vm.Weekday1Collection.Add(new EventElement(){Colors = new List<string>(){"Blue", "Red", "Yellow"}});
-            _vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
 
-            _vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            _vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
+            _vm.Weekday2Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
 
         }
 
@@ -108,8 +112,9 @@ namespace WorkPlanner.Handler
 
         public TimeSpan Endtime
         {
-       
-            set {
+
+            set
+            {
                 if (_endtime != value)
                 {
                     _endtime = value;
@@ -129,7 +134,7 @@ namespace WorkPlanner.Handler
 
 
 
-        public void SetTimes( int intervalInMinutes = 30)
+        public void SetTimes(int intervalInMinutes = 30)
         {
 
 
@@ -144,7 +149,6 @@ namespace WorkPlanner.Handler
 
             for (double i = _starttime.TotalMinutes; i < _endtime.TotalMinutes; i += intervalInMinutes)
             {
-
                 _vm.Times.Add(TimeSpan.FromMinutes(i));
                 _timePlanCollection1.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection2.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
@@ -157,17 +161,116 @@ namespace WorkPlanner.Handler
             }
         }
 
-        private void PululateTimePlanCollections()
+        public void UpdateTimePlan()
         {
-            var catalog = CatalogsSingletons<Employees>.Instance.Catalog.GetAll;
-
-            //var result = catalog.FindAll(x => x.Date == )
-          
-
-            foreach (var time in _vm.Times)
+            _vm.Weekday1Collection.Clear();
+            foreach (TimeIntervalDetails tp in _timePlanCollection1.Values)
             {
-                
+                var e = new EventElement();
+                for (int i = 0; i < _employeePlacementIndexex.Count; i++)
+                {
+                    if (tp.GetMembers.Contains(_employeePlacementIndexex[i]))
+                    {
+                        e.Colors.Add(System.Drawing.Color.Blue);
+                    }
+                    else
+                    {
+                        e.Colors.Add(System.Drawing.Color.Empty);
+                    }
+                }
+
+                _vm.Weekday1Collection.Add(e);
+
+                _vm.Weekday1Collection.Add(new EventElement());
+            }
+        }
+
+
+        private async void PululateTimePlanCollections()
+        {
+            var Worktimecatalog = CatalogsSingletons<Worktimes>.Instance.Catalog.GetAll;
+            var EmployeeCatalog = CatalogsSingletons<Employees>.Instance.Catalog;
+            int headerindex = 1;
+            foreach (var header in _vm.Headers)
+            {
+                List<Worktimes> result = Worktimecatalog.FindAll(x =>
+                    DateTime.Compare(Converter.DateTimeConverter.TrimToDateOnly(x.Date),
+                        Converter.DateTimeConverter.TrimToDateOnly(header)) == 0);
+
+                foreach (Worktimes worktime in result)
+                {
+
+                    switch (headerindex)
+                    {
+                        case 1:
+                        {
+                            FindAndAddEmployeesToTimePlan(_timePlanCollection1, worktime);
+                            break;
+                        }
+                        case 2:
+                        {
+                            FindAndAddEmployeesToTimePlan(_timePlanCollection2, worktime);
+                            break;
+                        }
+                        case 3:
+                        {
+                            FindAndAddEmployeesToTimePlan(_timePlanCollection3, worktime);
+                            break;
+                        }
+                        case 4:
+                        {
+                            FindAndAddEmployeesToTimePlan(_timePlanCollection4, worktime);
+                            break;
+                        }
+                        case 5:
+                        {
+                            FindAndAddEmployeesToTimePlan(_timePlanCollection5, worktime);
+                            break;
+                        }
+                        case 6:
+                        {
+                            FindAndAddEmployeesToTimePlan(_timePlanCollection6, worktime);
+                            break;
+                        }
+                        case 7:
+                        {
+                            FindAndAddEmployeesToTimePlan(_timePlanCollection7, worktime);
+                            break;
+                        }
+
+                    }
+                }
+
+                headerindex++;
+
+
+            }
+        }
+
+        private async void FindAndAddEmployeesToTimePlan(Dictionary<TimeSpan, TimeIntervalDetails> collection,
+            Worktimes worktime)
+        {
+            var EmployeeCatalog = CatalogsSingletons<Employees>.Instance.Catalog;
+
+
+            for (int i = worktime.TimeStart.TimeOfDay.Minutes; i < worktime.TimeEnd.TimeOfDay.Minutes; i += 30)
+            {
+                TimeSpan t = new TimeSpan(i);
+
+                if (collection.ContainsKey(t))
+                {
+                    Employees e = await EmployeeCatalog.GetSingleAsync(worktime.EmployeeID.ToString());
+
+                    if(!_employeePlacementIndexex.ContainsValue(e))
+                        _employeePlacementIndexex[_employeePlacementIndexex.Count + 1] = e;
+
+                    collection[t].AddMember(e);
+                }
             }
         }
     }
+
+
 }
+
+
