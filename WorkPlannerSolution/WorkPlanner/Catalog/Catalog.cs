@@ -13,7 +13,8 @@ namespace WorkPlanner.Catalog
     public class Catalog<T> where T : DatabaseObject
     {
 
-        private ObservableCollection<T> _allCollection;
+   
+        private List<T> _allCollection;
         private WebApiWorkPlanner<T> _api;
         private const string _serverurl = "http://localhost:56265/";
         private string _apiprefix ;
@@ -26,8 +27,8 @@ namespace WorkPlanner.Catalog
         }
 
         #region Proberties
-
-        public ObservableCollection<T> GetAll
+  
+        public List<T> GetAll
         {
             get
             {
@@ -79,9 +80,18 @@ namespace WorkPlanner.Catalog
 
         }
 
-        public async Task<bool> TestConnection()
+        public async Task<T> GetSingleAsync(string id)
         {
-            return await _api.TestConnection();
+            T result = await _api.ReadAsync(id);
+
+            if (result != null)
+            {
+                LoadFromDB();
+                return result;
+
+            }
+
+            return null;
         }
 
         #endregion
@@ -92,7 +102,7 @@ namespace WorkPlanner.Catalog
         {
             if (_allCollection == null)
             {
-                _allCollection = new ObservableCollection<T>();
+                _allCollection = new List<T>();
             }
 
             try
