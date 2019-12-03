@@ -15,7 +15,8 @@ namespace WorkPlanner.ViewModel
 
         public LoginPageViewModel()
         {
-            _employeeCatalog = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
+            _employeeCatalog = new ObservableCollection<Employees>(CatalogsSingleton.Instance.EmployeeCatalog.GetAll);
+         
         }
 
         public ObservableCollection<Employees> EmployeeCollection

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -31,6 +32,8 @@ namespace WorkPlanner.Handler
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection7;
         private Dictionary<DateTime, TimeSpan> _times;
         private Dictionary<int, Employees> _employeePlacementIndexex;
+        private Dictionary<int, Color> _colors;
+        private List<Color> _manyColors;
 
 
         public AdminHandler(AdminPageViewModel ViewModel)
@@ -58,8 +61,15 @@ namespace WorkPlanner.Handler
                 _vm.Headers.Add(date);
             }
 
-
-
+            _colors = new Dictionary<int, Color>();
+          
+            _manyColors.Add(Color.DarkMagenta);
+            _manyColors.Add(Color.DarkOrange);
+            _manyColors.Add(Color.DarkGreen);
+            _manyColors.Add(Color.Aqua);
+            _manyColors.Add(Color.Indigo);
+            _manyColors.Add(Color.Plum);
+            _manyColors.Add(Color.MediumPurple);
             //test data
 
             //_vm.Weekday1Collection.Add(new EventElement() {Colors = new List<string>() {"Blue", "Red", "Yellow"}});
@@ -130,14 +140,8 @@ namespace WorkPlanner.Handler
             get { return _uge; }
             set { _uge = value; }
         }
-
-
-
-
         public void SetTimes(int intervalInMinutes = 30)
         {
-
-
             _vm.Times.Clear();
             _timePlanCollection1.Clear();
             _timePlanCollection2.Clear();
@@ -157,7 +161,6 @@ namespace WorkPlanner.Handler
                 _timePlanCollection5.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection6.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection7.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
-
             }
         }
 
@@ -171,7 +174,7 @@ namespace WorkPlanner.Handler
                 {
                     if (tp.GetMembers.Contains(_employeePlacementIndexex[i]))
                     {
-                        e.Colors.Add(System.Drawing.Color.Blue);
+                        e.Colors.Add(_colors[i]);
                     }
                     else
                     {
@@ -186,10 +189,10 @@ namespace WorkPlanner.Handler
         }
 
 
-        private async void PululateTimePlanCollections()
+        private void PululateTimePlanCollections()
         {
             var Worktimecatalog = CatalogsSingletons<Worktimes>.Instance.Catalog.GetAll;
-            var EmployeeCatalog = CatalogsSingletons<Employees>.Instance.Catalog;
+           
             int headerindex = 1;
             foreach (var header in _vm.Headers)
             {
@@ -261,13 +264,18 @@ namespace WorkPlanner.Handler
                 {
                     Employees e = await EmployeeCatalog.GetSingleAsync(worktime.EmployeeID.ToString());
 
-                    if(!_employeePlacementIndexex.ContainsValue(e))
+                    if (!_employeePlacementIndexex.ContainsValue(e))
+                    {
                         _employeePlacementIndexex[_employeePlacementIndexex.Count + 1] = e;
+             
+                    }
 
                     collection[t].AddMember(e);
                 }
             }
         }
+
+
     }
 
 
