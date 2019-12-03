@@ -97,13 +97,13 @@ namespace WorkPlanner.ViewModel
         #endregion
 
         #region ObservableCollection
-        public ObservableCollection<Employees> Employee
-        {
-            get
-            {
-                return CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
-            }
-        }
+        //public ObservableCollection<Employees> Employee
+        //{
+        //    get
+        //    {
+        //        return CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
+        //    }
+        //}
         #endregion
 
         #region ICommands

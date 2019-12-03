@@ -326,20 +326,30 @@
             </Grid>
         </Grid>
         <Grid HorizontalAlignment="Center" Height="109" VerticalAlignment="Top" Width="748" Grid.Column="1" Margin="0,0,0,0" Grid.Row="2">
-            <ToggleButton Content="Open" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Background="Gray"/>
-            <Button Content="Add" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,350,0" Background="Gray"/>
+            <ToggleButton Content="Open" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Background="Gray" Checked="ToggleButtonOpen"/>
+            <Button Content="Add" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,350,0" Background="Gray" Click="AddButton"/>
             <Button Content="Edit" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="350,0,0,0" Background="Gray"/>
         </Grid>
         <Grid Name="DroppedPanel" HorizontalAlignment="Left" Height="359" VerticalAlignment="Top" Width="737" Margin="5,110,0,0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1">
-            <Button Content="Add" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,10" Background="Gray"/>
-            <Button Content="Edit" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="250,0,0,10" Background="Gray"/>
-            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Background="Gray"/>
-            <ListView HorizontalAlignment="Center" Height="250" VerticalAlignment="Top" Width="700" Margin="0,10,0,0" ItemsSource="{Binding}">
+            <Button Content="Create" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,50" Background="Gray" Click="CreateButton"/>
+            <Button Content="Edit" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="250,0,0,50" Background="Gray"/>
+            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,50" Background="Gray" Click="LogOut"/>
+            <ListView HorizontalAlignment="Center" Height="250" VerticalAlignment="Top" Width="700" Margin="0,10,0,0" BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
+                        <StackPanel Height="250" Width="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
+                                            <TextBlock Margin="10,0,0,0" Text="{Binding FirstName}" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="20,0,0,0" Text="LastName" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="30,0,0,0" Text="Email" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="40,0,0,0" Text="PhoneNumber" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="50,0,0,0" Text="Adress" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="60,0,0,0" Text="City" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="70,0,0,0" Text="ZipPostal" TextWrapping="Wrap"/>
+                                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                
+
             </ListView>
         </Grid>
     </Grid>

@@ -31,6 +31,24 @@ namespace WorkPlanner.View
             viewModel = new AdminPageViewModel();
         }
 
-        
+        private void AddButton(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CreateEmployeePage));
+        }
+
+        private void ToggleButtonOpen(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CreateButton(object sender, RoutedEventArgs e)
+        {
+            AddButton(sender, e);
+        }
+
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }
