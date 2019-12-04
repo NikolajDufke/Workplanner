@@ -36,7 +36,7 @@ namespace WorkPlanner.View
             Frame.Navigate(typeof(CreateEmployeePage));
         }
 
-        private void ToggleButtonOpen(object sender, RoutedEventArgs e)
+        private void ButtonOpen(object sender, RoutedEventArgs e)
         {
             if (DroppedPanel.Visibility == Visibility.Visible)
             {
