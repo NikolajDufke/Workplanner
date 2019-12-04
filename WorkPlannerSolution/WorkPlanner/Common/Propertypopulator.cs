@@ -11,10 +11,16 @@ namespace WorkPlanner.Common
 {
     class PropertyPopulator<T> : Ipopulator<T> where T : class
     {
-
-        public T Populate(List<PropInfo> propInfoList,T obj)
+        #region Methods
+        /// <summary>
+        /// Adds the properties from propinfo list into a object of obj
+        /// </summary>
+        /// <param name="propInfoList"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public T Populate(List<PropInfo> propInfoList, T obj)
         {
-     
+
             foreach (var propInfo in propInfoList)
             {
                 PropertyInfo[] properties = typeof(T).GetProperties();
@@ -25,7 +31,7 @@ namespace WorkPlanner.Common
                         if (property.PropertyType != propInfo.ValueFromUser.GetType())
                         {
 
-                            if (property.PropertyType == typeof(int?)|| property.PropertyType == typeof(int))
+                            if (property.PropertyType == typeof(int?) || property.PropertyType == typeof(int))
                             {
                                 int temp;
                                 if (Int32.TryParse(propInfo.ValueFromUser, out temp))
@@ -51,6 +57,6 @@ namespace WorkPlanner.Common
 
             return obj;
         }
-
+        #endregion
     }
 }
