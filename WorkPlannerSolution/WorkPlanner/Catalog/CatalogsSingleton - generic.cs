@@ -14,24 +14,24 @@ namespace WorkPlanner.Catalog
         #region Singleton Implementation
 
         private static CatalogsSingletons<T> _instance;
+        private Catalog<T> _catalog;
 
         private CatalogsSingletons()
         {
-            Catalog<T> temp = new Catalog<T>();
+            Catalog<T> _catalog = new Catalog<T>();
        }
 
         public static CatalogsSingletons<T> Instance
         {
             get
             {
-                return
-                    _instance ?? (_instance = new CatalogsSingletons<T>());
+                return _instance ?? (_instance = new CatalogsSingletons<T>());
             }
         }
 
         #endregion
 
-        private Catalog<T> _catalog;
+       
 
         public Catalog<T> Catalog
         {

@@ -19,7 +19,9 @@ namespace WorkPlanner.Handler
         {
             _loginPageViewModel = loginpageevm;
             this._loginPageViewModel = loginpageevm;
-            _userList = CatalogsSingleton.Instance.UsersCatalog.GetAll;
+            // Users indeholder passwords. måske skal vi ikke hante alle passwords ned på en gang ? 
+            // Vi kan få fat i en hvis vi har id på brugeren.
+            //_userList = CatalogsSingleton.Instance.UsersCatalog.GetAll;
         }
 
         public void LoginUser()

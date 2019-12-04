@@ -148,7 +148,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -174,7 +174,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors , Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -200,7 +200,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors , Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -226,7 +226,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors , Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -252,7 +252,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -278,7 +278,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -304,7 +304,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>

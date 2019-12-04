@@ -1,7 +1,7 @@
 ﻿DELETE from Employee
 DELETE from Users
 DELETE from Access
-
+DELETE from Worktime
 --TRUNCATE table Employee
 --TRUNCATE table Users
 --TRUNCATE table Access
@@ -28,4 +28,13 @@ INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode4',2)
 INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode5',3)
 INSERT INTO Users(UserPassword,AccessLevel) VALUES ('kode6',1)
 
-INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES ()
+
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES('20191203 00:00:00 AM',1,'20191203 11:30:00 AM','20191203 08:30:00 AM')
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES('20191204 00:00:00 AM',1,'20191204 11:30:00 AM','20191204 08:30:00 AM')
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES('20191205 00:00:00 AM',1,'20191205 11:30:00 AM','20191205 08:30:00 AM')
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES('20191206 00:00:00 AM',1,'20191206 11:30:00 AM','20191206 08:30:00 AM')
+
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES('20190312 00:00:00 AM',2,'20190312 11:30:00 AM','20190312 08:30:00 AM')
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES('20190412 00:00:00 AM',2,'20190412 04:30:00 PM','20190412 08:30:00 AM')
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES('20190512 00:00:00 AM',2,'20190512 11:30:00 AM','20190512 08:30:00 AM')
+INSERT INTO Worktime(Date,EmployeeID,TimeEnd,TimeStart) VALUES('20190612 00:00:00 AM',2,'20190612 11:30:00 AM','20190612 08:30:00 AM')

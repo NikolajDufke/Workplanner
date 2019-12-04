@@ -22,19 +22,43 @@ namespace WorkPlanner.Catalog
 
         public Catalog()
         {
+            _allCollection = new List<T>();
             _apiprefix = typeof(T).Name;
             _api = new WebApiWorkPlanner<T>(_serverurl, _apiprefix);
         }
 
         #region Proberties
   
-        public List<T> GetAll
+        public async Task<List<T>> GetAll()
         {
-            get
-            {
-                    LoadFromDB();
+            TimeSpan timePassed = new TimeSpan(0,0,0);
+
+
+            if (_allCollection.Count != 0)
                 return _allCollection;
+
+            while (_allCollection.Count == 0)
+            {
+                LoadFromDB();
+                if (_allCollection.Count != 0)
+                    return _allCollection;
+
+               
+                Task.Delay(TimeSpan.FromSeconds(5));
+                timePassed = +TimeSpan.FromSeconds(5);
+
+                if(timePassed > TimeSpan.FromSeconds(30))
+                { break;}
+
             }
+
+
+
+            return null;
+
+
+
+
         }
         #endregion
 
@@ -100,10 +124,7 @@ namespace WorkPlanner.Catalog
 
         private async void LoadFromDB()
         {
-            if (_allCollection == null)
-            {
-                _allCollection = new List<T>();
-            }
+        
 
             try
             {

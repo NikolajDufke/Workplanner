@@ -31,8 +31,12 @@ namespace WorkPlanner.ViewModel
         #region Constructer
         public WorkTimeViewModel()
         {
-            _employee = new ObservableCollection<Employees>(CatalogsSingleton.Instance.EmployeeCatalog.GetAll);
+            
+
+            _employee = new ObservableCollection<Employees>();
             _workTimeHandler = new WorkTimeHandler(this);
+
+            GetEmployeesAsync();
 
             DateTime dt = System.DateTime.Now;
             Date = new DateTimeOffset(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0, 0, new TimeSpan());
@@ -121,5 +125,14 @@ namespace WorkPlanner.ViewModel
         public ICommand WorkTimeCreateCommand { set; get; }
         #endregion
 
+
+        public async void GetEmployeesAsync()
+        {
+           List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
+           foreach (Employees e in listE)
+           {
+               _employee.Add(e);
+           }
+        }
     }
 }
