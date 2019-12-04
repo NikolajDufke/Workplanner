@@ -426,20 +426,16 @@ namespace WorkPlanner.Handler
                             contains = true;
                         }
                     }
-
-                    
+     
                     if (!contains)
                     {
                         _employeePlacementIndexex[_employeePlacementIndexex.Count + 1] = e;
                     }
 
-
                     collection[t].AddMember(e) ;
                 }
             }
         }
-
-
         #endregion
     }
 }
