@@ -36,7 +36,10 @@ namespace WorkPlanner.View
             Frame.Navigate(typeof(CreateEmployeePage));
         }
 
-        private void ButtonOpen(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// En knap der gør en del af viewet synlig/usynligt.
+        /// </summary>
+       private void ButtonOpen(object sender, RoutedEventArgs e) 
         {
             if (DroppedPanel.Visibility == Visibility.Visible)
             {
