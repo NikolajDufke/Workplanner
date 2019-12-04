@@ -26,6 +26,7 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<Employees> _employees;
 
 
+
         public AdminPageViewModel()
         {
             _headers = new ObservableCollection<DateTime>(); 
@@ -40,7 +41,7 @@ namespace WorkPlanner.ViewModel
             _employees = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
 
             _handler = new AdminHandler(this);
-            _handler.SetTimes();
+          
             _handler.SetDaysAndDates();
         }
 
@@ -137,50 +138,76 @@ namespace WorkPlanner.ViewModel
         public ObservableCollection<TimeSpan> Times
         {
             get { return _times; }
-            set { _times = value; }
+            set
+            {
+                _times = value; 
+                OnPropertyChanged();
+            }
         }
 
 
         public ObservableCollection<EventElement> Weekday1Collection
         {
             get { return _weekday1Collection; }
-            set { _weekday1Collection = value; }
+            set { _weekday1Collection = value;
+                OnPropertyChanged();}
         }    
 
         public ObservableCollection<EventElement> Weekday2Collection
         {
             get { return _weekday2Collection; }
-            set { _weekday2Collection = value; }
+            set
+            {
+                _weekday2Collection = value;
+                OnPropertyChanged();
+            }
         }  
 
         public ObservableCollection<EventElement> Weekday3Collection
         {
             get { return _weekday3Collection; }
-            set { _weekday3Collection = value; }
+            set { _weekday3Collection = value;
+                OnPropertyChanged(); }
         }      
 
         public ObservableCollection<EventElement> Weekday4Collection
         {
             get { return _weekday4Collection; }
-            set { _weekday4Collection = value; }
+            set
+            {
+                _weekday4Collection = value;
+                OnPropertyChanged();
+            }
         }  
 
         public ObservableCollection<EventElement> Weekday5Collection
         {
             get { return _weekday5Collection; }
-            set { _weekday5Collection = value; }
+            set
+            {
+                _weekday5Collection = value; 
+                OnPropertyChanged();
+            }
         }  
 
         public ObservableCollection<EventElement> Weekday6Collection
         {
             get { return _weekday6Collection; }
-            set { _weekday6Collection = value; }
+            set
+            {
+                _weekday6Collection = value;
+                OnPropertyChanged();
+            }
         }
 
         public ObservableCollection<EventElement> Weekday7Collection
         {
             get { return _weekday7Collection; }
-            set { _weekday7Collection = value; }
+            set
+            {
+                _weekday7Collection = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

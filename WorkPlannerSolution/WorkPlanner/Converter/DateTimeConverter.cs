@@ -13,5 +13,10 @@ namespace WorkPlanner.Converter
             {
                 return new DateTime(date.Year, date.Month, date.Day);
             }
+
+            public static DateTime TrimToDateOnly(DateTime date)
+            {
+                return  new DateTime(date.Year,date.Month,date.Day);
+            }
     }
 }

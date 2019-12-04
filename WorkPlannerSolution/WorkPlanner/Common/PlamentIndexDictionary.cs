@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkPlanner.Model.Databasemodels
+namespace WorkPlanner.Common
 {
-    public class DatabaseObject
+    class PlamentIndexDictionary
     {
     }
 }

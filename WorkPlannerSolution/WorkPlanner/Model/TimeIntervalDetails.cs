@@ -16,19 +16,10 @@ namespace WorkPlanner.Model
             _eventMembers = new Dictionary<int, Employees>();
         }
 
-        //public string GetMembers
-        //{
-        //    get
-        //    {
-        //        StringBuilder sb = new StringBuilder();
-        //        foreach (var member in _eventMembers)
-        //        {
-        //            sb.AppendLine(member.Value.EmployeeId.ToString());
-        //        }
-
-        //        return sb.ToString();
-        //    }
-        //}
+        public List<Employees> GetMembers
+        {
+            get{ return _eventMembers.Values.ToList();}
+        }
 
         public void AddMember(Employees employee)
         {
