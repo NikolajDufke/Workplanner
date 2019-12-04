@@ -22,8 +22,10 @@ namespace WorkPlanner.ViewModel
 
         public LoginPageViewModel()
         {
-            _employeeCatalog = new ObservableCollection<Employees>(CatalogsSingleton.Instance.EmployeeCatalog.GetAll);
-         
+            _employeeCatalog = new ObservableCollection<Employees>();
+            
+            GetEmployeesAsync();
+            
             _loginHander = new LoginHandler(this);
          
         }
@@ -48,6 +50,13 @@ namespace WorkPlanner.ViewModel
             set { _password = value; }
         }
 
-
+        public async void GetEmployeesAsync()
+        {
+            List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
+            foreach (Employees e in listE)
+            {
+                _employeeCatalog.Add(e);
+            }
+        }
     }
 }

@@ -62,8 +62,8 @@ namespace WorkPlanner.Persistency
         public async Task<List<T>> LoadAsync()
         {
             try
-            {
-                HttpResponseMessage response = await _client.GetAsync(_apiPrefix);
+             {
+                HttpResponseMessage response = await _client.GetAsync(_apiPrefix + "/");
                 if (response.IsSuccessStatusCode)
                 {
                     string responseContentAsString = await response.Content.ReadAsStringAsync();
