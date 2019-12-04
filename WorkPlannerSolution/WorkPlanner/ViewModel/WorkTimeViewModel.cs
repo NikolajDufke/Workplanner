@@ -125,7 +125,10 @@ namespace WorkPlanner.ViewModel
         public ICommand WorkTimeCreateCommand { set; get; }
         #endregion
 
-
+        #region Methods
+        /// <summary>
+        /// Gør så man kan hente Employees asynkront mens programmet kører.
+        /// </summary>
         public async void GetEmployeesAsync()
         {
            List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
@@ -134,5 +137,7 @@ namespace WorkPlanner.ViewModel
                _employee.Add(e);
            }
         }
+        #endregion
+
     }
 }
