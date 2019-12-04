@@ -61,7 +61,7 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-        public ICommand CreateEmployeeCommand
+        public ICommand LoginCommand
         {
             get
             {

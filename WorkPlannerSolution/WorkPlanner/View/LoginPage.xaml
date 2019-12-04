@@ -80,7 +80,7 @@
                 <StackPanel Style="{StaticResource StackPanelStyle}">
                     <TextBlock Text="{Binding Message}"></TextBlock>
                 </StackPanel>
-                <AppBarButton HorizontalAlignment="Right" Icon="Forward" Label="Login" Command="{Binding }"/>
+                <AppBarButton HorizontalAlignment="Right" Icon="Forward" Label="Login" Command="{Binding LoginCommand}"/>
 
             </StackPanel>
         </StackPanel>

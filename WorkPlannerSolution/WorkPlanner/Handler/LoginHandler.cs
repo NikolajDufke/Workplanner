@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Provider;
 using Windows.UI.Xaml.Controls;
 using WorkPlanner.Catalog;
@@ -35,16 +36,22 @@ namespace WorkPlanner.Handler
                 {
                     Frame frame = new Frame();
                     frame.Navigate(typeof(AdminPage));
+                    Window.Current.Content = frame;
+                    Window.Current.Activate();
                 }
                 else if (_selUser.AccessLevel == 1)
                 {
                     Frame frame = new Frame();
                     frame.Navigate(typeof(AdminPage));
+                    Window.Current.Content = frame;
+                    Window.Current.Activate();
                 }
                 else if (_selUser.AccessLevel == 2)
                 {
                     Frame frame = new Frame();
                     frame.Navigate(typeof(AdminPage));
+                    Window.Current.Content = frame;
+                    Window.Current.Activate();
                 }
                 else if (_selUser.AccessLevel == 3)
                 {
