@@ -25,7 +25,7 @@ namespace WorkPlanner.Common
                         if (property.PropertyType != propInfo.ValueFromUser.GetType())
                         {
 
-                            if (property.PropertyType == typeof(int))
+                            if (property.PropertyType == typeof(int?)|| property.PropertyType == typeof(int))
                             {
                                 int temp;
                                 if (Int32.TryParse(propInfo.ValueFromUser, out temp))
