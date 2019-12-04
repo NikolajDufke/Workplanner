@@ -16,16 +16,23 @@ namespace WorkPlanner.Handler
 {
     class LoginHandler
     {
+        #region Instace fields
         private LoginPageViewModel _loginPageViewModel;
         private Users _selUser;
-
+        #endregion
+        #region Constructor
         public LoginHandler(LoginPageViewModel loginpageevm)
         {
             _loginPageViewModel = loginpageevm;
             this._loginPageViewModel = loginpageevm;
-
         }
-
+        #endregion
+        #region Methods
+        /// <summary>
+        /// Gets User from selEmployee.userid in LoginView compares it with UserID from Users from Database
+        /// Checks AccessLevel and goes to the view you want.
+        /// else updates messages to LoginView
+        /// </summary>
         public async void LoginUser()
         {
             _selUser = await CatalogsSingleton.Instance.UsersCatalog.GetSingleAsync(
@@ -64,5 +71,6 @@ namespace WorkPlanner.Handler
                 _loginPageViewModel.Message = "Wrong password";
             }
         }
+        #endregion
     }
 }
