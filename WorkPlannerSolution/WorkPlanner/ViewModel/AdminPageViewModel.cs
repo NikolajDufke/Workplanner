@@ -38,7 +38,7 @@ namespace WorkPlanner.ViewModel
             _weekday6Collection = new ObservableCollection<EventElement>();
             _weekday7Collection = new ObservableCollection<EventElement>();
             _times = new ObservableCollection<TimeSpan>();
-            //_employees = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
+            _employees = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
 
             _handler = new AdminHandler(this);
           

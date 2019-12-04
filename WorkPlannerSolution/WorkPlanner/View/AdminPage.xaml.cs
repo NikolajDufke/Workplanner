@@ -28,7 +28,7 @@ namespace WorkPlanner.View
         public AdminPage()
         {
             this.InitializeComponent();
-            viewModel = new AdminPageViewModel();
+            //viewModel = new AdminPageViewModel();
         }
 
         private void AddButton(object sender, RoutedEventArgs e)
@@ -59,4 +59,3 @@ namespace WorkPlanner.View
         }
     }
 }
-
