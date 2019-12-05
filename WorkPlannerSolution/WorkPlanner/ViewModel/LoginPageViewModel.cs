@@ -26,7 +26,6 @@ namespace WorkPlanner.ViewModel
         public LoginPageViewModel()
         {
             _employeeCatalog = new ObservableCollection<Employees>();
-            GetEmployeesAsync();
             _loginHander = new LoginHandler(this);
         }
         #endregion

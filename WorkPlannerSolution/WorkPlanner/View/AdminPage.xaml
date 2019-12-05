@@ -322,5 +322,31 @@
                     </Grid>
                 </ScrollViewer>
             </Grid>
-</Grid></Grid>
+        </Grid>
+        <Grid HorizontalAlignment="Center" Height="109" VerticalAlignment="Top" Width="748" Grid.Column="1" Margin="0,0,0,0" Grid.Row="2">
+            <Button Content="Open" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Background="Gray" Click="ButtonOpen"/>
+            <Button Content="Add" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,350,0" Background="Gray" Click="AddButton"/>
+            <Button Content="Edit" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="350,0,0,0" Background="Gray"/>
+        </Grid>
+        <Grid Name="DroppedPanel" HorizontalAlignment="Left" Height="359" VerticalAlignment="Top" Width="737" Margin="5,110,0,0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Visibility="Visible">
+            <Button Content="Create" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,100" Background="Gray" Click="CreateButton"/>
+            <Button Content="Edit" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="250,0,0,100" Background="Gray"/>
+            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,100" Background="Gray" Click="LogOut"/>
+            <ListView HorizontalAlignment="Center" Height="200" VerticalAlignment="Top" Width="700" Margin="0,10,0,0" BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Height="250" Width="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
+                                            <TextBlock Margin="10,0,0,0" Text="{Binding FirstName}" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="20,0,0,0" Text="{Binding LastName}" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="30,0,0,0" Text="{Binding Email}" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="40,0,0,0" Text="{Binding PhoneNumber}" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="50,0,0,0" Text="{Binding Adress}" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="60,0,0,0" Text="{Binding City}" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="70,0,0,0" Text="{Binding ZipPostal}" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
 </Page>

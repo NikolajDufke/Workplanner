@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WorkPlanner.Common;
+using WorkPlanner.Catalog;
 using WorkPlanner.Handler;
 using WorkPlanner.Model;
 
@@ -35,6 +36,9 @@ namespace WorkPlanner.ViewModel
 
         private ICommand _nextWeekCommand;
         private ICommand _previousWeekCommand;
+        private ObservableCollection<Employees> _employees;
+
+
 
         public AdminPageViewModel()
         {
@@ -47,6 +51,7 @@ namespace WorkPlanner.ViewModel
             _weekday6Collection = new ObservableCollection<EventElement>();
             _weekday7Collection = new ObservableCollection<EventElement>();
             _times = new ObservableCollection<TimeSpan>();
+            _employees = new ObservableCollection<Employees>();
 
             _handler = new AdminHandler(this);
         }
@@ -54,6 +59,13 @@ namespace WorkPlanner.ViewModel
         #region Properties
 
         #region General
+        public ObservableCollection<Employees> Employees
+        {
+            get {return _employees; }
+            set { _employees = value; }
+        }
+
+        private ObservableCollection<DateTime> _headers;
 
         public ObservableCollection<DateTime> Headers
         {

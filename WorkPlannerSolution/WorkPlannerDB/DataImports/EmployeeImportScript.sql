@@ -2,9 +2,6 @@
 DELETE from Users
 DELETE from Access
 DELETE from Worktime
---TRUNCATE table Employee
---TRUNCATE table Users
---TRUNCATE table Access
 
 --DBCC CHECKIDENT ('Users', RESEED,0)
 --DBCC CHECKIDENT ('Employee', RESEED,0)
