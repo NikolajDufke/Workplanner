@@ -33,7 +33,7 @@ namespace WorkPlanner.View
 
         private void AddButton(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(CreateEmployeePage));
+            Frame.Navigate(typeof(CreateWorkTimePage));
         }
 
         /// <summary>
@@ -41,7 +41,14 @@ namespace WorkPlanner.View
         /// </summary>
        private void ButtonOpen(object sender, RoutedEventArgs e) 
         {
-
+            if (DroppedPanel.Visibility == Visibility.Collapsed)
+            {
+                DroppedPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DroppedPanel.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void CreateButton(object sender, RoutedEventArgs e)
