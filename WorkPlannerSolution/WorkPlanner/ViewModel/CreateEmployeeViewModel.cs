@@ -14,12 +14,13 @@ namespace WorkPlanner.ViewModel
 {
     public class CreateEmployeeViewModel : ViewModelBase
     {
+        #region Instace fields
         private ObservableCollection<PropInfo> _propEmployeeInfoList;
         private ObservableCollection<PropInfo> _propUsersInfoList;
         private Handler.CreateEmployeeHandler _createEmployeeHandler;
         private ICommand _createEmployeeCommand;
         private string _message;
-
+        #endregion
         #region Constructor
 
         public CreateEmployeeViewModel()
@@ -32,20 +33,9 @@ namespace WorkPlanner.ViewModel
         }
 
         #endregion
-
         #region Properties
 
-        public ObservableCollection<PropInfo> PropEmployeeInfoList
-        {
-            get { return _propEmployeeInfoList; }
-            set { _propEmployeeInfoList = value; }
-        }
 
-        public ObservableCollection<PropInfo> PropUsersInfoList
-        {
-            get { return _propUsersInfoList; }
-            set { _propUsersInfoList = value; }
-        }
 
         public string Message
         {
@@ -57,8 +47,6 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-        #endregion
-
         public ICommand CreateEmployeeCommand
         {
             get
@@ -68,6 +56,21 @@ namespace WorkPlanner.ViewModel
             }
             set { _createEmployeeCommand = value; }
         }
+
+        #endregion
+        #region Observablecollections
+        public ObservableCollection<PropInfo> PropEmployeeInfoList
+        {
+            get { return _propEmployeeInfoList; }
+            set { _propEmployeeInfoList = value; }
+        }
+
+        public ObservableCollection<PropInfo> PropUsersInfoList
+        {
+            get { return _propUsersInfoList; }
+            set { _propUsersInfoList = value; }
+        }
+        #endregion
     }
 }
 

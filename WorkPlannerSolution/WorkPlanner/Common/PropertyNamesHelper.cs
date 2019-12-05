@@ -5,16 +5,19 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WorkPlanner.Model;
+using WorkPlanner.Model.Databasemodels;
 using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Common
 {
     public class PropertyNamesHelper<T> where T:class 
     {
+        #region Instace fields
         private List<PropInfo> _listPropinfo;
-
+        #endregion
+        #region Constructor
         public PropertyNamesHelper()
-        {    
+        {
             _listPropinfo = new List<PropInfo>();
             Getpropertynames();
             IfUppercaseAddSpace();
@@ -26,12 +29,18 @@ namespace WorkPlanner.Common
             Getpropertynames(propertiesToIgnore);
             IfUppercaseAddSpace();
         }
-
+        #endregion
+        #region Properties
         public List<PropInfo> GetListOfPropinfo
         {
             get { return _listPropinfo; }
         }
-
+        #endregion
+        #region Methods
+        /// <summary>
+        /// Adds properties from a Model to the list in this class
+        /// </summary>
+        /// <param name="indexToIgnore"></param>
         private void Getpropertynames(List<int> indexToIgnore = null)
         {
             if (indexToIgnore == null)
@@ -50,9 +59,12 @@ namespace WorkPlanner.Common
                 PropInfo temp = new PropInfo();
                 temp.PropName = propertyInfo.Name;
                 _listPropinfo.Add(temp);
-            } 
+            }
         }
-
+        /// <summary>
+        /// Checks the values in the list in this class and goes thru each property 
+        /// makes a visual property name that can be showed in the view
+        /// </summary>
         private void IfUppercaseAddSpace()
         {
             foreach (PropInfo stringFromlist in _listPropinfo)
@@ -76,5 +88,6 @@ namespace WorkPlanner.Common
                 stringFromlist.VisualName = toAddString;
             }
         }
+        #endregion
     }
 }

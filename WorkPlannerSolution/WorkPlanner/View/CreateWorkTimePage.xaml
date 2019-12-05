@@ -25,7 +25,7 @@
         </Style>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Height" Value="35"/>
-            <Setter Property="Width" Value="150"/>
+            <Setter Property="Width" Value="Auto"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
         <Style x:Key="ComboboxStyle" TargetType="ComboBox">
@@ -50,11 +50,11 @@
         </Grid.ColumnDefinitions>
 
 
-        <TextBlock Style="{StaticResource TitleStyle}" Text="Create WorkTime" HorizontalAlignment="Left" Margin="0,315,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <StackPanel Grid.Column="1" Grid.Row="1">
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource TitleStyle}" Text="Create WorkTime" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
             <StackPanel Margin="20" Orientation="Vertical" >
-                <TextBlock Text="Employee Name:" Style="{StaticResource TextBlockStyle}" />
-                <ComboBox Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding Employee}" SelectedValue="{Binding EmployeeProp, Mode=TwoWay}">
+                <ComboBox Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding Employee}" SelectedValue="{Binding EmployeeProp, Mode=TwoWay}" PlaceholderText="Choose Employee">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding FirstName}"/>
@@ -62,7 +62,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <TextBlock Text="Date:" Style="{StaticResource TextBlockStyle}"  />
-                <CalendarDatePicker Date="{Binding Date, Mode=TwoWay}" FontSize="20"/>
+                <CalendarDatePicker Date="{Binding Date}" FontSize="20"/>
                 <TextBlock Text="Time Start:" Style="{StaticResource TextBlockStyle}"/>
                 <TimePicker Time="{Binding TimeStart, Mode=TwoWay}" FontSize="20" ClockIdentifier="24HourClock"/>
                 <TextBlock Text="Time End:" Style="{StaticResource TextBlockStyle}"/>

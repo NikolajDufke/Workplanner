@@ -18,18 +18,21 @@ namespace WorkPlanner.Handler
 {
     public class CreateEmployeeHandler
     {
+        #region Instace fields
         private CreateEmployeeViewModel _createEmployeeViewModel;
-
+        #endregion
+        #region Constructor
         public CreateEmployeeHandler(CreateEmployeeViewModel CreateEmployeevm)
         {
             _createEmployeeViewModel = CreateEmployeevm;
             this._createEmployeeViewModel = CreateEmployeevm;
         }
-
+        #endregion
+        #region Methods
         public async void CreateEmployee()
         {
-           Employees employee = new Employees();
-           Users user = new Users();
+            Employees employee = new Employees();
+            Users user = new Users();
 
             PropertyPopulator<Employees> ppEmployee = new PropertyPopulator<Employees>();
             PropertyPopulator<Users> ppUsers = new PropertyPopulator<Users>();
@@ -38,7 +41,7 @@ namespace WorkPlanner.Handler
             user = ppUsers.Populate(_createEmployeeViewModel.PropUsersInfoList.ToList(), new Users());
 
             CatalogsSingleton catalog = CatalogsSingleton.Instance;
- 
+
             Users generatedUser = await catalog.UsersCatalog.AddAsync(user);
 
             if (generatedUser.UserID != 0)
@@ -46,7 +49,7 @@ namespace WorkPlanner.Handler
                 employee.UserID = generatedUser.UserID;
 
                 Employees generatedEmployee = await catalog.EmployeeCatalog.AddAsync(employee);
-                
+
                 if (generatedEmployee.EmployeeID != 0)
                 {
                     _createEmployeeViewModel.Message = "Bruger er blevet oprettet";
@@ -57,10 +60,10 @@ namespace WorkPlanner.Handler
                     _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
                 }
             }
-                else
-                {
-                    _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
-                }
+            else
+            {
+                _createEmployeeViewModel.Message = "Bruger kunne ikke oprettes";
+            }
         }
 
         public void PopulatePrepInfo()
@@ -68,16 +71,17 @@ namespace WorkPlanner.Handler
             _createEmployeeViewModel.PropEmployeeInfoList.Clear();
             _createEmployeeViewModel.PropUsersInfoList.Clear();
 
-            foreach (var empProp in Factories.PropertyHelpersFactory<Employees>.PropertyNamesFactory(new List<int>(){1, 9}).GetListOfPropinfo)
+            foreach (var empProp in Factories.PropertyHelpersFactory<Employees>.PropertyNamesFactory(new List<int>() { 1, 9 }).GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropEmployeeInfoList.Add(empProp);
             }
 
-            foreach (var userProp in Factories.PropertyHelpersFactory<Users>.PropertyNamesFactory(new List<int>(){1}).GetListOfPropinfo)
+            foreach (var userProp in Factories.PropertyHelpersFactory<Users>.PropertyNamesFactory(new List<int>() { 1 }).GetListOfPropinfo)
             {
                 _createEmployeeViewModel.PropUsersInfoList.Add(userProp);
             }
 
         }
+        #endregion
     }
 }

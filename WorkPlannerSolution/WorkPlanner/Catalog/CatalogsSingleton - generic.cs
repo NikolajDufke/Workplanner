@@ -31,14 +31,15 @@ namespace WorkPlanner.Catalog
 
         #endregion
 
-       
-
+        #region Generic Catalog
+        /// <summary>
+        /// Et generic catalog der henter catalog klassen med objekt T
+        /// </summary>
         public Catalog<T> Catalog
         {
             get { return _catalog; }
 
         }
-
-  
+        #endregion
     }
 }
