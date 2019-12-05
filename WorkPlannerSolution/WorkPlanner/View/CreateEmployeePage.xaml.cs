@@ -27,7 +27,7 @@ namespace WorkPlanner.View
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ReturnToAdminPageButton(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AdminPage));
         }
