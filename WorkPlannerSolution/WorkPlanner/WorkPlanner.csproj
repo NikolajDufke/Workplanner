@@ -127,6 +127,7 @@
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\UpdateObsCollection.cs" />
     <Compile Include="Converter\DateTimeConverter.cs" />
     <Compile Include="Converter\Class1.cs" />
     <Compile Include="Factories\PropertyHelpersFactory.cs" />
