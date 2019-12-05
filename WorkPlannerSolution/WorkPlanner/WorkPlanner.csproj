@@ -148,6 +148,7 @@
     <Compile Include="Model\Databasemodels\Users.cs" />
     <Compile Include="Model\RowViewItems.cs" />
     <Compile Include="Model\Databasemodels\Worktimes.cs" />
+    <Compile Include="Proxy\WorktimeProxy.cs" />
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />

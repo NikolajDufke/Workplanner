@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Media.Animation;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Model;
+using WorkPlanner.Proxy;
 using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Handler
@@ -32,7 +33,7 @@ namespace WorkPlanner.Handler
         private Dictionary<int, Employees> _employeePlacementIndexex;
         private Dictionary<int, string> _colors;
         private List<Color> _manyColors;
-
+        private Proxy.WorktimeProxy _catalogInterface;
 
         public AdminHandler(AdminPageViewModel ViewModel)
         {
@@ -40,6 +41,8 @@ namespace WorkPlanner.Handler
             _employeePlacementIndexex = new Dictionary<int, Employees>();
             _starttime = new TimeSpan(8, 00, 0);
             _endtime = new TimeSpan(23, 00, 0);
+            _catalogInterface = new WorktimeProxy();
+           
 
             #region timePlanCollection initialization
             _timePlanCollection1 = new Dictionary<TimeSpan, TimeIntervalDetails>();
@@ -294,30 +297,36 @@ namespace WorkPlanner.Handler
         /// <param name="collectionToUpdate"></param>
         private void AddToView(Dictionary<TimeSpan, TimeIntervalDetails> collection, ObservableCollection<EventElement> collectionToUpdate)
         {
+            
+
             foreach (TimeIntervalDetails tp in collection.Values)
             {
                 
-                var e = new EventElement();
-                for (int i = 1; i < _employeePlacementIndexex.Count +1; i++)
-                {
+                    var e = new EventElement();
+                    if (tp.Update)
+                    {
+                    for (int i = 1; i < _employeePlacementIndexex.Count + 1; i++)
+                    {
 
-                    // Vi matcher alle employees 
-                    bool contains = false;
-                    foreach (Employees member in tp.GetMembers)
-                    {
-                        foreach (Employees Eplacement in _employeePlacementIndexex.Values)
+                        // Vi matcher alle employees 
+                        bool contains = false;
+                        foreach (Employees member in tp.GetMembers)
                         {
-                            if (member.EmployeeID == Eplacement.EmployeeID)
-                                contains = true;
+                            foreach (Employees Eplacement in _employeePlacementIndexex.Values)
+                            {
+                                if (member.EmployeeID == Eplacement.EmployeeID)
+                                    contains = true;
+                            }
                         }
-                    }
-                      if (contains)
-                    {
-                        e.Colors.Add(_colors[i]);
-                    }
-                    else
-                    {
-                        e.Colors.Add("");
+
+                        if (contains)
+                        {
+                            e.Colors.Add(_colors[i]);
+                        }
+                        else
+                        {
+                            e.Colors.Add("");
+                        }
                     }
                 }
 
@@ -332,19 +341,14 @@ namespace WorkPlanner.Handler
         /// </summary>
         /// <returns></returns>
         private async Task PululateTimePlanCollectionsAsync()
-        {
-            List<Worktimes> Worktimecatalog = await CatalogsSingleton.Instance.WorktimeCatalog.GetAll();
-           
+        {  
             int headerindex = 1;
             foreach (var header in _vm.Headers)
             {
-               
                 //Her finder vi alle worktimes som er på en given dag.
-                List<Worktimes> result = Worktimecatalog.FindAll(x =>
-                    DateTime.Compare(Converter.DateTimeConverter.TrimToDateOnly(x.Date),
-                        Converter.DateTimeConverter.TrimToDateOnly(header)) == 0);
+                List<Worktimes> WorktimesThisDay = _catalogInterface.GetAllWorktimesOfDay(header.Date);
 
-                foreach (Worktimes worktime in result)
+                foreach (Worktimes worktime in WorktimesThisDay)
                 {
                     // Her tilføjer vi de worktimes til timePlanCollections. dato og cællerne følger hindanden ved hjælp af headerindex
                     switch (headerindex)
@@ -404,7 +408,7 @@ namespace WorkPlanner.Handler
         private async Task FindAndAddEmployeesToTimePlanAsync(Dictionary<TimeSpan, TimeIntervalDetails> collection,
             Worktimes worktime)
         {
-            //først finder vi empluyee id på den employee som har worktie
+            //først finder vi empluyee id på den employee som har worktimes
             var EmployeeCatalog = CatalogsSingleton.Instance.EmployeeCatalog;
             int id = worktime.EmployeeID;
             Employees e = await EmployeeCatalog.GetSingleAsync(id.ToString());           

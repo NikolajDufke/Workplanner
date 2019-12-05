@@ -78,6 +78,7 @@ namespace WorkPlanner.ViewModel
         /// </summary>
         public async void GetEmployeesAsync()
         {
+            _employeeCatalog.Clear();
             List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
             foreach (Employees e in listE)
             {

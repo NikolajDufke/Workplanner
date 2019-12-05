@@ -26,14 +26,15 @@ namespace WorkPlanner.Converter
             return new DateTime(date.Year, date.Month, date.Day);
         }
 
-            /// <summary>
-            /// Fjerner tidspunkt på en DateTime og retunere en DateTIme.
-            /// </summary>
-            /// <param name="date"></param>
-            /// <returns></returns>
-            public static DateTime TrimToDateOnly(DateTime date)
-            {
-                return  new DateTime(date.Year,date.Month,date.Day);
-            }
+        /// <summary>
+        /// Fjerner tidspunkt på en DateTime og retunere en DateTIme.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime TrimToDateOnly(DateTime date)
+        {
+            return  new DateTime(date.Year,date.Month,date.Day);
+        }
     }
+#endregion
 }
