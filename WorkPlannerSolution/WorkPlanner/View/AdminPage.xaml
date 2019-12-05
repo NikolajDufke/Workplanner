@@ -11,17 +11,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.DataContext>
+<Page.DataContext>
         <viewmodel:AdminPageViewModel></viewmodel:AdminPageViewModel>
-    </Page.DataContext>
+</Page.DataContext>
 
 
     <Page.Resources>
-        <Style x:Key="TimeSpacer" TargetType="TextBlock">
-            <Setter Property="Margin" Value="100"></Setter>
-        </Style>
-
-        <viewmodel:AdminPageViewModel x:Key="AdminPageViewModel" />
+    <Style x:Key="TimeSpacer" TargetType="TextBlock">
+<Setter Property="Margin" Value="100"></Setter>
+    </Style>
+   
+    <viewmodel:AdminPageViewModel x:Key="AdminPageViewModel" />
     </Page.Resources>
 
 
@@ -40,20 +40,20 @@
         </Grid.RowDefinitions>
 
 
-
-
+       
+     
         <Grid Grid.Column="1"
-              Background="Gray">
-            <TextBlock 
+              Background="LightSteelBlue">
+                <TextBlock 
                 Grid.Column="1"  
                 Text ="-- ADMIN PAGE --" 
                 FontSize="23" 
                 FontWeight="Bold" 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center"></TextBlock>
-        </Grid>
+                </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="1" Background="BurlyWood">
+        <Grid Grid.Row="1" Grid.Column="1" Background="LightGray">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -118,7 +118,7 @@
                     <TextBlock FontSize="8" Text="{Binding Day7Header.Date}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day7Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
-
+         
 
                 <ScrollViewer Grid.Row="1" Grid.ColumnSpan="10" >
                     <Grid>
@@ -148,7 +148,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -174,7 +174,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors , Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -200,7 +200,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors , Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -226,7 +226,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors , Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -252,7 +252,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -278,7 +278,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -304,7 +304,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>

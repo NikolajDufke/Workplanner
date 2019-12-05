@@ -13,7 +13,8 @@ namespace WorkPlanner.Catalog
     public class Catalog<T> where T : DatabaseObject
     {
 
-        private ObservableCollection<T> _allCollection;
+   
+        private List<T> _allCollection;
         private WebApiWorkPlanner<T> _api;
         private const string _serverurl = "http://localhost:56265/";
         private string _apiprefix ;
@@ -21,19 +22,43 @@ namespace WorkPlanner.Catalog
 
         public Catalog()
         {
+            _allCollection = new List<T>();
             _apiprefix = typeof(T).Name;
             _api = new WebApiWorkPlanner<T>(_serverurl, _apiprefix);
         }
 
         #region Proberties
-
-        public ObservableCollection<T> GetAll
+  
+        public async Task<List<T>> GetAll()
         {
-            get
-            {
-                    LoadFromDB();
+            TimeSpan timePassed = new TimeSpan(0,0,0);
+
+
+            if (_allCollection.Count != 0)
                 return _allCollection;
+
+            while (_allCollection.Count == 0)
+            {
+                LoadFromDB();
+                if (_allCollection.Count != 0)
+                    return _allCollection;
+
+               
+                Task.Delay(TimeSpan.FromSeconds(5));
+                timePassed = +TimeSpan.FromSeconds(5);
+
+                if(timePassed > TimeSpan.FromSeconds(30))
+                { break;}
+
             }
+
+
+
+            return null;
+
+
+
+
         }
         #endregion
 
@@ -79,9 +104,18 @@ namespace WorkPlanner.Catalog
 
         }
 
-        public async Task<bool> TestConnection()
+        public async Task<T> GetSingleAsync(string id)
         {
-            return await _api.TestConnection();
+            T result = await _api.ReadAsync(id);
+
+            if (result != null)
+            {
+                LoadFromDB();
+                return result;
+
+            }
+
+            return null;
         }
 
         #endregion
@@ -90,10 +124,7 @@ namespace WorkPlanner.Catalog
 
         private async void LoadFromDB()
         {
-            if (_allCollection == null)
-            {
-                _allCollection = new ObservableCollection<T>();
-            }
+        
 
             try
             {

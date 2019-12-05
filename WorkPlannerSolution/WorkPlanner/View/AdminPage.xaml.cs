@@ -28,7 +28,7 @@ namespace WorkPlanner.View
         public AdminPage()
         {
             this.InitializeComponent();
-            viewModel = new AdminPageViewModel();
+            //viewModel = new AdminPageViewModel();
         }
 
         private void AddButton(object sender, RoutedEventArgs e)
@@ -41,14 +41,7 @@ namespace WorkPlanner.View
         /// </summary>
        private void ButtonOpen(object sender, RoutedEventArgs e) 
         {
-            if (DroppedPanel.Visibility == Visibility.Visible)
-            {
-                DroppedPanel.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                DroppedPanel.Visibility = Visibility.Visible;
-            }
+
         }
 
         private void CreateButton(object sender, RoutedEventArgs e)

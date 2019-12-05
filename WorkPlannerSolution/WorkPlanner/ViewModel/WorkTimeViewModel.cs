@@ -25,13 +25,18 @@ namespace WorkPlanner.ViewModel
         private static Worktimes _selectedworktime;
         private ICommand _selectedWorktimeCommand;
         private string _message;
+        private ObservableCollection<Employees> _employee;
         #endregion
 
         #region Constructer
         public WorkTimeViewModel()
         {
-            var T = CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
+            
+
+            _employee = new ObservableCollection<Employees>();
             _workTimeHandler = new WorkTimeHandler(this);
+
+            GetEmployeesAsync();
 
             DateTime dt = System.DateTime.Now;
             Date = new DateTimeOffset(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0, 0, new TimeSpan());
@@ -97,28 +102,37 @@ namespace WorkPlanner.ViewModel
         #endregion
 
         #region ObservableCollection
-        //public ObservableCollection<Employees> Employee
-        //{
-        //    get
-        //    {
-        //        return CatalogsSingleton.Instance.EmployeeCatalog.GetAll;
-        //    }
-        //}
+
+        //En observablecollection så man kan få fat i firstname der ligger inde i Employee
+
+        public ObservableCollection<Employees> Employee
+        {
+            get { return _employee; }
+        }
         #endregion
 
         #region ICommands
-        public ICommand SelectedWorktimeCommand
-        {
-            get
-            {
-                return _selectedWorktimeCommand ?? (_selectedWorktimeCommand =
-                           new RelayArgCommand<Worktimes>(wt => _workTimeHandler.SetSelectedWorkTime(wt)));
-            }
-            set { _selectedWorktimeCommand = value; }
-        }
+        //public ICommand SelectedWorktimeCommand
+        //{
+        //    get
+        //    {
+        //        return _selectedWorktimeCommand ?? (_selectedWorktimeCommand =
+        //                   new RelayArgCommand<Worktimes>(wt => _workTimeHandler.SetSelectedWorkTime(wt)));
+        //    }
+        //    set { _selectedWorktimeCommand = value; }
+        //}
 
         public ICommand WorkTimeCreateCommand { set; get; }
         #endregion
 
+
+        public async void GetEmployeesAsync()
+        {
+           List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
+           foreach (Employees e in listE)
+           {
+               _employee.Add(e);
+           }
+        }
     }
 }
