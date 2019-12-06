@@ -270,7 +270,7 @@ namespace WorkPlanner.Handler
                 var e = new EventElement();
                 for (int i = 1; i < _employeePlacementIndexex.Count +1; i++)
                 {
-                      if (tp.GetMembers.Contains(_employeePlacementIndexex[i]))
+                    if (tp.GetMembers.Contains(_employeePlacementIndexex[i]))
                     {
                         e.Colors.Add(_colors[i]);
                     }
@@ -281,11 +281,8 @@ namespace WorkPlanner.Handler
                 }
 
                 collectionToUpdate.Add(e);
-
             }
-
         }
-    
 
     private async void PululateTimePlanCollectionsAsync()
         {
