@@ -13,19 +13,21 @@ namespace WorkPlanner.Catalog
     public class Catalog<T> where T : DatabaseObject
     {
 
-   
+        #region Instance
         private List<T> _allCollection;
         private WebApiWorkPlanner<T> _api;
         private const string _serverurl = "http://localhost:56265/";
-        private string _apiprefix ;
+        private string _apiprefix ;       
+        #endregion
 
-
+        #region Constructor
         public Catalog()
         {
             _allCollection = new List<T>();
             _apiprefix = typeof(T).Name;
             _api = new WebApiWorkPlanner<T>(_serverurl, _apiprefix);
         }
+        #endregion
 
         #region Proberties
   
@@ -37,32 +39,32 @@ namespace WorkPlanner.Catalog
             if (_allCollection.Count != 0)
                 return _allCollection;
 
+            LoadFromDB();
+
             while (_allCollection.Count == 0)
             {
-                LoadFromDB();
+                
                 if (_allCollection.Count != 0)
                     return _allCollection;
 
                
                 Task.Delay(TimeSpan.FromSeconds(5));
-                timePassed = +TimeSpan.FromSeconds(5);
+                timePassed = timePassed +TimeSpan.FromSeconds(5);
 
                 if(timePassed > TimeSpan.FromSeconds(30))
                 { break;}
 
             }
-
-
-
-            return null;
-
-
-
-
+            return _allCollection;
         }
         #endregion
 
         #region Methods
+        /// <summary>
+        /// En metode der gør at man kan update async
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="id"></param>
         public async void UpdateAsync(T obj, string id)
         {
             bool result = await _api.UpdateAsync(obj, id);
@@ -73,6 +75,10 @@ namespace WorkPlanner.Catalog
             }
         }
 
+        /// <summary>
+        /// En metode der gør at man kan remove async
+        /// </summary>
+        /// <param name="id"></param>
         public async void RemoveAsync(string id)
         {
 
@@ -88,6 +94,11 @@ namespace WorkPlanner.Catalog
             }
         }
 
+        /// <summary>
+        /// En metode der gør at man kan add async
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public async Task<T> AddAsync(T obj)
         {
             T result = await _api.CreateAsync(obj);
@@ -104,8 +115,16 @@ namespace WorkPlanner.Catalog
 
         }
 
+        /// <summary>
+        /// En metode der gør at man kan GetSingle async.
+        /// Denne metode gør at man får et objekt ud fra id'et.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<T> GetSingleAsync(string id)
         {
+            
+
             T result = await _api.ReadAsync(id);
 
             if (result != null)
@@ -121,11 +140,11 @@ namespace WorkPlanner.Catalog
         #endregion
 
         #region HelperMethods
-
+        /// <summary>
+        /// En hjælpe metode der loader data fra databasen
+        /// </summary>
         private async void LoadFromDB()
         {
-        
-
             try
             {
                 List<T> LoadedList = await _api.LoadAsync();

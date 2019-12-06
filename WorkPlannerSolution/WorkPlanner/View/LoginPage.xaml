@@ -69,15 +69,19 @@
 
         <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black">
-                <ComboBox Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding EmployeeCollection}" SelectedValue="{Binding SelEmployees, Mode=TwoWay}">
+                <ComboBox Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding EmployeeCollection}" SelectedValue="{Binding SelEmployees, Mode=TwoWay}" PlaceholderText="User">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding FirstName}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="123" PlaceholderText="Password"/>
-                <Button HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" Content="Login"/>
+                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password"/>
+                <StackPanel Style="{StaticResource StackPanelStyle}">
+                    <TextBlock Text="{Binding Message}"></TextBlock>
+                </StackPanel>
+                <AppBarButton HorizontalAlignment="Right" Icon="Forward" Label="Login" Command="{Binding LoginCommand}"/>
+
             </StackPanel>
         </StackPanel>
     </Grid>
