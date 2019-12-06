@@ -6,6 +6,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using WorkPlanner.Common;
+using WorkPlanner.Catalog;
 using WorkPlanner.Handler;
 using WorkPlanner.Model;
 
@@ -21,6 +24,19 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<EventElement> _weekday6Collection;
         private ObservableCollection<EventElement> _weekday7Collection;
         private AdminHandler _handler;
+        private ObservableCollection<TimeSpan> _times;
+        private ObservableCollection<DateTime> _headers;
+        private DateTime _day1Header;
+        private DateTime _day2Header;
+        private DateTime _day3Header;
+        private DateTime _day4Header;
+        private DateTime _day5Header;
+        private DateTime _day6Header;
+        private DateTime _day7Header;
+
+        private ICommand _nextWeekCommand;
+        private ICommand _previousWeekCommand;
+        private ObservableCollection<Employees> _employees;
 
 
 
@@ -35,10 +51,18 @@ namespace WorkPlanner.ViewModel
             _weekday6Collection = new ObservableCollection<EventElement>();
             _weekday7Collection = new ObservableCollection<EventElement>();
             _times = new ObservableCollection<TimeSpan>();
+            _employees = new ObservableCollection<Employees>();
 
             _handler = new AdminHandler(this);
-          
-            _handler.SetDaysAndDates();
+        }
+
+        #region Properties
+
+        #region General
+        public ObservableCollection<Employees> Employees
+        {
+            get {return _employees; }
+            set { _employees = value; }
         }
 
         private ObservableCollection<DateTime> _headers;
@@ -51,95 +75,112 @@ namespace WorkPlanner.ViewModel
 
         private int _weekNumber;
 
-        public int WeekNumber
-        {
-            get { return _weekNumber; }
-            set { _weekNumber = value; }
-        }
-
-
-
-        private DateTime _day1Header;
-
-        public DateTime Day1Header
-        {
-            get { return _day1Header; }
-            set { _day1Header = value; }
-        }
-
-
-        private DateTime _day2Header;
-
-        public DateTime Day2Header
-        {
-            get { return _day2Header; }
-            set { _day2Header = value; }
-        }
-
-
-
-        private DateTime _day3Header;
-
-        public DateTime Day3Header
-        {
-            get { return _day3Header; }
-            set { _day3Header = value; }
-        }
-
-
-        private DateTime _day4Header;
-
-        public DateTime Day4Header
-        {
-            get { return _day4Header; }
-            set { _day4Header = value; }
-        }
-
-
-        private DateTime _day5Header;
-
-        public DateTime Day5Header
-        {
-            get { return _day5Header; }
-            set { _day5Header = value; }
-        }
-
-
-        private DateTime _day6Header;
-
-        public DateTime Day6Header
-        {
-            get { return _day6Header; }
-            set { _day6Header = value; }
-        }
-
-
-        private DateTime _day7Header;
-
-        public DateTime Day7Header
-        {
-            get { return _day7Header; }
-            set { _day7Header = value; }
-        }
-
-
-        private ObservableCollection<TimeSpan> _times;
-
         public ObservableCollection<TimeSpan> Times
         {
             get { return _times; }
             set
             {
-                _times = value; 
+                _times = value;
                 OnPropertyChanged();
             }
         }
 
+        private string _year;
+
+        public string Year
+        {
+            get { return _year; }
+            set { _year = value; }
+        }
+
+
+        public int WeekNumber
+        {
+            get { return _weekNumber; }
+            set
+            {
+                _weekNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Headers
+
+        public DateTime Day1Header
+        {
+            get { return _day1Header; }
+            set
+            {
+                _day1Header = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Day2Header
+        {
+            get { return _day2Header; }
+            set
+            {
+                _day2Header = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Day3Header
+        {
+            get { return _day3Header; }
+            set { _day3Header = value;
+                OnPropertyChanged();}
+        }
+
+        public DateTime Day4Header
+        {
+            get { return _day4Header; }
+            set
+            {
+                _day4Header = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Day5Header
+        {
+            get { return _day5Header; }
+            set { _day5Header = value;
+                OnPropertyChanged();}
+        }
+
+        public DateTime Day6Header
+        {
+            get { return _day6Header; }
+            set
+            {
+                _day6Header = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Day7Header
+        {
+            get { return _day7Header; }
+            set
+            {
+                _day7Header = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region WeekDayCollections
 
         public ObservableCollection<EventElement> Weekday1Collection
         {
             get { return _weekday1Collection; }
-            set { _weekday1Collection = value;
+            set {
+                _weekday1Collection = value;
                 OnPropertyChanged();}
         }    
 
@@ -156,7 +197,8 @@ namespace WorkPlanner.ViewModel
         public ObservableCollection<EventElement> Weekday3Collection
         {
             get { return _weekday3Collection; }
-            set { _weekday3Collection = value;
+            set {
+                _weekday3Collection = value;
                 OnPropertyChanged(); }
         }      
 
@@ -199,5 +241,31 @@ namespace WorkPlanner.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #endregion
+
+        #region Commands
+                public ICommand NextWeekCommand
+                {
+                    get
+                    {
+                        return _nextWeekCommand ??
+                               (_nextWeekCommand = new RelayCommand(_handler.AddWeekNumber));
+                    }
+                    set { _nextWeekCommand = value; }
+                }
+
+                public ICommand PreviousWeekCommand
+                {
+                    get
+                    {
+                        return _previousWeekCommand ??
+                               (_previousWeekCommand = new RelayCommand(_handler.SubstractWeekNumber));
+                    }
+                    set { _previousWeekCommand = value; }
+                }
+        #endregion
     }
 }
