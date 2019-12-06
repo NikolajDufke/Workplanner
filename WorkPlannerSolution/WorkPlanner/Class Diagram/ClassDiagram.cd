@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WorkPlanner.App" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAQAAIAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.Catalog.Catalog&lt;T&gt;" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAIAgAQAEAAACAACgAAgAAgAAAAAA=</HashCode>
+      <FileName>Catalog\Catalog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Catalog.CatalogsSingletons&lt;T&gt;" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAIBAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Catalog\CatalogsSingleton - generic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Catalog.CatalogsSingleton" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAACCAAAAAACQAAIAQAAAAAAAQAAACAAAAAA=</HashCode>
+      <FileName>Catalog\CatalogsSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Common.GetDatesFromWeekNumber" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\GetDatesFromWeekNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Common.PlamentIndexDictionary" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\PlamentIndexDictionary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Common.PropertyNamesHelper&lt;T&gt;" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAIAAAAAAAAAgAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Common\PropertyNamesHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Common.PropertyPopulator&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\PropertyPopulator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.Common.RelayArgCommand&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\RelayArgCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.Common.RelayCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.Converter.TimeSpanToStringConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converter\Class1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.Converter.DateTimeConverter" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Converter\DateTimeConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Factories.PropertyHelpersFactory&lt;T&gt;" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\PropertyHelpersFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Handler.AdminHandler" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgAAAAAAAgAQEAAAACBCAACgEKQgAAhABEAgAAAgE=</HashCode>
+      <FileName>Handler\AdminHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Handler.CreateEmployeeHandler" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAACAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Handler\CreateEmployeeHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Handler.LoginHandler" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Handler\LoginHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.ViewModel.WorkTimeHandler" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAIBAAEAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Handler\WorkTimeHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.ViewModel.AdminPageViewModel" Collapsed="true">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAACAAAsCACgABFAAACqCEEAIQoAQFEABAAgAAA=</HashCode>
+      <FileName>ViewModel\AdminPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.ViewModel.CreateEmployeeViewModel" Collapsed="true">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAgAAAAAAAAAAAAAAAAAIAAAAAQBEAAAIAAAAAQ=</HashCode>
+      <FileName>ViewModel\CreateEmployeeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.ViewModel.LoginPageViewModel" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAABAAIAAAIABAAAAAAQAAAAAACGAAAIACAAAA=</HashCode>
+      <FileName>ViewModel\LoginPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.ViewModel.MainPageViewModel" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\MainPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.ViewModel.ViewModelBase" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkPlanner.ViewModel.WorkTimeViewModel" Collapsed="true">
+    <Position X="2" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAQIAAQABBhAAAQABBAAAQACAAAAAABEAQAKAAQEAA=</HashCode>
+      <FileName>ViewModel\WorkTimeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.AllViewItems" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAEAAAABhAAAACAEAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Model\AllViewItems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.Columns" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAECABABAAAAAAAgAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Columns.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.Accesses" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Databasemodels\Accesses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.Employees" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAEAAACAgAAAIAAAAQAgAAAgAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Model\Databasemodels\Employees.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.Users" Collapsed="true">
+    <Position X="2" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Model\Databasemodels\Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.Worktimes" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIAAAAAAAAAAAAAAAAAAAAAAAAgABAAQAAAAAAAA=</HashCode>
+      <FileName>Model\Databasemodels\Worktimes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.EventElement" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Model\EventElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.PropInfo" Collapsed="true">
+    <Position X="20" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAIAAAAAAABACAAAAAgAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\PropInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.Row" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAEAAACAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Model\Row.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.RowViewItems" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAEAAAAAAAAAAAAAAAAAAgAAAAQA=</HashCode>
+      <FileName>Model\RowViewItems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.Time" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAACAAAgAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Time.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.TimeIntervalDetails" Collapsed="true">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAQAsAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\TimeIntervalDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Model.Databasemodels.DatabaseObject" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Databasemodels\DatabaseObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.Persistency.WebApiWorkPlanner&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAgAAAAAEAAAAEAAAoAAAAAAAgAAAAABIAAAIA=</HashCode>
+      <FileName>Persistency\WebApiWorkPlanner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.View.AdminPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAQAAAAAAAAQAAAAAAAAIAAACA=</HashCode>
+      <FileName>View\AdminPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.View.CreateEmployeePage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CreateEmployeePage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.View.CreateWorkTimePage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>View\CreateWorkTimePage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.View.EmployeePage" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\EmployeePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkPlanner.View.LoginPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\LoginPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkPlanner.View.MainPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="WorkPlanner.Interface.Ipopulator&lt;T&gt;" Collapsed="true">
+    <Position X="11.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\Ipopulator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkPlanner.Persistency.IwebApiWorkplanner&lt;T&gt;" Collapsed="true">
+    <Position X="13" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAgAAAAAAAAAAAAAAAAAAAAAAgAAAAAAIAAAIA=</HashCode>
+      <FileName>Persistency\IwebApiWorkplanner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
