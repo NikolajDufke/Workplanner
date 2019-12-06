@@ -11,6 +11,7 @@ using WorkPlanner.Catalog;
 using WorkPlanner.Model;
 using WorkPlanner.View;
 using WorkPlanner.ViewModel;
+using WorkPlanner.Common;
 
 namespace WorkPlanner.Handler
 {
@@ -25,6 +26,7 @@ namespace WorkPlanner.Handler
         {
             _loginPageViewModel = loginpageevm;
             this._loginPageViewModel = loginpageevm;
+            RemoveEmployeeWithoutUser();
         }
         #endregion
         #region Methods
@@ -71,6 +73,20 @@ namespace WorkPlanner.Handler
                 _loginPageViewModel.Message = "Wrong password";
             }
         }
+
+        public void RemoveEmployeeWithoutUser()
+        {
+            UpdateObsCollection updater = new UpdateObsCollection();
+            updater.GetEmployeesAsync(_loginPageViewModel.EmployeeCollection);
+            foreach (Employees employee in _loginPageViewModel.EmployeeCollection)
+            {
+                if (employee.UserID == null)
+                {
+                    _loginPageViewModel.EmployeeCollection.Remove(employee);
+                }
+            }
+        }
+
         #endregion
     }
 }

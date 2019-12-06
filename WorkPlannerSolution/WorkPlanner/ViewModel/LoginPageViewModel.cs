@@ -26,7 +26,6 @@ namespace WorkPlanner.ViewModel
         public LoginPageViewModel()
         {
             _employeeCatalog = new ObservableCollection<Employees>();
-            GetEmployeesAsync();
             _loginHander = new LoginHandler(this);
         }
         #endregion
@@ -78,6 +77,7 @@ namespace WorkPlanner.ViewModel
         /// </summary>
         public async void GetEmployeesAsync()
         {
+            _employeeCatalog.Clear();
             List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
             foreach (Employees e in listE)
             {

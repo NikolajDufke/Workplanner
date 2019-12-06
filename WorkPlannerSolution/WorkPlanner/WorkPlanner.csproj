@@ -123,10 +123,10 @@
     <Compile Include="Catalog\CatalogsSingleton - generic.cs" />
     <Compile Include="Catalog\CatalogsSingleton.cs" />
     <Compile Include="Common\GetDatesFromWeekNumber.cs" />
-    <Compile Include="Common\PlamentIndexDictionary.cs" />
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\UpdateObsCollection.cs" />
     <Compile Include="Converter\DateTimeConverter.cs" />
     <Compile Include="Converter\Class1.cs" />
     <Compile Include="Factories\PropertyHelpersFactory.cs" />
@@ -149,6 +149,7 @@
     <Compile Include="Model\Databasemodels\Users.cs" />
     <Compile Include="Model\RowViewItems.cs" />
     <Compile Include="Model\Databasemodels\Worktimes.cs" />
+    <Compile Include="Proxy\WorktimeProxy.cs" />
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\EmployeePageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />

@@ -39,9 +39,6 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-
-       
-     
         <Grid Grid.Column="1"
               Background="LightSteelBlue">
                 <TextBlock 
@@ -55,22 +52,23 @@
 
         <Grid Grid.Row="1" Grid.Column="1" Background="LightGray">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" 
+            <StackPanel>
+                <TextBlock Text="{Binding Year,Mode=TwoWay}" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
-                <AppBarButton Icon="Previous"  Margin="0,0,0,10" VerticalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
-                    <TextBlock Text="{Binding WeekNumber}" VerticalAlignment="Center"/>
+                    <AppBarButton Icon="Previous" Command="{Binding PreviousWeekCommand}" Margin="0,0,0,10" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <TextBlock Text="{Binding WeekNumber ,Mode=TwoWay}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <AppBarButton Icon="Next" Command="{Binding NextWeekCommand}" Margin="0,0,0,0" VerticalAlignment="Center"/>
                 </StackPanel>
-                <AppBarButton Icon="Next" Margin="0,0,0,0" VerticalAlignment="Center"/>
             </StackPanel>
-
-
 
 
             <Grid Grid.Row="1">
@@ -120,7 +118,7 @@
                 </StackPanel>
          
 
-                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="10" >
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="100" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="55"></ColumnDefinition>
@@ -140,7 +138,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
-                        <ItemsControl Grid.Column="1" ItemsSource="{Binding Weekday1Collection}" Margin="0,0,0,0">
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding Weekday1Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel></StackPanel>
@@ -166,7 +164,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <ItemsControl Grid.Column="2" ItemsSource="{Binding Weekday2Collection}" Margin="0,0,0,0">
+                        <ItemsControl Grid.Column="2" ItemsSource="{Binding Weekday2Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel></StackPanel>
@@ -192,7 +190,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <ItemsControl Grid.Column="3" ItemsSource="{Binding Weekday3Collection}" Margin="0,0,0,0">
+                        <ItemsControl Grid.Column="3" ItemsSource="{Binding Weekday3Collection , Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel></StackPanel>
@@ -218,7 +216,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <ItemsControl Grid.Column="4" ItemsSource="{Binding Weekday4Collection}" Margin="0,0,0,0">
+                        <ItemsControl Grid.Column="4" ItemsSource="{Binding Weekday4Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel></StackPanel>
@@ -244,7 +242,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <ItemsControl Grid.Column="5" ItemsSource="{Binding Weekday5Collection}" Margin="0,0,0,0">
+                        <ItemsControl Grid.Column="5" ItemsSource="{Binding Weekday5Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel></StackPanel>
@@ -270,7 +268,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <ItemsControl Grid.Column="6" ItemsSource="{Binding Weekday6Collection}" Margin="0,0,0,0">
+                        <ItemsControl Grid.Column="6" ItemsSource="{Binding Weekday6Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel></StackPanel>
@@ -296,7 +294,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <ItemsControl Grid.Column="7" ItemsSource="{Binding Weekday7Collection}" Margin="0,0,0,0">
+                        <ItemsControl Grid.Column="7" ItemsSource="{Binding Weekday7Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel></StackPanel>
