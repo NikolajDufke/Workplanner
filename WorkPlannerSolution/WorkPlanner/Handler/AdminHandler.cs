@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Authentication.Web.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
@@ -35,6 +36,7 @@ namespace WorkPlanner.Handler
         private Dictionary<int, Employees> _employeePlacementIndexex;
         private Dictionary<int, string> _colors;
         private List<Color> _manyColors;
+        
 
 
         public AdminHandler(AdminPageViewModel ViewModel)
@@ -130,6 +132,22 @@ namespace WorkPlanner.Handler
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
 
+
+            UpdateObsCollection updater = new UpdateObsCollection();
+            updater.GetEmployeesAsync(_vm.Employees);
+        }
+
+        public void ChangeEmployeeVisibility()
+        {
+
+            if (_vm.EmployeeVisibility == Visibility.Collapsed)
+            {
+                _vm.EmployeeVisibility = Visibility.Visible;
+            }
+            else
+            {
+                _vm.EmployeeVisibility = Visibility.Collapsed;
+            }
         }
 
 
@@ -388,10 +406,10 @@ namespace WorkPlanner.Handler
                 }
             }
         }
-
+        
 
     }
-
+    
 
 }
 

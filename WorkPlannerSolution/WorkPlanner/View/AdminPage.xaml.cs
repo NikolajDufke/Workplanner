@@ -31,29 +31,15 @@ namespace WorkPlanner.View
             //viewModel = new AdminPageViewModel();
         }
 
-        private void AddButton(object sender, RoutedEventArgs e)
+        private void AddWorkTimeButton(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(CreateWorkTimePage));
         }
 
-        /// <summary>
-        /// En knap der gør en del af viewet synlig/usynligt.
-        /// </summary>
-       private void ButtonOpen(object sender, RoutedEventArgs e) 
-        {
-            if (DroppedPanel.Visibility == Visibility.Collapsed)
-            {
-                DroppedPanel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                DroppedPanel.Visibility = Visibility.Collapsed;
-            }
-        }
-
+       
         private void CreateButton(object sender, RoutedEventArgs e)
         {
-            AddButton(sender, e);
+            Frame.Navigate(typeof(CreateEmployeePage));
         }
 
         private void LogOut(object sender, RoutedEventArgs e)

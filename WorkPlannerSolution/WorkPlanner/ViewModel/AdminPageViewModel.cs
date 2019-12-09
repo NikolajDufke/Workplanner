@@ -6,7 +6,10 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Windows.UI.Xaml;
 using WorkPlanner.Catalog;
+using WorkPlanner.Common;
 using WorkPlanner.Handler;
 using WorkPlanner.Model;
 
@@ -41,7 +44,7 @@ namespace WorkPlanner.ViewModel
             _employees = new ObservableCollection<Employees>();
 
             _handler = new AdminHandler(this);
-          
+            _employeeVisibility = Visibility.Collapsed;
             _handler.SetDaysAndDates();
         }
 
@@ -50,6 +53,27 @@ namespace WorkPlanner.ViewModel
             get {return _employees; }
             set { _employees = value; }
         }
+
+        private Visibility _employeeVisibility;
+
+        public Visibility EmployeeVisibility
+        {
+            get { return _employeeVisibility; }
+            set
+            {
+                _employeeVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ICommand _changeVisibility;
+
+        public ICommand ChangeVisibility
+            {
+                get { return _changeVisibility ?? (_changeVisibility = new RelayCommand(_handler.ChangeEmployeeVisibility)); }
+                set { _changeVisibility = value; }
+            }
+
 
         private ObservableCollection<DateTime> _headers;
 
