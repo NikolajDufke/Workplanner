@@ -29,7 +29,7 @@ namespace WorkPlanner.View
 
         private void Return(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(AdminPage));
         }
     }
 }
