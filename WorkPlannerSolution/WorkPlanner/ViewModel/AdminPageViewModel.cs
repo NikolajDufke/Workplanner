@@ -7,8 +7,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WorkPlanner.Common;
+using Windows.UI.Xaml;
 using WorkPlanner.Catalog;
+using WorkPlanner.Common;
 using WorkPlanner.Handler;
 using WorkPlanner.Model;
 
@@ -37,7 +38,7 @@ namespace WorkPlanner.ViewModel
         private ICommand _nextWeekCommand;
         private ICommand _previousWeekCommand;
         private ObservableCollection<Employees> _employees;
-
+        private ObservableCollection<ColorEmployeePair> _colorEmployeePair;
 
 
         public AdminPageViewModel()
@@ -54,16 +55,49 @@ namespace WorkPlanner.ViewModel
             _employees = new ObservableCollection<Employees>();
 
             _handler = new AdminHandler(this);
+            _employeeVisibility = Visibility.Collapsed;
+            _handler.SetDaysAndDates();
         }
 
-        #region Properties
-
         #region General
+
+        public ObservableCollection<ColorEmployeePair> ColorEmployeePair
+        {
+            get { return _colorEmployeePair; }
+            set { _colorEmployeePair = value; }
+        }
+
+
         public ObservableCollection<Employees> Employees
         {
             get {return _employees; }
             set { _employees = value; }
         }
+        /// <summary>
+        /// Property som grid i viewet er bundet til om, gridet er synligt/usynligt og ændrer property hvis der bliver trykket på "open" knappen.
+        /// </summary>
+        private Visibility _employeeVisibility;
+
+        public Visibility EmployeeVisibility
+        {
+            get { return _employeeVisibility; }
+            set
+            {
+                _employeeVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+        /// <summary>
+        /// ICommand, som kører metoden ChangeEmployeeVisibility i AdminHandler når man trykker på "open" knappen i viewet.
+        /// </summary>
+        private ICommand _changeVisibility;
+
+        public ICommand ChangeVisibility
+            {
+                get { return _changeVisibility ?? (_changeVisibility = new RelayCommand(_handler.ChangeEmployeeVisibility)); }
+                set { _changeVisibility = value; }
+            }
+
 
         public ObservableCollection<DateTime> Headers
         {
@@ -239,8 +273,6 @@ namespace WorkPlanner.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        #endregion
 
         #endregion
 

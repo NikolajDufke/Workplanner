@@ -20,6 +20,10 @@
     <Style x:Key="TimeSpacer" TargetType="TextBlock">
 <Setter Property="Margin" Value="100"></Setter>
     </Style>
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Height" Value="35"></Setter>
+    </Style>
    
     <viewmodel:AdminPageViewModel x:Key="AdminPageViewModel" />
     </Page.Resources>
@@ -34,9 +38,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="1"
@@ -52,21 +56,24 @@
 
         <Grid Grid.Row="1" Grid.Column="1" Background="LightGray">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <StackPanel>
-                <TextBlock Text="{Binding Year,Mode=TwoWay}" VerticalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
-                    <AppBarButton Icon="Previous" Command="{Binding PreviousWeekCommand}" Margin="0,0,0,10" VerticalAlignment="Center"/>
-                    <StackPanel Orientation="Horizontal">
+                 HorizontalAlignment="Center" >
+                    <AppBarButton Icon="Previous" Command="{Binding PreviousWeekCommand}" />
+                    <StackPanel VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            
+                        <TextBlock Text="{Binding Year,Mode=TwoWay}" HorizontalAlignment="Center"/>
                         <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
                         <TextBlock Text="{Binding WeekNumber ,Mode=TwoWay}" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <AppBarButton Icon="Next" Command="{Binding NextWeekCommand}" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    <AppBarButton Icon="Next" Command="{Binding NextWeekCommand}" />
                 </StackPanel>
             </StackPanel>
 
@@ -80,7 +87,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -141,7 +148,7 @@
                         <ItemsControl Grid.Column="1" ItemsSource="{Binding Weekday1Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel></StackPanel>
+                                    <StackPanel HorizontalAlignment="Center"></StackPanel>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -167,7 +174,7 @@
                         <ItemsControl Grid.Column="2" ItemsSource="{Binding Weekday2Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel></StackPanel>
+                                    <StackPanel HorizontalAlignment="Center"></StackPanel>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -193,7 +200,7 @@
                         <ItemsControl Grid.Column="3" ItemsSource="{Binding Weekday3Collection , Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel></StackPanel>
+                                    <StackPanel HorizontalAlignment="Center"></StackPanel>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -219,7 +226,7 @@
                         <ItemsControl Grid.Column="4" ItemsSource="{Binding Weekday4Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel></StackPanel>
+                                    <StackPanel HorizontalAlignment="Center"></StackPanel>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -245,7 +252,7 @@
                         <ItemsControl Grid.Column="5" ItemsSource="{Binding Weekday5Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel></StackPanel>
+                                    <StackPanel HorizontalAlignment="Center"></StackPanel>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -271,7 +278,7 @@
                         <ItemsControl Grid.Column="6" ItemsSource="{Binding Weekday6Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel></StackPanel>
+                                    <StackPanel HorizontalAlignment="Center"></StackPanel>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -297,7 +304,7 @@
                         <ItemsControl Grid.Column="7" ItemsSource="{Binding Weekday7Collection, Mode=TwoWay}" Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel></StackPanel>
+                                    <StackPanel HorizontalAlignment="Center"></StackPanel>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -322,31 +329,78 @@
                     </Grid>
                 </ScrollViewer>
             </Grid>
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding ColorEmployeePair}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+                            <Ellipse Fill="{Binding Color}" Height="10" Width="10"></Ellipse>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
         </Grid>
-        <Grid HorizontalAlignment="Center" Height="109" VerticalAlignment="Top" Width="748" Grid.Column="1" Margin="0,0,0,0" Grid.Row="2">
-            <Button Content="Open" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Background="Gray" Click="ButtonOpen"/>
-            <Button Content="Add" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,350,0" Background="Gray" Click="AddButton"/>
-            <Button Content="Edit" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="350,0,0,0" Background="Gray"/>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Content="Add Worktime"  HorizontalAlignment="Left" Background="Gray" Click="AddWorkTimeButton"/>
+            <Button Content="Edit Worktime" HorizontalAlignment="Center" Background="Gray"/>
+            <Button Grid.Row="1" Content="Open" HorizontalAlignment="Right" Background="Gray" Command="{Binding ChangeVisibility}"/>
         </Grid>
-        <Grid Name="DroppedPanel" HorizontalAlignment="Left" Height="359" VerticalAlignment="Top" Width="737" Margin="5,110,0,0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Visibility="Visible">
-            <Button Content="Create" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,100" Background="Gray" Click="CreateButton"/>
-            <Button Content="Edit" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="250,0,0,100" Background="Gray"/>
-            <Button Content="Log Out" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,100" Background="Gray" Click="LogOut"/>
-            <ListView HorizontalAlignment="Center" Height="200" VerticalAlignment="Top" Width="700" Margin="0,10,0,0" BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}">
+        <Grid Name="DroppedPanel" Grid.Row="1" Visibility="{Binding EmployeeVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ListView BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Height="250" Width="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
-                                            <TextBlock Margin="10,0,0,0" Text="{Binding FirstName}" TextWrapping="Wrap"/>
-                                            <TextBlock Margin="20,0,0,0" Text="{Binding LastName}" TextWrapping="Wrap"/>
-                                            <TextBlock Margin="30,0,0,0" Text="{Binding Email}" TextWrapping="Wrap"/>
-                                            <TextBlock Margin="40,0,0,0" Text="{Binding PhoneNumber}" TextWrapping="Wrap"/>
-                                            <TextBlock Margin="50,0,0,0" Text="{Binding Adress}" TextWrapping="Wrap"/>
-                                            <TextBlock Margin="60,0,0,0" Text="{Binding City}" TextWrapping="Wrap"/>
-                                            <TextBlock Margin="70,0,0,0" Text="{Binding ZipPostal}" TextWrapping="Wrap"/>
-                                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>-->
+                                <TextBlock Text="{Binding FirstName}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
+                                <TextBlock Grid.Column="1" Text="{Binding LastName}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding Email}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" Width="150"/>
+                                <TextBlock Grid.Column="3" Text="{Binding PhoneNumber}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
+                                <TextBlock Grid.Column="4" Text="{Binding Adress}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
+                                <TextBlock Grid.Column="5" Text="{Binding City}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
+                                <TextBlock Grid.Column="6" Text="{Binding ZipPostal}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Content="Create" Background="Gray" Click="CreateButton"/>
+                 <Button Content="Edit" Background="Gray" HorizontalAlignment="Center"/>
+                 <Button Content="Log Out" Background="Gray" Click="LogOut" HorizontalAlignment="Right"/>
+            </Grid>
         </Grid>
+    </Grid>
     </Grid>
 </Page>
