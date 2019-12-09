@@ -103,7 +103,10 @@ namespace WorkPlanner.Handler
             UpdateObsCollection updater = new UpdateObsCollection();
             updater.GetEmployeesAsync(_vm.Employees);
         }
-
+        /// <summary>
+        /// En metode som ændrer det synligheden på et grid i vores view
+        /// Metoden bruger viewmodellens property - EmployeeVisibility
+        /// </summary>
         public void ChangeEmployeeVisibility()
         {
 
@@ -458,5 +461,4 @@ namespace WorkPlanner.Handler
         #endregion
     }
 }
-
-
+#endregion

@@ -266,8 +266,6 @@ namespace WorkPlanner.ViewModel
 
         #endregion
 
-        #endregion
-
         #region Commands
                 public ICommand NextWeekCommand
                 {
