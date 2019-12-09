@@ -27,7 +27,7 @@
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="200"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="30"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
         </Style>
@@ -36,34 +36,47 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Background="LightBlue" BorderBrush="Black" BorderThickness="5">
-            <TextBlock Style="{StaticResource TitleStyle}" Text="Personal Informations" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
-                <TextBlock Text="FirstName:" Style="{Binding TextBlockStyle}"/>
+        <Grid Grid.Column="1" Grid.Row="2" Background="LightBlue" BorderBrush="Black" BorderThickness="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Style="{StaticResource TitleStyle}" Text="Personal Informations" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2"/>
+            
+            <StackPanel Grid.Column="0" Orientation="Vertical" Grid.Row="1">
+                <TextBlock Text="FirstName:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
+                <TextBlock Text="LastName:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
+                <TextBlock Text="Address:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
+                <TextBlock Text="City:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
+                <TextBlock Text="ZipPostal:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
+                <TextBlock Text="PhoneNumber:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
+                <TextBlock Text="Email:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical" Grid.Row="1">
                 <TextBlock Text="{Binding EmployeeProp.FirstName}" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="LastName:" Style="{Binding TextBlockStyle}"/>
                 <TextBlock Text="{Binding EmployeeProp.LastName}" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="Address:" Style="{Binding TextBlockStyle}"/>
                 <TextBlock Text="{Binding EmployeeProp.Adress}" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="City:" Style="{Binding TextBlockStyle}"/>
                 <TextBlock Text="{Binding EmployeeProp.City}" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="ZipPostal:" Style="{Binding TextBlockStyle}"/>
                 <TextBlock Text="{Binding EmployeeProp.ZipPostal}" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="PhoneNumber:" Style="{Binding TextBlockStyle}"/>
                 <TextBlock Text="{Binding EmployeeProp.PhoneNumber}" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="Email:" Style="{Binding TextBlockStyle}"/>
                 <TextBlock Text="{Binding EmployeeProp.Email}" Style="{StaticResource TextBlockStyle}"/>
-        </StackPanel>
-
-
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </Page>

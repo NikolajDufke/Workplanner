@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Authentication.Web.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
@@ -93,7 +94,26 @@ namespace WorkPlanner.Handler
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            #endregion
+
+
+            UpdateObsCollection updater = new UpdateObsCollection();
+            updater.GetEmployeesAsync(_vm.Employees);
+        }
+        /// <summary>
+        /// En metode som ændrer synligheden på et grid i vores view
+        /// Metoden bruger viewmodellens property - EmployeeVisibility
+        /// </summary>
+        public void ChangeEmployeeVisibility()
+        {
+
+            if (_vm.EmployeeVisibility == Visibility.Collapsed)
+            {
+                _vm.EmployeeVisibility = Visibility.Visible;
+            }
+            else
+            {
+                _vm.EmployeeVisibility = Visibility.Collapsed;
+            }
         }
          
         #region prperties 
@@ -448,5 +468,4 @@ namespace WorkPlanner.Handler
         #endregion
     }
 }
-
-
+#endregion

@@ -41,14 +41,7 @@ namespace WorkPlanner.Handler
                 Convert.ToString(_loginPageViewModel.SelEmployees.UserID));
             if (_selUser.UserPassword == _loginPageViewModel.Password)
             {
-                if (_selUser.AccessLevel == 0)
-                {
-                    Frame frame = new Frame();
-                    frame.Navigate(typeof(AdminPage));
-                    Window.Current.Content = frame;
-                    Window.Current.Activate();
-                }
-                else if (_selUser.AccessLevel == 1)
+                if (_selUser.AccessLevel == 1)
                 {
                     Frame frame = new Frame();
                     frame.Navigate(typeof(AdminPage));
@@ -62,9 +55,12 @@ namespace WorkPlanner.Handler
                     Window.Current.Content = frame;
                     Window.Current.Activate();
                 }
-                else if (_selUser.AccessLevel == 3)
+                else
                 {
-
+                    Frame frame = new Frame();
+                    frame.Navigate(typeof(MainPage));
+                    Window.Current.Content = frame;
+                    Window.Current.Activate();
                 }
             }
 
