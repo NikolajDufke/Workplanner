@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,13 @@ namespace WorkPlanner.Model
                 _eventMembers[employee.EmployeeID]=employee;
         }
 
+        public bool Update
+        {
+            get
+            {
+              return _eventMembers.Count > 0 ?  true :  false;
+            }
+        }
       
     }
 }

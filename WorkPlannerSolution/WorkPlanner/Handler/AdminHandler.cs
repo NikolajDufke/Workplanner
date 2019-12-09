@@ -12,13 +12,11 @@ using Windows.UI.Xaml.Media.Animation;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Model;
+using WorkPlanner.Proxy;
 using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Handler
 {
-
-
-
     public class AdminHandler
     {
         private AdminPageViewModel _vm;
@@ -35,7 +33,7 @@ namespace WorkPlanner.Handler
         private Dictionary<int, Employees> _employeePlacementIndexex;
         private Dictionary<int, string> _colors;
         private List<Color> _manyColors;
-
+        private Proxy.WorktimeProxy _catalogInterface;
 
         public AdminHandler(AdminPageViewModel ViewModel)
         {
@@ -43,6 +41,10 @@ namespace WorkPlanner.Handler
             _employeePlacementIndexex = new Dictionary<int, Employees>();
             _starttime = new TimeSpan(8, 00, 0);
             _endtime = new TimeSpan(23, 00, 0);
+            _catalogInterface = new WorktimeProxy();
+           
+
+            #region timePlanCollection initialization
             _timePlanCollection1 = new Dictionary<TimeSpan, TimeIntervalDetails>();
             _timePlanCollection2 = new Dictionary<TimeSpan, TimeIntervalDetails>();
             _timePlanCollection3 = new Dictionary<TimeSpan, TimeIntervalDetails>();
@@ -50,66 +52,32 @@ namespace WorkPlanner.Handler
             _timePlanCollection5 = new Dictionary<TimeSpan, TimeIntervalDetails>();
             _timePlanCollection6 = new Dictionary<TimeSpan, TimeIntervalDetails>();
             _timePlanCollection7 = new Dictionary<TimeSpan, TimeIntervalDetails>();
+            #endregion
 
-            _vm = ViewModel;
-
-           
-            _vm.WeekNumber = DateTime.Now.DayOfYear / 7;
-
-            _vm.Headers.Clear();
-            foreach (var date in GetDatesFromWeekNumber.GetDates(_vm.WeekNumber))
-            {
-                _vm.Headers.Add(date);
-            }
-
-            //_colors = new Dictionary<int, Color>();
-
-            //_colors.Add(1, Color.DarkMagenta);
-            //_colors.Add(2, Color.DarkOrange);
-            //_colors.Add(3, Color.DarkGreen);
-            //_colors.Add(4, Color.Aqua);
-            //_colors.Add(5, Color.Indigo);
-            //_colors.Add(6, Color.Plum);
-            //_colors.Add(7, Color.MediumPurple);
-
+            #region Color Selection
             _colors = new Dictionary<int, string>();
-
-            _colors.Add(1,"DarkMagenta");
+            _colors.Add(1, "DarkMagenta");
             _colors.Add(2, "DarkOrange");
             _colors.Add(3, "DarkGreen");
             _colors.Add(4, "Aqua");
             _colors.Add(5, "Indigo");
             _colors.Add(6, "Plum");
             _colors.Add(7, "MediumPurple");
+            #endregion
 
+            _vm = ViewModel;
+            _vm.WeekNumber = DateTime.Now.DayOfYear / 7;
+            _vm.Year = DateTime.Now.Year.ToString();
+            LoadCalenderDetailsAsync();
 
             SetTimes();
             PululateTimePlanCollectionsAsync();
 
+            #region test data
 
 
 
-            //test data
 
-
-
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<Color>() { Color.Blue, Color.Red, Color.Yellow } });
 
 
             //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
@@ -129,23 +97,10 @@ namespace WorkPlanner.Handler
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-
+            #endregion
         }
 
-
-        public void SetDaysAndDates()
-        {
-
-            _vm.Day1Header = _vm.Headers[0];
-            _vm.Day2Header = _vm.Headers[1];
-            _vm.Day3Header = _vm.Headers[2];
-            _vm.Day4Header = _vm.Headers[3];
-            _vm.Day5Header = _vm.Headers[4];
-            _vm.Day6Header = _vm.Headers[5];
-            _vm.Day7Header = _vm.Headers[6];
-
-        }
-
+        #region prperties 
 
         public TimeSpan StartTimeSpan
         {
@@ -173,14 +128,84 @@ namespace WorkPlanner.Handler
             }
         }
 
-        private int _uge;
+                #endregion
 
-        public int Uge
+        #region LoadDetails
+
+        /// <summary>
+        /// Står for at loade calenderen med til datoer og events.
+        /// </summary>
+        private async void LoadCalenderDetailsAsync()
         {
-            get { return _uge; }
-            set { _uge = value; }
+            _vm.Headers.Clear();
+            foreach (var date in GetDatesFromWeekNumber.GetDates(_vm.WeekNumber))
+            {
+                _vm.Headers.Add(date);
+            }
+
+            //Sætter yå ud fra den første dato.
+            //TODO gør at den finder år ud fra alle datoer og skriver 2 årstal på når vi er i ugen omkring årsskiftet.
+            if (_vm.Year != _vm.Headers[1].Year.ToString())
+            {
+                _vm.Year = _vm.Headers[1].Year.ToString();
+            }
+
+           
+
+            SetTimes();
+            await PululateTimePlanCollectionsAsync();
+            SetDaysAndDates();
+            
         }
 
+        /// <summary>
+        /// Addere ugenummer med 1 og opdatere viewet med ny datoer og events.
+        /// </summary>
+        public void AddWeekNumber()
+        {
+           var t=  _vm.Day1Header.DayOfYear;
+            DateTime nextWeek = _vm.Day1Header;
+            nextWeek = nextWeek.AddDays(7);
+            _vm.WeekNumber = nextWeek.DayOfYear / 7;
+            LoadCalenderDetailsAsync();
+            
+        }
+
+        /// <summary>
+        /// Subtraktion af ugenummer med 1 og opdatere viewet med ny datoer og events.
+        /// </summary>
+        public void SubstractWeekNumber()
+        {
+            var t = _vm.Day1Header.DayOfYear;
+            DateTime nextWeek = _vm.Day1Header;
+            nextWeek = nextWeek.Subtract(TimeSpan.FromDays(7));
+            _vm.WeekNumber = nextWeek.DayOfYear / 7;
+            LoadCalenderDetailsAsync();
+        }
+
+        #endregion
+
+        #region Opdatering af viewet 
+
+        /// <summary>
+        /// Sætter alle headers med datoer fra headers collection
+        /// </summary>
+        public void SetDaysAndDates()
+        {
+            _vm.Day1Header = _vm.Headers[0];
+            _vm.Day2Header = _vm.Headers[1];
+            _vm.Day3Header = _vm.Headers[2];
+            _vm.Day4Header = _vm.Headers[3];
+            _vm.Day5Header = _vm.Headers[4];
+            _vm.Day6Header = _vm.Headers[5];
+            _vm.Day7Header = _vm.Headers[6];
+
+        }
+
+        /// <summary>
+        /// Opdatere tiderne på viewet og i timePlanCollections
+        /// </summary>
+        /// <param name="intervalInMinutes"></param>
         public void SetTimes(int intervalInMinutes = 30)
         {
             _vm.Times.Clear();
@@ -205,6 +230,9 @@ namespace WorkPlanner.Handler
             }
         }
 
+        /// <summary>
+        /// Opdatere viewet med tidsplanen fra TimePlanCollection.
+        /// </summary>
         public void UpdateTimePlan()
         {
             _vm.Weekday1Collection.Clear();
@@ -259,50 +287,68 @@ namespace WorkPlanner.Handler
                 }
 
                 headerindex++;
-
             }
          }
 
+        /// <summary>
+        /// Tilføjer en DayCollection i viewet med data fra en TimePlanCollection
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="collectionToUpdate"></param>
         private void AddToView(Dictionary<TimeSpan, TimeIntervalDetails> collection, ObservableCollection<EventElement> collectionToUpdate)
         {
+            
+
             foreach (TimeIntervalDetails tp in collection.Values)
             {
-                var e = new EventElement();
-                for (int i = 1; i < _employeePlacementIndexex.Count +1; i++)
-                {
-                      if (tp.GetMembers.Contains(_employeePlacementIndexex[i]))
+                
+                    var e = new EventElement();
+                    if (tp.Update)
                     {
-                        e.Colors.Add(_colors[i]);
-                    }
-                    else
+                    for (int i = 1; i < _employeePlacementIndexex.Count + 1; i++)
                     {
-                        e.Colors.Add("");
+
+                        // Vi matcher alle employees 
+                        bool contains = false;
+                        foreach (Employees member in tp.GetMembers)
+                        {
+                            foreach (Employees Eplacement in _employeePlacementIndexex.Values)
+                            {
+                                if (member.EmployeeID == Eplacement.EmployeeID)
+                                    contains = true;
+                            }
+                        }
+
+                        if (contains)
+                        {
+                            e.Colors.Add(_colors[i]);
+                        }
+                        else
+                        {
+                            e.Colors.Add("");
+                        }
                     }
                 }
 
                 collectionToUpdate.Add(e);
-
             }
-
         }
-    
 
-    private async void PululateTimePlanCollectionsAsync()
-        {
-            List<Worktimes> Worktimecatalog = await CatalogsSingleton.Instance.WorktimeCatalog.GetAll();
-           
+        /// <summary>
+        /// Finder worktimes i Databasen og sætter dem ind i TimeplanColletions.
+        /// </summary>
+        /// <returns></returns>
+        private async Task PululateTimePlanCollectionsAsync()
+        {  
             int headerindex = 1;
             foreach (var header in _vm.Headers)
             {
-               
+                //Her finder vi alle worktimes som er på en given dag.
+                List<Worktimes> WorktimesThisDay = _catalogInterface.GetAllWorktimesOfDay(header.Date);
 
-                List<Worktimes> result = Worktimecatalog.FindAll(x =>
-                    DateTime.Compare(Converter.DateTimeConverter.TrimToDateOnly(x.Date),
-                        Converter.DateTimeConverter.TrimToDateOnly(header)) == 0);
-
-                foreach (Worktimes worktime in result)
+                foreach (Worktimes worktime in WorktimesThisDay)
                 {
-
+                    // Her tilføjer vi de worktimes til timePlanCollections. dato og cællerne følger hindanden ved hjælp af headerindex
                     switch (headerindex)
                     {
                         case 1:
@@ -347,28 +393,32 @@ namespace WorkPlanner.Handler
                 headerindex++;
             }
 
+            // Her opdatere vi vievet.
              UpdateTimePlan();
         }
 
+        /// <summary>
+        /// Her tiltøjer vi timePlanCollections til viewet.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="worktime"></param>
+        /// <returns></returns>
         private async Task FindAndAddEmployeesToTimePlanAsync(Dictionary<TimeSpan, TimeIntervalDetails> collection,
             Worktimes worktime)
         {
+            //først finder vi empluyee id på den employee som har worktimes
             var EmployeeCatalog = CatalogsSingleton.Instance.EmployeeCatalog;
             int id = worktime.EmployeeID;
-            Employees e = await EmployeeCatalog.GetSingleAsync(id.ToString());
-            
+            Employees e = await EmployeeCatalog.GetSingleAsync(id.ToString());           
 
-
+            //Herefter kigger vi igennem alle tiderne og sætter employeen på når det svare til hans tidsplan.
             for (double i = worktime.TimeStart.TimeOfDay.TotalMinutes; i < worktime.TimeEnd.TimeOfDay.TotalMinutes; i += 30)
             {
                 TimeSpan t = TimeSpan.FromMinutes(Convert.ToInt32(i));
-                
 
                 if (collection.ContainsKey(t))
                 {
-                    
-
-
+                    //Hen finder vi ud af om han alle rede findes i _employeePlacementIndexex. dette bestemmer hvilken rækkefølge de bliver vis i på viewet.
                     bool contains = false;
                     foreach (Employees eFromIndex in _employeePlacementIndexex.Values)
                     {
@@ -378,7 +428,7 @@ namespace WorkPlanner.Handler
                             contains = true;
                         }
                     }
-
+     
                     if (!contains)
                     {
                         _employeePlacementIndexex[_employeePlacementIndexex.Count + 1] = e;
@@ -388,11 +438,8 @@ namespace WorkPlanner.Handler
                 }
             }
         }
-
-
+        #endregion
     }
-
-
 }
 
 

@@ -83,7 +83,7 @@
                 <TextBlock Text="{Binding Message}"></TextBlock>
             </StackPanel>
             <StackPanel Style="{StaticResource StackPanelStyle}">
-                <AppBarButton  Click="Button_Click" Icon="Back" Label="Back"/>
+                <AppBarButton  Click="ReturnToAdminPageButton" Icon="Back" Label="Back"/>
                 <AppBarButton Command="{Binding CreateEmployeeCommand}" HorizontalAlignment="Right" Grid.Row="3" Icon="Add" Label="Add"/>
             </StackPanel>
         </StackPanel>
