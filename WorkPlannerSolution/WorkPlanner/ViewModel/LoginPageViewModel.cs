@@ -71,5 +71,19 @@ namespace WorkPlanner.ViewModel
             }
         }
         #endregion
+        #region Methods
+        /// <summary>
+        /// Gets All Employees and adds them to the observable collection
+        /// </summary>
+        public async void GetEmployeesAsync()
+        {
+            _employeeCatalog.Clear();
+            List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
+            foreach (Employees e in listE)
+            {
+                _employeeCatalog.Add(e);
+            }
+        }
+        #endregion
     }
 }

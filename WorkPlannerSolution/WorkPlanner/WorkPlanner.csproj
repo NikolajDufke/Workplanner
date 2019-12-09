@@ -123,7 +123,6 @@
     <Compile Include="Catalog\CatalogsSingleton - generic.cs" />
     <Compile Include="Catalog\CatalogsSingleton.cs" />
     <Compile Include="Common\GetDatesFromWeekNumber.cs" />
-    <Compile Include="Common\PlamentIndexDictionary.cs" />
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
@@ -150,7 +149,9 @@
     <Compile Include="Model\Databasemodels\Users.cs" />
     <Compile Include="Model\RowViewItems.cs" />
     <Compile Include="Model\Databasemodels\Worktimes.cs" />
+    <Compile Include="Proxy\WorktimeProxy.cs" />
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
+    <Compile Include="ViewModel\EmployeePageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
@@ -167,6 +168,9 @@
     <Compile Include="View\CreateWorkTimePage.xaml.cs">
       <DependentUpon>CreateWorkTimePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EmployeePage.xaml.cs">
+      <DependentUpon>EmployeePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -179,6 +183,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Class Diagram\ClassDiagram.cd" />
     <None Include="WorkPlanner_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreateWorkTimePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

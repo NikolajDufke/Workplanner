@@ -20,16 +20,11 @@ namespace WorkPlanner.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class CreateEmployeePage : Page
+    public sealed partial class EmployeePage : Page
     {
-        public CreateEmployeePage()
+        public EmployeePage()
         {
             this.InitializeComponent();
-        }
-
-        private void ReturnToAdminPageButton(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AdminPage));
         }
     }
 }
