@@ -99,8 +99,6 @@ namespace WorkPlanner.ViewModel
             }
 
 
-        private ObservableCollection<DateTime> _headers;
-
         public ObservableCollection<DateTime> Headers
         {
             get { return _headers; }
