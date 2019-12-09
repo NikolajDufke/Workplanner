@@ -27,7 +27,7 @@
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="200"/>
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontSize" Value="25"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
         </Style>
@@ -332,34 +332,36 @@
                 </Grid>
             </Grid>
 
-            <Grid HorizontalAlignment="Center" Height="109" VerticalAlignment="Top" Width="748" Margin="0,0,0,0" Grid.Row="2" Grid.Column="1">
+            <Grid HorizontalAlignment="Center" Height="331" VerticalAlignment="Center" Width="748" Margin="0,0,0,0" Grid.Row="2" Grid.Column="1" Background="LightSteelBlue" Grid.RowSpan="2" >
 
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Style="{StaticResource TitleStyle}" Text="Personal Informations" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2"/>
 
-                <Grid Grid.Column="0" Grid.Row="1" Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">
+                <Grid Grid.Column="0" Grid.Row="1" >
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="187*"/>
+                        <ColumnDefinition Width="173*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0" Orientation="Vertical">
-                        <TextBlock Text="FirstName:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
-                        <TextBlock Text="LastName:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
-                        <TextBlock Text="Address:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
-                        <TextBlock Text="City:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
-                        <TextBlock Text="ZipPostal:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
-                        <TextBlock Text="PhoneNumber:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
-                        <TextBlock Text="Email:" Style="{Binding TextBlockStyle}" Margin="10,0,0,0"/>
+                    <StackPanel Orientation="Vertical" Style="{StaticResource StackPanelStyle}" HorizontalAlignment="Center" Margin="0,0,0,0">
+                        <TextBlock Text="FirstName:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
+                        <TextBlock Text="LastName:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
+                        <TextBlock Text="Address:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
+                        <TextBlock Text="City:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
+                        <TextBlock Text="ZipPostal:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
+                        <TextBlock Text="PhoneNumber:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
+                        <TextBlock Text="Email:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Style="{StaticResource StackPanelStyle}" HorizontalAlignment="Left" Margin="87,0,0,0">
                         <TextBlock Text="{Binding EmployeeProp.FirstName}" Style="{StaticResource TextBlockStyle}"/>
                         <TextBlock Text="{Binding EmployeeProp.LastName}" Style="{StaticResource TextBlockStyle}"/>
                         <TextBlock Text="{Binding EmployeeProp.Adress}" Style="{StaticResource TextBlockStyle}"/>
@@ -373,7 +375,7 @@
             </Grid>
 
         </Grid>
-       
+
     </Grid>
 
 </Page>
