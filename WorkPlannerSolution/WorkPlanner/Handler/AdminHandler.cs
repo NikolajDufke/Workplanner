@@ -30,19 +30,21 @@ namespace WorkPlanner.Handler
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection6;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection7;
         private Dictionary<DateTime, TimeSpan> _times;
-        private Dictionary<int, Employees> _employeePlacementIndexex;
+        private Dictionary<int, Employees> _employeePlacementIndex;
         private Dictionary<int, string> _colors;
         private List<Color> _manyColors;
         private Proxy.WorktimeProxy _catalogInterface;
+        private List<ColorEmployeePair> _cepair;
+
 
         public AdminHandler(AdminPageViewModel ViewModel)
         {
             _times = new Dictionary<DateTime, TimeSpan>();
-            _employeePlacementIndexex = new Dictionary<int, Employees>();
+            _employeePlacementIndex = new Dictionary<int, Employees>();
             _starttime = new TimeSpan(8, 00, 0);
             _endtime = new TimeSpan(23, 00, 0);
             _catalogInterface = new WorktimeProxy();
-           
+            _cepair = new List<ColorEmployeePair>();
 
             #region timePlanCollection initialization
             _timePlanCollection1 = new Dictionary<TimeSpan, TimeIntervalDetails>();
@@ -74,12 +76,6 @@ namespace WorkPlanner.Handler
             PululateTimePlanCollectionsAsync();
 
             #region test data
-
-
-
-
-
-
             //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
@@ -99,7 +95,7 @@ namespace WorkPlanner.Handler
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             #endregion
         }
-
+         
         #region prperties 
 
         public TimeSpan StartTimeSpan
@@ -143,7 +139,7 @@ namespace WorkPlanner.Handler
                 _vm.Headers.Add(date);
             }
 
-            //Sætter yå ud fra den første dato.
+            //Sætter år ud fra den første dato.
             //TODO gør at den finder år ud fra alle datoer og skriver 2 årstal på når vi er i ugen omkring årsskiftet.
             if (_vm.Year != _vm.Headers[1].Year.ToString())
             {
@@ -243,6 +239,17 @@ namespace WorkPlanner.Handler
             _vm.Weekday6Collection.Clear();
             _vm.Weekday7Collection.Clear();
 
+            if (_vm.ColorEmployeePair != null)
+                _vm.ColorEmployeePair.Clear();
+                    else
+                _vm.ColorEmployeePair =
+                    new ObservableCollection<ColorEmployeePair>();
+
+            foreach (var cep in _cepair)
+            {
+                _vm.ColorEmployeePair.Add(cep);
+            }
+
             int headerindex = 1;
             foreach (var header in _vm.Headers)
             {
@@ -305,14 +312,14 @@ namespace WorkPlanner.Handler
                     var e = new EventElement();
                     if (tp.Update)
                     {
-                    for (int i = 1; i < _employeePlacementIndexex.Count + 1; i++)
+                    for (int i = 1; i < _employeePlacementIndex.Count + 1; i++)
                     {
 
                         // Vi matcher alle employees 
                         bool contains = false;
                         foreach (Employees member in tp.GetMembers)
                         {
-                            foreach (Employees Eplacement in _employeePlacementIndexex.Values)
+                            foreach (Employees Eplacement in _employeePlacementIndex.Values)
                             {
                                 if (member.EmployeeID == Eplacement.EmployeeID)
                                     contains = true;
@@ -418,11 +425,10 @@ namespace WorkPlanner.Handler
 
                 if (collection.ContainsKey(t))
                 {
-                    //Hen finder vi ud af om han alle rede findes i _employeePlacementIndexex. dette bestemmer hvilken rækkefølge de bliver vis i på viewet.
+                    //Hen finder vi ud af om han alle rede findes i _employeePlacementIndex. dette bestemmer hvilken rækkefølge de bliver vis i på viewet.
                     bool contains = false;
-                    foreach (Employees eFromIndex in _employeePlacementIndexex.Values)
+                    foreach (Employees eFromIndex in _employeePlacementIndex.Values)
                     {
-
                         if (e.EmployeeID == eFromIndex.EmployeeID)
                         {
                             contains = true;
@@ -431,7 +437,8 @@ namespace WorkPlanner.Handler
      
                     if (!contains)
                     {
-                        _employeePlacementIndexex[_employeePlacementIndexex.Count + 1] = e;
+                        _employeePlacementIndex[_employeePlacementIndex.Count] = e;
+                        _cepair.Add(new ColorEmployeePair(_colors[_employeePlacementIndex.Count] , e.FirstName + " " + e.LastName));  
                     }
 
                     collection[t].AddMember(e) ;
