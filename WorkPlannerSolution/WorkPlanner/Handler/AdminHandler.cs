@@ -331,9 +331,7 @@ namespace WorkPlanner.Handler
                 }
 
                 collectionToUpdate.Add(e);
-
             }
-
         }
 
         /// <summary>
