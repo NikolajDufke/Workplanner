@@ -70,6 +70,6 @@ namespace WorkPlanner.ViewModel
                 return _employeeCatalog;
             }
         }
-        #endregion
+        #endregion  
     }
 }
