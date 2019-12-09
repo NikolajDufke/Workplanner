@@ -76,6 +76,7 @@ namespace WorkPlanner.Handler
             SetTimes();
             PululateTimePlanCollectionsAsync();
 
+
             #region test data
             //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
@@ -95,14 +96,16 @@ namespace WorkPlanner.Handler
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
 
-
+#endregion
             UpdateObsCollection updater = new UpdateObsCollection();
             updater.GetEmployeesAsync(_vm.Employees);
         }
+
         /// <summary>
         /// En metode som ændrer synligheden på et grid i vores view
         /// Metoden bruger viewmodellens property - EmployeeVisibility
         /// </summary>
+        #region Visibility
         public void ChangeEmployeeVisibility()
         {
 
@@ -115,8 +118,9 @@ namespace WorkPlanner.Handler
                 _vm.EmployeeVisibility = Visibility.Collapsed;
             }
         }
-         
-        #region prperties 
+#endregion
+
+        #region properties 
 
         public TimeSpan StartTimeSpan
         {
@@ -468,4 +472,3 @@ namespace WorkPlanner.Handler
         #endregion
     }
 }
-#endregion
