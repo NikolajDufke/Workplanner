@@ -104,7 +104,7 @@ namespace WorkPlanner.Handler
             updater.GetEmployeesAsync(_vm.Employees);
         }
         /// <summary>
-        /// En metode som ændrer det synligheden på et grid i vores view
+        /// En metode som ændrer synligheden på et grid i vores view
         /// Metoden bruger viewmodellens property - EmployeeVisibility
         /// </summary>
         public void ChangeEmployeeVisibility()

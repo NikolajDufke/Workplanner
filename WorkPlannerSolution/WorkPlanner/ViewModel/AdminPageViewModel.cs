@@ -65,7 +65,9 @@ namespace WorkPlanner.ViewModel
             get {return _employees; }
             set { _employees = value; }
         }
-
+        /// <summary>
+        /// Property som grid i viewet er bundet til om, gridet er synligt/usynligt og ændrer property hvis der bliver trykket på "open" knappen.
+        /// </summary>
         private Visibility _employeeVisibility;
 
         public Visibility EmployeeVisibility
@@ -77,7 +79,9 @@ namespace WorkPlanner.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        /// <summary>
+        /// ICommand, som kører metoden ChangeEmployeeVisibility i AdminHandler når man trykker på "open" knappen i viewet.
+        /// </summary>
         private ICommand _changeVisibility;
 
         public ICommand ChangeVisibility
