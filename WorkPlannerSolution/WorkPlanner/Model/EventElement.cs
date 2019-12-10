@@ -24,14 +24,14 @@ namespace WorkPlanner.Model
         //}
 
 
-        private List<string> _coletList;
+        private List<ColorEmployeePair> _coletList;
 
         public EventElement()
         {
-            _coletList = new List<string>();
+            _coletList = new List<ColorEmployeePair>();
         }
 
-        public List<string> Colors
+        public List<ColorEmployeePair> Colors
         {
             get { return _coletList; }
             set { _coletList = value; }

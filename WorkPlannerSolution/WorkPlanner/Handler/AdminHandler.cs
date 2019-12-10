@@ -94,11 +94,17 @@ namespace WorkPlanner.Handler
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-
+            #endregion
 
             UpdateObsCollection updater = new UpdateObsCollection();
             updater.GetEmployeesAsync(_vm.Employees);
         }
+
+        public void SetSelectedWorktime(int id)
+        {
+            _vm.SelectedWorktime = id;
+        }
+
         /// <summary>
         /// En metode som ændrer synligheden på et grid i vores view
         /// Metoden bruger viewmodellens property - EmployeeVisibility
@@ -166,8 +172,8 @@ namespace WorkPlanner.Handler
                 _vm.Year = _vm.Headers[1].Year.ToString();
             }
 
-           
-
+            _employeePlacementIndex.Clear();
+            _cepair.Clear();
             SetTimes();
             await PululateTimePlanCollectionsAsync();
             SetDaysAndDates();
@@ -332,7 +338,7 @@ namespace WorkPlanner.Handler
                     var e = new EventElement();
                     if (tp.Update)
                     {
-                    for (int i = 1; i < _employeePlacementIndex.Count + 1; i++)
+                    for (int i = 0; i < _employeePlacementIndex.Count; i++)
                     {
 
                         // Vi matcher alle employees 
@@ -348,11 +354,11 @@ namespace WorkPlanner.Handler
 
                         if (contains)
                         {
-                            e.Colors.Add(_colors[i]);
+                            e.Colors.Add(_cepair[i]);
                         }
                         else
                         {
-                            e.Colors.Add("");
+                            e.Colors.Add(new ColorEmployeePair("","",0));
                         }
                     }
                 }
@@ -441,9 +447,23 @@ namespace WorkPlanner.Handler
             //Herefter kigger vi igennem alle tiderne og sætter employeen på når det svare til hans tidsplan.
             for (double i = worktime.TimeStart.TimeOfDay.TotalMinutes; i < worktime.TimeEnd.TimeOfDay.TotalMinutes; i += 30)
             {
-                TimeSpan t = TimeSpan.FromMinutes(Convert.ToInt32(i));
+                TimeSpan tFromWorktime = TimeSpan.FromMinutes(i);
+                TimeSpan tTemp;
 
-                if (collection.ContainsKey(t))
+   
+                    while (tFromWorktime.Minutes < 30 && tFromWorktime.Minutes > 0)
+                    {
+                        tFromWorktime = tFromWorktime.Subtract(new TimeSpan(0, 1, 0));
+                    }
+
+                    while (tFromWorktime.Minutes > 30)
+                    {
+                    tFromWorktime = tFromWorktime.Subtract(new TimeSpan(0, 1, 0));
+                }
+
+
+
+                if (collection.ContainsKey(tFromWorktime))
                 {
                     //Hen finder vi ud af om han alle rede findes i _employeePlacementIndex. dette bestemmer hvilken rækkefølge de bliver vis i på viewet.
                     bool contains = false;
@@ -458,14 +478,14 @@ namespace WorkPlanner.Handler
                     if (!contains)
                     {
                         _employeePlacementIndex[_employeePlacementIndex.Count] = e;
-                        _cepair.Add(new ColorEmployeePair(_colors[_employeePlacementIndex.Count] , e.FirstName + " " + e.LastName));  
+                        _cepair.Add(new ColorEmployeePair(_colors[_employeePlacementIndex.Count],
+                            e.FirstName + " " + e.LastName, worktime.WorkTimeID));
                     }
 
-                    collection[t].AddMember(e) ;
+                    collection[tFromWorktime].AddMember(e) ;
                 }
             }
         }
         #endregion
     }
 }
-#endregion

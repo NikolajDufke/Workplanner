@@ -9,10 +9,11 @@ namespace WorkPlanner.Model
 {
    public class ColorEmployeePair
     {
-        public ColorEmployeePair(string color, string name)
+        public ColorEmployeePair(string color, string name, int worktimeId)
         {
             _color = color;
             _name = name;
+            _WorktimeId = worktimeId;
         }
 
         private string _color;
@@ -31,6 +32,13 @@ namespace WorkPlanner.Model
             set { _name = value; }
         }
 
+        private int _WorktimeId;
+
+        public int WorktimeID
+        {
+            get { return _WorktimeId; }
+            set { _WorktimeId = value; }
+        }
 
 
 
