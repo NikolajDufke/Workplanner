@@ -18,8 +18,18 @@ namespace WorkPlanner.Model
             _colorIndex = new Dictionary<int, string>();
             _colersState = new Dictionary<string, bool>();
 
-            Clear();
-          
+            
+            #region Color Selection
+            _colersState.Clear();
+            _colersState.Add("DarkMagenta", false);
+            _colersState.Add("DarkOrange", false);
+            _colersState.Add("DarkGreen", false);
+            _colersState.Add("Aqua", false);
+            _colersState.Add("Indigo", false);
+            _colersState.Add("Plum", false);
+            _colersState.Add("MediumPurple", false);
+
+            #endregion
         }
 
         public void AddEmployee(Employees employee)
@@ -49,17 +59,7 @@ namespace WorkPlanner.Model
         {
             _Employees.Clear();
             _colorIndex.Clear();
-            #region Color Selection
-            _colersState.Clear();
-            _colersState.Add("DarkMagenta", false);
-            _colersState.Add("DarkOrange", false);
-            _colersState.Add("DarkGreen", false);
-            _colersState.Add("Aqua", false);
-            _colersState.Add("Indigo", false);
-            _colersState.Add("Plum", false);
-            _colersState.Add("MediumPurple", false);
-
-            #endregion
+            _colersState = _colersState.ToDictionary(x => x.Key, x => false);
         }
 
         public bool ContainsImployee(int employeeId)
