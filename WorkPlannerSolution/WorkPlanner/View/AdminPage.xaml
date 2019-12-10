@@ -17,7 +17,7 @@
     </Page.DataContext>
 
     <Page.Resources>
-<Converters:DateFormatConverter x:Key="DateFormatConverter"></Converters:DateFormatConverter>
+        <Converters:DateFormatConverter x:Key="DateFormatConverter"></Converters:DateFormatConverter>
 
         <Style x:Key="TimeSpacer" TargetType="TextBlock">
             <Setter Property="Margin" Value="100"></Setter>
@@ -31,8 +31,6 @@
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
     </Page.Resources>
-
-
 
     <Grid >
         <Grid.ColumnDefinitions>
