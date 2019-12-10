@@ -12,7 +12,7 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    public class EmployeePageViewModel
+    public class EmployeePageViewModel : CalendarViewModelBase
     {
         private Employees _employeeProp;
 

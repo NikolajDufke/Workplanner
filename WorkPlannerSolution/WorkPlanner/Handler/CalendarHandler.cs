@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.Security.Authentication.Web.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media.Animation;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Model;
@@ -18,9 +12,9 @@ using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Handler
 {
-    public class AdminHandler 
+    public class CalendarHandler
     {
-        private AdminPageViewModel _vm;
+        private CalendarViewModelBase _vm;
         private TimeSpan _starttime;
         private TimeSpan _endtime;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection1;
@@ -38,7 +32,7 @@ namespace WorkPlanner.Handler
         private List<ColorEmployeePair> _cepair;
 
 
-        public AdminHandler(AdminPageViewModel ViewModel)
+        public CalendarHandler(CalendarViewModelBase ViewModel)
         {
             _times = new Dictionary<DateTime, TimeSpan>();
             _employeePlacementIndex = new Dictionary<int, Employees>();
@@ -100,28 +94,6 @@ namespace WorkPlanner.Handler
             updater.GetEmployeesAsync(_vm.Employees);
         }
 
-        public void SetSelectedWorktime(int id)
-        {
-            _vm.SelectedWorktime = id;
-        }
-
-        /// <summary>
-        /// En metode som ændrer synligheden på et grid i vores view
-        /// Metoden bruger viewmodellens property - EmployeeVisibility
-        /// </summary>
-        public void ChangeEmployeeVisibility()
-        {
-
-            if (_vm.EmployeeVisibility == Visibility.Collapsed)
-            {
-                _vm.EmployeeVisibility = Visibility.Visible;
-            }
-            else
-            {
-                _vm.EmployeeVisibility = Visibility.Collapsed;
-            }
-        }
-         
         #region prperties 
 
         public TimeSpan StartTimeSpan
@@ -150,7 +122,7 @@ namespace WorkPlanner.Handler
             }
         }
 
-                #endregion
+        #endregion
 
         #region LoadDetails
 
@@ -177,7 +149,7 @@ namespace WorkPlanner.Handler
             SetTimes();
             await PululateTimePlanCollectionsAsync();
             SetDaysAndDates();
-            
+
         }
 
         /// <summary>
@@ -185,12 +157,12 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void AddWeekNumber()
         {
-           var t=  _vm.Day1Header.DayOfYear;
+            var t = _vm.Day1Header.DayOfYear;
             DateTime nextWeek = _vm.Day1Header;
             nextWeek = nextWeek.AddDays(7);
             _vm.WeekNumber = nextWeek.DayOfYear / 7;
             LoadCalenderDetailsAsync();
-            
+
         }
 
         /// <summary>
@@ -267,7 +239,7 @@ namespace WorkPlanner.Handler
 
             if (_vm.ColorEmployeePair != null)
                 _vm.ColorEmployeePair.Clear();
-                    else
+            else
                 _vm.ColorEmployeePair =
                     new ObservableCollection<ColorEmployeePair>();
 
@@ -283,45 +255,45 @@ namespace WorkPlanner.Handler
                 switch (headerindex)
                 {
                     case 1:
-                    {
-                        AddToView(_timePlanCollection1, _vm.Weekday1Collection);
-                        break; 
-                    }
+                        {
+                            AddToView(_timePlanCollection1, _vm.Weekday1Collection);
+                            break;
+                        }
                     case 2:
-                    {
-                        AddToView(_timePlanCollection2, _vm.Weekday2Collection);
+                        {
+                            AddToView(_timePlanCollection2, _vm.Weekday2Collection);
                             break;
-                    }
+                        }
                     case 3:
-                    {
-                        AddToView(_timePlanCollection3, _vm.Weekday3Collection);
+                        {
+                            AddToView(_timePlanCollection3, _vm.Weekday3Collection);
                             break;
-                    }
+                        }
                     case 4:
-                    {
-                        AddToView(_timePlanCollection4, _vm.Weekday4Collection);
+                        {
+                            AddToView(_timePlanCollection4, _vm.Weekday4Collection);
                             break;
-                    }
+                        }
                     case 5:
-                    {
-                        AddToView(_timePlanCollection5, _vm.Weekday5Collection);
+                        {
+                            AddToView(_timePlanCollection5, _vm.Weekday5Collection);
                             break;
-                    }
+                        }
                     case 6:
-                    {
-                        AddToView(_timePlanCollection6, _vm.Weekday6Collection);
+                        {
+                            AddToView(_timePlanCollection6, _vm.Weekday6Collection);
                             break;
-                    }
+                        }
                     case 7:
-                    {
-                        AddToView(_timePlanCollection7, _vm.Weekday7Collection);
+                        {
+                            AddToView(_timePlanCollection7, _vm.Weekday7Collection);
                             break;
-                    }
+                        }
                 }
 
                 headerindex++;
             }
-         }
+        }
 
         /// <summary>
         /// Tilføjer en DayCollection i viewet med data fra en TimePlanCollection
@@ -330,14 +302,14 @@ namespace WorkPlanner.Handler
         /// <param name="collectionToUpdate"></param>
         private void AddToView(Dictionary<TimeSpan, TimeIntervalDetails> collection, ObservableCollection<EventElement> collectionToUpdate)
         {
-            
+
 
             foreach (TimeIntervalDetails tp in collection.Values)
             {
-                
-                    var e = new EventElement();
-                    if (tp.Update)
-                    {
+
+                var e = new EventElement();
+                if (tp.Update)
+                {
                     for (int i = 0; i < _employeePlacementIndex.Count; i++)
                     {
 
@@ -358,7 +330,7 @@ namespace WorkPlanner.Handler
                         }
                         else
                         {
-                            e.Colors.Add(new ColorEmployeePair("","",0));
+                            e.Colors.Add(new ColorEmployeePair("", "", 0));
                         }
                     }
                 }
@@ -372,7 +344,7 @@ namespace WorkPlanner.Handler
         /// </summary>
         /// <returns></returns>
         private async Task PululateTimePlanCollectionsAsync()
-        {  
+        {
             int headerindex = 1;
             foreach (var header in _vm.Headers)
             {
@@ -385,40 +357,40 @@ namespace WorkPlanner.Handler
                     switch (headerindex)
                     {
                         case 1:
-                        {
-                            await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection1, worktime);
-                            break;
-                        }
+                            {
+                                await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection1, worktime);
+                                break;
+                            }
                         case 2:
-                        {
-                            await  FindAndAddEmployeesToTimePlanAsync(_timePlanCollection2, worktime);
-                              break;
-                        }
+                            {
+                                await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection2, worktime);
+                                break;
+                            }
                         case 3:
-                        {
-                           await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection3, worktime);
-                            break;
-                        }
+                            {
+                                await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection3, worktime);
+                                break;
+                            }
                         case 4:
-                        {
-                           await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection4, worktime);
-                            break;
-                        }
+                            {
+                                await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection4, worktime);
+                                break;
+                            }
                         case 5:
-                        {
-                           await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection5, worktime);
-                            break;
-                        }
+                            {
+                                await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection5, worktime);
+                                break;
+                            }
                         case 6:
-                        {
-                           await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection6, worktime);
-                            break;
-                        }
+                            {
+                                await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection6, worktime);
+                                break;
+                            }
                         case 7:
-                        {
-                           await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection7, worktime);
-                            break;
-                        }
+                            {
+                                await FindAndAddEmployeesToTimePlanAsync(_timePlanCollection7, worktime);
+                                break;
+                            }
 
                     }
                 }
@@ -427,7 +399,7 @@ namespace WorkPlanner.Handler
             }
 
             // Her opdatere vi vievet.
-             UpdateTimePlan();
+            UpdateTimePlan();
         }
 
         /// <summary>
@@ -442,7 +414,7 @@ namespace WorkPlanner.Handler
             //først finder vi empluyee id på den employee som har worktimes
             var EmployeeCatalog = CatalogsSingleton.Instance.EmployeeCatalog;
             int id = worktime.EmployeeID;
-            Employees e = await EmployeeCatalog.GetSingleAsync(id.ToString());           
+            Employees e = await EmployeeCatalog.GetSingleAsync(id.ToString());
 
             //Herefter kigger vi igennem alle tiderne og sætter employeen på når det svare til hans tidsplan.
             for (double i = worktime.TimeStart.TimeOfDay.TotalMinutes; i < worktime.TimeEnd.TimeOfDay.TotalMinutes; i += 30)
@@ -450,14 +422,14 @@ namespace WorkPlanner.Handler
                 TimeSpan tFromWorktime = TimeSpan.FromMinutes(i);
                 TimeSpan tTemp;
 
-   
-                    while (tFromWorktime.Minutes < 30 && tFromWorktime.Minutes > 0)
-                    {
-                        tFromWorktime = tFromWorktime.Subtract(new TimeSpan(0, 1, 0));
-                    }
 
-                    while (tFromWorktime.Minutes > 30)
-                    {
+                while (tFromWorktime.Minutes < 30 && tFromWorktime.Minutes > 0)
+                {
+                    tFromWorktime = tFromWorktime.Subtract(new TimeSpan(0, 1, 0));
+                }
+
+                while (tFromWorktime.Minutes > 30)
+                {
                     tFromWorktime = tFromWorktime.Subtract(new TimeSpan(0, 1, 0));
                 }
 
@@ -474,7 +446,7 @@ namespace WorkPlanner.Handler
                             contains = true;
                         }
                     }
-     
+
                     if (!contains)
                     {
                         _employeePlacementIndex[_employeePlacementIndex.Count] = e;
@@ -482,7 +454,7 @@ namespace WorkPlanner.Handler
                             e.FirstName + " " + e.LastName, worktime.WorkTimeID));
                     }
 
-                    collection[tFromWorktime].AddMember(e) ;
+                    collection[tFromWorktime].AddMember(e);
                 }
             }
         }

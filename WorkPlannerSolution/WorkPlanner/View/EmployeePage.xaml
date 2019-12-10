@@ -334,13 +334,17 @@
 
             <Grid HorizontalAlignment="Center" Height="331" VerticalAlignment="Center" Width="748" Margin="0,0,0,0" Grid.Row="2" Grid.Column="1" Background="LightSteelBlue" Grid.RowSpan="2" >
 
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Style="{StaticResource TitleStyle}" Text="Personal Informations" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <Grid Grid.Row="0" Grid.Column="3" >
+                    <StackPanel>
+                        <Button Content="Log out" HorizontalAlignment="Right" Background="Gray" Click="LogOutButton"/>
+                    </StackPanel>
+                </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="1" >
 
@@ -370,6 +374,7 @@
                         <TextBlock Text="{Binding EmployeeProp.PhoneNumber}" Style="{StaticResource TextBlockStyle}"/>
                         <TextBlock Text="{Binding EmployeeProp.Email}" Style="{StaticResource TextBlockStyle}"/>
                     </StackPanel>
+
                 </Grid>
 
             </Grid>

@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
-using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Handler;
 using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    public class AdminPageViewModel : CalendarViewModelBase
+    public class CalendarViewModelBase : ViewModelBase
     {
         private ObservableCollection<EventElement> _weekday1Collection;
         private ObservableCollection<EventElement> _weekday2Collection;
@@ -24,9 +17,9 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<EventElement> _weekday5Collection;
         private ObservableCollection<EventElement> _weekday6Collection;
         private ObservableCollection<EventElement> _weekday7Collection;
-        private AdminHandler _handler;
         private ObservableCollection<TimeSpan> _times;
         private ObservableCollection<DateTime> _headers;
+        private CalendarHandler _handler;
         private DateTime _day1Header;
         private DateTime _day2Header;
         private DateTime _day3Header;
@@ -40,8 +33,7 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<Employees> _employees;
         private ObservableCollection<ColorEmployeePair> _colorEmployeePair;
 
-
-        public AdminPageViewModel()
+        public CalendarViewModelBase()
         {
             _headers = new ObservableCollection<DateTime>();
             _weekday1Collection = new ObservableCollection<EventElement>();
@@ -53,26 +45,7 @@ namespace WorkPlanner.ViewModel
             _weekday7Collection = new ObservableCollection<EventElement>();
             _times = new ObservableCollection<TimeSpan>();
             _employees = new ObservableCollection<Employees>();
-
-            _handler = new AdminHandler(this);
-            _employeeVisibility = Visibility.Collapsed;
-            _handler.SetDaysAndDates();
         }
-
-        #region General
-
-        private int _selectedWorktime;
-
-        public int SelectedWorktime
-        {
-            get { return _selectedWorktime; }
-            set
-            {
-                _selectedWorktime = value; 
-                OnPropertyChanged();
-            }
-        }
-
 
         public ObservableCollection<ColorEmployeePair> ColorEmployeePair
         {
@@ -86,36 +59,6 @@ namespace WorkPlanner.ViewModel
             get { return _employees; }
             set { _employees = value; }
         }
-
-        /// <summary>
-        /// Property som grid i viewet er bundet til om, gridet er synligt/usynligt og ændrer property hvis der bliver trykket på "open" knappen.
-        /// </summary>
-        private Visibility _employeeVisibility;
-
-        public Visibility EmployeeVisibility
-        {
-            get { return _employeeVisibility; }
-            set
-            {
-                _employeeVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// ICommand, som kører metoden ChangeEmployeeVisibility i AdminHandler når man trykker på "open" knappen i viewet.
-        /// </summary>
-        private ICommand _changeVisibility;
-
-        public ICommand ChangeVisibility
-        {
-            get
-            {
-                return _changeVisibility ?? (_changeVisibility = new RelayCommand(_handler.ChangeEmployeeVisibility));
-            }
-            set { _changeVisibility = value; }
-        }
-
 
         public ObservableCollection<DateTime> Headers
         {
@@ -154,9 +97,8 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-        #endregion
-
         #region Headers
+
 
         public DateTime Day1Header
         {
@@ -325,17 +267,6 @@ namespace WorkPlanner.ViewModel
             }
             set { _previousWeekCommand = value; }
         }
-
-        private ICommand _setSelectedWorktimeCommand;
-
-            public ICommand SetSelectedWorktimeCommand
-            {
-                get
-                {
-                    return _setSelectedWorktimeCommand ?? (_setSelectedWorktimeCommand =
-                        new RelayArgCommand<int>(ev => _handler.SetSelectedWorktime(ev)));
-                }
-            }
 
         #endregion
     }
