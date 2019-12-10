@@ -7,32 +7,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="using:WorkPlanner.ViewModel"
-    xmlns:converters="using:WorkPlanner.Converter"
+    xmlns:Converters="using:WorkPlanner.Converter"
     xmlns:Models="using:WorkPlanner.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-<Page.DataContext>
+    <Page.DataContext>
         <viewmodel:AdminPageViewModel></viewmodel:AdminPageViewModel>
-</Page.DataContext>
-
+    </Page.DataContext>
 
     <Page.Resources>
-    <Style x:Key="TimeSpacer" TargetType="TextBlock">
-<Setter Property="Margin" Value="100"></Setter>
-    </Style>
-    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
-        <Setter Property="Width" Value="100"></Setter>
-        <Setter Property="Height" Value="35"></Setter>
-    </Style>
+<Converters:DateFormatConverter x:Key="DateFormatConverter"></Converters:DateFormatConverter>
+
+        <Style x:Key="TimeSpacer" TargetType="TextBlock">
+            <Setter Property="Margin" Value="100"></Setter>
+        </Style>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Width" Value="100"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+        </Style>
 
         <Style x:Key="DayListStyle" TargetType="StackPanel">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
-   
-    <viewmodel:AdminPageViewModel x:Key="AdminPageViewModel" />
-
-
     </Page.Resources>
 
 
@@ -68,6 +65,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
+
             <StackPanel>
                 <StackPanel Orientation="Horizontal" 
                  HorizontalAlignment="Center" >
@@ -102,32 +100,34 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
+            
+
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                    <TextBlock FontSize="8" Text="{Binding Day1Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock FontSize="8" Text="{Binding Day1Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day1Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                    <TextBlock FontSize="8" Text="{Binding Day2Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock FontSize="8" Text="{Binding Day2Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day2Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Column="3" HorizontalAlignment="Center">
-                    <TextBlock FontSize="8" Text="{Binding Day3Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock FontSize="8" Text="{Binding Day3Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day3Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Column="4" HorizontalAlignment="Center">
-                    <TextBlock FontSize="8" Text="{Binding Day4Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock FontSize="8" Text="{Binding Day4Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day4Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Column="5" HorizontalAlignment="Center">
-                    <TextBlock FontSize="8" Text="{Binding Day5Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock FontSize="8" Text="{Binding Day5Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day5Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Column="6" HorizontalAlignment="Center">
-                    <TextBlock FontSize="8" Text="{Binding Day6Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock FontSize="8" Text="{Binding Day6Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day6Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Column="7" HorizontalAlignment="Center">
-                    <TextBlock FontSize="8" Text="{Binding Day7Header.Date}" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock FontSize="8" Text="{Binding Day7Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day7Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
          

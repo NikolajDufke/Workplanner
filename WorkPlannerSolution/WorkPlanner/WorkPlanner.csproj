@@ -129,7 +129,7 @@
     <Compile Include="Common\RelayCommandWithParamitter.cs" />
     <Compile Include="Common\UpdateObsCollection.cs" />
     <Compile Include="Converter\DateTimeConverter.cs" />
-    <Compile Include="Converter\Class1.cs" />
+    <Compile Include="Converter\DateFormatConverter.cs" />
     <Compile Include="Factories\PropertyHelpersFactory.cs" />
     <Compile Include="Handler\AdminHandler.cs" />
     <Compile Include="Handler\CreateEmployeeHandler.cs" />
