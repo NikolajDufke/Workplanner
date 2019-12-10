@@ -1,4 +1,5 @@
 ﻿<Page
+    x:Name="Page"
     x:Class="WorkPlanner.View.AdminPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -162,7 +163,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                    <Button Margin="0" Background="{Binding Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -359,7 +360,11 @@
                 <Button Content="Add Worktime"  HorizontalAlignment="Left" Background="Gray" Click="AddWorkTimeButton"/>
             <Button Content="Edit Worktime" HorizontalAlignment="Center" Background="Gray"/>
             <Button Grid.Row="1" Content="Open" HorizontalAlignment="Right" Background="Gray" Command="{Binding ChangeVisibility}"/>
-        </Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Selected Worktime ID :" ></TextBlock>
+                    <TextBlock Text="{Binding SelectedWorktime}" ></TextBlock>
+                </StackPanel>
+            </Grid>
         <Grid Name="DroppedPanel" Grid.Row="1" Visibility="{Binding EmployeeVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
