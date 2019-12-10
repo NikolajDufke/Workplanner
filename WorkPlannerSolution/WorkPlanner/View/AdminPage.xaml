@@ -25,8 +25,14 @@
         <Setter Property="Width" Value="100"></Setter>
         <Setter Property="Height" Value="35"></Setter>
     </Style>
+
+        <Style x:Key="DayListStyle" TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
    
     <viewmodel:AdminPageViewModel x:Key="AdminPageViewModel" />
+
+
     </Page.Resources>
 
 
@@ -163,7 +169,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Margin="0" Background="{Binding Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
+                                                    <Button Margin="0" Background="{Binding  Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -180,7 +186,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Colors , Mode=TwoWay}">
+                                    <ItemsControl ItemsSource="{Binding Colors, Mode=TwoWay}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"></StackPanel>
@@ -189,7 +195,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                    <Button Margin="0" Background="{Binding  Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -215,7 +221,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                    <Button Margin="0" Background="{Binding Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -241,7 +247,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                    <Button Margin="0" Background="{Binding Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -267,7 +273,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                    <Button Margin="0" Background="{Binding Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -293,7 +299,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                    <Button Margin="0" Background="{Binding Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -319,7 +325,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Border Margin="0" Background="{Binding}" Width="10" Height="40"></Border>
+                                                    <Button Margin="0" Background="{Binding Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>

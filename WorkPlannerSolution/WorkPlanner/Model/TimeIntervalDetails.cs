@@ -10,35 +10,47 @@ namespace WorkPlanner.Model
 {
     class TimeIntervalDetails
     {
-        Dictionary<int,Employees> _eventMembers;
-
+      private  Dictionary<int,Employees> _eventMembers;
+       private Dictionary<int, WorktimeEventDetails> _worktimeEventDetails;
         public TimeIntervalDetails()
         {
             _eventMembers = new Dictionary<int, Employees>();
+            _worktimeEventDetails = new Dictionary<int, WorktimeEventDetails>();
         }
 
         public List<Employees> GetMembers
         {
             get{ return _eventMembers.Values.ToList();}
         }
-
-        public void AddMember(Employees employee)
+        public WorktimeEventDetails GetWorktimeEventDetail(int employeeID)
         {
-            if(!_eventMembers.ContainsKey(employee.EmployeeID))
-            _eventMembers.Add(employee.EmployeeID,employee);          
+             return _worktimeEventDetails[employeeID]; 
         }
 
-        public void RemoveMember(int employeeID)
+        public void AddMember(Employees employee, WorktimeEventDetails worktimeDetails)
         {
-            if (_eventMembers.ContainsKey(employeeID))
-                _eventMembers.Remove(employeeID);
+            if (!_eventMembers.ContainsKey(employee.EmployeeID))
+            {
+                _eventMembers.Add(employee.EmployeeID, employee);
+                _worktimeEventDetails.Add(employee.EmployeeID,worktimeDetails);
+            }
         }
 
-        public void UpdateMember(Employees employee)
-        {
-            if (_eventMembers.ContainsKey(employee.EmployeeID))
-                _eventMembers[employee.EmployeeID]=employee;
-        }
+        //public void RemoveMember(int employeeID)
+        //{
+        //    if (_eventMembers.ContainsKey(employeeID))
+        //    {
+        //        _eventMembers.Remove(employeeID);
+        //        _worktimeEventDetails.Remove(employeeID);
+        //    }
+
+        //}
+
+        //public void UpdateMember(Employees employee)
+        //{
+        //    if (_eventMembers.ContainsKey(employee.EmployeeID))
+        //        _eventMembers[employee.EmployeeID]=employee;
+        //}
 
         public bool Update
         {
@@ -47,6 +59,9 @@ namespace WorkPlanner.Model
               return _eventMembers.Count > 0 ?  true :  false;
             }
         }
-      
+
+    
+
+
     }
 }

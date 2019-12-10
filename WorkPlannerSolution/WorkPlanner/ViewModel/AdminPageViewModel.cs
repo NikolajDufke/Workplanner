@@ -38,7 +38,7 @@ namespace WorkPlanner.ViewModel
         private ICommand _nextWeekCommand;
         private ICommand _previousWeekCommand;
         private ObservableCollection<Employees> _employees;
-        private ObservableCollection<ColorEmployeePair> _colorEmployeePair;
+        private ObservableCollection<WorktimeEventDetails> _worktimeEventDetails;
 
 
         public AdminPageViewModel()
@@ -74,10 +74,10 @@ namespace WorkPlanner.ViewModel
         }
 
 
-        public ObservableCollection<ColorEmployeePair> ColorEmployeePair
+        public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
         {
-            get { return _colorEmployeePair; }
-            set { _colorEmployeePair = value; }
+            get { return _worktimeEventDetails; }
+            set { _worktimeEventDetails = value; }
         }
 
 
