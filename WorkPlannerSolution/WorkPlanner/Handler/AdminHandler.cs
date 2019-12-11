@@ -36,7 +36,7 @@ namespace WorkPlanner.Handler
         private List<Color> _manyColors;
         private Proxy.WorktimeProxy _catalogInterface;
         private List<ColorEmployeePair> _cepair;
-
+        private CatalogsSingleton _catalog;
 
         public AdminHandler(AdminPageViewModel ViewModel)
         {
@@ -46,6 +46,7 @@ namespace WorkPlanner.Handler
             _endtime = new TimeSpan(23, 00, 0);
             _catalogInterface = new WorktimeProxy();
             _cepair = new List<ColorEmployeePair>();
+            _catalog = CatalogsSingleton.Instance;
 
             #region timePlanCollection initialization
             _timePlanCollection1 = new Dictionary<TimeSpan, TimeIntervalDetails>();
@@ -100,6 +101,7 @@ namespace WorkPlanner.Handler
             updater.GetEmployeesAsync(_vm.Employees);
         }
 
+        #region Methods
         public void SetSelectedWorktime(int id)
         {
             _vm.SelectedWorktime = id;
@@ -121,7 +123,28 @@ namespace WorkPlanner.Handler
                 _vm.EmployeeVisibility = Visibility.Collapsed;
             }
         }
-         
+
+        public void DeleteEmployee()
+        {
+            _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
+            List<Worktimes> toRemoveWorktimes = _catalogInterface.GetAllWorktimesByEmployee(_vm.SelectedEmployee);
+
+            foreach (Worktimes worktime in toRemoveWorktimes)
+            {
+                _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
+            }
+            LoadCalenderDetailsAsync();
+        }
+
+        public void DeleteWorktime()
+        {
+            _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
+            LoadCalenderDetailsAsync();
+        }
+        #endregion
+
+
+
         #region prperties 
 
         public TimeSpan StartTimeSpan
