@@ -360,7 +360,7 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Orientation="Vertical" Style="{StaticResource StackPanelStyle}" HorizontalAlignment="Center" Margin="0,0,0,0">
+                    <StackPanel Orientation="Vertical" Style="{StaticResource StackPanelStyle}" HorizontalAlignment="Center" >
                         <!--<TextBlock Text="FirstName:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                         <TextBlock Text="LastName:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                         <TextBlock Text="Address:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
@@ -373,7 +373,7 @@
                                 <DataTemplate>
                                     <StackPanel Style="{StaticResource StackPanelStyle}">
                                         <TextBlock Text="{Binding VisualName}" Style="{StaticResource TextBlockStyle}"/>
-                                        <TextBlock Text="{Binding ValueFromUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}"/>
+                                        <TextBlock Text="{Binding ValueFromUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBlockStyle}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

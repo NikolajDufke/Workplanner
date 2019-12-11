@@ -36,9 +36,7 @@ namespace WorkPlanner.Handler
         //private Dictionary< WorktimeEventDetails> _cepair;
         #endregion
 
-
-
-        public EmployeeHandler(CalendarViewModelBase ViewModel)
+        public EmployeeHandler(CalendarViewModelBase viewModel)
         {
             _times = new Dictionary<DateTime, TimeSpan>();
             _employeePlacementIndex = new EmployeePlacementIndex();
@@ -72,13 +70,13 @@ namespace WorkPlanner.Handler
 
             #endregion
 
-            _vm = ViewModel;
+            _vm = viewModel;
             _vm.WeekNumber = DateTime.Now.DayOfYear / 7;
             _vm.Year = DateTime.Now.Year.ToString();
             LoadCalenderDetailsAsync();
 
             SetTimes();
-            PululateTimePlanCollectionsAsync();
+            PopulateTimePlanCollectionsAsync();
 
             #region test data
 
@@ -106,10 +104,7 @@ namespace WorkPlanner.Handler
             updater.GetEmployeesAsync(_vm.Employees);
         }
 
-        public void SetSelectedWorktime(int id)
-        {
-            _vm.SelectedWorktime = id;
-        }
+
 
         #region properties 
 
@@ -164,7 +159,7 @@ namespace WorkPlanner.Handler
             _employeePlacementIndex.Clear();
 
             SetTimes();
-            await PululateTimePlanCollectionsAsync();
+            await PopulateTimePlanCollectionsAsync();
             SetDaysAndDates();
 
         }
@@ -358,7 +353,7 @@ namespace WorkPlanner.Handler
         /// Finder worktimes i Databasen og sætter dem ind i TimeplanColletions.
         /// </summary>
         /// <returns></returns>
-        private async Task PululateTimePlanCollectionsAsync()
+        private async Task PopulateTimePlanCollectionsAsync()
         {
             _employeePlacementIndex.Clear();
             int headerindex = 1;
