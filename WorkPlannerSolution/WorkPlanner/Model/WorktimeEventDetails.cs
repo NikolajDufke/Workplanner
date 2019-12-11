@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.Model
 {
-   public class ColorEmployeePair
+   public class WorktimeEventDetails
     {
-        public ColorEmployeePair(string color, string name, int worktimeId)
+        public WorktimeEventDetails(string color, string name, int worktimeId)
         {
             _color = color;
             _name = name;
@@ -40,6 +40,9 @@ namespace WorkPlanner.Model
             set { _WorktimeId = value; }
         }
 
+  
+
+    
 
 
     }

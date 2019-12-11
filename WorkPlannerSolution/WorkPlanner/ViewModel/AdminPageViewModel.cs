@@ -25,7 +25,7 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<EventElement> _weekday6Collection;
         private ObservableCollection<EventElement> _weekday7Collection;
         private AdminHandler _handler;
-        private ObservableCollection<TimeSpan> _times;
+        private ObservableCollection<string> _times;
         private ObservableCollection<DateTime> _headers;
         private DateTime _day1Header;
         private DateTime _day2Header;
@@ -38,7 +38,7 @@ namespace WorkPlanner.ViewModel
         private ICommand _nextWeekCommand;
         private ICommand _previousWeekCommand;
         private ObservableCollection<Employees> _employees;
-        private ObservableCollection<ColorEmployeePair> _colorEmployeePair;
+        private ObservableCollection<WorktimeEventDetails> _worktimeEventDetails;
 
 
         public AdminPageViewModel()
@@ -51,7 +51,7 @@ namespace WorkPlanner.ViewModel
             _weekday5Collection = new ObservableCollection<EventElement>();
             _weekday6Collection = new ObservableCollection<EventElement>();
             _weekday7Collection = new ObservableCollection<EventElement>();
-            _times = new ObservableCollection<TimeSpan>();
+            _times = new ObservableCollection<string>();
             _employees = new ObservableCollection<Employees>();
 
             _handler = new AdminHandler(this);
@@ -74,10 +74,10 @@ namespace WorkPlanner.ViewModel
         }
 
 
-        public ObservableCollection<ColorEmployeePair> ColorEmployeePair
+        public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
         {
-            get { return _colorEmployeePair; }
-            set { _colorEmployeePair = value; }
+            get { return _worktimeEventDetails; }
+            set { _worktimeEventDetails = value; }
         }
 
 
@@ -125,7 +125,7 @@ namespace WorkPlanner.ViewModel
 
         private int _weekNumber;
 
-        public ObservableCollection<TimeSpan> Times
+        public ObservableCollection<string> Times
         {
             get { return _times; }
             set
