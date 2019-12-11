@@ -17,9 +17,9 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<EventElement> _weekday5Collection;
         private ObservableCollection<EventElement> _weekday6Collection;
         private ObservableCollection<EventElement> _weekday7Collection;
-        private ObservableCollection<TimeSpan> _times;
-        private ObservableCollection<DateTime> _headers;
         private CalendarHandler _handler;
+        private ObservableCollection<string> _times;
+        private ObservableCollection<DateTime> _headers;
         private DateTime _day1Header;
         private DateTime _day2Header;
         private DateTime _day3Header;
@@ -31,7 +31,8 @@ namespace WorkPlanner.ViewModel
         private ICommand _nextWeekCommand;
         private ICommand _previousWeekCommand;
         private ObservableCollection<Employees> _employees;
-        private ObservableCollection<ColorEmployeePair> _colorEmployeePair;
+        private ObservableCollection<WorktimeEventDetails> _worktimeEventDetails;
+
 
         public CalendarViewModelBase()
         {
@@ -43,14 +44,32 @@ namespace WorkPlanner.ViewModel
             _weekday5Collection = new ObservableCollection<EventElement>();
             _weekday6Collection = new ObservableCollection<EventElement>();
             _weekday7Collection = new ObservableCollection<EventElement>();
-            _times = new ObservableCollection<TimeSpan>();
+            _times = new ObservableCollection<string>();
             _employees = new ObservableCollection<Employees>();
+
+            _handler = new CalendarHandler(this);
+            _handler.SetDaysAndDates();
         }
 
-        public ObservableCollection<ColorEmployeePair> ColorEmployeePair
+        #region General
+
+        private int _selectedWorktime;
+
+        public int SelectedWorktime
         {
-            get { return _colorEmployeePair; }
-            set { _colorEmployeePair = value; }
+            get { return _selectedWorktime; }
+            set
+            {
+                _selectedWorktime = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
+        {
+            get { return _worktimeEventDetails; }
+            set { _worktimeEventDetails = value; }
         }
 
 
@@ -68,7 +87,7 @@ namespace WorkPlanner.ViewModel
 
         private int _weekNumber;
 
-        public ObservableCollection<TimeSpan> Times
+        public ObservableCollection<string> Times
         {
             get { return _times; }
             set
@@ -97,8 +116,9 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-        #region Headers
+        #endregion
 
+        #region Headers
 
         public DateTime Day1Header
         {
@@ -266,6 +286,17 @@ namespace WorkPlanner.ViewModel
                        (_previousWeekCommand = new RelayCommand(_handler.SubstractWeekNumber));
             }
             set { _previousWeekCommand = value; }
+        }
+
+        private ICommand _setSelectedWorktimeCommand;
+
+        public ICommand SetSelectedWorktimeCommand
+        {
+            get
+            {
+                return _setSelectedWorktimeCommand ?? (_setSelectedWorktimeCommand =
+                    new RelayArgCommand<int>(ev => _handler.SetSelectedWorktime(ev)));
+            }
         }
 
         #endregion

@@ -132,7 +132,7 @@ namespace WorkPlanner.Handler
             }
         }
 
-        #region prperties 
+        #region properties 
 
         public TimeSpan StartTimeSpan
         {
