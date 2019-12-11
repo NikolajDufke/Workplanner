@@ -277,8 +277,7 @@ namespace WorkPlanner.Handler
             for (double i = _starttime.TotalMinutes; i < _endtime.TotalMinutes; i += intervalInMinutes)
             {
                 _vm.Times.Add(TimeSpan.FromMinutes(i).ToString(@"hh\:mm"));
-                _
-                    .Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
+                _timePlanCollection1.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection2.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection3.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection4.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
