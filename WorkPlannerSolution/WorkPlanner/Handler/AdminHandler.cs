@@ -303,7 +303,13 @@ namespace WorkPlanner.Handler
             _vm.Weekday5Collection.Clear();
             _vm.Weekday6Collection.Clear();
             _vm.Weekday7Collection.Clear();
+            _vm.WorktimeEventDetails.Clear();
 
+            foreach (WorktimeEventDetails wed in _employeePlacementIndex.GetWorktimeEventDetails())
+            {
+                _vm.WorktimeEventDetails.Add(wed);
+            }
+         
             int headerindex = 1;
             foreach (var header in _vm.Headers)
             {
