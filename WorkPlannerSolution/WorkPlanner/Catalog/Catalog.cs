@@ -81,16 +81,13 @@ namespace WorkPlanner.Catalog
         /// <param name="id"></param>
         public async void RemoveAsync(string id)
         {
-
             if (id != null)
             {
-
                 bool result = await _api.DeleteAsync(id);
                 if (result == true)
                 {
                    await LoadFromDB();
                 }
-
             }
         }
 
