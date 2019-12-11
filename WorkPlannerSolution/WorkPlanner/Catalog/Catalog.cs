@@ -39,7 +39,7 @@ namespace WorkPlanner.Catalog
             if (_allCollection.Count != 0)
                 return _allCollection;
 
-            LoadFromDB();
+            await LoadFromDB();
 
             while (_allCollection.Count == 0)
             {
@@ -71,7 +71,7 @@ namespace WorkPlanner.Catalog
 
             if (result == true)
             {
-                LoadFromDB();
+                await LoadFromDB();
             }
         }
 
@@ -88,7 +88,7 @@ namespace WorkPlanner.Catalog
                 bool result = await _api.DeleteAsync(id);
                 if (result == true)
                 {
-                    LoadFromDB();
+                   await LoadFromDB();
                 }
 
             }
@@ -106,7 +106,7 @@ namespace WorkPlanner.Catalog
             //TODO Gør så den ikke altid går igennem(Måske en bool inde i _api) result != null vil altid gå op
             if (result != null)
             {
-                LoadFromDB();
+                await LoadFromDB();
                 return result;
 
             }
@@ -129,7 +129,7 @@ namespace WorkPlanner.Catalog
 
             if (result != null)
             {
-                LoadFromDB();
+               await LoadFromDB();
                 return result;
 
             }
@@ -143,7 +143,7 @@ namespace WorkPlanner.Catalog
         /// <summary>
         /// En hjælpe metode der loader data fra databasen
         /// </summary>
-        private async void LoadFromDB()
+        private async Task LoadFromDB()
         {
             try
             {
