@@ -41,7 +41,6 @@ namespace WorkPlanner.Handler
         private WorktimeProxy _catalogInterface;
         //private Dictionary< WorktimeEventDetails> _cepair;
 
-
         public AdminHandler(AdminPageViewModel ViewModel)
         {
             _times = new Dictionary<DateTime, TimeSpan>();
@@ -110,6 +109,7 @@ namespace WorkPlanner.Handler
             updater.GetEmployeesAsync(_vm.Employees);
         }
 
+        #region Methods
         public void SetSelectedWorktime(int id)
         {
             _vm.SelectedWorktime = id;
@@ -131,6 +131,27 @@ namespace WorkPlanner.Handler
                 _vm.EmployeeVisibility = Visibility.Collapsed;
             }
         }
+
+        public void DeleteEmployee()
+        {
+            _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
+            List<Worktimes> toRemoveWorktimes = _catalogInterface.GetAllWorktimesByEmployee(_vm.SelectedEmployee);
+
+            foreach (Worktimes worktime in toRemoveWorktimes)
+            {
+                _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
+            }
+            LoadCalenderDetailsAsync();
+        }
+
+        public void DeleteWorktime()
+        {
+            _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
+            LoadCalenderDetailsAsync();
+        }
+        #endregion
+
+
 
         #region prperties 
 
