@@ -70,8 +70,16 @@ namespace WorkPlanner.ViewModel
 
         public DateTimeOffset Date
         {
-            set { _dateTime = value; }
-            get { return _dateTime; }
+            set
+            {
+                _dateTime = value; 
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _dateTime; 
+
+            }
         }
 
         public TimeSpan TimeStart

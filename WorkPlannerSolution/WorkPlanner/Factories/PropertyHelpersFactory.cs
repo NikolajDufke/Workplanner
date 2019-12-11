@@ -8,6 +8,10 @@ using WorkPlanner.Interface;
 
 namespace WorkPlanner.Factories
 {
+    /// <summary>
+    /// A factory that creates objects of PropertyNamesHelper and PropertyPopulator
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     static class PropertyHelpersFactory <T> where T : class
     {
         public static PropertyNamesHelper<T> PropertyNamesFactory()

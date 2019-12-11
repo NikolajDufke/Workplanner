@@ -21,9 +21,12 @@ namespace WorkPlanner.Handler
 {
     public class AdminHandler 
     {
+        private CatalogsSingleton _catalog;
         private AdminPageViewModel _vm;
+
         private TimeSpan _starttime;
         private TimeSpan _endtime;
+
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection1;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection2;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection3;
@@ -41,9 +44,9 @@ namespace WorkPlanner.Handler
         private WorktimeProxy _catalogInterface;
         //private Dictionary< WorktimeEventDetails> _cepair;
 
-
         public AdminHandler(AdminPageViewModel ViewModel)
         {
+            _catalog = CatalogsSingleton.Instance;
             _times = new Dictionary<DateTime, TimeSpan>();
             _employeePlacementIndex = new EmployeePlacementIndex();
             _starttime = new TimeSpan(8, 00, 0);
@@ -110,6 +113,7 @@ namespace WorkPlanner.Handler
             updater.GetEmployeesAsync(_vm.Employees);
         }
 
+        #region Methods
         public void SetSelectedWorktime(int id)
         {
             _vm.SelectedWorktime = id;
@@ -132,7 +136,28 @@ namespace WorkPlanner.Handler
             }
         }
 
-        #region properties 
+        public void DeleteEmployee()
+        {
+            _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
+            List<Worktimes> toRemoveWorktimes = _catalogInterface.GetAllWorktimesByEmployee(_vm.SelectedEmployee);
+
+            foreach (Worktimes worktime in toRemoveWorktimes)
+            {
+                _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
+            }
+            LoadCalenderDetailsAsync();
+        }
+
+        public void DeleteWorktime()
+        {
+            _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
+            LoadCalenderDetailsAsync();
+        }
+        #endregion
+
+
+
+        #region prperties 
 
         public TimeSpan StartTimeSpan
         {
@@ -275,17 +300,6 @@ namespace WorkPlanner.Handler
             _vm.Weekday6Collection.Clear();
             _vm.Weekday7Collection.Clear();
 
-            //if (_vm.ColorEmployeePair != null)
-            //    _vm.ColorEmployeePair.Clear();
-            //        else
-            //    _vm.ColorEmployeePair =
-            //        new ObservableCollection<ColorEmployeePair>();
-
-            //foreach (var cep in _cepair)
-            //{
-            //    _vm.ColorEmployeePair.Add(cep);
-            //}
-
             int headerindex = 1;
             foreach (var header in _vm.Headers)
             {
@@ -341,18 +355,12 @@ namespace WorkPlanner.Handler
         private void AddToView(Dictionary<TimeSpan, TimeIntervalDetails> fromCollection,
             ObservableCollection<EventElement> collectionToUpdate)
         {
-
-
             foreach (TimeIntervalDetails tp in fromCollection.Values)
             {
-
                 var e = new EventElement();
+                //Kontrollere at der er members på den det pågældende tidsinterval 
                 if (tp.Update)
                 {
-
-
-
-
                     // Vi matcher alle employees 
 
                     foreach (Employees employee in _employeePlacementIndex.GetEmployees())

@@ -18,6 +18,17 @@ namespace WorkPlanner.ViewModel
 {
     public class AdminPageViewModel : CalendarViewModelBase
     {
+        private string _year;
+        private int _selectedWorktime;
+        private Employees _selectedEmployee;
+        private Visibility _employeeVisibility;
+        private AdminHandler _handler;
+
+        private ObservableCollection<string> _times;
+        private ObservableCollection<DateTime> _headers;
+        private ObservableCollection<Employees> _employees;
+        private ObservableCollection<WorktimeEventDetails> _worktimeEventDetails;
+
         private ObservableCollection<EventElement> _weekday1Collection;
         private ObservableCollection<EventElement> _weekday2Collection;
         private ObservableCollection<EventElement> _weekday3Collection;
@@ -25,9 +36,7 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<EventElement> _weekday5Collection;
         private ObservableCollection<EventElement> _weekday6Collection;
         private ObservableCollection<EventElement> _weekday7Collection;
-        private AdminHandler _handler;
-        private ObservableCollection<string> _times;
-        private ObservableCollection<DateTime> _headers;
+
         private DateTime _day1Header;
         private DateTime _day2Header;
         private DateTime _day3Header;
@@ -38,9 +47,10 @@ namespace WorkPlanner.ViewModel
 
         private ICommand _nextWeekCommand;
         private ICommand _previousWeekCommand;
-        private ObservableCollection<Employees> _employees;
-        private ObservableCollection<WorktimeEventDetails> _worktimeEventDetails;
-
+        private ICommand _deleteWorktimeCommand;
+        private ICommand _changeVisibility;
+        private ICommand _deleteEmployeeCommand;
+        private ICommand _setSelectedWorktimeCommand;
 
         public AdminPageViewModel()
         {
@@ -62,18 +72,26 @@ namespace WorkPlanner.ViewModel
 
         #region General
 
-        private int _selectedWorktime;
 
         public int SelectedWorktime
         {
             get { return _selectedWorktime; }
             set
             {
-                _selectedWorktime = value; 
+                _selectedWorktime = value;
                 OnPropertyChanged();
             }
         }
 
+        public Employees SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set
+            {
+                _selectedEmployee = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
         {
@@ -81,42 +99,11 @@ namespace WorkPlanner.ViewModel
             set { _worktimeEventDetails = value; }
         }
 
-
         public ObservableCollection<Employees> Employees
         {
             get { return _employees; }
             set { _employees = value; }
         }
-
-        /// <summary>
-        /// Property som grid i viewet er bundet til om, gridet er synligt/usynligt og ændrer property hvis der bliver trykket på "open" knappen.
-        /// </summary>
-        private Visibility _employeeVisibility;
-
-        public Visibility EmployeeVisibility
-        {
-            get { return _employeeVisibility; }
-            set
-            {
-                _employeeVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// ICommand, som kører metoden ChangeEmployeeVisibility i AdminHandler når man trykker på "open" knappen i viewet.
-        /// </summary>
-        private ICommand _changeVisibility;
-
-        public ICommand ChangeVisibility
-        {
-            get
-            {
-                return _changeVisibility ?? (_changeVisibility = new RelayCommand(_handler.ChangeEmployeeVisibility));
-            }
-            set { _changeVisibility = value; }
-        }
-
 
         public ObservableCollection<DateTime> Headers
         {
@@ -136,8 +123,6 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-        private string _year;
-
         public string Year
         {
             get { return _year; }
@@ -151,6 +136,20 @@ namespace WorkPlanner.ViewModel
             set
             {
                 _weekNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Property som grid i viewet er bundet til om, gridet er synligt/usynligt og ændrer property hvis der bliver trykket på "open" knappen.
+        /// </summary>
+
+        public Visibility EmployeeVisibility
+        {
+            get { return _employeeVisibility; }
+            set
+            {
+                _employeeVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -327,17 +326,39 @@ namespace WorkPlanner.ViewModel
             set { _previousWeekCommand = value; }
         }
 
-        private ICommand _setSelectedWorktimeCommand;
-
-            public ICommand SetSelectedWorktimeCommand
+        public ICommand SetSelectedWorktimeCommand
+        {
+            get
             {
-                get
-                {
-                    return _setSelectedWorktimeCommand ?? (_setSelectedWorktimeCommand =
-                        new RelayArgCommand<int>(ev => _handler.SetSelectedWorktime(ev)));
-                }
+                return _setSelectedWorktimeCommand ?? (_setSelectedWorktimeCommand =
+                           new RelayArgCommand<int>(ev => _handler.SetSelectedWorktime(ev)));
             }
+        }
 
+        /// <summary>
+        /// ICommand, som kører metoden ChangeEmployeeVisibility i AdminHandler når man trykker på "open" knappen i viewet.
+        /// </summary>
+
+        public ICommand ChangeVisibility
+        {
+            get
+            {
+                return _changeVisibility ?? (_changeVisibility = new RelayCommand(_handler.ChangeEmployeeVisibility));
+            }
+            set { _changeVisibility = value; }
+        }
+
+        public ICommand DeleteEmployeeCommand
+        {
+            get { return _deleteEmployeeCommand ?? (_deleteEmployeeCommand = new RelayCommand(_handler.DeleteEmployee)); }
+            set { _deleteEmployeeCommand = value; }
+        }
+
+        public ICommand DeleteWorktimeCommand
+        {
+            get { return _deleteWorktimeCommand ?? (_deleteWorktimeCommand = new RelayCommand(_handler.DeleteWorktime)); }
+            set { _deleteWorktimeCommand = value; }
+        }
         #endregion
     }
 }

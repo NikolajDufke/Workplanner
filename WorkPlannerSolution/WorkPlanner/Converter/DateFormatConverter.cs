@@ -4,7 +4,9 @@ using Windows.UI.Xaml.Data;
 
 namespace WorkPlanner.Converter
 {
-
+    /// <summary>
+    /// Converts from  a DateTime to a string fortattet dd/MM.
+    /// </summary>
     public class DateFormatConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

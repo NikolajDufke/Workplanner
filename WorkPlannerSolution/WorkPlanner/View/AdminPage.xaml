@@ -375,7 +375,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <ListView BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}">
+            <ListView BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
