@@ -334,7 +334,7 @@
                     </Grid>
                 </ScrollViewer>
             </Grid>
-            <ItemsControl Grid.Row="2" ItemsSource="{Binding ColorEmployeePair}">
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding WorktimeEventDetails}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"></StackPanel>

@@ -96,6 +96,20 @@ namespace WorkPlanner.Model
         {
             return _Employees.ContainsKey(employeeId);
         }
+
+        public List<WorktimeEventDetails> GetWorktimeEventDetails()
+        {
+            List<WorktimeEventDetails> listWed = new List<WorktimeEventDetails>();
+
+            foreach (var i in _colorIndex)
+            {
+                listWed.Add(new WorktimeEventDetails(i.Value,_Employees[i.Key].FirstName + " " + _Employees[i.Key].LastName, 0));
+            }
+
+            return listWed;
+
+            return null;
+        }
     }
 
 

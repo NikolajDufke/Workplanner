@@ -63,6 +63,7 @@ namespace WorkPlanner.ViewModel
             _weekday7Collection = new ObservableCollection<EventElement>();
             _times = new ObservableCollection<string>();
             _employees = new ObservableCollection<Employees>();
+            _worktimeEventDetails = new ObservableCollection<WorktimeEventDetails>();
 
             _handler = new AdminHandler(this);
             _employeeVisibility = Visibility.Collapsed;
@@ -95,7 +96,11 @@ namespace WorkPlanner.ViewModel
         public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
         {
             get { return _worktimeEventDetails; }
-            set { _worktimeEventDetails = value; }
+            set
+            {
+                _worktimeEventDetails = value; 
+                OnPropertyChanged();
+            }
         }
 
         public ObservableCollection<Employees> Employees
