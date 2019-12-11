@@ -23,6 +23,7 @@ namespace WorkPlanner.Handler
     {
         private CatalogsSingleton _catalog;
         private AdminPageViewModel _vm;
+        private UpdateObsCollection _updater;
 
         private TimeSpan _starttime;
         private TimeSpan _endtime;
@@ -109,8 +110,8 @@ namespace WorkPlanner.Handler
 
             #endregion
 
-            UpdateObsCollection updater = new UpdateObsCollection();
-            updater.GetEmployeesAsync(_vm.Employees);
+            _updater = new UpdateObsCollection();
+            _updater.GetEmployeesAsync(_vm.Employees);
         }
 
         #region Methods
@@ -138,20 +139,23 @@ namespace WorkPlanner.Handler
 
         public void DeleteEmployee()
         {
-            _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
             List<Worktimes> toRemoveWorktimes = _catalogInterface.GetAllWorktimesByEmployee(_vm.SelectedEmployee);
 
             foreach (Worktimes worktime in toRemoveWorktimes)
             {
                 _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
             }
+            _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
             LoadCalenderDetailsAsync();
+            _updater.GetEmployeesAsync(_vm.Employees);
+            
         }
 
         public void DeleteWorktime()
         {
             _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
             LoadCalenderDetailsAsync();
+            
         }
         #endregion
 
