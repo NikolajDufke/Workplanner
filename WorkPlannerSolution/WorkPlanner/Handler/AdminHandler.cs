@@ -252,7 +252,8 @@ namespace WorkPlanner.Handler
             for (double i = _starttime.TotalMinutes; i < _endtime.TotalMinutes; i += intervalInMinutes)
             {
                 _vm.Times.Add(TimeSpan.FromMinutes(i).ToString(@"hh\:mm"));
-                _timePlanCollection1.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
+                _
+                    .Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection2.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection3.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection4.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
@@ -274,17 +275,6 @@ namespace WorkPlanner.Handler
             _vm.Weekday5Collection.Clear();
             _vm.Weekday6Collection.Clear();
             _vm.Weekday7Collection.Clear();
-
-            //if (_vm.ColorEmployeePair != null)
-            //    _vm.ColorEmployeePair.Clear();
-            //        else
-            //    _vm.ColorEmployeePair =
-            //        new ObservableCollection<ColorEmployeePair>();
-
-            //foreach (var cep in _cepair)
-            //{
-            //    _vm.ColorEmployeePair.Add(cep);
-            //}
 
             int headerindex = 1;
             foreach (var header in _vm.Headers)
@@ -341,18 +331,12 @@ namespace WorkPlanner.Handler
         private void AddToView(Dictionary<TimeSpan, TimeIntervalDetails> fromCollection,
             ObservableCollection<EventElement> collectionToUpdate)
         {
-
-
             foreach (TimeIntervalDetails tp in fromCollection.Values)
             {
-
                 var e = new EventElement();
+                //Kontrollere at der er members på den det pågældende tidsinterval 
                 if (tp.Update)
                 {
-
-
-
-
                     // Vi matcher alle employees 
 
                     foreach (Employees employee in _employeePlacementIndex.GetEmployees())
