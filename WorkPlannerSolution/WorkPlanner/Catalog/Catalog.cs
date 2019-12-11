@@ -79,7 +79,7 @@ namespace WorkPlanner.Catalog
         /// En metode der gør at man kan remove async
         /// </summary>
         /// <param name="id"></param>
-        public async void RemoveAsync(string id)
+        public async Task RemoveAsync(string id)
         {
             if (id != null)
             {

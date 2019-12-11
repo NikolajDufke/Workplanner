@@ -130,6 +130,8 @@ namespace WorkPlanner.Handler
             if (_vm.EmployeeVisibility == Visibility.Collapsed)
             {
                 _vm.EmployeeVisibility = Visibility.Visible;
+                _updater.GetEmployeesAsync(_vm.Employees);
+
             }
             else
             {
@@ -137,25 +139,29 @@ namespace WorkPlanner.Handler
             }
         }
 
-        public void DeleteEmployee()
+        public async void DeleteEmployee()
         {
-            List<Worktimes> toRemoveWorktimes = _catalogInterface.GetAllWorktimesByEmployee(_vm.SelectedEmployee);
-
-            foreach (Worktimes worktime in toRemoveWorktimes)
+            if (_vm.SelectedEmployee != null)
             {
-                _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
+                List<Worktimes> toRemoveWorktimes = _catalogInterface.GetAllWorktimesByEmployee(_vm.SelectedEmployee);
+
+                foreach (Worktimes worktime in toRemoveWorktimes)
+                {
+                    await _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
+                }
+                await _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
+                LoadCalenderDetailsAsync();
+                _updater.GetEmployeesAsync(_vm.Employees);
             }
-            _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
-            LoadCalenderDetailsAsync();
-            _updater.GetEmployeesAsync(_vm.Employees);
-            
         }
 
-        public void DeleteWorktime()
+        public async void DeleteWorktime()
         {
-            _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
-            LoadCalenderDetailsAsync();
-            
+            if (_vm.SelectedWorktime != 0)
+            {
+                await _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
+                LoadCalenderDetailsAsync();
+            }
         }
         #endregion
 
