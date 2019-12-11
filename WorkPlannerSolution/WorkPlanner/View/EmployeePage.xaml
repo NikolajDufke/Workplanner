@@ -31,6 +31,11 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
         </Style>
+        <Style x:Key="ListViewStyle" TargetType="ListView">
+            <Setter Property="SelectionMode" Value="None"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TabNavigation" Value="Local" />
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -356,16 +361,26 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Vertical" Style="{StaticResource StackPanelStyle}" HorizontalAlignment="Center" Margin="0,0,0,0">
-                        <TextBlock Text="FirstName:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
+                        <!--<TextBlock Text="FirstName:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                         <TextBlock Text="LastName:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                         <TextBlock Text="Address:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                         <TextBlock Text="City:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                         <TextBlock Text="ZipPostal:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                         <TextBlock Text="PhoneNumber:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
-                        <TextBlock Text="Email:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
+                        <TextBlock Text="Email:" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>-->
+                        <ListView  Style="{StaticResource ListViewStyle}" ItemsSource="{Binding PropEmployeeInfoList}">
+                            <ListView.ItemTemplate >
+                                <DataTemplate>
+                                    <StackPanel Style="{StaticResource StackPanelStyle}">
+                                        <TextBlock Text="{Binding VisualName}" Style="{StaticResource TextBlockStyle}"/>
+                                        <TextBlock Text="{Binding ValueFromUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Orientation="Vertical" Style="{StaticResource StackPanelStyle}" HorizontalAlignment="Left" Margin="87,0,0,0">
+                    <!--<StackPanel Grid.Column="1" Orientation="Vertical" Style="{StaticResource StackPanelStyle}" HorizontalAlignment="Left" Margin="87,0,0,0">
                         <TextBlock Text="{Binding EmployeeProp.FirstName}" Style="{StaticResource TextBlockStyle}"/>
                         <TextBlock Text="{Binding EmployeeProp.LastName}" Style="{StaticResource TextBlockStyle}"/>
                         <TextBlock Text="{Binding EmployeeProp.Adress}" Style="{StaticResource TextBlockStyle}"/>
@@ -373,7 +388,7 @@
                         <TextBlock Text="{Binding EmployeeProp.ZipPostal}" Style="{StaticResource TextBlockStyle}"/>
                         <TextBlock Text="{Binding EmployeeProp.PhoneNumber}" Style="{StaticResource TextBlockStyle}"/>
                         <TextBlock Text="{Binding EmployeeProp.Email}" Style="{StaticResource TextBlockStyle}"/>
-                    </StackPanel>
+                    </StackPanel>-->
 
                 </Grid>
 

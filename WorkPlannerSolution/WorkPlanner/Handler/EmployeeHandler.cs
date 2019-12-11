@@ -13,6 +13,8 @@ namespace WorkPlanner.Handler
 {
     public class EmployeeHandler
     {
+        #region Instace fields
+        private EmployeePageViewModel _EmployeePageViewModel;
         private CalendarViewModelBase _vm;
         private TimeSpan _starttime;
         private TimeSpan _endtime;
@@ -32,6 +34,8 @@ namespace WorkPlanner.Handler
 
         private WorktimeProxy _catalogInterface;
         //private Dictionary< WorktimeEventDetails> _cepair;
+        #endregion
+
 
 
         public EmployeeHandler(CalendarViewModelBase ViewModel)
@@ -473,6 +477,20 @@ namespace WorkPlanner.Handler
                         t1, t2, t3));
                 }
             }
+        }
+        #endregion
+
+        #region Methods
+
+        public void PopulatePrepInfo()
+        {
+            _EmployeePageViewModel.PropEmployeeInfoList.Clear();
+
+            foreach (var empProp in Factories.PropertyHelpersFactory<Employees>.PropertyNamesFactory(new List<int>() { 1, 9 }).GetListOfPropinfo)
+            {
+                _EmployeePageViewModel.PropEmployeeInfoList.Add(empProp);
+            }
+
         }
         #endregion
     }

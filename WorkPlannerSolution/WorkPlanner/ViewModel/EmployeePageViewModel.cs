@@ -14,18 +14,34 @@ namespace WorkPlanner.ViewModel
 {
     public class EmployeePageViewModel : CalendarViewModelBase
     {
-        private Employees _employeeProp;
+        
+        #region Instace fields
+        private ObservableCollection<PropInfo> _propEmployeeInfoList;
+        private Handler.EmployeeHandler _EmployeeHandler;
+        //private Employees _employeeProp;
+        #endregion
 
         public EmployeePageViewModel()
         {
-            //Employees = new ObservableCollection<Employees>();
+            _EmployeeHandler = new EmployeeHandler(this);
+            _propEmployeeInfoList = new ObservableCollection<PropInfo>();
+            _EmployeeHandler.PopulatePrepInfo();
 
         }
 
-        public Employees EmployeeProp
+        //public Employees EmployeeProp
+        //{
+        //    set { _employeeProp = value; }
+        //    get { return _employeeProp; }
+        //}
+
+        #region Observablecollections
+        public ObservableCollection<PropInfo> PropEmployeeInfoList
         {
-            set { _employeeProp = value; }
-            get { return _employeeProp; }
+            get { return _propEmployeeInfoList; }
+            set { _propEmployeeInfoList = value; }
         }
+
+        #endregion
     }
 }
