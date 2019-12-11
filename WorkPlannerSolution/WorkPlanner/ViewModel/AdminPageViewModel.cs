@@ -17,14 +17,16 @@ namespace WorkPlanner.ViewModel
 {
     public class AdminPageViewModel : ViewModelBase
     {
+        private string _year;
         private int _selectedWorktime;
         private Employees _selectedEmployee;
         private Visibility _employeeVisibility;
         private AdminHandler _handler;
-        private ObservableCollection<TimeSpan> _times;
+
+        private ObservableCollection<string> _times;
         private ObservableCollection<DateTime> _headers;
         private ObservableCollection<Employees> _employees;
-        private ObservableCollection<ColorEmployeePair> _colorEmployeePair;
+        private ObservableCollection<WorktimeEventDetails> _worktimeEventDetails;
 
         private ObservableCollection<EventElement> _weekday1Collection;
         private ObservableCollection<EventElement> _weekday2Collection;
@@ -33,10 +35,6 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<EventElement> _weekday5Collection;
         private ObservableCollection<EventElement> _weekday6Collection;
         private ObservableCollection<EventElement> _weekday7Collection;
-
-        private AdminHandler _handler;
-        private ObservableCollection<string> _times;
-        private ObservableCollection<DateTime> _headers;
 
         private DateTime _day1Header;
         private DateTime _day2Header;
@@ -73,7 +71,6 @@ namespace WorkPlanner.ViewModel
 
         #region General
 
-        private int _selectedWorktime;
 
         public int SelectedWorktime
         {
@@ -124,8 +121,6 @@ namespace WorkPlanner.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        private string _year;
 
         public string Year
         {

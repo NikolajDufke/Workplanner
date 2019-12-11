@@ -21,9 +21,12 @@ namespace WorkPlanner.Handler
 {
     public class AdminHandler
     {
+        private CatalogsSingleton _catalog;
         private AdminPageViewModel _vm;
+
         private TimeSpan _starttime;
         private TimeSpan _endtime;
+
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection1;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection2;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection3;
@@ -43,6 +46,7 @@ namespace WorkPlanner.Handler
 
         public AdminHandler(AdminPageViewModel ViewModel)
         {
+            _catalog = CatalogsSingleton.Instance;
             _times = new Dictionary<DateTime, TimeSpan>();
             _employeePlacementIndex = new EmployeePlacementIndex();
             _starttime = new TimeSpan(8, 00, 0);
