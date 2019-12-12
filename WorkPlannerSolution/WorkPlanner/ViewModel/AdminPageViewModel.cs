@@ -103,28 +103,15 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-        /// <summary>
-        /// ICommand, som kører metoden ChangeEmployeeVisibility i AdminHandler når man trykker på "open" knappen i viewet.
-        /// </summary>
-        private ICommand _changeVisibility;
-
-        public ICommand ChangeVisibility
-        {
-            get
-            {
-                return _changeVisibility ?? (_changeVisibility = new RelayCommand(_handler.ChangeEmployeeVisibility));
-            }
-            set { _changeVisibility = value; }
-        }
 #endregion
 
         #region General
 
-        public ObservableCollection<ColorEmployeePair> ColorEmployeePair
-        {
-            get { return _colorEmployeePair; }
-            set { _colorEmployeePair = value; }
-        }
+        //public ObservableCollection<ColorEmployeePair> ColorEmployeePair
+        //{
+        //    get { return _colorEmployeePair; }
+        //    set { _colorEmployeePair = value; }
+        //}
 
 
         public ObservableCollection<Employees> Employees

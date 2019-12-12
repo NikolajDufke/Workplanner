@@ -30,6 +30,15 @@
         <Style x:Key="DayListStyle" TargetType="StackPanel">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="AppBarButton">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
     </Page.Resources>
 
     <Grid >
@@ -42,19 +51,19 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            
+
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="1"
               Background="LightSteelBlue">
-                <TextBlock 
+            <TextBlock 
                 Grid.Column="1"  
                 Text ="-- ADMIN PAGE --" 
                 FontSize="23" 
                 FontWeight="Bold" 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center"></TextBlock>
-                </Grid>
+        </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Background="LightGray">
             <Grid.RowDefinitions>
@@ -70,12 +79,12 @@
                     <AppBarButton Icon="Previous" Command="{Binding PreviousWeekCommand}" />
                     <StackPanel VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
-                            
-                        <TextBlock Text="{Binding Year,Mode=TwoWay}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBlock Text="{Binding WeekNumber ,Mode=TwoWay}" VerticalAlignment="Center"/>
-                            </StackPanel>
+
+                            <TextBlock Text="{Binding Year,Mode=TwoWay}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding WeekNumber ,Mode=TwoWay}" VerticalAlignment="Center"/>
                         </StackPanel>
+                    </StackPanel>
                     <AppBarButton Icon="Next" Command="{Binding NextWeekCommand}" />
                 </StackPanel>
             </StackPanel>
@@ -98,7 +107,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-            
+
 
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                     <TextBlock FontSize="8" Text="{Binding Day1Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
@@ -128,7 +137,7 @@
                     <TextBlock FontSize="8" Text="{Binding Day7Header.Date, Converter={StaticResource DateFormatConverter}}" HorizontalAlignment="Center"></TextBlock>
                     <TextBlock Text="{Binding Day7Header.DayOfWeek}" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
-         
+
 
                 <ScrollViewer Grid.Row="1" Grid.ColumnSpan="100" >
                     <Grid>
@@ -355,19 +364,31 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="4*"/>
+                <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Content="Add Worktime"  HorizontalAlignment="Left" Background="Gray" Click="AddWorkTimeButton"/>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Button Content="Edit Worktime" Background="Gray"/>
-                    <Button Content="Delete Worktime" Background="Gray" Command="{Binding DeleteWorktimeCommand}"/>
-                </StackPanel>
-                <Button Grid.Row="1" Content="Open" HorizontalAlignment="Right" Background="Gray" Command="{Binding ChangeVisibility}"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <AppBarButton Icon="Add" Click="AddWorkTimeButton" Style="{StaticResource ButtonStyle}"/>
+                <AppBarButton Grid.Column="2" Icon="Edit" Style="{StaticResource ButtonStyle}"></AppBarButton>
+                <AppBarButton Grid.Column="4" Icon="Delete" Command="{Binding DeleteWorktimeCommand}" Style="{StaticResource ButtonStyle}"></AppBarButton>
+                <AppBarButton Grid.Row="1" Grid.Column="6" HorizontalAlignment="Right" Label="FontIcon" Command="{Binding ChangeVisibility}" Style="{StaticResource ButtonStyle}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74B;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Selected Worktime ID :" ></TextBlock>
                     <TextBlock Text="{Binding SelectedWorktime}" ></TextBlock>
                 </StackPanel>
@@ -378,19 +399,10 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <ListView BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+                <ListView Grid.ColumnSpan="7" BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <!--<Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>-->
                                 <TextBlock Text="{Binding FirstName}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
                                 <TextBlock Grid.Column="1" Text="{Binding LastName}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
                                 <TextBlock Grid.Column="2" Text="{Binding Email}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" Width="150"/>
@@ -404,18 +416,21 @@
                 </ListView>
 
                 <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Button Content="Create" Background="Gray" Click="CreateButton"/>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Button Content="Edit" Background="Gray" HorizontalAlignment="Center"/>
-                        <Button Content="Delete Employee" Background="Gray"  HorizontalAlignment="Center" Command="{Binding DeleteEmployeeCommand}"/>
-                    </StackPanel>
-
-                    <Button Content="Log Out" Background="Gray" Click="LogOut" HorizontalAlignment="Right"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <AppBarButton Icon="Add" Click="CreateButton" Style="{StaticResource ButtonStyle}"/>
+                    <AppBarButton Grid.Column="2" Icon="Edit" Style="{StaticResource ButtonStyle}"/>
+                    <AppBarButton Grid.Column="4" Icon="Delete" Command="{Binding DeleteEmployeeCommand}" Style="{StaticResource ButtonStyle}"/>
                 </Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <AppBarButton HorizontalAlignment="Right" Icon="cancel" Click="LogOut" Style="{StaticResource ButtonStyle}"></AppBarButton>
             </Grid>
         </Grid>
     </Grid>
