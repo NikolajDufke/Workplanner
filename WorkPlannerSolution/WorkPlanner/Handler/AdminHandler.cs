@@ -85,8 +85,6 @@ namespace WorkPlanner.Handler
             _vm.Year = DateTime.Now.Year.ToString();
             LoadCalenderDetailsAsync();
 
-            SetTimes();
-            PopulateTimePlanCollectionsAsync();
 
             #region test data
 
@@ -150,6 +148,7 @@ namespace WorkPlanner.Handler
                     await _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
                 }
                 await _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
+                await _catalogInterface.Reload();
                 LoadCalenderDetailsAsync();
                 _updater.GetEmployeesAsync(_vm.Employees);
             }

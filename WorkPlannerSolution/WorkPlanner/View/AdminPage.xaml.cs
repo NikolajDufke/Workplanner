@@ -44,7 +44,7 @@ namespace WorkPlanner.View
 
         private void LogOut(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(LoginPage));
         }
     }
 }

@@ -31,6 +31,9 @@ namespace WorkPlanner.Model
             _colersState.Add("Indigo", false);
             _colersState.Add("Plum", false);
             _colersState.Add("MediumPurple", false);
+            _colersState.Add("Black", false);
+            _colersState.Add("Blue", false);
+            _colersState.Add("LightBlue", false);
 
             #endregion
         }
@@ -107,8 +110,6 @@ namespace WorkPlanner.Model
             }
 
             return listWed;
-
-            return null;
         }
     }
 
