@@ -334,7 +334,7 @@
                     </Grid>
                 </ScrollViewer>
             </Grid>
-            <ItemsControl Grid.Row="2" ItemsSource="{Binding ColorEmployeePair}">
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding WorktimeEventDetails}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"></StackPanel>
@@ -362,24 +362,27 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Button Content="Add Worktime"  HorizontalAlignment="Left" Background="Gray" Click="AddWorkTimeButton"/>
-            <Button Content="Edit Worktime" HorizontalAlignment="Center" Background="Gray"/>
-            <Button Grid.Row="1" Content="Open" HorizontalAlignment="Right" Background="Gray" Command="{Binding ChangeVisibility}"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Content="Edit Worktime" Background="Gray"/>
+                    <Button Content="Delete Worktime" Background="Gray" Command="{Binding DeleteWorktimeCommand}"/>
+                </StackPanel>
+                <Button Grid.Row="1" Content="Open" HorizontalAlignment="Right" Background="Gray" Command="{Binding ChangeVisibility}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Selected Worktime ID :" ></TextBlock>
                     <TextBlock Text="{Binding SelectedWorktime}" ></TextBlock>
                 </StackPanel>
             </Grid>
-        <Grid Name="DroppedPanel" Grid.Row="1" Visibility="{Binding EmployeeVisibility}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <Grid Name="DroppedPanel" Grid.Row="1" Visibility="{Binding EmployeeVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <ListView BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <!--<Grid.ColumnDefinitions>
+                <ListView BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -395,21 +398,25 @@
                                 <TextBlock Grid.Column="4" Text="{Binding Adress}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
                                 <TextBlock Grid.Column="5" Text="{Binding City}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
                                 <TextBlock Grid.Column="6" Text="{Binding ZipPostal}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Button Content="Create" Background="Gray" Click="CreateButton"/>
-                 <Button Content="Edit" Background="Gray" HorizontalAlignment="Center"/>
-                 <Button Content="Log Out" Background="Gray" Click="LogOut" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Create" Background="Gray" Click="CreateButton"/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button Content="Edit" Background="Gray" HorizontalAlignment="Center"/>
+                        <Button Content="Delete Employee" Background="Gray"  HorizontalAlignment="Center" Command="{Binding DeleteEmployeeCommand}"/>
+                    </StackPanel>
+
+                    <Button Content="Log Out" Background="Gray" Click="LogOut" HorizontalAlignment="Right"/>
+                </Grid>
             </Grid>
         </Grid>
-    </Grid>
     </Grid>
 </Page>

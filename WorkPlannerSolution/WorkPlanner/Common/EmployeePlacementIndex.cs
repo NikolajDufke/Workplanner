@@ -31,6 +31,9 @@ namespace WorkPlanner.Model
             _colersState.Add("Indigo", false);
             _colersState.Add("Plum", false);
             _colersState.Add("MediumPurple", false);
+            _colersState.Add("Black", false);
+            _colersState.Add("Blue", false);
+            _colersState.Add("LightBlue", false);
 
             #endregion
         }
@@ -95,6 +98,18 @@ namespace WorkPlanner.Model
         public bool ContainsImployee(int employeeId)
         {
             return _Employees.ContainsKey(employeeId);
+        }
+
+        public List<WorktimeEventDetails> GetWorktimeEventDetails()
+        {
+            List<WorktimeEventDetails> listWed = new List<WorktimeEventDetails>();
+
+            foreach (var i in _colorIndex)
+            {
+                listWed.Add(new WorktimeEventDetails(i.Value,_Employees[i.Key].FirstName + " " + _Employees[i.Key].LastName, 0));
+            }
+
+            return listWed;
         }
     }
 

@@ -23,6 +23,7 @@ namespace WorkPlanner.Handler
     {
         private CatalogsSingleton _catalog;
         private AdminPageViewModel _vm;
+        private UpdateObsCollection _updater;
 
         private TimeSpan _starttime;
         private TimeSpan _endtime;
@@ -84,8 +85,6 @@ namespace WorkPlanner.Handler
             _vm.Year = DateTime.Now.Year.ToString();
             LoadCalenderDetailsAsync();
 
-            SetTimes();
-            PululateTimePlanCollectionsAsync();
 
             #region test data
 
@@ -109,8 +108,8 @@ namespace WorkPlanner.Handler
 
             #endregion
 
-            UpdateObsCollection updater = new UpdateObsCollection();
-            updater.GetEmployeesAsync(_vm.Employees);
+            _updater = new UpdateObsCollection();
+            _updater.GetEmployeesAsync(_vm.Employees);
         }
 
         #region Methods
@@ -129,6 +128,8 @@ namespace WorkPlanner.Handler
             if (_vm.EmployeeVisibility == Visibility.Collapsed)
             {
                 _vm.EmployeeVisibility = Visibility.Visible;
+                _updater.GetEmployeesAsync(_vm.Employees);
+
             }
             else
             {
@@ -136,22 +137,31 @@ namespace WorkPlanner.Handler
             }
         }
 
-        public void DeleteEmployee()
+        public async void DeleteEmployee()
         {
-            _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
-            List<Worktimes> toRemoveWorktimes = _catalogInterface.GetAllWorktimesByEmployee(_vm.SelectedEmployee);
-
-            foreach (Worktimes worktime in toRemoveWorktimes)
+            if (_vm.SelectedEmployee != null)
             {
-                _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
+                List<Worktimes> toRemoveWorktimes = _catalogInterface.GetAllWorktimesByEmployee(_vm.SelectedEmployee);
+
+                foreach (Worktimes worktime in toRemoveWorktimes)
+                {
+                    await _catalog.WorktimeCatalog.RemoveAsync(worktime.WorkTimeID.ToString());
+                }
+                await _catalog.EmployeeCatalog.RemoveAsync(_vm.SelectedEmployee.EmployeeID.ToString());
+                await _catalogInterface.Reload();
+                LoadCalenderDetailsAsync();
+                _updater.GetEmployeesAsync(_vm.Employees);
             }
-            LoadCalenderDetailsAsync();
         }
 
-        public void DeleteWorktime()
+        public async void DeleteWorktime()
         {
-            _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
-            LoadCalenderDetailsAsync();
+            if (_vm.SelectedWorktime != 0)
+            {
+                await _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
+                await _catalogInterface.Reload();
+                LoadCalenderDetailsAsync();
+            }
         }
         #endregion
 
@@ -207,10 +217,9 @@ namespace WorkPlanner.Handler
                 _vm.Year = _vm.Headers[1].Year.ToString();
             }
 
-            _employeePlacementIndex.Clear();
-
+        
             SetTimes();
-            await PululateTimePlanCollectionsAsync();
+            await PopulateTimePlanCollectionsAsync();
             SetDaysAndDates();
 
         }
@@ -292,6 +301,7 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void UpdateTimePlan()
         {
+
             _vm.Weekday1Collection.Clear();
             _vm.Weekday2Collection.Clear();
             _vm.Weekday3Collection.Clear();
@@ -299,7 +309,13 @@ namespace WorkPlanner.Handler
             _vm.Weekday5Collection.Clear();
             _vm.Weekday6Collection.Clear();
             _vm.Weekday7Collection.Clear();
+            _vm.WorktimeEventDetails.Clear();
 
+            foreach (WorktimeEventDetails wed in _employeePlacementIndex.GetWorktimeEventDetails())
+            {
+                _vm.WorktimeEventDetails.Add(wed);
+            }
+         
             int headerindex = 1;
             foreach (var header in _vm.Headers)
             {
@@ -387,7 +403,7 @@ namespace WorkPlanner.Handler
         /// Finder worktimes i Databasen og sætter dem ind i TimeplanColletions.
         /// </summary>
         /// <returns></returns>
-        private async Task PululateTimePlanCollectionsAsync()
+        private async Task PopulateTimePlanCollectionsAsync()
         {  
             _employeePlacementIndex.Clear();
             int headerindex = 1;
