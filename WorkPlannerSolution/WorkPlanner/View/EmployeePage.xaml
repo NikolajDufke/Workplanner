@@ -372,7 +372,7 @@
                             <ListView.ItemTemplate >
                                 <DataTemplate>
                                     <StackPanel Style="{StaticResource StackPanelStyle}">
-                                        <TextBlock Text="{Binding VisualName}" Style="{StaticResource TextBlockStyle}"/>
+                                        <TextBlock Text="{Binding VisualName}" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                                         <TextBlock Text="{Binding ValueFromUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBlockStyle}"/>
                                     </StackPanel>
                                 </DataTemplate>

@@ -12,9 +12,9 @@ using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Handler
 {
-    public class CalendarHandler
+    public class CalendarHandler <T> where T: CalendarViewModelBase
     {
-        private CalendarViewModelBase _vm;
+        private T _viewmodel;
         private TimeSpan _starttime;
         private TimeSpan _endtime;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection1;
@@ -24,7 +24,7 @@ namespace WorkPlanner.Handler
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection5;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection6;
         private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection7;
-
+        
         private Dictionary<DateTime, TimeSpan> _times;
 
         //private Dictionary<int, Employees> _employeePlacementIndex;
@@ -35,8 +35,9 @@ namespace WorkPlanner.Handler
         //private Dictionary< WorktimeEventDetails> _cepair;
 
 
-        public CalendarHandler(CalendarViewModelBase ViewModel)
+        public CalendarHandler(T viewmodel)
         {
+            _viewmodel = viewmodel;
             _times = new Dictionary<DateTime, TimeSpan>();
             _employeePlacementIndex = new EmployeePlacementIndex();
             _starttime = new TimeSpan(8, 00, 0);
@@ -69,9 +70,8 @@ namespace WorkPlanner.Handler
 
             #endregion
 
-            _vm = ViewModel;
-            _vm.WeekNumber = DateTime.Now.DayOfYear / 7;
-            _vm.Year = DateTime.Now.Year.ToString();
+            _viewmodel.WeekNumber = DateTime.Now.DayOfYear / 7;
+            _viewmodel.Year = DateTime.Now.Year.ToString();
             LoadCalenderDetailsAsync();
 
             SetTimes();
@@ -79,33 +79,28 @@ namespace WorkPlanner.Handler
 
             #region test data
 
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
 
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
-            //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
+            //_viewmodel.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
 
             #endregion
 
             UpdateObsCollection updater = new UpdateObsCollection();
-            updater.GetEmployeesAsync(_vm.Employees);
-        }
-
-        public void SetSelectedWorktime(int id)
-        {
-            _vm.SelectedWorktime = id;
+            updater.GetEmployeesAsync(_viewmodel.Employees);
         }
 
         #region properties 
@@ -145,17 +140,17 @@ namespace WorkPlanner.Handler
         /// </summary>
         private async void LoadCalenderDetailsAsync()
         {
-            _vm.Headers.Clear();
-            foreach (var date in GetDatesFromWeekNumber.GetDates(_vm.WeekNumber))
+            _viewmodel.Headers.Clear();
+            foreach (var date in GetDatesFromWeekNumber.GetDates(_viewmodel.WeekNumber))
             {
-                _vm.Headers.Add(date);
+                _viewmodel.Headers.Add(date);
             }
 
             //Sætter år ud fra den første dato.
             //TODO gør at den finder år ud fra alle datoer og skriver 2 årstal på når vi er i ugen omkring årsskiftet.
-            if (_vm.Year != _vm.Headers[1].Year.ToString())
+            if (_viewmodel.Year != _viewmodel.Headers[1].Year.ToString())
             {
-                _vm.Year = _vm.Headers[1].Year.ToString();
+                _viewmodel.Year = _viewmodel.Headers[1].Year.ToString();
             }
 
             _employeePlacementIndex.Clear();
@@ -171,10 +166,10 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void AddWeekNumber()
         {
-            var t = _vm.Day1Header.DayOfYear;
-            DateTime nextWeek = _vm.Day1Header;
+            var t = _viewmodel.Day1Header.DayOfYear;
+            DateTime nextWeek = _viewmodel.Day1Header;
             nextWeek = nextWeek.AddDays(7);
-            _vm.WeekNumber = nextWeek.DayOfYear / 7;
+            _viewmodel.WeekNumber = nextWeek.DayOfYear / 7;
             LoadCalenderDetailsAsync();
 
         }
@@ -184,10 +179,10 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void SubstractWeekNumber()
         {
-            var t = _vm.Day1Header.DayOfYear;
-            DateTime nextWeek = _vm.Day1Header;
+            var t = _viewmodel.Day1Header.DayOfYear;
+            DateTime nextWeek = _viewmodel.Day1Header;
             nextWeek = nextWeek.Subtract(TimeSpan.FromDays(7));
-            _vm.WeekNumber = nextWeek.DayOfYear / 7;
+            _viewmodel.WeekNumber = nextWeek.DayOfYear / 7;
             LoadCalenderDetailsAsync();
         }
 
@@ -200,13 +195,13 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void SetDaysAndDates()
         {
-            _vm.Day1Header = _vm.Headers[0];
-            _vm.Day2Header = _vm.Headers[1];
-            _vm.Day3Header = _vm.Headers[2];
-            _vm.Day4Header = _vm.Headers[3];
-            _vm.Day5Header = _vm.Headers[4];
-            _vm.Day6Header = _vm.Headers[5];
-            _vm.Day7Header = _vm.Headers[6];
+            _viewmodel.Day1Header = _viewmodel.Headers[0];
+            _viewmodel.Day2Header = _viewmodel.Headers[1];
+            _viewmodel.Day3Header = _viewmodel.Headers[2];
+            _viewmodel.Day4Header = _viewmodel.Headers[3];
+            _viewmodel.Day5Header = _viewmodel.Headers[4];
+            _viewmodel.Day6Header = _viewmodel.Headers[5];
+            _viewmodel.Day7Header = _viewmodel.Headers[6];
 
         }
 
@@ -216,7 +211,7 @@ namespace WorkPlanner.Handler
         /// <param name="intervalInMinutes"></param>
         public void SetTimes(int intervalInMinutes = 30)
         {
-            _vm.Times.Clear();
+            _viewmodel.Times.Clear();
             _timePlanCollection1.Clear();
             _timePlanCollection2.Clear();
             _timePlanCollection3.Clear();
@@ -227,7 +222,7 @@ namespace WorkPlanner.Handler
 
             for (double i = _starttime.TotalMinutes; i < _endtime.TotalMinutes; i += intervalInMinutes)
             {
-                _vm.Times.Add(TimeSpan.FromMinutes(i).ToString(@"hh\:mm"));
+                _viewmodel.Times.Add(TimeSpan.FromMinutes(i).ToString(@"hh\:mm"));
                 _timePlanCollection1.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection2.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
                 _timePlanCollection3.Add(TimeSpan.FromMinutes(i), new TimeIntervalDetails());
@@ -243,64 +238,64 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void UpdateTimePlan()
         {
-            _vm.Weekday1Collection.Clear();
-            _vm.Weekday2Collection.Clear();
-            _vm.Weekday3Collection.Clear();
-            _vm.Weekday4Collection.Clear();
-            _vm.Weekday5Collection.Clear();
-            _vm.Weekday6Collection.Clear();
-            _vm.Weekday7Collection.Clear();
+            _viewmodel.Weekday1Collection.Clear();
+            _viewmodel.Weekday2Collection.Clear();
+            _viewmodel.Weekday3Collection.Clear();
+            _viewmodel.Weekday4Collection.Clear();
+            _viewmodel.Weekday5Collection.Clear();
+            _viewmodel.Weekday6Collection.Clear();
+            _viewmodel.Weekday7Collection.Clear();
 
-            //if (_vm.ColorEmployeePair != null)
-            //    _vm.ColorEmployeePair.Clear();
+            //if (_viewmodel.ColorEmployeePair != null)
+            //    _viewmodel.ColorEmployeePair.Clear();
             //        else
-            //    _vm.ColorEmployeePair =
+            //    _viewmodel.ColorEmployeePair =
             //        new ObservableCollection<ColorEmployeePair>();
 
             //foreach (var cep in _cepair)
             //{
-            //    _vm.ColorEmployeePair.Add(cep);
+            //    _viewmodel.ColorEmployeePair.Add(cep);
             //}
 
             int headerindex = 1;
-            foreach (var header in _vm.Headers)
+            foreach (var header in _viewmodel.Headers)
             {
 
                 switch (headerindex)
                 {
                     case 1:
                         {
-                            AddToView(_timePlanCollection1, _vm.Weekday1Collection);
+                            AddToView(_timePlanCollection1, _viewmodel.Weekday1Collection);
                             break;
                         }
                     case 2:
                         {
-                            AddToView(_timePlanCollection2, _vm.Weekday2Collection);
+                            AddToView(_timePlanCollection2, _viewmodel.Weekday2Collection);
                             break;
                         }
                     case 3:
                         {
-                            AddToView(_timePlanCollection3, _vm.Weekday3Collection);
+                            AddToView(_timePlanCollection3, _viewmodel.Weekday3Collection);
                             break;
                         }
                     case 4:
                         {
-                            AddToView(_timePlanCollection4, _vm.Weekday4Collection);
+                            AddToView(_timePlanCollection4, _viewmodel.Weekday4Collection);
                             break;
                         }
                     case 5:
                         {
-                            AddToView(_timePlanCollection5, _vm.Weekday5Collection);
+                            AddToView(_timePlanCollection5, _viewmodel.Weekday5Collection);
                             break;
                         }
                     case 6:
                         {
-                            AddToView(_timePlanCollection6, _vm.Weekday6Collection);
+                            AddToView(_timePlanCollection6, _viewmodel.Weekday6Collection);
                             break;
                         }
                     case 7:
                         {
-                            AddToView(_timePlanCollection7, _vm.Weekday7Collection);
+                            AddToView(_timePlanCollection7, _viewmodel.Weekday7Collection);
                             break;
                         }
                 }
@@ -359,7 +354,7 @@ namespace WorkPlanner.Handler
         {
             _employeePlacementIndex.Clear();
             int headerindex = 1;
-            foreach (var header in _vm.Headers)
+            foreach (var header in _viewmodel.Headers)
             {
                 //Her finder vi alle worktimes som er på en given dag.
                 List<Worktimes> WorktimesThisDay = _catalogInterface.GetAllWorktimesOfDay(header.Date);

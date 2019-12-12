@@ -17,15 +17,15 @@ namespace WorkPlanner.ViewModel
         
         #region Instace fields
         private ObservableCollection<PropInfo> _propEmployeeInfoList;
-        private Handler.EmployeeHandler _EmployeeHandler;
+        private Handler.EmployeePageHandler _EmployeePageHandler;
         //private Employees _employeeProp;
         #endregion
 
         public EmployeePageViewModel()
         {
-            _EmployeeHandler = new EmployeeHandler(this);
+            _EmployeePageHandler = new EmployeePageHandler(this);
             _propEmployeeInfoList = new ObservableCollection<PropInfo>();
-            _EmployeeHandler.PopulatePrepInfo();
+            _EmployeePageHandler.PopulatePrepInfo();
 
         }
 

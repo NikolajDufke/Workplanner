@@ -8,7 +8,7 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    public class CalendarViewModelBase : ViewModelBase
+    public class CalendarViewModelBase: ViewModelBase 
     {
         private ObservableCollection<EventElement> _weekday1Collection;
         private ObservableCollection<EventElement> _weekday2Collection;
@@ -17,7 +17,7 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<EventElement> _weekday5Collection;
         private ObservableCollection<EventElement> _weekday6Collection;
         private ObservableCollection<EventElement> _weekday7Collection;
-        private CalendarHandler _handler;
+        private CalendarHandler<CalendarViewModelBase> _handler;
         private ObservableCollection<string> _times;
         private ObservableCollection<DateTime> _headers;
         private DateTime _day1Header;
@@ -47,25 +47,11 @@ namespace WorkPlanner.ViewModel
             _times = new ObservableCollection<string>();
             _employees = new ObservableCollection<Employees>();
 
-            _handler = new CalendarHandler(this);
+            _handler = new CalendarHandler<CalendarViewModelBase>(this);
             _handler.SetDaysAndDates();
         }
 
         #region General
-
-        private int _selectedWorktime;
-
-        public int SelectedWorktime
-        {
-            get { return _selectedWorktime; }
-            set
-            {
-                _selectedWorktime = value;
-                OnPropertyChanged();
-            }
-        }
-
-
         public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
         {
             get { return _worktimeEventDetails; }
@@ -286,17 +272,6 @@ namespace WorkPlanner.ViewModel
                        (_previousWeekCommand = new RelayCommand(_handler.SubstractWeekNumber));
             }
             set { _previousWeekCommand = value; }
-        }
-
-        private ICommand _setSelectedWorktimeCommand;
-
-        public ICommand SetSelectedWorktimeCommand
-        {
-            get
-            {
-                return _setSelectedWorktimeCommand ?? (_setSelectedWorktimeCommand =
-                    new RelayArgCommand<int>(ev => _handler.SetSelectedWorktime(ev)));
-            }
         }
 
         #endregion
