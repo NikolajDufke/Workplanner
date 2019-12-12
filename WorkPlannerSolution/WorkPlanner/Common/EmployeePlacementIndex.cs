@@ -107,8 +107,6 @@ namespace WorkPlanner.Model
             }
 
             return listWed;
-
-            return null;
         }
     }
 

@@ -85,8 +85,6 @@ namespace WorkPlanner.Handler
             _vm.Year = DateTime.Now.Year.ToString();
             LoadCalenderDetailsAsync();
 
-            SetTimes();
-            PululateTimePlanCollectionsAsync();
 
             #region test data
 
