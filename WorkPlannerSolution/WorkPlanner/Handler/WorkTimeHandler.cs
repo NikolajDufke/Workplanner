@@ -13,7 +13,6 @@ namespace WorkPlanner.ViewModel
     public class WorkTimeHandler
     {
         #region Instance
-        private List<Worktimes> allWorktimes;
         private WorkTimeViewModel _workTimeViewModel;
         private CatalogsSingleton _catalogs;
         #endregion
@@ -27,26 +26,6 @@ namespace WorkPlanner.ViewModel
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Bliver brugt til at vælge den selectede worktime.
-        /// Bliver ikke brugt endnu.
-        /// </summary>
-        /// <param name="id"></param>
-
-        public void SetSelectedWorkTime(object id)
-        {
-            int Id = Convert.ToInt16(id);
-
-            foreach (Worktimes wt in allWorktimes)
-            {
-                if (wt.WorkTimeID == Id)
-                {
-                    WorkTimeViewModel.SelectedWorktime = wt;
-                }
-            }
-        }
-
-
         /// <summary>
         /// Metode der gør så man kan oprette en worktime, som indeholder en Timestart, TimeEnd, Date og EmployeeId.
         /// Denne metode bruges også til at sende beskeder ud i view hvis en worktime er oprettet eller ikke oprettet.

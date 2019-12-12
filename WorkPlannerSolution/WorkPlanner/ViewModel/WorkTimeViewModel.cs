@@ -72,8 +72,16 @@ namespace WorkPlanner.ViewModel
 
         public DateTimeOffset Date
         {
-            set { _dateTime = value; }
-            get { return _dateTime; }
+            set
+            {
+                _dateTime = value; 
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _dateTime; 
+
+            }
         }
 
         public TimeSpan TimeStart
@@ -93,12 +101,6 @@ namespace WorkPlanner.ViewModel
             set { _workTimeHandler = value; }
             get { return _workTimeHandler; }
         }
-
-        public static Worktimes SelectedWorktime
-        {
-            set { _selectedworktime = value; }
-            get { return _selectedworktime; }
-        }
         #endregion
 
         #region ObservableCollection
@@ -112,16 +114,6 @@ namespace WorkPlanner.ViewModel
         #endregion
 
         #region ICommands
-        //public ICommand SelectedWorktimeCommand
-        //{
-        //    get
-        //    {
-        //        return _selectedWorktimeCommand ?? (_selectedWorktimeCommand =
-        //                   new RelayArgCommand<Worktimes>(wt => _workTimeHandler.SetSelectedWorkTime(wt)));
-        //    }
-        //    set { _selectedWorktimeCommand = value; }
-        //}
-
         public ICommand WorkTimeCreateCommand { set; get; }
         #endregion
 

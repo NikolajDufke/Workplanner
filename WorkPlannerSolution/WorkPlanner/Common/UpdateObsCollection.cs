@@ -17,11 +17,12 @@ namespace WorkPlanner.Common
         /// </summary>
         public async void GetEmployeesAsync(ObservableCollection<Employees> Catalog)
         {
-                List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
-                foreach (Employees e in listE)
-                {
-                    Catalog.Add(e);
-                }
+            Catalog.Clear();
+            List<Employees> listE = await CatalogsSingleton.Instance.EmployeeCatalog.GetAll();
+            foreach (Employees e in listE)
+            {
+                Catalog.Add(e);
+            }
         }
     }
 }

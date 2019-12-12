@@ -20,6 +20,7 @@ namespace WorkPlanner.Handler
         #region Instace fields
         private LoginPageViewModel _loginPageViewModel;
         private Users _selUser;
+        private CatalogsSingleton _catalog;
         #endregion
         #region Constructor
         public LoginHandler(LoginPageViewModel loginpageevm)
@@ -27,6 +28,9 @@ namespace WorkPlanner.Handler
             _loginPageViewModel = loginpageevm;
             this._loginPageViewModel = loginpageevm;
             RemoveEmployeeWithoutUser();
+            _catalog = CatalogsSingleton.Instance;
+            var employeeCatalog = _catalog.EmployeeCatalog.GetAll();
+            var worktimeCatalog = _catalog.WorktimeCatalog.GetAll();
         }
         #endregion
         #region Methods

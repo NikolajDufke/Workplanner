@@ -62,7 +62,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <TextBlock Text="Date:" Style="{StaticResource TextBlockStyle}"  />
-                <CalendarDatePicker Date="{Binding Date}" FontSize="20"/>
+                <CalendarDatePicker Date="{Binding Date, Mode=TwoWay}" FontSize="20"/>
                 <TextBlock Text="Time Start:" Style="{StaticResource TextBlockStyle}"/>
                 <TimePicker Time="{Binding TimeStart, Mode=TwoWay}" FontSize="20" ClockIdentifier="24HourClock"/>
                 <TextBlock Text="Time End:" Style="{StaticResource TextBlockStyle}"/>
