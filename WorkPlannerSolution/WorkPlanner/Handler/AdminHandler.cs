@@ -397,9 +397,6 @@ namespace WorkPlanner.Handler
             }
         }
 
-
-
-
         /// <summary>
         /// Finder worktimes i Databasen og sætter dem ind i TimeplanColletions.
         /// </summary>
