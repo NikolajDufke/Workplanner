@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Globalization.DateTimeFormatting;
 using WorkPlanner.Catalog;
@@ -11,12 +12,16 @@ namespace WorkPlanner.Proxy
 {
     class WorktimeProxy
     {
+        private bool IsFecthingData = false;
         private List<Worktimes> _allWorktimes;
+
         private Catalog<Worktimes> Catalog;
+
         //private TwoKeyDictionary<int, int, List<Worktimes>> _casheSortedByWeek;
         private Dictionary<int, Worktimes> casheSortedById;
         private Dictionary<int, Dictionary<DateTime, List<Worktimes>>> _casheSortedByDay;
         private Dictionary<int, List<Worktimes>> _casheSortedByEmployee;
+
         //private TreeKeyDictionary<int,int,int,List<Worktimes>> _cashed_Employee_Week;
         public WorktimeProxy()
         {
@@ -81,41 +86,45 @@ namespace WorkPlanner.Proxy
 
         public List<Worktimes> GetAllWorktimesOfDay(DateTime date, int year = 0)
         {
-            year = (year == 0) ? DateTime.Now.Year : year;
-            date = TrimToDateOnly(date);
+   
+                year = (year == 0) ? DateTime.Now.Year : year;
+                date = TrimToDateOnly(date);
 
-            List<Worktimes> result = null;
+                List<Worktimes> result = null;
+
+                if (!_casheSortedByDay.ContainsKey(year))
+                {
+                    result = _allWorktimes.FindAll(x => TrimToDateOnly(x.Date) == date);
+
+                    if (result.Count != 0)
+                    {
+                        _casheSortedByDay[year] = new Dictionary<DateTime, List<Worktimes>>();
+                        _casheSortedByDay[year][date] = result;
+                    }
+                    else
+                        return new List<Worktimes>();
+                }
+                else if (!_casheSortedByDay[year].ContainsKey(date))
+                {
+                    result = _allWorktimes.FindAll(x => TrimToDateOnly(x.Date) == date);
+
+                    if (result.Count != 0)
+                        _casheSortedByDay[year][date] = result;
+                    else
+                        return new List<Worktimes>();
+                }
+
+                return _casheSortedByDay[year][date];
+
+
 
             
 
-
-            if (!_casheSortedByDay.ContainsKey(year))
-            {
-                result = _allWorktimes.FindAll(x =>  TrimToDateOnly(x.Date) == date);
-
-                if (result.Count != 0)
-                {
-                    _casheSortedByDay[year] = new Dictionary<DateTime, List<Worktimes>>();
-                    _casheSortedByDay[year][date] = result;
-                }
-                else 
-                    return new List<Worktimes>();
-            }
-            else if (!_casheSortedByDay[year].ContainsKey(date))
-            {
-                result = _allWorktimes.FindAll(x => TrimToDateOnly(x.Date) == date);
-           
-                if (result.Count != 0)
-                    _casheSortedByDay[year][date] = result;
-                else
-                    return new List<Worktimes>();               
-            }
-
-            return _casheSortedByDay[year][date];
-
+      
         }
+    
 
-        public List<Worktimes> GetAllWorktimesByEmployee(Employees employee)
+    public List<Worktimes> GetAllWorktimesByEmployee(Employees employee)
         {
             if (!_casheSortedByEmployee.ContainsKey(employee.EmployeeID))
             {
@@ -125,14 +134,21 @@ namespace WorkPlanner.Proxy
             return _casheSortedByEmployee[employee.EmployeeID];
         }
 
-
-        private async void LoadAll()
+        public async Task Reload()
         {
-           _allWorktimes = await Catalog.GetAll();
+            _allWorktimes.Clear();
+            _casheSortedByDay.Clear();
+            _casheSortedByEmployee.Clear();
+           await LoadAll();
+            
+        }
 
-
-           
-           }
+        private async Task LoadAll()
+        {
+        
+            _allWorktimes = await Catalog.GetAll();
+    
+        }
 
         public static DateTime TrimToDateOnly(DateTime date)
         {
