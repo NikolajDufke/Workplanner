@@ -150,7 +150,8 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
-                        <ItemsControl Grid.Column="1" ItemsSource="{Binding Weekday1Collection, Mode=TwoWay}" Margin="0,0,0,0">
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding Weekday1Collection, Mode=TwoWay}" 
+                                      Margin="0,0,0,0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel HorizontalAlignment="Center"></StackPanel>
@@ -167,7 +168,10 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <Button Margin="0" Background="{Binding  Color}" Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
+                                                    <Button Margin="0"
+                                                            Background="{Binding  Color}" 
+                                                            Command="{Binding DataContext.SetSelectedWorktimeCommand, ElementName=Page}" 
+                                                            CommandParameter="{Binding WorktimeID}" Width="10" Height="40"></Button>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
