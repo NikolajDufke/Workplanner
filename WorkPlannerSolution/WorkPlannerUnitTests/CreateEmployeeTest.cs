@@ -36,35 +36,35 @@ namespace WorkPlannerUnitTests
             }
         }
 
-        [TestMethod]
-        public void TestCreateEmployee()
-        {
-            //Arrange
-            Arrange();
-            int expectedresult = _catalogsSingleton.EmployeeInfoCatalog.GetAll.Count + 1;
+        //[TestMethod]
+        //public void TestCreateEmployee()
+        //{
+        //    //Arrange
+        //    Arrange();
+        //    int expectedresult = _catalogsSingleton.EmployeeInfoCatalog.GetAll.Count + 1;
 
 
-            //Act
-            _createEmployeeViewModel.CreateEmployeeCommand.Execute(null);
+        //    //Act
+        //    _createEmployeeViewModel.CreateEmployeeCommand.Execute(null);
 
 
-            //Assert
-            Assert.AreEqual(expectedresult, _catalogsSingleton.EmployeeInfoCatalog.GetAll.Count);
+        //    //Assert
+        //    Assert.AreEqual(expectedresult, _catalogsSingleton.EmployeeInfoCatalog.GetAll.Count);
 
-            //Cleanup
-            var allempinfolist = _catalogsSingleton.EmployeeInfoCatalog.GetAll;
-            foreach (var empinfo in allempinfolist)
-            {
-                if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
-                {
-                   _catalogsSingleton.EmployeeInfoCatalog.RemoveAsync(empinfo.EInformationID.ToString());  
-                }
-                else
-                {
-                    throw new Exception("Not Deleted!");
-                }
-            }
-        }
+        //    //Cleanup
+        //    var allempinfolist = _catalogsSingleton.EmployeeInfoCatalog.GetAll;
+        //    foreach (var empinfo in allempinfolist)
+        //    {
+        //        if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
+        //        {
+        //           _catalogsSingleton.EmployeeInfoCatalog.RemoveAsync(empinfo.EInformationID.ToString());  
+        //        }
+        //        else
+        //        {
+        //            throw new Exception("Not Deleted!");
+        //        }
+        //    }
+        //}
 
         [TestMethod]
         public void TestMethod()

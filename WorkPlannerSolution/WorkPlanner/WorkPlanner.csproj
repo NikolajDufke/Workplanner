@@ -120,8 +120,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Catalog\Catalog.cs" />
-    <Compile Include="Catalog\CatalogsSingleton - generic.cs" />
     <Compile Include="Catalog\CatalogsSingleton.cs" />
+    <Compile Include="Catalog\EmployeesSingleton.cs" />
     <Compile Include="Common\GetDatesFromWeekNumber.cs" />
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
