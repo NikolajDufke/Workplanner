@@ -86,7 +86,7 @@ namespace WorkPlanner.Handler
             LoadCalenderDetailsAsync();
 
             SetTimes();
-            PululateTimePlanCollectionsAsync();
+            PopulateTimePlanCollectionsAsync();
 
             #region test data
 
@@ -160,6 +160,7 @@ namespace WorkPlanner.Handler
             if (_vm.SelectedWorktime != 0)
             {
                 await _catalog.WorktimeCatalog.RemoveAsync(_vm.SelectedWorktime.ToString());
+                await _catalogInterface.Reload();
                 LoadCalenderDetailsAsync();
             }
         }
@@ -217,10 +218,9 @@ namespace WorkPlanner.Handler
                 _vm.Year = _vm.Headers[1].Year.ToString();
             }
 
-            _employeePlacementIndex.Clear();
-
+        
             SetTimes();
-            await PululateTimePlanCollectionsAsync();
+            await PopulateTimePlanCollectionsAsync();
             SetDaysAndDates();
 
         }
@@ -302,6 +302,7 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void UpdateTimePlan()
         {
+
             _vm.Weekday1Collection.Clear();
             _vm.Weekday2Collection.Clear();
             _vm.Weekday3Collection.Clear();
@@ -403,7 +404,7 @@ namespace WorkPlanner.Handler
         /// Finder worktimes i Databasen og sætter dem ind i TimeplanColletions.
         /// </summary>
         /// <returns></returns>
-        private async Task PululateTimePlanCollectionsAsync()
+        private async Task PopulateTimePlanCollectionsAsync()
         {  
             _employeePlacementIndex.Clear();
             int headerindex = 1;
