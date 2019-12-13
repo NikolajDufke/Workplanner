@@ -34,7 +34,7 @@
         <Style x:Key="ButtonStyle" TargetType="AppBarButton">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="35"/>
-            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Background" Value="LightGray"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
@@ -395,8 +395,8 @@
             </Grid>
             <Grid Name="DroppedPanel" Grid.Row="1" Visibility="{Binding EmployeeVisibility}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
                 <ListView Grid.ColumnSpan="7" BorderBrush="Black" BorderThickness="2" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
