@@ -120,8 +120,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Catalog\Catalog.cs" />
-    <Compile Include="Catalog\CatalogsSingleton - generic.cs" />
     <Compile Include="Catalog\CatalogsSingleton.cs" />
+    <Compile Include="Catalog\EmployeesSingleton.cs" />
     <Compile Include="Common\GetDatesFromWeekNumber.cs" />
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
@@ -132,8 +132,10 @@
     <Compile Include="Converter\DateFormatConverter.cs" />
     <Compile Include="Factories\PropertyHelpersFactory.cs" />
     <Compile Include="Handler\AdminHandler.cs" />
+    <Compile Include="Handler\CalendarHandler.cs" />
     <Compile Include="Handler\CreateEmployeeHandler.cs" />
     <Compile Include="Common\PropertyNamesHelper.cs" />
+    <Compile Include="Handler\EmployeePageHandler.cs" />
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Interface\Ipopulator.cs" />
     <Compile Include="Common\EmployeePlacementIndex.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="Model\Databasemodels\Worktimes.cs" />
     <Compile Include="Proxy\WorktimeProxy.cs" />
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
+    <Compile Include="ViewModel\CalendarViewModelBase.cs" />
     <Compile Include="ViewModel\EmployeePageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -182,7 +185,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Class Diagram\ClassDiagram.cd" />
     <None Include="WorkPlanner_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

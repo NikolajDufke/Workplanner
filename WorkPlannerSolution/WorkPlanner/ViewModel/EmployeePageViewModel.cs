@@ -12,20 +12,36 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    public class EmployeePageViewModel
+    public class EmployeePageViewModel : CalendarViewModelBase
     {
-        private Employees _employeeProp;
+        
+        #region Instace fields
+        private ObservableCollection<PropInfo> _propEmployeeInfoList;
+        private Handler.EmployeePageHandler _EmployeePageHandler;
+        //private Employees _employeeProp;
+        #endregion
 
         public EmployeePageViewModel()
         {
-            //Employees = new ObservableCollection<Employees>();
+            _EmployeePageHandler = new EmployeePageHandler(this);
+            _propEmployeeInfoList = new ObservableCollection<PropInfo>();
+            _EmployeePageHandler.PopulatePrepInfo();
 
         }
 
-        public Employees EmployeeProp
+        //public Employees EmployeeProp
+        //{
+        //    set { _employeeProp = value; }
+        //    get { return _employeeProp; }
+        //}
+
+        #region Observablecollections
+        public ObservableCollection<PropInfo> PropEmployeeInfoList
         {
-            set { _employeeProp = value; }
-            get { return _employeeProp; }
+            get { return _propEmployeeInfoList; }
+            set { _propEmployeeInfoList = value; }
         }
+
+        #endregion
     }
 }
