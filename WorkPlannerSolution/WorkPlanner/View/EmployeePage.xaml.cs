@@ -28,6 +28,9 @@ namespace WorkPlanner.View
             this.InitializeComponent();
         }
 
- 
+        private void LogOutButton(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(LoginPage));
+        }
     }
 }

@@ -21,16 +21,18 @@ namespace WorkPlanner.Handler
         private LoginPageViewModel _loginPageViewModel;
         private Users _selUser;
         private CatalogsSingleton _catalog;
+        private EmployeesSingleton _employeesSingleton;
         #endregion
         #region Constructor
         public LoginHandler(LoginPageViewModel loginpageevm)
         {
             _loginPageViewModel = loginpageevm;
             this._loginPageViewModel = loginpageevm;
-            RemoveEmployeeWithoutUser();
             _catalog = CatalogsSingleton.Instance;
+            _employeesSingleton = EmployeesSingleton.Instance;
             var employeeCatalog = _catalog.EmployeeCatalog.GetAll();
             var worktimeCatalog = _catalog.WorktimeCatalog.GetAll();
+            RemoveEmployeeWithoutUser();
         }
         #endregion
         #region Methods
@@ -41,37 +43,48 @@ namespace WorkPlanner.Handler
         /// </summary>
         public async void LoginUser()
         {
-            _selUser = await CatalogsSingleton.Instance.UsersCatalog.GetSingleAsync(
-                Convert.ToString(_loginPageViewModel.SelEmployees.UserID));
-            if (_selUser.UserPassword == _loginPageViewModel.Password)
+            try
             {
-                if (_selUser.AccessLevel == 1)
+                _selUser = await CatalogsSingleton.Instance.UsersCatalog.GetSingleAsync(
+                    Convert.ToString(_loginPageViewModel.SelEmployees.UserID));
+                if (_selUser.UserPassword == _loginPageViewModel.Password)
                 {
-                    Frame frame = new Frame();
-                    frame.Navigate(typeof(AdminPage));
-                    Window.Current.Content = frame;
-                    Window.Current.Activate();
+
+                    _employeesSingleton.EmployeesObject = _loginPageViewModel.SelEmployees;
+                    if (_selUser.AccessLevel == 1)
+                    {
+                        Frame frame = new Frame();
+                        frame.Navigate(typeof(AdminPage));
+                        Window.Current.Content = frame;
+                        Window.Current.Activate();
+                    }
+                    else if (_selUser.AccessLevel == 2)
+                    {
+                        Frame frame = new Frame();
+                        frame.Navigate(typeof(AdminPage));
+                        Window.Current.Content = frame;
+                        Window.Current.Activate();
+                    }
+                    else
+                    {
+                        Frame frame = new Frame();
+                        frame.Navigate(typeof(MainPage));
+                        Window.Current.Content = frame;
+                        Window.Current.Activate();
+                    }
                 }
-                else if (_selUser.AccessLevel == 2)
-                {
-                    Frame frame = new Frame();
-                    frame.Navigate(typeof(AdminPage));
-                    Window.Current.Content = frame;
-                    Window.Current.Activate();
-                }
+
                 else
                 {
-                    Frame frame = new Frame();
-                    frame.Navigate(typeof(MainPage));
-                    Window.Current.Content = frame;
-                    Window.Current.Activate();
+                    _loginPageViewModel.Message = "Wrong password";
                 }
             }
-
-            else
+            catch (Exception)
             {
-                _loginPageViewModel.Message = "Wrong password";
+                _loginPageViewModel.Message = "Select a user";
             }
+
+
         }
 
         public void RemoveEmployeeWithoutUser()

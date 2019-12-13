@@ -31,8 +31,6 @@ namespace WorkPlanner.ViewModel
         #region Constructer
         public WorkTimeViewModel()
         {
-            
-
             _employee = new ObservableCollection<Employees>();
             _workTimeHandler = new WorkTimeHandler(this);
 
