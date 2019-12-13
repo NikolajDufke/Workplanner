@@ -219,7 +219,16 @@ namespace WorkPlanner.Handler
 
         
             SetTimes();
-            await PopulateTimePlanCollectionsAsync();
+
+            try
+            {
+                await PopulateTimePlanCollectionsAsync();
+            }
+            catch (Exception e)
+            {
+                var t = e;
+            }
+            
             SetDaysAndDates();
 
         }

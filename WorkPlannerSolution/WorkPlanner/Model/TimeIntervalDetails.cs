@@ -36,6 +36,10 @@ namespace WorkPlanner.Model
             }
         }
 
+        public bool Update
+        {
+            get { return _eventMembers.Count > 0 ? true : false; }
+        }
         //public void RemoveMember(int employeeID)
         //{
         //    if (_eventMembers.ContainsKey(employeeID))
@@ -52,15 +56,8 @@ namespace WorkPlanner.Model
         //        _eventMembers[employee.EmployeeID]=employee;
         //}
 
-        public bool Update
-        {
-            get
-            {
-              return _eventMembers.Count > 0 ?  true :  false;
-            }
-        }
 
-    
+
 
 
     }

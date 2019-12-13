@@ -60,7 +60,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
 
@@ -341,7 +341,7 @@
             <ItemsControl Grid.Row="2" ItemsSource="{Binding WorktimeEventDetails}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"></StackPanel>
+                        <WrapGrid  Orientation="Horizontal"></WrapGrid>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
