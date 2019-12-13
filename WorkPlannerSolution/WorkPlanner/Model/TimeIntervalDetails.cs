@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WorkPlanner.Model
 {
-    class TimeIntervalDetails
+    public class TimeIntervalDetails
     {
       private  Dictionary<int,Employees> _eventMembers;
        private Dictionary<int, WorktimeEventDetails> _worktimeEventDetails;

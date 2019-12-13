@@ -28,7 +28,7 @@ namespace WorkPlanner.Handler
         private Dictionary<DateTime, TimeSpan> _times;
 
         //private Dictionary<int, Employees> _employeePlacementIndex;
-        private EmployeePlacementIndex _employeePlacementIndex;
+        protected EmployeePlacementIndex _employeePlacementIndex;
         private Dictionary<int, string> _colors;
 
         private WorktimeProxy _catalogInterface;
@@ -416,7 +416,7 @@ namespace WorkPlanner.Handler
         /// <param name="collection"></param>
         /// <param name="worktime"></param>
         /// <returns></returns>
-        private async Task FindAndAddEmployeesToTimePlanAsync(Dictionary<TimeSpan, TimeIntervalDetails> collection,
+        protected virtual async Task FindAndAddEmployeesToTimePlanAsync(Dictionary<TimeSpan, TimeIntervalDetails> collection,
             Worktimes worktime)
         {
             //først finder vi empluyee id på den employee som har worktimes
@@ -470,6 +470,7 @@ namespace WorkPlanner.Handler
                 }
             }
         }
+
         #endregion
     }
 }
