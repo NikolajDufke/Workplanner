@@ -6,8 +6,7 @@
     xmlns:viewModel="using:WorkPlanner.ViewModel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Page.DataContext>
         <viewModel:LoginPageViewModel/>
@@ -18,71 +17,63 @@
             <Setter Property="Orientation" Value="Horizontal"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
-        <Style x:Key="TitleStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="40"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Background" Value="#FFAEAEAE"/>
-            <Setter Property="CornerRadius" Value="2.5"/>
-        </Style>
-        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="FontSize" Value="20"/>
-        </Style>
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="200"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="PlaceholderForeground" Value="#FFBEBEBE"/>
+            <Setter Property="BorderBrush" Value="#FFBEBEBE"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="RequestedTheme" Value="Dark"/>
         </Style>
         <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="200"/>
-        </Style>
-        <Style x:Key="ListViewStyle" TargetType="ListView">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="ComboboxStyle" TargetType="ComboBox">
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="RequestedTheme" Value="Dark"/>
+            <Setter Property="BorderBrush" Value="#FFBEBEBE"/>
+            <Setter Property="SelectionHighlightColor" Value="#FFBEBEBE"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
     </Page.Resources>
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF1E1E27"/>
+            <GradientStop Color="#FF2B2B37" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top">
-            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black">
-                <ComboBox Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding EmployeeCollection}" SelectedValue="{Binding SelEmployees, Mode=TwoWay}" PlaceholderText="User">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding FirstName}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password"/>
-                <StackPanel Style="{StaticResource StackPanelStyle}">
-                    <TextBlock Text="{Binding Message}"></TextBlock>
-                </StackPanel>
-                <AppBarButton HorizontalAlignment="Right" Icon="Forward" Label="Login" Command="{Binding LoginCommand}"/>
-
-            </StackPanel>
+        <ComboBox Grid.Column="2" Grid.Row="2" Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding EmployeeCollection}" SelectedValue="{Binding SelEmployees, Mode=TwoWay}" PlaceholderText="User">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FirstName}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <PasswordBox Grid.Column="2" Grid.Row="4" Style="{StaticResource PasswordBoxStyle}" Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password"/>
+        <StackPanel Grid.Column="2" Grid.Row="5" Style="{StaticResource StackPanelStyle}">
+            <TextBlock Text="{Binding Message}"></TextBlock>
         </StackPanel>
+        <AppBarButton Grid.Column="2" Grid.Row="5" HorizontalAlignment="Right" Label="Sign in" Command="{Binding LoginCommand}" Icon="Send" RequestedTheme="Dark"/>
     </Grid>
 </Page>
