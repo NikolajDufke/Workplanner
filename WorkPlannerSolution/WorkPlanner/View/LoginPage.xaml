@@ -74,6 +74,6 @@
         <StackPanel Grid.Column="2" Grid.Row="5" Style="{StaticResource StackPanelStyle}">
             <TextBlock Text="{Binding Message}"></TextBlock>
         </StackPanel>
-        <AppBarButton Grid.Column="2" Grid.Row="5" HorizontalAlignment="Right" Label="Sign in" Command="{Binding LoginCommand}" Icon="Send" RequestedTheme="Dark"/>
+        <AppBarButton Grid.Column="2" Grid.Row="5" HorizontalAlignment="Right" Label="Sign in" Command="{Binding LoginCommand}" Icon="Send" RequestedTheme="Dark" Foreground="#FFBEBEBE"/>
     </Grid>
 </Page>

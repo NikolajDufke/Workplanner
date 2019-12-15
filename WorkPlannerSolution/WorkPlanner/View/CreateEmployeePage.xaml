@@ -6,39 +6,52 @@
     xmlns:viewModel="using:WorkPlanner.ViewModel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
-        <Page.DataContext>
-            <viewModel:CreateEmployeeViewModel/>
-        </Page.DataContext>
+    <Page.DataContext>
+        <viewModel:CreateEmployeeViewModel/>
+    </Page.DataContext>
 
-        <Page.Resources>
-            <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+    <Page.Resources>
+        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            </Style>
+            <Setter Property="RequestedTheme" Value="Dark"/>
+        </Style>
         <Style x:Key="TitleStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="40"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="RequestedTheme" Value="Dark"/>
         </Style>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="150"/>
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="RequestedTheme" Value="Dark"/>
         </Style>
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="200"/>
+            <Setter Property="RequestedTheme" Value="Dark"/>
+            <Setter Property="BorderBrush" Value="#FFBEBEBE"/>
+            <Setter Property="SelectionHighlightColor" Value="#FFBEBEBE"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
         <Style x:Key="ListViewStyle" TargetType="ListView">
             <Setter Property="SelectionMode" Value="None"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="TabNavigation" Value="Local" />
+            <Setter Property="RequestedTheme" Value="Dark"/>
         </Style>
-        </Page.Resources>
-
+    </Page.Resources>
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF1E1E27"/>
+            <GradientStop Color="#FF2B2B37" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
 
     <Grid>
         <Grid.RowDefinitions>
