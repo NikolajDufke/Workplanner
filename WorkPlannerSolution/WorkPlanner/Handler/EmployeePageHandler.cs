@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Model;
 using WorkPlanner.Proxy;
 using WorkPlanner.ViewModel;
+using WorkPlanner.Catalog;
+using WorkPlanner.Model;
 
 namespace WorkPlanner.Handler
 {
@@ -20,6 +24,9 @@ namespace WorkPlanner.Handler
         public EmployeePageHandler(EmployeePageViewModel EmployeePageVM) : base(EmployeePageVM)
         {
             _employeePageViewModel = EmployeePageVM;
+            PropertyPopulator<Employees> ppEmployee = new PropertyPopulator<Employees>();
+            PopulatePrepInfo();
+            ppEmployee.Repopulate(EmployeePageVM.PropEmployeeInfoList, EmployeePageVM.ActiveUser);
         }
 
 
@@ -33,7 +40,6 @@ namespace WorkPlanner.Handler
             {
                 _employeePageViewModel.PropEmployeeInfoList.Add(empProp);
             }
-
         }
 
         ///// <summary>

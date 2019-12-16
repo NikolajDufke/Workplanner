@@ -19,16 +19,9 @@
     <Page.Resources>
         <Converters:DateFormatConverter x:Key="DateFormatConverter"></Converters:DateFormatConverter>
 
-        <Style x:Key="TimeSpacer" TargetType="TextBlock">
-            <Setter Property="Margin" Value="100"></Setter>
-        </Style>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Width" Value="100"></Setter>
             <Setter Property="Height" Value="35"></Setter>
-        </Style>
-
-        <Style x:Key="DayListStyle" TargetType="StackPanel">
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="AppBarButton">
@@ -37,6 +30,13 @@
             <Setter Property="Background" Value="LightGray"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="TitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
     </Page.Resources>
@@ -54,41 +54,34 @@
 
         </Grid.RowDefinitions>
 
-        <Grid Grid.Column="1"
-              Background="LightSteelBlue">
-            <TextBlock 
-                Grid.Column="1"  
-                Text ="-- ADMIN PAGE --" 
-                FontSize="23" 
-                FontWeight="Bold" 
-                VerticalAlignment="Center" 
-                HorizontalAlignment="Center"></TextBlock>
+        <Grid Grid.Column="1" Background="LightSteelBlue">
+            <TextBlock Grid.Column="1" Text ="-- ADMIN PAGE --" Style="{StaticResource TitleStyle}"></TextBlock>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Background="LightGray">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
 
             <StackPanel>
                 <StackPanel Orientation="Horizontal" 
-                 HorizontalAlignment="Center" >
-                    <AppBarButton Icon="Previous" Command="{Binding PreviousWeekCommand}" />
+                            HorizontalAlignment="Center" >
+                    <AppBarButton Icon="Previous" Label="Previous" Command="{Binding PreviousWeekCommand}"/>
                     <StackPanel VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal">
-
+                        <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Year,Mode=TwoWay}" HorizontalAlignment="Center"/>
-                            <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
-                            <TextBlock Text="{Binding WeekNumber ,Mode=TwoWay}" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding WeekNumber ,Mode=TwoWay}" VerticalAlignment="Center"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
-                    <AppBarButton Icon="Next" Command="{Binding NextWeekCommand}" />
+                    <AppBarButton Icon="Next" Label="Next" Command="{Binding NextWeekCommand}" />
                 </StackPanel>
             </StackPanel>
-
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
