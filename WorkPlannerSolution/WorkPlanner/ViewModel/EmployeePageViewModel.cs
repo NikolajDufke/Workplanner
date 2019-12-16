@@ -33,7 +33,6 @@ namespace WorkPlanner.ViewModel
             _EmployeePageHandler.LoadCalenderDetailsAsync();
 
             _propEmployeeInfoList = new ObservableCollection<PropInfo>();
-            _EmployeePageHandler.PopulatePrepInfo();
             
 
         }
