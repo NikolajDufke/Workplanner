@@ -11,6 +11,7 @@ namespace WorkPlanner.ViewModel
 {
     public class CalendarViewModelBase: ViewModelBase 
     {
+        private string _year;
         private ObservableCollection<EventElement> _weekday1Collection;
         private ObservableCollection<EventElement> _weekday2Collection;
         private ObservableCollection<EventElement> _weekday3Collection;
@@ -81,8 +82,6 @@ namespace WorkPlanner.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        private string _year;
 
         public string Year
         {

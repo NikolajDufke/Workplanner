@@ -15,6 +15,7 @@ namespace WorkPlanner.Handler
 {
     public class CalendarHandler<T> : ICalenderHandler where T: CalendarViewModelBase
     {
+
         protected T _viewmodel;
         private TimeSpan _starttime;
         private TimeSpan _endtime;
@@ -74,9 +75,6 @@ namespace WorkPlanner.Handler
             _viewmodel.WeekNumber = DateTime.Now.DayOfYear / 7;
             _viewmodel.Year = DateTime.Now.Year.ToString();
             
-
-     
-
             #region test data
 
             //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
