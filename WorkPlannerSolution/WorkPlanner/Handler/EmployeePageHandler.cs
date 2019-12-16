@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Model;
 using WorkPlanner.Proxy;
 using WorkPlanner.ViewModel;
+using WorkPlanner.Catalog;
+using WorkPlanner.Model;
 
 namespace WorkPlanner.Handler
 {
@@ -28,17 +31,6 @@ namespace WorkPlanner.Handler
 
 
         #region Methods
-
-        public void PopulatePrepInfo()
-        {
-            _employeePageViewModel.PropEmployeeInfoList.Clear();
-
-            foreach (var empProp in Factories.PropertyHelpersFactory<Employees>.PropertyNamesFactory(new List<int>() { 1, 9 }).GetListOfPropinfo)
-            {
-                _employeePageViewModel.PropEmployeeInfoList.Add(empProp);
-            }
-
-        }
 
         ///// <summary>
         ///// Her tiltøjer vi timePlanCollections til viewet.
