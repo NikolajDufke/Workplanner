@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
@@ -20,6 +21,9 @@ namespace WorkPlanner.Handler
         public EmployeePageHandler(EmployeePageViewModel EmployeePageVM) : base(EmployeePageVM)
         {
             _employeePageViewModel = EmployeePageVM;
+            PropertyPopulator<Employees> ppEmployee = new PropertyPopulator<Employees>();
+            PopulatePrepInfo();
+            ppEmployee.Repopulate(EmployeePageVM.PropEmployeeInfoList, EmployeePageVM.ActiveUser);
         }
 
 
