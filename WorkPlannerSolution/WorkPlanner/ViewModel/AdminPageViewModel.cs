@@ -104,6 +104,17 @@ namespace WorkPlanner.ViewModel
             }
         }
 
+#endregion
+
+        #region General
+
+        //public ObservableCollection<ColorEmployeePair> ColorEmployeePair
+        //{
+        //    get { return _colorEmployeePair; }
+        //    set { _colorEmployeePair = value; }
+        //}
+
+
         public ObservableCollection<Employees> Employees
         {
             get { return _employees; }

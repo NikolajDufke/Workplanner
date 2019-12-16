@@ -34,7 +34,7 @@
         <Style x:Key="StackPanelStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Height" Value="10"/> 
+            <Setter Property="Height" Value="25"/>
         </Style>
 
         <Style x:Key="TitleStyle" TargetType="TextBlock">
@@ -378,7 +378,7 @@
 
         </Grid>
 
-            <Grid HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="700"  Grid.Row="2"  Grid.Column="1" Background="LightSteelBlue" Grid.RowSpan="2" >
+            <Grid HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Center" Width="650"  Grid.Row="2"  Grid.Column="1" Background="LightSteelBlue" Grid.RowSpan="2" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
@@ -414,7 +414,7 @@
                                 <DataTemplate>
                                     <StackPanel Style="{StaticResource StackPanelStyle}">
                                         <TextBlock Text="{Binding VisualName}" Style="{StaticResource TextBlockStyle}"/>
-                                        <TextBlock Text="{Binding ValueFromUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBlockStyle}"/>
+                                    <TextBlock Text="{Binding ValueFromUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBlockStyle}" Margin="5,0,0,0"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

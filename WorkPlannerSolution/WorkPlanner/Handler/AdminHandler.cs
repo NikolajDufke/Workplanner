@@ -86,6 +86,7 @@ namespace WorkPlanner.Handler
             LoadCalenderDetailsAsync();
 
 
+
             #region test data
 
             //_vm.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
@@ -106,8 +107,7 @@ namespace WorkPlanner.Handler
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
             //_vm.Weekday2Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
 
-            #endregion
-
+#endregion
             _updater = new UpdateObsCollection();
             _updater.GetEmployeesAsync(_vm.Employees);
         }
@@ -122,6 +122,7 @@ namespace WorkPlanner.Handler
         /// En metode som ændrer synligheden på et grid i vores view
         /// Metoden bruger viewmodellens property - EmployeeVisibility
         /// </summary>
+        #region Visibility
         public void ChangeEmployeeVisibility()
         {
 
@@ -219,7 +220,16 @@ namespace WorkPlanner.Handler
 
         
             SetTimes();
-            await PopulateTimePlanCollectionsAsync();
+
+            try
+            {
+                await PopulateTimePlanCollectionsAsync();
+            }
+            catch (Exception e)
+            {
+                var t = e;
+            }
+            
             SetDaysAndDates();
 
         }
@@ -521,5 +531,6 @@ namespace WorkPlanner.Handler
             }
         }
         #endregion
+#endregion
     }
 }

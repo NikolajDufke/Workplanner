@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Model;
 
-namespace WorkPlanner.Model
+namespace WorkPlanner.Common
 {
     /// <summary>
     /// Denne klasse har et index af employees og vil tildele en unik farve når man tilføjer nye employees.
     /// </summary>
-    class EmployeePlacementIndex
+    public class EmployeePlacementIndex
     {
         private Dictionary<int, string> _colorIndex;
         private Dictionary<int, Employees> _Employees;

@@ -10,7 +10,7 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.Proxy
 {
-    class WorktimeProxy
+   public class WorktimeProxy
     {
         private bool IsFecthingData = false;
         private List<Worktimes> _allWorktimes;
@@ -116,12 +116,20 @@ namespace WorkPlanner.Proxy
 
                 return _casheSortedByDay[year][date];
 
-
-
-            
-
-      
         }
+
+        public List<Worktimes> WorktimeForEmployeeOnSingleDay(DateTime date, Employees employee)
+        {
+            List<Worktimes> worktimesForEmployee = GetAllWorktimesByEmployee(employee);
+
+            if (worktimesForEmployee.Count > 0)
+            { 
+                return worktimesForEmployee.FindAll(x => x.Date == date);
+            }
+
+            return null;
+        }
+
     
 
     public List<Worktimes> GetAllWorktimesByEmployee(Employees employee)
