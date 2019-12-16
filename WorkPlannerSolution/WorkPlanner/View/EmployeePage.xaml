@@ -18,17 +18,9 @@
     <Page.Resources>
         <Converters:DateFormatConverter x:Key="DateFormatConverter"></Converters:DateFormatConverter>
 
-        <Style x:Key="TimeSpacer" TargetType="TextBlock">
-            <Setter Property="Margin" Value="100"></Setter>
-        </Style>
-
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Width" Value="300"/>
             <Setter Property="FontSize" Value="15"/>
-        </Style>
-
-        <Style x:Key="DayListStyle" TargetType="StackPanel">
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
 
         <Style x:Key="StackPanelStyle" TargetType="StackPanel">
@@ -78,7 +70,7 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal" 
                  HorizontalAlignment="Center" >
-                    <AppBarButton Icon="Previous" Command="{Binding PreviousWeekCommand}"/>
+                    <AppBarButton Icon="Previous" Label="Previous" Command="{Binding PreviousWeekCommand}"/>
                     <StackPanel VerticalAlignment="Center">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Year,Mode=TwoWay}" HorizontalAlignment="Center"/>
@@ -86,10 +78,9 @@
                                 <TextBlock Text="UGE " VerticalAlignment="Center" Margin="0,0,5,0"/>
                                 <TextBlock Text="{Binding WeekNumber ,Mode=TwoWay}" VerticalAlignment="Center"/>
                             </StackPanel>
-
                         </StackPanel>
                     </StackPanel>
-                    <AppBarButton Icon="Next" Command="{Binding NextWeekCommand}" />
+                    <AppBarButton Icon="Next" Label="Next" Command="{Binding NextWeekCommand}" />
                 </StackPanel>
             </StackPanel>
 

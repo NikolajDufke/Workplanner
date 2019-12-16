@@ -32,6 +32,16 @@ namespace WorkPlanner.Handler
 
         #region Methods
 
+        public void PopulatePrepInfo()
+        {
+            _employeePageViewModel.PropEmployeeInfoList.Clear();
+
+            foreach (var empProp in Factories.PropertyHelpersFactory<Employees>.PropertyNamesFactory(new List<int>() { 1, 9 }).GetListOfPropinfo)
+            {
+                _employeePageViewModel.PropEmployeeInfoList.Add(empProp);
+            }
+        }
+
         ///// <summary>
         ///// Her tiltøjer vi timePlanCollections til viewet.
         ///// </summary>
