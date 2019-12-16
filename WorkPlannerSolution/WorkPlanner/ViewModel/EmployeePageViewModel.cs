@@ -26,13 +26,14 @@ namespace WorkPlanner.ViewModel
         public EmployeePageViewModel()
         {
             _activeUser = EmployeesSingleton.Instance.EmployeesObject;
+            _propEmployeeInfoList = new ObservableCollection<PropInfo>();
 
             _EmployeePageHandler = new EmployeePageHandler(this);
             _handlerCal = _EmployeePageHandler;
             
             _EmployeePageHandler.LoadCalenderDetailsAsync();
 
-            _propEmployeeInfoList = new ObservableCollection<PropInfo>();
+
             
 
         }
