@@ -54,7 +54,7 @@ namespace WorkPlanner.Handler
                     if (_selUser.AccessLevel == 1)
                     {
                         Frame frame = new Frame();
-                        frame.Navigate(typeof(AdminPage));
+                        frame.Navigate(typeof(EmployeePage));
                         Window.Current.Content = frame;
                         Window.Current.Activate();
                     }

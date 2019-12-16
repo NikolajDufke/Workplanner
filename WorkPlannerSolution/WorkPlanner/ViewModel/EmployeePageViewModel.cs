@@ -18,6 +18,7 @@ namespace WorkPlanner.ViewModel
         #region Instace fields
         private ObservableCollection<PropInfo> _propEmployeeInfoList;
         private Handler.EmployeePageHandler _EmployeePageHandler;
+       
         //private Employees _employeeProp;
         #endregion
 
@@ -26,8 +27,18 @@ namespace WorkPlanner.ViewModel
             _EmployeePageHandler = new EmployeePageHandler(this);
             _propEmployeeInfoList = new ObservableCollection<PropInfo>();
             _EmployeePageHandler.PopulatePrepInfo();
+            _activeUser = EmployeesSingleton.Instance.EmployeesObject;
 
         }
+
+        private Employees _activeUser;
+
+        public Employees ActiveUser
+        {
+            get { return _activeUser; }
+            set { _activeUser = value; }
+        }
+
 
         //public Employees EmployeeProp
         //{

@@ -14,16 +14,16 @@ namespace WorkPlanner.Handler
 {
     public class CalendarHandler <T> where T: CalendarViewModelBase
     {
-        private T _viewmodel;
+        protected T _viewmodel;
         private TimeSpan _starttime;
         private TimeSpan _endtime;
-        private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection1;
-        private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection2;
-        private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection3;
-        private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection4;
-        private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection5;
-        private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection6;
-        private Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection7;
+        protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection1;
+        protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection2;
+        protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection3;
+        protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection4;
+        protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection5;
+        protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection6;
+        protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection7;
         
         private Dictionary<DateTime, TimeSpan> _times;
 
@@ -31,7 +31,7 @@ namespace WorkPlanner.Handler
         protected EmployeePlacementIndex _employeePlacementIndex;
         private Dictionary<int, string> _colors;
 
-        private WorktimeProxy _catalogInterface;
+        protected WorktimeProxy _catalogInterface;
         //private Dictionary< WorktimeEventDetails> _cepair;
 
 
@@ -246,17 +246,6 @@ namespace WorkPlanner.Handler
             _viewmodel.Weekday6Collection.Clear();
             _viewmodel.Weekday7Collection.Clear();
 
-            //if (_viewmodel.ColorEmployeePair != null)
-            //    _viewmodel.ColorEmployeePair.Clear();
-            //        else
-            //    _viewmodel.ColorEmployeePair =
-            //        new ObservableCollection<ColorEmployeePair>();
-
-            //foreach (var cep in _cepair)
-            //{
-            //    _viewmodel.ColorEmployeePair.Add(cep);
-            //}
-
             int headerindex = 1;
             foreach (var header in _viewmodel.Headers)
             {
@@ -312,8 +301,6 @@ namespace WorkPlanner.Handler
         private void AddToView(Dictionary<TimeSpan, TimeIntervalDetails> fromCollection,
             ObservableCollection<EventElement> collectionToUpdate)
         {
-
-
             foreach (TimeIntervalDetails tp in fromCollection.Values)
             {
 
@@ -346,9 +333,8 @@ namespace WorkPlanner.Handler
         /// Finder worktimes i Databasen og sætter dem ind i TimeplanColletions.
         /// </summary>
         /// <returns></returns>
-        private async Task PopulateTimePlanCollectionsAsync()
+        protected virtual async Task PopulateTimePlanCollectionsAsync()
         {
-            _employeePlacementIndex.Clear();
             int headerindex = 1;
             foreach (var header in _viewmodel.Headers)
             {
@@ -412,7 +398,7 @@ namespace WorkPlanner.Handler
         /// <param name="collection"></param>
         /// <param name="worktime"></param>
         /// <returns></returns>
-        protected virtual async Task FindAndAddEmployeesToTimePlanAsync(Dictionary<TimeSpan, TimeIntervalDetails> collection,
+        protected async Task FindAndAddEmployeesToTimePlanAsync(Dictionary<TimeSpan, TimeIntervalDetails> collection,
             Worktimes worktime)
         {
             //først finder vi empluyee id på den employee som har worktimes
@@ -441,23 +427,9 @@ namespace WorkPlanner.Handler
 
                 if (collection.ContainsKey(tFromWorktime))
                 {
-                    ////Her finder vi ud af om han allerede findes i _employeePlacementIndex. Dette bestemmer hvilken rækkefølge de bliver vis i på viewet.
-                    //bool contains = false;
-                    //foreach (Employees eFromIndex in _employeePlacementIndex)
-                    //{
-                    //    if (emp.EmployeeID == eFromIndex.EmployeeID)
-                    //    {
-                    //        contains = true;
-                    //    }
-                    //}
-
-                    //if (!contains)
-                    //{
-                    //    _employeePlacementIndex.AddEmployee(emp);
-
+             
                     _employeePlacementIndex.AddEmployee(emp);
-                    //}
-
+                    
                     var t1 = _employeePlacementIndex.GetEmployeeColor(emp.EmployeeID);
                     var t2 = emp.FirstName + " " + emp.LastName;
                     var t3 = worktime.WorkTimeID;
