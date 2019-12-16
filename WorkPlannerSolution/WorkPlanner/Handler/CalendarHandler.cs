@@ -75,7 +75,7 @@ namespace WorkPlanner.Handler
             LoadCalenderDetailsAsync();
 
             SetTimes();
-            PululateTimePlanCollectionsAsync();
+            PopulateTimePlanCollectionsAsync();
 
             #region test data
 
@@ -156,7 +156,7 @@ namespace WorkPlanner.Handler
             _employeePlacementIndex.Clear();
 
             SetTimes();
-            await PululateTimePlanCollectionsAsync();
+            await PopulateTimePlanCollectionsAsync();
             SetDaysAndDates();
 
         }
@@ -320,10 +320,6 @@ namespace WorkPlanner.Handler
                 var e = new EventElement();
                 if (tp.Update)
                 {
-
-
-
-
                     // Vi matcher alle employees 
 
                     foreach (Employees employee in _employeePlacementIndex.GetEmployees())
@@ -350,7 +346,7 @@ namespace WorkPlanner.Handler
         /// Finder worktimes i Databasen og sætter dem ind i TimeplanColletions.
         /// </summary>
         /// <returns></returns>
-        private async Task PululateTimePlanCollectionsAsync()
+        private async Task PopulateTimePlanCollectionsAsync()
         {
             _employeePlacementIndex.Clear();
             int headerindex = 1;
