@@ -1,7 +1,7 @@
-﻿DELETE from Employee
+﻿DELETE from Worktime
 DELETE from Users
+DELETE from Employee
 DELETE from Access
-DELETE from Worktime
 
 --DBCC CHECKIDENT ('Users', RESEED,0)
 --DBCC CHECKIDENT ('Employee', RESEED,0)
