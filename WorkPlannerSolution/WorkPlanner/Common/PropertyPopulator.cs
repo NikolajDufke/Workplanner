@@ -57,9 +57,22 @@ namespace WorkPlanner.Common
 
             return obj;
         }
-
-
-
+        /// <summary>
+        /// Returns a list<propinfo> with propname = the name of the object 
+        /// </summary>
+        /// <param name="propInfoList"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public List<PropInfo> Repopulate(List<PropInfo> propInfoList, T obj)
+        {
+            PropertyInfo[] properties = typeof(T).GetProperties();
+            foreach (var property in properties)
+            {
+                var tempprop = new PropInfo(){PropName = property.Name};
+                propInfoList.Add(tempprop);
+            }
+            return propInfoList;
+        }
         #endregion
     }
 }
