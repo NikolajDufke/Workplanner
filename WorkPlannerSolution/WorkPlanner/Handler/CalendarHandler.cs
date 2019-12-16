@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
+using WorkPlanner.Interface;
 using WorkPlanner.Model;
 using WorkPlanner.Proxy;
 using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Handler
 {
-    public class CalendarHandler <T> where T: CalendarViewModelBase
+    public class CalendarHandler<T> : ICalenderHandler where T: CalendarViewModelBase
     {
         protected T _viewmodel;
         private TimeSpan _starttime;
@@ -72,10 +73,9 @@ namespace WorkPlanner.Handler
 
             _viewmodel.WeekNumber = DateTime.Now.DayOfYear / 7;
             _viewmodel.Year = DateTime.Now.Year.ToString();
-            LoadCalenderDetailsAsync();
+            
 
-            SetTimes();
-            PopulateTimePlanCollectionsAsync();
+     
 
             #region test data
 
@@ -138,7 +138,7 @@ namespace WorkPlanner.Handler
         /// <summary>
         /// Står for at loade calenderen med til datoer og events.
         /// </summary>
-        private async void LoadCalenderDetailsAsync()
+        public async void LoadCalenderDetailsAsync()
         {
             _viewmodel.Headers.Clear();
             foreach (var date in GetDatesFromWeekNumber.GetDates(_viewmodel.WeekNumber))
@@ -193,7 +193,7 @@ namespace WorkPlanner.Handler
         /// <summary>
         /// Sætter alle headers med datoer fra headers collection
         /// </summary>
-        public void SetDaysAndDates()
+        private void SetDaysAndDates()
         {
             _viewmodel.Day1Header = _viewmodel.Headers[0];
             _viewmodel.Day2Header = _viewmodel.Headers[1];
@@ -209,7 +209,7 @@ namespace WorkPlanner.Handler
         /// Opdatere tiderne på viewet og i timePlanCollections
         /// </summary>
         /// <param name="intervalInMinutes"></param>
-        public void SetTimes(int intervalInMinutes = 30)
+        private void SetTimes(int intervalInMinutes = 30)
         {
             _viewmodel.Times.Clear();
             _timePlanCollection1.Clear();
@@ -236,7 +236,7 @@ namespace WorkPlanner.Handler
         /// <summary>
         /// Opdatere viewet med tidsplanen fra TimePlanCollection.
         /// </summary>
-        public void UpdateTimePlan()
+        protected void UpdateTimePlan()
         {
             _viewmodel.Weekday1Collection.Clear();
             _viewmodel.Weekday2Collection.Clear();

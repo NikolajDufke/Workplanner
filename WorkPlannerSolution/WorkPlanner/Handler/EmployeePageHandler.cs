@@ -92,7 +92,7 @@ namespace WorkPlanner.Handler
             foreach (var header in _viewmodel.Headers)
             {
                 //Her finder vi alle worktimes som er på en given dag.
-                List<Worktimes> WorktimesThisDay = _catalogInterface.WorktimeForEmployeeOnSingleDay(header.Date, _employeePageViewModel.ActiveUser);
+                List<Worktimes> WorktimesThisDay = _catalogInterface.WorktimeForEmployeeOnSingleDay(header.Date, _viewmodel.ActiveUser);
 
                 foreach (Worktimes worktime in WorktimesThisDay)
                 {

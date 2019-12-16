@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using WorkPlanner.Catalog;
 using WorkPlanner.Handler;
 using WorkPlanner.Model;
@@ -24,10 +25,16 @@ namespace WorkPlanner.ViewModel
 
         public EmployeePageViewModel()
         {
+            _activeUser = EmployeesSingleton.Instance.EmployeesObject;
+
             _EmployeePageHandler = new EmployeePageHandler(this);
+            _handlerCal = _EmployeePageHandler;
+            
+            _EmployeePageHandler.LoadCalenderDetailsAsync();
+
             _propEmployeeInfoList = new ObservableCollection<PropInfo>();
             _EmployeePageHandler.PopulatePrepInfo();
-            _activeUser = EmployeesSingleton.Instance.EmployeesObject;
+            
 
         }
 
@@ -38,13 +45,6 @@ namespace WorkPlanner.ViewModel
             get { return _activeUser; }
             set { _activeUser = value; }
         }
-
-
-        //public Employees EmployeeProp
-        //{
-        //    set { _employeeProp = value; }
-        //    get { return _employeeProp; }
-        //}
 
         #region Observablecollections
         public ObservableCollection<PropInfo> PropEmployeeInfoList
