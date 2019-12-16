@@ -307,7 +307,6 @@ namespace WorkPlanner.Handler
                 var e = new EventElement();
                 if (tp.Update)
                 {
-
                     // Vi matcher alle employees 
 
                     foreach (Employees employee in _employeePlacementIndex.GetEmployees())
