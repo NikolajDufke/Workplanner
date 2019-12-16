@@ -70,25 +70,13 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-        public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
-        {
-            get { return _worktimeEventDetails; }
-            set
-            {
-                _worktimeEventDetails = value; 
-                OnPropertyChanged();
-            }
-        }
+      
 
 #endregion
 
         #region General
 
-        //public ObservableCollection<ColorEmployeePair> ColorEmployeePair
-        //{
-        //    get { return _colorEmployeePair; }
-        //    set { _colorEmployeePair = value; }
-        //}
+  
 
 
         public ObservableCollection<Employees> Employees

@@ -26,7 +26,7 @@ namespace WorkPlanner.Handler
         protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection5;
         protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection6;
         protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection7;
-        
+       
         private Dictionary<DateTime, TimeSpan> _times;
 
         //private Dictionary<int, Employees> _employeePlacementIndex;
@@ -243,6 +243,11 @@ namespace WorkPlanner.Handler
             _viewmodel.Weekday5Collection.Clear();
             _viewmodel.Weekday6Collection.Clear();
             _viewmodel.Weekday7Collection.Clear();
+
+            foreach (WorktimeEventDetails wed in _employeePlacementIndex.GetWorktimeEventDetails())
+            {
+                _viewmodel.WorktimeEventDetails.Add(wed);
+            }
 
             int headerindex = 1;
             foreach (var header in _viewmodel.Headers)
