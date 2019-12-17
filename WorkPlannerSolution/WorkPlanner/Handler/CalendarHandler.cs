@@ -15,6 +15,7 @@ namespace WorkPlanner.Handler
 {
     public class CalendarHandler<T> : ICalenderHandler where T: CalendarViewModelBase
     {
+
         protected T _viewmodel;
         private TimeSpan _starttime;
         private TimeSpan _endtime;
@@ -25,7 +26,7 @@ namespace WorkPlanner.Handler
         protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection5;
         protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection6;
         protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection7;
-        
+       
         private Dictionary<DateTime, TimeSpan> _times;
 
         //private Dictionary<int, Employees> _employeePlacementIndex;
@@ -74,9 +75,6 @@ namespace WorkPlanner.Handler
             _viewmodel.WeekNumber = DateTime.Now.DayOfYear / 7;
             _viewmodel.Year = DateTime.Now.Year.ToString();
             
-
-     
-
             #region test data
 
             //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
@@ -245,6 +243,11 @@ namespace WorkPlanner.Handler
             _viewmodel.Weekday5Collection.Clear();
             _viewmodel.Weekday6Collection.Clear();
             _viewmodel.Weekday7Collection.Clear();
+
+            foreach (WorktimeEventDetails wed in _employeePlacementIndex.GetWorktimeEventDetails())
+            {
+                _viewmodel.WorktimeEventDetails.Add(wed);
+            }
 
             int headerindex = 1;
             foreach (var header in _viewmodel.Headers)

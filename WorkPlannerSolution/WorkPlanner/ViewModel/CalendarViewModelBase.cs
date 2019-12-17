@@ -38,6 +38,7 @@ namespace WorkPlanner.ViewModel
         public CalendarViewModelBase()
         {
            
+            _worktimeEventDetails = new ObservableCollection<WorktimeEventDetails>();
             _headers = new ObservableCollection<DateTime>();
             _weekday1Collection = new ObservableCollection<EventElement>();
             _weekday2Collection = new ObservableCollection<EventElement>();
@@ -51,6 +52,7 @@ namespace WorkPlanner.ViewModel
         }
 
         #region General
+
         public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
         {
             get { return _worktimeEventDetails; }
