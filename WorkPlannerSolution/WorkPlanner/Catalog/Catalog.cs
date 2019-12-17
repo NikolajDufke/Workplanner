@@ -29,8 +29,7 @@ namespace WorkPlanner.Catalog
         }
         #endregion
 
-        #region Proberties
-  
+        #region Methods
         public async Task<List<T>> GetAll()
         {
             TimeSpan timePassed = new TimeSpan(0,0,0);
@@ -57,9 +56,7 @@ namespace WorkPlanner.Catalog
             }
             return _allCollection;
         }
-        #endregion
 
-        #region Methods
         /// <summary>
         /// En metode der gør at man kan update async
         /// </summary>
