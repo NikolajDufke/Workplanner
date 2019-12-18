@@ -29,6 +29,5 @@ namespace WorkPlanner.Model
             get { return _visualName; }
             set { _visualName = value; }
         }
-
     }
 }
