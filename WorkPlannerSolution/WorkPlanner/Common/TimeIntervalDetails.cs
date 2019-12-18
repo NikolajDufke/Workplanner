@@ -5,8 +5,9 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Model;
 
-namespace WorkPlanner.Model
+namespace WorkPlanner.Common
 {
     public class TimeIntervalDetails
     {

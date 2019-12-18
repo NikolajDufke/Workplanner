@@ -146,8 +146,7 @@
     <Compile Include="Handler\WorkTimeHandler.cs" />
     <Compile Include="Model\Databasemodels\Employees.cs" />
     <Compile Include="Model\Databasemodels\Accesses.cs" />
-    <Compile Include="Model\Time.cs" />
-    <Compile Include="Model\TimeIntervalDetails.cs" />
+    <Compile Include="Common\TimeIntervalDetails.cs" />
     <Compile Include="Model\Databasemodels\Users.cs" />
     <Compile Include="Model\Databasemodels\Worktimes.cs" />
     <Compile Include="Proxy\WorktimeProxy.cs" />
