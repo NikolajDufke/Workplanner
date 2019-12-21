@@ -320,7 +320,7 @@ namespace WorkPlanner.Handler
                             e.Colors.Add(tp.GetWorktimeEventDetail(employee.EmployeeID));
                         else
                         {
-                            e.Colors.Add(new WorktimeEventDetails("", "", 0));
+                            e.Colors.Add(new WorktimeEventDetails(new Employees(), new Worktimes()));
                         }
                     }
                 }
@@ -426,18 +426,17 @@ namespace WorkPlanner.Handler
                     tFromWorktime = tFromWorktime.Subtract(new TimeSpan(0, 1, 0));
                 }
 
-
-
                 if (collection.ContainsKey(tFromWorktime))
                 {
-             
+
                     _employeePlacementIndex.AddEmployee(emp);
-                    
-                    var t1 = _employeePlacementIndex.GetEmployeeColor(emp.EmployeeID);
-                    var t2 = emp.FirstName + " " + emp.LastName;
-                    var t3 = worktime.WorkTimeID;
-                    collection[tFromWorktime].AddMember(emp, new WorktimeEventDetails(
-                        t1, t2, t3));
+
+                    var color = _employeePlacementIndex.GetEmployeeColor(emp.EmployeeID);
+
+                    collection[tFromWorktime].AddMember(emp, new WorktimeEventDetails(emp, worktime)
+                    {
+                        Color = color
+                    });
                 }
             }
         }

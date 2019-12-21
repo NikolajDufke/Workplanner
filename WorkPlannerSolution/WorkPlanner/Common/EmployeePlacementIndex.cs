@@ -101,13 +101,19 @@ namespace WorkPlanner.Common
             return _Employees.ContainsKey(employeeId);
         }
 
+
         public List<WorktimeEventDetails> GetWorktimeEventDetails()
         {
             List<WorktimeEventDetails> listWed = new List<WorktimeEventDetails>();
 
-            foreach (var i in _colorIndex)
+            List<KeyValuePair<string, bool>> list = _colersState.ToList().FindAll(x => x.Value == true);
+
+            foreach (var i in list)
             {
-                listWed.Add(new WorktimeEventDetails(i.Value,_Employees[i.Key].FirstName + " " + _Employees[i.Key].LastName, 0));
+                listWed.Add(new WorktimeEventDetails(_Employees[_colorIndex.First(x => x.Value == i.Key).Key], new Worktimes())
+                {
+                    Color = i.Key
+                });
             }
 
             return listWed;
