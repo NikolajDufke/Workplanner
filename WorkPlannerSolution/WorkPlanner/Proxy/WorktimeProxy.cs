@@ -14,11 +14,12 @@ namespace WorkPlanner.Proxy
     {
         private bool IsFecthingData = false;
         private List<Worktimes> _allWorktimes;
-
         private Catalog<Worktimes> Catalog;
 
+        private bool Updateing_casheSortedById;
+
         //private TwoKeyDictionary<int, int, List<Worktimes>> _casheSortedByWeek;
-        private Dictionary<int, Worktimes> casheSortedById;
+        private Dictionary<int, Worktimes> _casheSortedById;
         private Dictionary<int, Dictionary<DateTime, List<Worktimes>>> _casheSortedByDay;
         private Dictionary<int, List<Worktimes>> _casheSortedByEmployee;
 
@@ -29,7 +30,9 @@ namespace WorkPlanner.Proxy
             //_cashed_Employee_Week =new TreeKeyDictionary<int, int, int, List<Worktimes>>();
             _casheSortedByDay = new Dictionary<int, Dictionary<DateTime, List<Worktimes>>>();
             _casheSortedByEmployee = new Dictionary<int, List<Worktimes>>();
+            _casheSortedById = new Dictionary<int, Worktimes>();
             Catalog = CatalogsSingleton.Instance.WorktimeCatalog;
+
             LoadAll();
         }
 
@@ -83,6 +86,67 @@ namespace WorkPlanner.Proxy
 
         //}
 
+        public Worktimes GetWorktimeById(int WorktimeId)
+        {
+            if (_casheSortedById.ContainsKey(WorktimeId))
+            {
+                return _casheSortedById[WorktimeId];
+            }
+
+            if (Updateing_casheSortedById)
+            {
+                //TODO implement endlessloop prevention
+                while (Updateing_casheSortedById)
+                {
+                    if (Updateing_casheSortedById == true)
+                    {
+                        if (_casheSortedById.ContainsKey(WorktimeId))
+                        {
+                            return _casheSortedById[WorktimeId];
+                        }
+                    }
+
+                }
+            }
+
+            Updateing_casheSortedById = true;
+
+            foreach (var worktime in _allWorktimes)
+            {
+                if (worktime.WorkTimeID == WorktimeId)
+                {
+                    _casheSortedById.Add(worktime.WorkTimeID, worktime);
+                    Updateing_casheSortedById = false;
+                    return worktime;
+                }
+
+                if(!_casheSortedById.ContainsKey(worktime.WorkTimeID))
+                    _casheSortedById.Add(worktime.WorkTimeID, worktime);
+            }
+
+            return null;
+
+        }
+
+        public void AddWorktimeById(Worktimes worktime)
+        {
+            _casheSortedById.Add(worktime.WorkTimeID, worktime);
+        }
+
+
+        //TODO Make this an async action. 
+        public void AddWorktimesByIdAsync(List<Worktimes> worktimes)
+        {
+
+            foreach (var worktime in worktimes)
+            {
+                if (!_casheSortedById.ContainsKey(worktime.WorkTimeID))
+                {
+                    AddWorktimeById(worktime);
+                }
+            }
+        }
+
 
         public List<Worktimes> GetAllWorktimesOfDay(DateTime date, int year = 0)
         {
@@ -109,7 +173,10 @@ namespace WorkPlanner.Proxy
                     result = _allWorktimes.FindAll(x => TrimToDateOnly(x.Date) == date);
 
                     if (result.Count != 0)
+                    {
+                        AddWorktimesByIdAsync(result);
                         _casheSortedByDay[year][date] = result;
+                    }
                     else
                         return new List<Worktimes>();
                 }
@@ -124,6 +191,8 @@ namespace WorkPlanner.Proxy
 
             if (worktimesForEmployee.Count > 0)
             { 
+                
+
                 return worktimesForEmployee.FindAll(x => x.Date == date);
             }
 
@@ -141,6 +210,8 @@ namespace WorkPlanner.Proxy
             }
             return _casheSortedByEmployee[employee.EmployeeID];
         }
+
+        
 
         public async Task Reload()
         {

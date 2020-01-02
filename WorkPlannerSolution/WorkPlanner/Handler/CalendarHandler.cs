@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using System.Globalization;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using WorkPlanner.Catalog;
@@ -13,10 +14,11 @@ using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Handler
 {
-    public class CalendarHandler<T> : ICalenderHandler where T: CalendarViewModelBase
+    public class CalendarHandler<T> : ViewBaseHandler, ICalenderHandler where T: CalendarViewModelBase
     {
+        #region Instancefields
 
-        protected T _viewmodel;
+        protected CalendarViewModelBase _viewmodel;
         private TimeSpan _starttime;
         private TimeSpan _endtime;
         protected Dictionary<TimeSpan, TimeIntervalDetails> _timePlanCollection1;
@@ -35,9 +37,9 @@ namespace WorkPlanner.Handler
 
         protected WorktimeProxy _catalogInterface;
         //private Dictionary< WorktimeEventDetails> _cepair;
+        #endregion
 
-
-        public CalendarHandler(T viewmodel)
+        public CalendarHandler(T viewmodel):base(viewmodel)
         {
             _viewmodel = viewmodel;
             _times = new Dictionary<DateTime, TimeSpan>();
@@ -72,9 +74,8 @@ namespace WorkPlanner.Handler
 
             #endregion
 
-            _viewmodel.WeekNumber = DateTime.Now.DayOfYear / 7;
-            _viewmodel.Year = DateTime.Now.Year.ToString();
-            
+            _viewmodel.Day1Header = DateTime.Now;
+     
             #region test data
 
             //_viewmodel.Weekday1Collection.Add(new EventElement() { Colors = new List<string>() { "Blue", "Red", "Yellow" } });
@@ -138,25 +139,73 @@ namespace WorkPlanner.Handler
         /// </summary>
         public async void LoadCalenderDetailsAsync()
         {
-            _viewmodel.Headers.Clear();
-            foreach (var date in GetDatesFromWeekNumber.GetDates(_viewmodel.WeekNumber))
-            {
-                _viewmodel.Headers.Add(date);
-            }
+                StartingLoadingAction();
 
-            //Sætter år ud fra den første dato.
-            //TODO gør at den finder år ud fra alle datoer og skriver 2 årstal på når vi er i ugen omkring årsskiftet.
-            if (_viewmodel.Year != _viewmodel.Headers[1].Year.ToString())
-            {
-                _viewmodel.Year = _viewmodel.Headers[1].Year.ToString();
-            }
+                _viewmodel.Headers.Clear();
+                string yearResult = "";
+                List<string> yearlist = new List<string>();
+                foreach (var date in GetDatesFromWeekNumber.GetDates(_viewmodel.Day1Header))
+                {
+                    _viewmodel.Headers.Add(date);
 
-            _employeePlacementIndex.Clear();
+                    if (!yearlist.Contains(date.Year.ToString()))
+                    {
+                        yearlist.Add(date.Year.ToString());
+                    }
+                }
+                
 
-            SetTimes();
-            await PopulateTimePlanCollectionsAsync();
-            SetDaysAndDates();
+                //Sætter år ud fra den første dato.
+                //TODO gør at den finder år ud fra alle datoer og skriver 2 årstal på når vi er i ugen omkring årsskiftet.
 
+                for (int i = 0; i < yearlist.Count; i++)
+                {
+                   
+                        if(i == 0)
+                            yearResult = yearlist[i];
+                        else
+                            yearResult = yearResult + "/" + yearlist[i];
+                }
+
+                _viewmodel.Year = yearResult;
+          
+                //if (_viewmodel.Year != _viewmodel.Headers[1].Year.ToString())
+                //{
+                //    _viewmodel.Year = _viewmodel.Headers[1].Year.ToString();
+                //}
+
+                _employeePlacementIndex.Clear();
+
+                SetTimes();
+
+                try
+                {
+                    await PopulateTimePlanCollectionsAsync();
+                }
+                catch (Exception e)
+                {
+                    AddErrorMessage(e.Message);
+                }
+
+                SetDaysAndDates();
+            
+                EndingLoadingAction();
+        }
+
+
+        public void StartingLoadingAction()
+        {
+            _viewmodel.ButtonStatus = false;
+            _viewmodel.CalenderOpacity = 0.25;
+            _viewmodel.LoadinStatus = "Loading...";
+
+        }
+
+        public void EndingLoadingAction()
+        {
+            _viewmodel.ButtonStatus = true;
+            _viewmodel.CalenderOpacity = 1;
+            _viewmodel.LoadinStatus = "";
         }
 
         /// <summary>
@@ -164,10 +213,8 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void AddWeekNumber()
         {
-            var t = _viewmodel.Day1Header.DayOfYear;
-            DateTime nextWeek = _viewmodel.Day1Header;
-            nextWeek = nextWeek.AddDays(7);
-            _viewmodel.WeekNumber = nextWeek.DayOfYear / 7;
+            _viewmodel.Day1Header = _viewmodel.Day1Header.AddDays(7);
+            _viewmodel.WeekNumber = _viewmodel.Day1Header.DayOfYear / 7;
             LoadCalenderDetailsAsync();
 
         }
@@ -177,10 +224,9 @@ namespace WorkPlanner.Handler
         /// </summary>
         public void SubstractWeekNumber()
         {
-            var t = _viewmodel.Day1Header.DayOfYear;
-            DateTime nextWeek = _viewmodel.Day1Header;
-            nextWeek = nextWeek.Subtract(TimeSpan.FromDays(7));
-            _viewmodel.WeekNumber = nextWeek.DayOfYear / 7;
+          
+           _viewmodel.Day1Header =  _viewmodel.Day1Header.Subtract(TimeSpan.FromDays(7));
+            _viewmodel.WeekNumber = _viewmodel.Day1Header.DayOfYear / 7;
             LoadCalenderDetailsAsync();
         }
 
@@ -243,6 +289,8 @@ namespace WorkPlanner.Handler
             _viewmodel.Weekday5Collection.Clear();
             _viewmodel.Weekday6Collection.Clear();
             _viewmodel.Weekday7Collection.Clear();
+
+            _viewmodel.WorktimeEventDetails.Clear();
 
             foreach (WorktimeEventDetails wed in _employeePlacementIndex.GetWorktimeEventDetails())
             {
@@ -342,7 +390,7 @@ namespace WorkPlanner.Handler
             foreach (var header in _viewmodel.Headers)
             {
                 //Her finder vi alle worktimes som er på en given dag.
-                List<Worktimes> WorktimesThisDay = _catalogInterface.GetAllWorktimesOfDay(header.Date);
+                List<Worktimes> WorktimesThisDay = _catalogInterface.GetAllWorktimesOfDay(header.Date, header.Year);
 
                 foreach (Worktimes worktime in WorktimesThisDay)
                 {

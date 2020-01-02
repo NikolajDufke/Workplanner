@@ -9,12 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Authentication.Web.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Model;
 using WorkPlanner.Proxy;
+using WorkPlanner.View;
 using WorkPlanner.ViewModel;
 
 namespace WorkPlanner.Handler
@@ -29,9 +31,7 @@ namespace WorkPlanner.Handler
         public AdminHandler(AdminPageViewModel ViewModel) : base(ViewModel)
         {
             _catalog = CatalogsSingleton.Instance;
-   
             _vm = ViewModel;
-
             _updater = new UpdateObsCollection();
             _updater.GetEmployeesAsync(_vm.Employees);
         }
@@ -91,15 +91,32 @@ namespace WorkPlanner.Handler
         #endregion
 
 
+        public void HamburgerButton_Checked()
+        {
+            _vm.IsPaneOpen = !_vm.IsPaneOpen;
+        }
+
+        public void NavigateToUser()
+        {
+            Frame frame = new Frame();
+            frame.Navigate(typeof(MainPage));
+            Window.Current.Content = frame;
+            Window.Current.Activate();
+        }
+
+        public void NagigateToEmployeePage()
+        {
+            Frame frame = new Frame();
+            frame.Navigate(typeof(EmployeePage));
+            Window.Current.Content = frame;
+            Window.Current.Activate();
+        }
 
 
-   
-
- 
 
 
 
-    
-#endregion
+
+        #endregion
     }
 }

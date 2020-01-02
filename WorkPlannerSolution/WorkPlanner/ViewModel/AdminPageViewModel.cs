@@ -16,7 +16,7 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    public class AdminPageViewModel : CalendarViewModelBase
+    public class AdminPageViewModel : CalendarViewModelBase 
     {
 
         private int _selectedWorktime;
@@ -24,7 +24,10 @@ namespace WorkPlanner.ViewModel
         private Visibility _employeeVisibility;
         private AdminHandler _handler;
 
-
+        private ICommand _hamburgerButton_CheckedCommand;
+        private ICommand _navigateToUserCommand;
+        private ICommand _nagigateToEmployeePageCommand;
+        private ICommand _logoutUser;
         private ObservableCollection<DateTime> _headers;
         private ObservableCollection<Employees> _employees;
         private ObservableCollection<WorktimeEventDetails> _worktimeEventDetails;
@@ -46,6 +49,8 @@ namespace WorkPlanner.ViewModel
             _employeeVisibility = Visibility.Collapsed;
         
         }
+
+
 
         #region General
 
@@ -70,13 +75,20 @@ namespace WorkPlanner.ViewModel
             }
         }
 
-      
 
-#endregion
+
+        #endregion
 
         #region General
 
-  
+        //private ObservableCollection<> myVar;
+
+        //public ObservableCollection<> MyProperty
+        //{
+        //    get { return myVar; }
+        //    set { myVar = value; }
+        //}
+
 
 
         public ObservableCollection<Employees> Employees
@@ -103,9 +115,78 @@ namespace WorkPlanner.ViewModel
 
         #endregion
 
- 
 
-    
+        #region Menu
+
+
+
+        private bool _hamburgerButton_Checked;
+
+        public ICommand HamburgerButton_CheckedCommand
+        {
+            get
+            {
+                return _hamburgerButton_CheckedCommand ??
+                       (_hamburgerButton_CheckedCommand =
+                           new RelayCommand(_handler.HamburgerButton_Checked));
+            }
+            set { _hamburgerButton_CheckedCommand = value; }
+
+        }
+
+        public ICommand NavigateToUserCommand
+        {
+            get
+            {
+                return _navigateToUserCommand ??
+                       (_navigateToUserCommand =
+                           new RelayCommand(_handler.NavigateToUser));
+            }
+            set { _navigateToUserCommand = value; }
+
+        }
+
+        public ICommand NagigateToEmployeePageCommand
+        {
+            get
+            {
+                return _nagigateToEmployeePageCommand ??
+                       (_nagigateToEmployeePageCommand =
+                           new RelayCommand(_handler.NagigateToEmployeePage));
+            }
+            set { _nagigateToEmployeePageCommand = value; }
+
+        }
+
+        
+        public ICommand LogoutUser
+        {
+            get
+            {
+                return _logoutUser ??
+                       (_logoutUser =
+                           new RelayCommand(ChangePage.Logout));
+            }
+            set { _logoutUser = value; }
+
+        }
+
+
+        private bool _isPaneOpen;
+
+        public bool IsPaneOpen
+        {
+            get { return _isPaneOpen; }
+            set
+            {
+                _isPaneOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        #endregion
+
 
         #region Commands
 

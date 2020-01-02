@@ -123,12 +123,14 @@
     <Compile Include="Catalog\CatalogsSingleton.cs" />
     <Compile Include="Catalog\EmployeesSingleton.cs" />
     <Compile Include="Common\GetDatesFromWeekNumber.cs" />
+    <Compile Include="Common\ChangePage.cs" />
     <Compile Include="Common\PropertyPopulator.cs" />
     <Compile Include="Common\RelayArgCommand.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\UpdateObsCollection.cs" />
     <Compile Include="Converter\DateTimeConverter.cs" />
     <Compile Include="Converter\DateFormatConverter.cs" />
+    <Compile Include="Converter\TimeSpanConvertToHourMinute.cs" />
     <Compile Include="Converter\DateTimeConvertToHourMinute.cs" />
     <Compile Include="Factories\PropertyHelpersFactory.cs" />
     <Compile Include="Handler\AdminHandler.cs" />
@@ -138,9 +140,15 @@
     <Compile Include="Handler\EmployeePageHandler.cs" />
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\MainPageHandler.cs" />
+    <Compile Include="Handler\ViewBaseHandler.cs" />
     <Compile Include="Interface\ICalenderHandler.cs" />
+    <Compile Include="Interface\ICalenderViewModel.cs" />
+    <Compile Include="Interface\IViewModelBase.cs" />
+    <Compile Include="Interface\IWorktimeEventDetailSubject.cs" />
     <Compile Include="Interface\Ipopulator.cs" />
     <Compile Include="Common\EmployeePlacementIndex.cs" />
+    <Compile Include="Interface\IWorkTimeEventDetailObserver.cs" />
+    <Compile Include="Model\UserRequests.cs" />
     <Compile Include="Model\WorktimeEventDetails.cs" />
     <Compile Include="Model\Databasemodels\DatabaseObject.cs" />
     <Compile Include="Model\EventElement.cs" />
@@ -203,6 +211,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Styles\MenuStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using WorkPlanner.Catalog;
 using WorkPlanner.Common;
 using WorkPlanner.Model;
@@ -12,6 +14,7 @@ using WorkPlanner.Proxy;
 using WorkPlanner.ViewModel;
 using WorkPlanner.Catalog;
 using WorkPlanner.Model;
+using WorkPlanner.View;
 
 namespace WorkPlanner.Handler
 {
@@ -27,8 +30,10 @@ namespace WorkPlanner.Handler
             PropertyPopulator<Employees> ppEmployee = new PropertyPopulator<Employees>();
             PopulatePrepInfo();
             ppEmployee.Repopulate(EmployeePageVM.PropEmployeeInfoList, EmployeePageVM.ActiveUser);
+            GetOverTime();
         }
 
+        
 
         #region Methods
 
@@ -41,6 +46,47 @@ namespace WorkPlanner.Handler
                 _employeePageViewModel.PropEmployeeInfoList.Add(empProp);
             }
         }
+
+        public void GetOverTime()
+        {
+
+            TimeSpan overtimeThisWeek = new TimeSpan();
+            TimeSpan overTimeThisMonth = new TimeSpan();
+
+           List<Worktimes> allWorktimesThisMonth = _catalogInterface.GetAllWorktimesByEmployee(_employeePageViewModel.ActiveUser).FindAll(x => x.Date.Year == DateTime.Now.Year && x.Date.Month == DateTime.Now.Month);
+
+           foreach (Worktimes worktime in allWorktimesThisMonth)
+           {
+               var resultCalculator = OverTimeCalculator(worktime);
+
+               if (resultCalculator != null)
+               {
+                   if (worktime.Date > DateTime.Now.Subtract(new TimeSpan(7, 0, 0)))
+                   {
+                       overtimeThisWeek = overtimeThisWeek.Add(resultCalculator.Value);
+                   }
+
+                   overTimeThisMonth = overTimeThisMonth.Add(resultCalculator.Value);
+                }
+           }
+
+           _employeePageViewModel.OverTimeThisMonth = overTimeThisMonth;
+           _employeePageViewModel.OverTimeThisWeek = overtimeThisWeek;
+
+        }
+
+        private Nullable<TimeSpan> OverTimeCalculator(Worktimes worktime)
+        {
+            Nullable<TimeSpan> result = null;
+
+            if (worktime.CheckOut != null && worktime.TimeEnd < worktime.CheckOut)
+            {
+               result = worktime.CheckOut - worktime.TimeEnd;
+            }
+
+            return result;
+        }
+
 
         ///// <summary>
         ///// Her tiltøjer vi timePlanCollections til viewet.
@@ -98,7 +144,7 @@ namespace WorkPlanner.Handler
             foreach (var header in _viewmodel.Headers)
             {
                 //Her finder vi alle worktimes som er på en given dag.
-                List<Worktimes> WorktimesThisDay = _catalogInterface.WorktimeForEmployeeOnSingleDay(header.Date, _viewmodel.ActiveUser);
+                List<Worktimes> WorktimesThisDay = _catalogInterface.WorktimeForEmployeeOnSingleDay(header.Date, _employeePageViewModel.ActiveUser);
 
                 foreach (Worktimes worktime in WorktimesThisDay)
                 {
@@ -151,5 +197,28 @@ namespace WorkPlanner.Handler
             UpdateTimePlan();
         }
         #endregion
+
+
+        public void HamburgerButton_Checked()
+        {
+            _employeePageViewModel.IsPaneOpen = !_employeePageViewModel.IsPaneOpen;
+        }
+
+        public void NavigateToMainPage()
+        {
+            Frame frame = new Frame();
+            frame.Navigate(typeof(MainPage));
+            Window.Current.Content = frame;
+            Window.Current.Activate();
+        }
+
+        public void NavigateToAdmin()
+        {
+            Frame frame = new Frame();
+            frame.Navigate(typeof(LoginPage));
+            Window.Current.Content = frame;
+            Window.Current.Activate();
+        }
+
     }
 }
