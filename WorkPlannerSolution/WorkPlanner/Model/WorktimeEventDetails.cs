@@ -14,10 +14,10 @@ namespace WorkPlanner.Model
         private Employees _employee;
         private Worktimes _worktime;
         private IList<IWorkTimeEventDetailObserver> observers = new List<IWorkTimeEventDetailObserver>();
-       private bool _statusManagetStatus ;
+       private bool _statusManagerStatus;
         public WorktimeEventDetails(Employees employee, Worktimes worktime)
         {
-            _statusManagetStatus = true;
+            _statusManagerStatus = true;
 
            
             _employee = employee;
@@ -69,7 +69,7 @@ namespace WorkPlanner.Model
             {
                 if (CheckedIn)
                 {
-                    if (_worktime.TimeEnd < DateTime.Now)
+                    if (_worktime.TimeEnd < DateTime.Now || _worktime.TimeStart > DateTime.Now)
                     {
                         return "Blue";
                     }
@@ -117,7 +117,7 @@ namespace WorkPlanner.Model
 
         public async void StatusManager(int delay)
         {
-            while (_statusManagetStatus)
+            while (_statusManagerStatus)
             {
                 //Hvis der er checked in
                 if (_worktime.CheckIn != null)
@@ -132,13 +132,13 @@ namespace WorkPlanner.Model
                         else if (_worktime.TimeEnd <= DateTime.Now)
                         {
                             notify();
-                            _statusManagetStatus = false;
+                            _statusManagerStatus = false;
                         }
 
                     }
                     else if (_worktime.CheckOut != null)
                     {
-                        _statusManagetStatus = false;
+                        _statusManagerStatus = false;
                     }
 
                 }
@@ -148,7 +148,7 @@ namespace WorkPlanner.Model
                 }
                 else
                 {
-                    _statusManagetStatus = false;
+                    _statusManagerStatus = false;
                 }
 
             }
@@ -156,7 +156,7 @@ namespace WorkPlanner.Model
 
         public void Dispose()
         {
-            _statusManagetStatus = false;
+            _statusManagerStatus = false;
         }
     }
 

@@ -79,9 +79,13 @@ namespace WorkPlanner.Handler
         {
             Nullable<TimeSpan> result = null;
 
-            if (worktime.CheckOut != null && worktime.TimeEnd < worktime.CheckOut)
+            if (worktime.CheckIn != null && worktime.TimeStart > worktime.CheckIn)
             {
-               result = worktime.CheckOut - worktime.TimeEnd;
+               result = worktime.TimeStart - worktime.CheckIn;
+            }
+            else if (worktime.CheckOut != null && worktime.TimeEnd < worktime.CheckOut)
+            {
+                result = worktime.CheckOut - worktime.TimeEnd;
             }
 
             return result;
