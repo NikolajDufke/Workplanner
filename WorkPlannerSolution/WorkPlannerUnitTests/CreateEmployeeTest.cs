@@ -45,7 +45,6 @@ namespace WorkPlannerUnitTests
             int t1 = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count;
             int expectedresult = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count + 1;
 
-
             //Act
             _createEmployeeViewModel.CreateEmployeeCommand.Execute(null);
             System.Threading.Thread.Sleep(5000);
