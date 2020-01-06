@@ -42,7 +42,6 @@ namespace WorkPlannerUnitTests
         {
             //Arrange
             Arrange();
-            int t1 = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count;
             int expectedresult = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count + 1;
 
             //Act
@@ -60,10 +59,6 @@ namespace WorkPlannerUnitTests
                 if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
                 {
                     _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.EmployeeID.ToString());
-                }
-                else
-                {
-                    throw new Exception("Not Deleted!");
                 }
             }
         }
