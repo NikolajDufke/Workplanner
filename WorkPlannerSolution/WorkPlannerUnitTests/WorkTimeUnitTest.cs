@@ -18,6 +18,7 @@ namespace WorkPlannerUnitTests
         public void Arrange()
         {
             _workTimeViewModel = new WorkTimeViewModel();
+            _catalogsSingleton = CatalogsSingleton.Instance;
         }
 
         public void SetTestWorkTime()
