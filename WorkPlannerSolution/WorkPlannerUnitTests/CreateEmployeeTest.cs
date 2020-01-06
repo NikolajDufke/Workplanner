@@ -62,10 +62,6 @@ namespace WorkPlannerUnitTests
                 {
                     _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.EmployeeID.ToString());
                 }
-                else
-                {
-                    throw new Exception("Not Deleted!");
-                }
             }
         }
 
