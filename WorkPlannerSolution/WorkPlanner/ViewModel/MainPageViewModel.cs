@@ -112,6 +112,7 @@ namespace WorkPlanner.ViewModel
         public void Update(Worktimes worktime)
         {
             Worktimes.Refresh();
+            
         }
     }
 

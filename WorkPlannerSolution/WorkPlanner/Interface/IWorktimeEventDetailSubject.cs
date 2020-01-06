@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace WorkPlanner.Interface
 {
     public interface IWorktimeEventDetailSubject
-{
-    void AttachSubscriber(IWorkTimeEventDetailObserver subscriber);
-    void DetachSubscriber(IWorkTimeEventDetailObserver subscriber);
-    void notify();
-}
+    {
+        void AttachSubscriber(IWorkTimeEventDetailObserver subscriber);
+        void DetachSubscriber(IWorkTimeEventDetailObserver subscriber);
+        void notify();
+    }
 
 }

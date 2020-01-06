@@ -32,28 +32,28 @@ namespace WorkPlanner.Catalog
         #region Methods
         public async Task<List<T>> GetAll()
         {
-            TimeSpan timePassed = new TimeSpan(0,0,0);
+            //TimeSpan timePassed = new TimeSpan(0,0,0);
 
 
-            if (_allCollection.Count != 0)
-                return _allCollection;
+            //if (_allCollection.Count != 0)
+            //    return _allCollection;
 
             await LoadFromDB();
 
-            while (_allCollection.Count == 0)
-            {
+            //while (_allCollection.Count == 0)
+            //{
                 
-                if (_allCollection.Count != 0)
-                    return _allCollection;
+            //    if (_allCollection.Count != 0)
+            //        return _allCollection;
 
                
-                Task.Delay(TimeSpan.FromSeconds(5));
-                timePassed = timePassed +TimeSpan.FromSeconds(5);
+            //    Task.Delay(TimeSpan.FromSeconds(5));
+            //    timePassed = timePassed +TimeSpan.FromSeconds(5);
 
-                if(timePassed > TimeSpan.FromSeconds(30))
-                { break;}
+            //    if(timePassed > TimeSpan.FromSeconds(30))
+            //    { break;}
 
-            }
+            //}
             return _allCollection;
         }
 

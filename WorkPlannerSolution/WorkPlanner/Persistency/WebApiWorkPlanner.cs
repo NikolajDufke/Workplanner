@@ -84,6 +84,8 @@ namespace WorkPlanner.Persistency
                 if (response.IsSuccessStatusCode)
                 {
                     string responseContentAsString = await response.Content.ReadAsStringAsync();
+                    List<T> t = new List<T>();
+                    t = JsonConvert.DeserializeObject<List<T>>(responseContentAsString);
                     return JsonConvert.DeserializeObject<List<T>>(responseContentAsString);
                 }
                 else
