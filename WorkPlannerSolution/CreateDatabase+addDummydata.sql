@@ -1,10 +1,46 @@
-﻿DELETE from Worktime
-DELETE from Users
-DELETE from Employee
-DELETE from Access
+﻿CREATE DATABASE WorkPlannerDB;
+GO
+use WorkPlannerDB;
 
---DBCC CHECKIDENT ('Users', RESEED,0)
---DBCC CHECKIDENT ('Employee', RESEED,0)
+CREATE TABLE [dbo].[Access] (
+    [AccessLevel]       INT        NOT NULL,
+    [AccessDescription] NCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([AccessLevel] ASC)
+);
+
+CREATE TABLE [dbo].[Users] (
+    [UserID]       INT           IDENTITY (1, 1) NOT NULL,
+    [UserPassword] NVARCHAR (50) NOT NULL,
+    [AccessLevel]  INT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([UserID] ASC),
+    CONSTRAINT [FK_User_Access] FOREIGN KEY ([AccessLevel]) REFERENCES [dbo].[Access] ([AccessLevel])
+);
+
+CREATE TABLE [dbo].[Employee] (
+    [EmployeeID]  INT          IDENTITY (1, 1) NOT NULL,
+    [FirstName]   VARCHAR (50) NOT NULL,
+    [LastName]    VARCHAR (50) NOT NULL,
+    [PhoneNumber] INT          NULL,
+    [Email]       VARCHAR (50) NULL,
+    [Adress]      VARCHAR (50) NULL,
+    [City]        VARCHAR (50) NULL,
+    [ZipPostal]   INT          NULL,
+    [UserID]      INT          NULL,
+    CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED ([EmployeeID] ASC),
+    CONSTRAINT [FK_Employee_User] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+CREATE TABLE [dbo].[Worktime] (
+    [WorkTimeID] INT      IDENTITY (1, 1) NOT NULL,
+    [EmployeeID] INT      NOT NULL,
+    [Date]       DATETIME NOT NULL,
+    [TimeStart]  DATETIME NOT NULL,
+    [TimeEnd]    DATETIME NOT NULL,
+    PRIMARY KEY CLUSTERED ([WorkTimeID] ASC),
+    CONSTRAINT [EmployeeIDFK] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID])
+);
+GO
+
 INSERT INTO Access(AccessLevel,AccessDescription) VALUES (1, 'Admin')
 INSERT INTO Access(AccessLevel,AccessDescription) VALUES (2, 'User')
 

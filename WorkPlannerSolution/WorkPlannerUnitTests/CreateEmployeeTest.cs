@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkPlanner.Catalog;
@@ -36,35 +37,37 @@ namespace WorkPlannerUnitTests
             }
         }
 
-        //[TestMethod]
-        //public void TestCreateEmployee()
-        //{
-        //    //Arrange
-        //    Arrange();
-        //    int expectedresult = _catalogsSingleton.EmployeeInfoCatalog.GetAll.Count + 1;
+        [TestMethod]
+        public void TestCreateEmployee()
+        {
+            //Arrange
+            Arrange();
+            int t1 = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count;
+            int expectedresult = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count + 1;
 
 
-        //    //Act
-        //    _createEmployeeViewModel.CreateEmployeeCommand.Execute(null);
+            //Act
+            _createEmployeeViewModel.CreateEmployeeCommand.Execute(null);
+            System.Threading.Thread.Sleep(5000);
+            int actual = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count;
 
+            //Assert
+            Assert.AreEqual(expectedresult, actual);
 
-        //    //Assert
-        //    Assert.AreEqual(expectedresult, _catalogsSingleton.EmployeeInfoCatalog.GetAll.Count);
-
-        //    //Cleanup
-        //    var allempinfolist = _catalogsSingleton.EmployeeInfoCatalog.GetAll;
-        //    foreach (var empinfo in allempinfolist)
-        //    {
-        //        if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
-        //        {
-        //           _catalogsSingleton.EmployeeInfoCatalog.RemoveAsync(empinfo.EInformationID.ToString());  
-        //        }
-        //        else
-        //        {
-        //            throw new Exception("Not Deleted!");
-        //        }
-        //    }
-        //}
+            //Cleanup
+            var allempinfolist = _catalogsSingleton.EmployeeCatalog.GetAll().Result;
+            foreach (var empinfo in allempinfolist)
+            {
+                if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
+                {
+                    _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.EmployeeID.ToString());
+                }
+                else
+                {
+                    throw new Exception("Not Deleted!");
+                }
+            }
+        }
 
         [TestMethod]
         public void TestMethod()

@@ -8,11 +8,11 @@ using WorkPlanner.Model;
 
 namespace WorkPlanner.Catalog
 {
-    class EmployeesSingleton
+    public class EmployeesSingleton
     {
         private static EmployeesSingleton _instance;
 
-        private EmployeesSingleton()
+        public EmployeesSingleton()
         {
         }
 

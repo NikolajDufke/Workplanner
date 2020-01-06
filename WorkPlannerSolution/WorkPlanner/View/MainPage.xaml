@@ -7,38 +7,93 @@
     xmlns:ViewModel="using:WorkPlanner.ViewModel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:WorkPlanner.Converter"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.DataContext>
-      <ViewModel:MainPageViewModel/>
+        <ViewModel:MainPageViewModel/>
     </Page.DataContext>
     <Page.Resources>
+        <converter:DateTimeConvertToHourMinute x:Key="ConverterHourMinute"></converter:DateTimeConvertToHourMinute>
         <ViewModel:MainPageViewModel x:Key="MainPageViewModelInstance" />
-    </Page.Resources>
 
+
+        <Style x:Key="TitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="MenuButtonStyle"  TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+    </Page.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1">
-            <ListView ItemsSource="{Binding }" SelectedValue="{Binding SelectedEmployee, Mode=TwoWay}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Image Source="{Binding Employee.picture}" />
-                            <TextBlock Text="{Binding Employee.Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <AppBarButton Label="Test" Height="50" Width="80" Margin="22,-5" Icon="Back" Click="AppBarButton_Click"/>
-        </StackPanel>
+        <RelativePanel>
+            <AppBarButton Style="{StaticResource MenuButtonStyle}"  FontFamily="Segoe MDL2 Assets" Content="&#xE71D;" Command="{Binding HamburgerButton_CheckedCommand}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="85"></AppBarButton>
+        </RelativePanel>
+
+        <SplitView IsPaneOpen="{Binding IsPaneOpen}" Grid.Row="1">
+            <SplitView.Pane >
+                <StackPanel Width="120" HorizontalAlignment="Left">
+                    <AppBarButton FontFamily="Segoe MDL2 Assets" Content="&#xE71D;" Command="{Binding HamburgerButton_CheckedCommand}" Style="{StaticResource MenuButtonStyle}" />
+                    <Button Content="Bruger Login" Style="{StaticResource MenuButtonStyle}" Command="{Binding NavigateToUserCommand}" />
+                    <Button Content="Admin Login" Style="{StaticResource MenuButtonStyle}" Command="{Binding NagigateToAdminCommand}" />
+                </StackPanel>
+            </SplitView.Pane>
+
+            <SplitView.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+
+
+                    <Grid Grid.Column="1" Background="LightSteelBlue">
+                        <TextBlock Grid.Column="1" Text ="-- Vagter idag --" Style="{StaticResource TitleStyle}"></TextBlock>
+                    </Grid>
+
+                    <ItemsControl Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Worktimes}" >
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button  Margin="10" Command="{Binding DataContext.CheckinChectOutCommand,ElementName=Page}" CommandParameter="{Binding WorktimeID}" Background="{Binding StatusColor}" HorizontalAlignment="Stretch" >
+                                    <Button.Content>
+                                        <Grid >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="10*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="../Assets/person-icon-1675.png" Margin="0,0,10,10"></Image>
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding StarTime , Converter={StaticResource ConverterHourMinute}}"></TextBlock>
+                                                    <TextBlock Text=" - "></TextBlock>
+                                                    <TextBlock Text="{Binding EndTime ,Converter={StaticResource ConverterHourMinute}}"></TextBlock>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 </Page>

@@ -18,25 +18,34 @@ namespace WorkPlannerUnitTests
             _workTimeViewModel = new WorkTimeViewModel();
         }
 
-        public Worktimes GetTestWorkTime()
+        public Worktimes SetTestWorkTime()
         {
-            return null;
-            //return new Worktimes(){EInformationID = 1, Date = new DateTime(2019, 11, 29), TimeStart = new DateTime(2019, 11, 29, 10, 30,0), TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0), WorkTimeID = 9};
+
+
+           _workTimeViewModel.TimeEnd = new TimeSpan(DateTime.Now.Year,);
+
+           _workTimeViewModel.TimeStart = new TimeSpan( 11, 29, 0);
+           _workTimeViewModel.TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0);
+
+            return new Worktimes() { EmployeeID = 1, Date = new DateTime(2019, 11, 29), TimeStart = new DateTime(2019, 11, 29, 10, 30, 0), TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0), WorkTimeID = 9 };
         }
 
         [TestMethod]
-        public async void TestAddWorkTime()
+        public void TestAddWorkTime()
         {
             //Arrange
             Arrange();
-            //int startvalue  =  _catalogsSingleton.WorktimeCatalog.GetAll;
+            int startvalue = _catalogsSingleton.WorktimeCatalog.GetAll().Result.Count;
             Worktimes testWorktimes = GetTestWorkTime();
 
+
             //Act
-            await _catalogsSingleton.WorktimeCatalog.AddAsync(testWorktimes);
+            _workTimeViewModel.WorkTimeCreateCommand.Execute(null);
+
+            //await _catalogsSingleton.WorktimeCatalog.AddAsync(testWorktimes);
 
             ////Assert
-            //Assert.AreEqual(startvalue + 1, _catalogsSingleton.WorktimeCatalog.GetAll.Count);
+            Assert.AreEqual(startvalue + 1, _catalogsSingleton.WorktimeCatalog.GetAll().Result);
 
             //Cleanup
             _catalogsSingleton.WorktimeCatalog.RemoveAsync(testWorktimes.WorkTimeID.ToString());

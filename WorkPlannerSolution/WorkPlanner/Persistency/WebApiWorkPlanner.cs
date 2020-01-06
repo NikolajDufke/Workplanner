@@ -35,7 +35,14 @@ namespace WorkPlanner.Persistency
                 StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await _client.PostAsync(_apiPrefix + "/" , sc);
 
-                return  JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+                }
+                else
+                {
+                    throw new Exception("Create action failed.");
+                }
             }
             catch (Exception e)
             {    
@@ -50,8 +57,18 @@ namespace WorkPlanner.Persistency
             try
             {
                 HttpResponseMessage response = await _client.DeleteAsync(_apiPrefix + "/" + apiId);
-                return response.IsSuccessStatusCode;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return response.IsSuccessStatusCode;
+                }
+                else
+                {
+                    throw new Exception("Delete form db failed.");
+                }
             }
+
+
             catch (Exception e)
             {
                 throw new Exception("Failed to delete object");
@@ -67,12 +84,17 @@ namespace WorkPlanner.Persistency
                 if (response.IsSuccessStatusCode)
                 {
                     string responseContentAsString = await response.Content.ReadAsStringAsync();
+                    List<T> t = new List<T>();
+                    t = JsonConvert.DeserializeObject<List<T>>(responseContentAsString);
                     return JsonConvert.DeserializeObject<List<T>>(responseContentAsString);
                 }
                 else
                 {
-                    return null;
+                    throw new Exception("Update to db failed.");
                 }
+
+                return null;
+                
             }
             catch (Exception e)
             {
@@ -82,21 +104,22 @@ namespace WorkPlanner.Persistency
 
         public async Task<T> ReadAsync(string apiId)
         {
-            try
-            {
+            
+      
                 HttpResponseMessage response = await _client.GetAsync(_apiPrefix + "/" + apiId);
                 if (response.IsSuccessStatusCode)
                 {
                     string responseContentAsString = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<T>(responseContentAsString);
                 }
+                else
+                {
+                    throw new Exception("Failed to read from db.");
+                }
 
                 return null;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Failed to read object");
-            }
+            
+
         
         }
 
@@ -105,11 +128,20 @@ namespace WorkPlanner.Persistency
             try
             {
                 string serializedObject = JsonConvert.SerializeObject(obj);
-                StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "allpication/json");
+                StringContent sc = new StringContent(serializedObject, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await _client.PutAsync(_apiPrefix + "/" + apiId, sc);
 
-                return response.IsSuccessStatusCode;
+                if (response.IsSuccessStatusCode)
+                {
+                    return response.IsSuccessStatusCode;
+                }
+                else
+                {
+                    throw new Exception("Update to db failed.");
+                }
+
+
             }
             catch (Exception e)
             {

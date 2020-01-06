@@ -4,12 +4,18 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using WorkPlanner.Common;
 using WorkPlanner.Handler;
+using WorkPlanner.Interface;
 using WorkPlanner.Model;
 
 namespace WorkPlanner.ViewModel
 {
-    public class CalendarViewModelBase: ViewModelBase 
+    public class CalendarViewModelBase: ViewModelBase , ICalenderViewModel
     {
+        private string _loadingstatus;
+        private bool _ButtonEnabledStatus;
+        private double _calenderOpacity;
+        private string _year;
+        private int _weekNumber;
         private ObservableCollection<EventElement> _weekday1Collection;
         private ObservableCollection<EventElement> _weekday2Collection;
         private ObservableCollection<EventElement> _weekday3Collection;
@@ -17,7 +23,7 @@ namespace WorkPlanner.ViewModel
         private ObservableCollection<EventElement> _weekday5Collection;
         private ObservableCollection<EventElement> _weekday6Collection;
         private ObservableCollection<EventElement> _weekday7Collection;
-        private CalendarHandler<CalendarViewModelBase> _handler;
+        protected ICalenderHandler _handlerCal;
         private ObservableCollection<string> _times;
         private ObservableCollection<DateTime> _headers;
         private DateTime _day1Header;
@@ -28,6 +34,7 @@ namespace WorkPlanner.ViewModel
         private DateTime _day6Header;
         private DateTime _day7Header;
 
+
         private ICommand _nextWeekCommand;
         private ICommand _previousWeekCommand;
         private ObservableCollection<Employees> _employees;
@@ -36,6 +43,8 @@ namespace WorkPlanner.ViewModel
 
         public CalendarViewModelBase()
         {
+           
+            _worktimeEventDetails = new ObservableCollection<WorktimeEventDetails>();
             _headers = new ObservableCollection<DateTime>();
             _weekday1Collection = new ObservableCollection<EventElement>();
             _weekday2Collection = new ObservableCollection<EventElement>();
@@ -46,32 +55,52 @@ namespace WorkPlanner.ViewModel
             _weekday7Collection = new ObservableCollection<EventElement>();
             _times = new ObservableCollection<string>();
             _employees = new ObservableCollection<Employees>();
-
-            _handler = new CalendarHandler<CalendarViewModelBase>(this);
-            _handler.SetDaysAndDates();
         }
 
         #region General
+        public bool ButtonStatus
+        {
+            get { return _ButtonEnabledStatus; }
+            set
+            {
+                _ButtonEnabledStatus = value; 
+                OnPropertyChanged();
+            }
+        }
+        public double CalenderOpacity
+        {
+            get { return _calenderOpacity; }
+            set
+            {
+                _calenderOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+        public string LoadinStatus
+        {
+            get { return _loadingstatus; }
+            set
+            {
+                _loadingstatus = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<WorktimeEventDetails> WorktimeEventDetails
         {
             get { return _worktimeEventDetails; }
             set { _worktimeEventDetails = value; }
         }
-
-
         public ObservableCollection<Employees> Employees
         {
             get { return _employees; }
             set { _employees = value; }
         }
-
         public ObservableCollection<DateTime> Headers
         {
             get { return _headers; }
             set { _headers = value; }
-        }
-
-        private int _weekNumber;
+        }   
 
         public ObservableCollection<string> Times
         {
@@ -82,16 +111,15 @@ namespace WorkPlanner.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        private string _year;
-
         public string Year
         {
             get { return _year; }
-            set { _year = value; }
+            set
+            {
+                _year = value; 
+                OnPropertyChanged();
+            }
         }
-
-
         public int WeekNumber
         {
             get { return _weekNumber; }
@@ -259,7 +287,7 @@ namespace WorkPlanner.ViewModel
             get
             {
                 return _nextWeekCommand ??
-                       (_nextWeekCommand = new RelayCommand(_handler.AddWeekNumber));
+                       (_nextWeekCommand = new RelayCommand(_handlerCal.AddWeekNumber));
             }
             set { _nextWeekCommand = value; }
         }
@@ -269,7 +297,7 @@ namespace WorkPlanner.ViewModel
             get
             {
                 return _previousWeekCommand ??
-                       (_previousWeekCommand = new RelayCommand(_handler.SubstractWeekNumber));
+                       (_previousWeekCommand = new RelayCommand(_handlerCal.SubstractWeekNumber));
             }
             set { _previousWeekCommand = value; }
         }

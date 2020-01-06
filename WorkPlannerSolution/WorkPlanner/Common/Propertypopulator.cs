@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -20,10 +21,9 @@ namespace WorkPlanner.Common
         /// <returns></returns>
         public T Populate(List<PropInfo> propInfoList, T obj)
         {
-
+            PropertyInfo[] properties = typeof(T).GetProperties();
             foreach (var propInfo in propInfoList)
             {
-                PropertyInfo[] properties = typeof(T).GetProperties();
                 foreach (PropertyInfo property in properties)
                 {
                     if (property.Name == propInfo.PropName)
@@ -57,9 +57,28 @@ namespace WorkPlanner.Common
 
             return obj;
         }
+        /// <summary>
+        /// Returns a list<propinfo> with propname = the name of the object 
+        /// </summary>
+        /// <param name="propInfoList"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public ObservableCollection<PropInfo> Repopulate(ObservableCollection<PropInfo> propInfoList, T obj)
+        {
 
+            Type T = obj.GetType();
 
+            foreach (var propInfo in propInfoList)
+            {
+                PropertyInfo prop = T.GetProperty(propInfo.PropName);
+                if (prop != null)
+                {
+                    propInfo.ValueFromUser = prop.GetValue(obj).ToString();
+                }
+            }
 
+            return propInfoList;
+        }
         #endregion
     }
 }
