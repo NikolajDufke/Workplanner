@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="053a5e5c-7f34-468e-bf74-00c5ac0180aa" ChangeDateTime="11/14/2019 11:46:03">
+    <Property Name="ElementName" Value="[dbo].[User].[Access]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AccessLevel" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="424f500a-eac5-43e1-8026-14174559f3d1" ChangeDateTime="11/15/2019 09:48:56">
+    <Property Name="ElementName" Value="[dbo].[User].[Password]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserPassword" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="28d9659e-a7cb-4456-a9b0-3564b4541f24" ChangeDateTime="11/27/2019 09:27:34">
+    <Property Name="ElementName" Value="[dbo].[Worktime].[Time]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Worktime]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TimeStart" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="06151a31-525c-464a-9603-b0282cef490d" ChangeDateTime="11/28/2019 08:48:37">
+    <Property Name="ElementName" Value="[dbo].[Worktime].[EmployeeID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Worktime]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EInformationID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="501ef6cd-5c64-4348-8a2e-186465fb2f69" ChangeDateTime="12/02/2019 08:50:36">
+    <Property Name="ElementName" Value="[dbo].[Worktime].[EInformationID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Worktime]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EmployeeID" />
+  </Operation>
+</Operations>

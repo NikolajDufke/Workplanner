@@ -20,14 +20,11 @@ namespace WorkPlannerUnitTests
 
         public Worktimes SetTestWorkTime()
         {
-
-
-           _workTimeViewModel.TimeEnd = new TimeSpan(DateTime.Now.Year,);
-
+           _workTimeViewModel.Date = new DateTimeOffset(DateTime.Now);
            _workTimeViewModel.TimeStart = new TimeSpan( 11, 29, 0);
-           _workTimeViewModel.TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0);
-
-            return new Worktimes() { EmployeeID = 1, Date = new DateTime(2019, 11, 29), TimeStart = new DateTime(2019, 11, 29, 10, 30, 0), TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0), WorkTimeID = 9 };
+           _workTimeViewModel.TimeEnd = new TimeSpan( 12, 30,00);
+             return new Worktimes();
+            //return new Worktimes() { EmployeeID = 1, Date = new DateTime(2019, 11, 29), TimeStart = new DateTime(2019, 11, 29, 10, 30, 0), TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0), WorkTimeID = 9 };
         }
 
         [TestMethod]
@@ -36,7 +33,7 @@ namespace WorkPlannerUnitTests
             //Arrange
             Arrange();
             int startvalue = _catalogsSingleton.WorktimeCatalog.GetAll().Result.Count;
-            Worktimes testWorktimes = GetTestWorkTime();
+            Worktimes testWorktimes = SetTestWorkTime();
 
 
             //Act
