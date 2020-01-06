@@ -42,7 +42,6 @@ namespace WorkPlannerUnitTests
         {
             //Arrange
             Arrange();
-            int t1 = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count;
             int expectedresult = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count + 1;
 
 
