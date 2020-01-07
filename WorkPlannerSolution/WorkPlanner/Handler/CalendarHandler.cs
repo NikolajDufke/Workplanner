@@ -337,8 +337,8 @@ namespace WorkPlanner.Handler
             {
 
                 var e = new EventElement();
-                if (tp.Update)
-                {
+                //if (tp.Update)
+                //{
                     // Vi matcher alle employees 
 
                     foreach (Employees employee in _employeePlacementIndex.GetEmployees())
@@ -352,7 +352,7 @@ namespace WorkPlanner.Handler
                             e.Colors.Add(new WorktimeEventDetails(new Employees(), new Worktimes()));
                         }
                     }
-                }
+                //}
 
                 collectionToUpdate.Add(e);
             }
