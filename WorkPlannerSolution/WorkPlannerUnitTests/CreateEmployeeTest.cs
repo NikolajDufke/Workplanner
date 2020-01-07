@@ -75,19 +75,5 @@ namespace WorkPlannerUnitTests
             System.Threading.Thread.Sleep(5000);
             _catalogsSingleton.UsersCatalog.RemoveAsync(empinfo.UserID.ToString());
         }
-
-        [TestMethod]
-        public void TestMethod()
-        {
-            //Arrange
-            int result = 1;
-            int expectedresult = result + 1;
-
-            //Act
-            result = result + 1;
-
-            //Assert
-            Assert.AreEqual(expectedresult, result);
-        }
     }
 }
