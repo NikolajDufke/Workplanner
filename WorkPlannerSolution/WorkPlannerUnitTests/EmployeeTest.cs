@@ -40,6 +40,21 @@ namespace WorkPlannerUnitTests
             }
         }
 
+        private Employees SelectedEmp()
+        {
+            System.Threading.Thread.Sleep(5000);
+            var allempinfolist = _catalogsSingleton.EmployeeCatalog.GetAll().Result;
+
+            allempinfolist.Where(empinfo => empinfo.FirstName == "1");
+            var selected = from empinfo in allempinfolist
+                where empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" &&
+                      empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 &&
+                      empinfo.ZipPostal == 1
+                select empinfo;
+
+            return selected.Last();
+        }
+
         [TestMethod]
         public void TestCreateEmployee()
         {
@@ -49,35 +64,19 @@ namespace WorkPlannerUnitTests
 
             //Act
             _createEmployeeViewModel.CreateEmployeeCommand.Execute(null);
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(10000);
             int actual = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count;
 
             //Assert
             Assert.AreEqual(expectedresult, actual);
 
             //Cleanup
-            var allempinfolist = _catalogsSingleton.EmployeeCatalog.GetAll().Result;
-            foreach (var empinfo in allempinfolist)
-            {
-                if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
-                {
-                    _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.EmployeeID.ToString());
-                }
-            }
-        }
+            Employees empinfo = SelectedEmp();
 
-        [TestMethod]
-        public void TestMethod()
-        {
-            //Arrange
-            int result = 1;
-            int expectedresult = result + 1;
-
-            //Act
-            result = result + 1;
-
-            //Assert
-            Assert.AreEqual(expectedresult, result);
+            System.Threading.Thread.Sleep(5000);
+            _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.EmployeeID.ToString());
+            System.Threading.Thread.Sleep(5000);
+            _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.UserID.ToString());
         }
 
         [TestMethod]
@@ -85,30 +84,18 @@ namespace WorkPlannerUnitTests
         {
             //Arrange
             Arrange();
-            int expectedValue = CatalogsSingleton.Instance.EmployeeCatalog.GetAll().Result.Count;
+            int expectedValue = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count;
             _createEmployeeViewModel.CreateEmployeeCommand.Execute(null);
 
-
             //Act
-            var allempinfolist = _catalogsSingleton.EmployeeCatalog.GetAll().Result;
-            allempinfolist.Where(empinfo => e.FirstName == "1");
-            var selected = from empinfo in allempinfolist
-                where empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" &&
-                      empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 &&
-                      empinfo.ZipPostal == 1
-                select empinfo;
+            _AdminPageVM.SelectedEmployee = SelectedEmp();
 
-            foreach (var empinfo in allempinfolist)
-            {
-                if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
-                {
-                    _AdminPageVM.SelectedEmployee = empinfo;
-                }
-            }
             _AdminPageVM.DeleteEmployeeCommand.Execute(null);
 
-
+            int actualValue = _catalogsSingleton.EmployeeCatalog.GetAll().Result.Count;
+            
             //Assert
+            Assert.AreEqual(expectedValue, actualValue);
         }
     }
 }
