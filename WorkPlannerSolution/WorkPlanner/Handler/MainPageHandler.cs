@@ -31,13 +31,13 @@ namespace WorkPlanner.Handler
         {
 
             await proxy.Reload();
-            List<Worktimes> worktimes = proxy.GetAllWorktimesOfDay(_viewmodel.Date);
+            List<Worktimes> worktimes = await proxy.GetAllWorktimesOfDay(_viewmodel.Date);
 
             if (worktimes.Count == 0)
             {
                 
-                worktimes = proxy.GetAllWorktimesOfDay(_viewmodel.Date);
-            }
+                worktimes = await proxy.GetAllWorktimesOfDay(_viewmodel.Date);
+            } 
 
             _viewmodel.Worktimes.Clear();
             foreach (var worktime in worktimes)

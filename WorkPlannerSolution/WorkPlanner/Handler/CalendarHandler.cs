@@ -38,6 +38,8 @@ namespace WorkPlanner.Handler
         protected WorktimeProxy _catalogInterface;
         //private Dictionary< WorktimeEventDetails> _cepair;
 
+
+
         #endregion
 
         public CalendarHandler(T viewmodel) : base(viewmodel)
@@ -77,9 +79,13 @@ namespace WorkPlanner.Handler
 
             _viewmodel.Day1Header = DateTime.Now;
      
+            
+            
 
             UpdateObsCollection updater = new UpdateObsCollection();
             updater.GetEmployeesAsync(_viewmodel.Employees);
+
+       
         }
 
         #region properties 
@@ -365,7 +371,7 @@ namespace WorkPlanner.Handler
             foreach (var header in _viewmodel.Headers)
             {
                 //Her finder vi alle worktimes som er på en given dag.
-                List<Worktimes> WorktimesThisDay = _catalogInterface.GetAllWorktimesOfDay(header.Date, header.Year);
+                List<Worktimes> WorktimesThisDay = await _catalogInterface.GetAllWorktimesOfDay(header.Date, header.Year);
 
                 foreach (Worktimes worktime in WorktimesThisDay)
                 {

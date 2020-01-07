@@ -148,7 +148,7 @@ namespace WorkPlanner.Proxy
         }
 
 
-        public List<Worktimes> GetAllWorktimesOfDay(DateTime date, int year = 0)
+        public async Task<List<Worktimes>> GetAllWorktimesOfDay(DateTime date, int year = 0)
         {
    
                 year = (year == 0) ? DateTime.Now.Year : year;
@@ -158,6 +158,8 @@ namespace WorkPlanner.Proxy
 
                 if (!_casheSortedByDay.ContainsKey(year))
                 {
+                    await LoadAll();
+
                     result = _allWorktimes.FindAll(x => TrimToDateOnly(x.Date) == date);
 
                     if (result.Count != 0)
