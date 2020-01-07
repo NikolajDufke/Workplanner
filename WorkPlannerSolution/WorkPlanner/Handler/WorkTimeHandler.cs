@@ -32,32 +32,38 @@ namespace WorkPlanner.ViewModel
         /// </summary>
         public async void CreateWorkTime()
         {
-            var sts = _workTimeViewModel.TimeStart;
-            var ste = _workTimeViewModel.TimeEnd;
-            var tsv = _workTimeViewModel.Date;
-            var empid = _workTimeViewModel.EmployeeProp.EmployeeID;
-
-            Worktimes worktimes = new Worktimes()
+            try
             {
-                TimeStart = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, sts),
-                TimeEnd = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, ste),
-                Date = DateTimeConverter.DateTimeOffsetToDateTime(tsv),
-                EmployeeID = empid
-            };
+                var sts = _workTimeViewModel.TimeStart;
+                var ste = _workTimeViewModel.TimeEnd;
+                var tsv = _workTimeViewModel.Date;
+                var empid = _workTimeViewModel.EmployeeProp.EmployeeID;
 
-            var catalog = Catalog.CatalogsSingleton.Instance;
+                Worktimes worktimes = new Worktimes()
+                {
+                    TimeStart = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, sts),
+                    TimeEnd = DateTimeConverter.DateTimeOffsetAndTimeSetToDateTime(tsv, ste),
+                    Date = DateTimeConverter.DateTimeOffsetToDateTime(tsv),
+                    EmployeeID = empid
+                };
 
-            if (_workTimeViewModel.EmployeeProp.FirstName != null)
-            {
-                await catalog.WorktimeCatalog.AddAsync(worktimes);
+                var catalog = Catalog.CatalogsSingleton.Instance;
 
-                _workTimeViewModel.Message = "WorkTime er oprettet";
+                if (_workTimeViewModel.EmployeeProp.FirstName != null)
+                {
+                    await catalog.WorktimeCatalog.AddAsync(worktimes);
+
+                    _workTimeViewModel.Message = "WorkTime er oprettet";
+                }
+                else
+                {
+                    _workTimeViewModel.Message = "WorkTime kunne ikke oprettes";
+                }
             }
-            else
+            catch (Exception e)
             {
-                _workTimeViewModel.Message = "WorkTime kunne ikke oprettes";
+                _workTimeViewModel.Message = "Worktime kunne ikke oprettes";
             }
-
         }
         #endregion
     }
