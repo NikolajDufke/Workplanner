@@ -42,6 +42,7 @@ namespace WorkPlannerUnitTests
 
         private Employees SelectedEmp()
         {
+            System.Threading.Thread.Sleep(5000);
             var allempinfolist = _catalogsSingleton.EmployeeCatalog.GetAll().Result;
 
             allempinfolist.Where(empinfo => empinfo.FirstName == "1");
