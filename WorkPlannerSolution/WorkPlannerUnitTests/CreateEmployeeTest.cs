@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkPlanner.Catalog;
 using WorkPlanner.Handler;
@@ -37,6 +38,19 @@ namespace WorkPlannerUnitTests
             }
         }
 
+        private Employees SelectedEmp()
+        {
+            var allempinfolist = _catalogsSingleton.EmployeeCatalog.GetAll().Result;
+
+            var selected = from empinfo in allempinfolist
+                where empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" &&
+                      empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 &&
+                      empinfo.ZipPostal == 1
+                select empinfo;
+            
+            return selected.Last();
+        }
+
         [TestMethod]
         public void TestCreateEmployee()
         {
@@ -53,14 +67,13 @@ namespace WorkPlannerUnitTests
             Assert.AreEqual(expectedresult, actual);
 
             //Cleanup
-            var allempinfolist = _catalogsSingleton.EmployeeCatalog.GetAll().Result;
-            foreach (var empinfo in allempinfolist)
-            {
-                if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
-                {
-                    _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.EmployeeID.ToString());
-                }
-            }
+
+            Employees empinfo = SelectedEmp();
+
+            System.Threading.Thread.Sleep(5000);
+            _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.EmployeeID.ToString());
+            System.Threading.Thread.Sleep(5000);
+            _catalogsSingleton.UsersCatalog.RemoveAsync(empinfo.UserID.ToString());
         }
 
         [TestMethod]
