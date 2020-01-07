@@ -55,11 +55,15 @@ namespace WorkPlannerUnitTests
 
             //Cleanup
             var allempinfolist = _catalogsSingleton.EmployeeCatalog.GetAll().Result;
-            foreach (var empinfo in allempinfolist)
+            foreach (Employees empinfo in allempinfolist)
             {
                 if (empinfo.FirstName == "1" && empinfo.LastName == "1" && empinfo.City == "1" && empinfo.Adress == "1" && empinfo.Email == "1" && empinfo.PhoneNumber == 1 && empinfo.ZipPostal == 1)
                 {
+                    System.Threading.Thread.Sleep(5000);
                     _catalogsSingleton.EmployeeCatalog.RemoveAsync(empinfo.EmployeeID.ToString());
+                    System.Threading.Thread.Sleep(5000);
+                    _catalogsSingleton.UsersCatalog.RemoveAsync(empinfo.UserID.ToString());
+                    break;
                 }
             }
         }
