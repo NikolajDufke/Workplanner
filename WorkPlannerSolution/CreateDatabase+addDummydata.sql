@@ -36,6 +36,8 @@ CREATE TABLE [dbo].[Worktime] (
     [Date]       DATETIME NOT NULL,
     [TimeStart]  DATETIME NOT NULL,
     [TimeEnd]    DATETIME NOT NULL,
+	[CheckIn]	 DATETIME NULL,
+	[CheckOut]	 DATETIME NULL,
     PRIMARY KEY CLUSTERED ([WorkTimeID] ASC),
     CONSTRAINT [EmployeeIDFK] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID])
 );
