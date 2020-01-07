@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkPlanner.Catalog;
 using WorkPlanner.Converter;
@@ -28,7 +29,15 @@ namespace WorkPlannerUnitTests
             _workTimeViewModel.Date = new DateTimeOffset(now);
             _workTimeViewModel.TimeStart = new TimeSpan(0, now.Hour, now.Minute, now.Second);
             _workTimeViewModel.TimeEnd = new TimeSpan(0, now.Hour+1, now.Minute, now.Second);
-            _workTimeViewModel.EmployeeProp.EmployeeID = 5002;
+            Employees emp = _catalogsSingleton.EmployeeCatalog.GetAll().Result.First();
+            if (emp != null && emp.EmployeeID != 0)
+            {
+                _workTimeViewModel.EmployeeProp = emp;
+            }
+            else 
+            {
+                throw new AssertFailedException("No employee found");
+            }
 
             //return new Worktimes() { EmployeeID = 1, Date = new DateTime(2019, 11, 29), TimeStart = new DateTime(2019, 11, 29, 10, 30, 0), TimeEnd = new DateTime(2019, 11, 29, 12, 30, 0), WorkTimeID = 9 };
         }
