@@ -28,8 +28,8 @@
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="AppBarButton">
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="55"/>
             <Setter Property="Background" Value="LightGray"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -402,14 +402,10 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <AppBarButton Icon="Add" Click="AddWorkTimeButton" Style="{StaticResource ButtonStyle}"/>
-                            <AppBarButton Grid.Column="2" Icon="Edit" Style="{StaticResource ButtonStyle}"></AppBarButton>
-                            <AppBarButton Grid.Column="4" Icon="Delete" Command="{Binding DeleteWorktimeCommand}" Style="{StaticResource ButtonStyle}"></AppBarButton>
-                            <AppBarButton Grid.Row="1" Grid.Column="6" HorizontalAlignment="Right" Label="FontIcon" Command="{Binding ChangeVisibility}" Style="{StaticResource ButtonStyle}">
-                                <AppBarButton.Icon>
-                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74B;"/>
-                                </AppBarButton.Icon>
-                            </AppBarButton>
+                            <AppBarButton Icon="Add" Label="Add"  Click="AddWorkTimeButton" Style="{StaticResource ButtonStyle}"/>
+                            <AppBarButton Grid.Column="2" Icon="Edit" Label="Edit"  Style="{StaticResource ButtonStyle}"></AppBarButton>
+                            <AppBarButton Grid.Column="4" Icon="Delete" Label="Delete"  Command="{Binding DeleteWorktimeCommand}" Style="{StaticResource ButtonStyle}"></AppBarButton>
+                            <AppBarButton Grid.Row="1" Grid.Column="6" HorizontalAlignment="Right" Icon="People" Label="Employees" Command="{Binding ChangeVisibility}" Style="{StaticResource ButtonStyle}"/>
                             <StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Right">
                                 <TextBlock Text="Selected Worktime ID :" ></TextBlock>
                                 <TextBlock Text="{Binding SelectedWorktime}" ></TextBlock>
@@ -446,9 +442,9 @@
                                     <ColumnDefinition Width="100"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <AppBarButton Icon="Add" Click="CreateButton" Style="{StaticResource ButtonStyle}"/>
-                                <AppBarButton Grid.Column="2" Icon="Edit" Style="{StaticResource ButtonStyle}"/>
-                                <AppBarButton Grid.Column="4" Icon="Delete" Command="{Binding DeleteEmployeeCommand}" Style="{StaticResource ButtonStyle}"/>
+                                <AppBarButton Icon="AddFriend" Label="Add"  Click="CreateButton" Style="{StaticResource ButtonStyle}"/>
+                                <AppBarButton Grid.Column="2" Icon="Edit" Label="Edit" Style="{StaticResource ButtonStyle}"/>
+                                <AppBarButton Grid.Column="4" Icon="Delete" Label="Delete" Command="{Binding DeleteEmployeeCommand}" Style="{StaticResource ButtonStyle}"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="2">
