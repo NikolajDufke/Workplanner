@@ -208,8 +208,17 @@ namespace WorkPlanner.Proxy
             if (!_casheSortedByEmployee.ContainsKey(employee.EmployeeID))
             {
                 List<Worktimes> result = _allWorktimes.FindAll(x => x.EmployeeID == employee.EmployeeID);
-                _casheSortedByEmployee.Add(employee.EmployeeID, result);
+                if (result.Count != 0)
+                {
+                    _casheSortedByEmployee.Add(employee.EmployeeID, result);
+                }
+                else
+                {
+                    return new List<Worktimes>();
+                }
             }
+
+            var t = _casheSortedByEmployee.GetValueOrDefault(employee.EmployeeID);
             return _casheSortedByEmployee[employee.EmployeeID];
         }
 
