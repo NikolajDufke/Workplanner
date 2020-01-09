@@ -337,21 +337,22 @@ namespace WorkPlanner.Handler
             {
 
                 var e = new EventElement();
-                if (tp.Update)
+                //if (tp.Update)
+                //{
+                // Vi matcher alle employees 
+
+                foreach (Employees employee in _employeePlacementIndex.GetEmployees())
                 {
-                    // Vi matcher alle employees 
+                    Employees tempemployee = tp.GetMembers.Find(x => x.EmployeeID == employee.EmployeeID);
 
-                    foreach (Employees employee in _employeePlacementIndex.GetEmployees())
+                    if (tempemployee != null)
+                        e.Colors.Add(tp.GetWorktimeEventDetail(employee.EmployeeID));
+                    else
                     {
-                        Employees tempemployee = tp.GetMembers.Find(x => x.EmployeeID == employee.EmployeeID);
-
-                        if (tempemployee != null)
-                            e.Colors.Add(tp.GetWorktimeEventDetail(employee.EmployeeID));
-                        else
-                        {
-                            e.Colors.Add(new WorktimeEventDetails(new Employees(), new Worktimes()));
-                        }
+                        e.Colors.Add(new WorktimeEventDetails(new Employees(), new Worktimes()));
                     }
+
+                    //}
                 }
 
                 collectionToUpdate.Add(e);

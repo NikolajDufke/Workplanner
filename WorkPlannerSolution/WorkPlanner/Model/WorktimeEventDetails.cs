@@ -8,7 +8,7 @@ using WorkPlanner.Interface;
 
 namespace WorkPlanner.Model
 {
-    public class WorktimeEventDetails : IWorktimeEventDetailSubject, IDisposable
+    public class WorktimeEventDetails : IWorktimeEventDetailSubject
     {
         private string _color;
         private Employees _employee;

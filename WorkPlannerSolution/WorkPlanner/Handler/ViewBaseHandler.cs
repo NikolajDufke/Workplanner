@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkPlanner.Exception;
 using WorkPlanner.Interface;
 using WorkPlanner.ViewModel;
 
@@ -10,7 +11,7 @@ namespace WorkPlanner.Handler
 {
 
 
-   public class ViewBaseHandler
+    public class ViewBaseHandler
     {
         protected IViewModelBase _viewModelBase;
 
@@ -19,17 +20,15 @@ namespace WorkPlanner.Handler
             _viewModelBase = viewmodel;
         }
 
-        protected void AddErrorMessage(string message)
+        protected void AddErrorMessage(System.Exception exception)
         {
-            _viewModelBase.ErrorList.Add(message);
+            if (exception.GetType() == typeof(DatabaseExceptioncs))
+                _viewModelBase.ErrorList.Add(exception.Message);
         }
 
         protected void RemoveErrorMessage(string message)
         {
             _viewModelBase.ErrorList.Remove(message);
         }
-
-
-
     }
 }

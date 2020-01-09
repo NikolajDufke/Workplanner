@@ -132,6 +132,7 @@
     <Compile Include="Converter\DateFormatConverter.cs" />
     <Compile Include="Converter\TimeSpanConvertToHourMinute.cs" />
     <Compile Include="Converter\DateTimeConvertToHourMinute.cs" />
+    <Compile Include="Exception\DatabaseExceptioncs.cs" />
     <Compile Include="Factories\PropertyHelpersFactory.cs" />
     <Compile Include="Handler\AdminHandler.cs" />
     <Compile Include="Handler\CalendarHandler.cs" />
