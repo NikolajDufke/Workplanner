@@ -28,8 +28,5 @@ namespace WorkPlanner.Handler
         {
             _viewModelBase.ErrorList.Remove(message);
         }
-
-
-
     }
 }

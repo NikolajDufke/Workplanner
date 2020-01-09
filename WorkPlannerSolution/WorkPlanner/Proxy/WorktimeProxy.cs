@@ -203,7 +203,7 @@ namespace WorkPlanner.Proxy
 
     
 
-    public List<Worktimes> GetAllWorktimesByEmployee(Employees employee)
+        public List<Worktimes> GetAllWorktimesByEmployee(Employees employee)
         {
             if (!_casheSortedByEmployee.ContainsKey(employee.EmployeeID))
             {
